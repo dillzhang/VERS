@@ -1,0 +1,24 @@
+{
+  "name": "VERS",
+  "version": "1.0.0",
+  "description": "The VERS Project",
+  "main": "index.js",
+  "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dillzhang/VERS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dillzhang/VERS/issues"
+  },
+  "homepage": "https://github.com/dillzhang/VERS#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
