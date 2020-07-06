@@ -1,0 +1,13 @@
+.timer-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 150px;
+    height: 100px;
+
+    background-color: #222222;
+    color: #eeeeee;
+
+    font-size: 50px;
+}

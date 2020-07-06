@@ -1,0 +1,21 @@
+.file-system {
+    text-align: left;
+    padding: 5px;
+}
+
+.file-system-header::before {
+    content: "↳";
+}
+
+.file-system-body {
+    padding-left: 20px;
+}
+
+.file-system-hidden{
+    display: none;
+}
+
+.file-system button {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}

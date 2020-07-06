@@ -1,0 +1,65 @@
+.draggable {
+    position: absolute;
+
+    --drag-header-size: 20px;
+    --drag-header-color: #4b4b4b;
+    --round-over: 5px;
+
+    background-color: #222222;
+
+    border-radius: var(--round-over);
+
+    border: 2px solid #111111;
+}
+
+.hidden {
+    display: none;
+}
+
+.draggable-header {
+    height: var(--drag-header-size);
+    background-color: #4b4b4b;
+
+    display: grid;
+    grid-template-columns: var(--drag-header-size) 1fr var(--drag-header-size);
+
+    cursor: grab;
+
+    border-radius: var(--round-over) var(--round-over) 0 0;
+}
+
+.draggable-header .close-app {
+    background-color: #a03f3b;
+    color: #2e2e2e;
+    
+    margin: 2px;
+
+    border-radius: 50%;
+
+    width: calc(var(--drag-header-size) - 4px);
+    height: calc(var(--drag-header-size) - 4px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: small;
+
+    cursor: pointer;
+}
+
+.draggable-header .app-name {
+    width: 100%;
+    text-align: center;
+    
+    color: #eeeeee;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.draggable-body {
+    border-radius: 0 0 var(--round-over) var(--round-over);
+    padding: var(--round-over);
+}

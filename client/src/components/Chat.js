@@ -54,9 +54,6 @@ class Chat extends Component {
   render() {
     return (
       <div className="chat-box">
-        <div className="chat-header">
-          Chat
-        </div>
         <div className="chat-message-holder">
           {this.state.messages.map(m => {
             return <Message key={m.time} {...m} viewer={this.viewer}/>

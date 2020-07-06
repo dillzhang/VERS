@@ -1,0 +1,72 @@
+.guest-container {
+    width: 100vw;
+    height: 100vh;
+
+    --header-height: 30px;
+
+    --shortcut-size: 120px;
+    --shortcut-icon-size: 90px;
+
+    --dark-grey: #222222;
+    --light-grey: #313131;
+    --off-white: #eeeeee;
+
+    font-family: sans-serif;
+
+    user-select: none;
+}
+
+.guest-container .header {
+    height: var(--header-height);
+    background-color: var(--dark-grey);
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.guest-container .header-time {
+    color: var(--off-white);
+    padding: 0 20px;
+}
+
+.guest-container .home-screen {
+    height: calc(100vh - var(--header-height));
+    background-color: var(--light-grey);
+
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.guest-container .shortcut {
+    width: var(--shortcut-size);
+    height: var(--shortcut-size);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px;
+
+    color: var(--off-white)
+}
+
+.guest-container .icon {
+    width: var(--shortcut-icon-size);
+    height: var(--shortcut-icon-size);
+
+    background-color: var(--off-white);
+}
+
+.guest-container .shortcut-name {
+    font-size: large;
+}
+
