@@ -70,15 +70,15 @@ class Guest extends Component {
     }
 
     this.shortcuts = {
-      secureChat: (<div className="shortcut" onClick={() => {this.openApplication("secureChat")}}>
+      secureChat: (<div key="chat-shortcut" className="shortcut" onClick={() => {this.openApplication("secureChat")}}>
         <div className="icon" />
         <div className="shortcut-name">Secure Chat</div>
       </div>),
-      timer: (<div className="shortcut" onClick={() => {this.openApplication("timer")}}>
+      timer: (<div key="timer-shortcut" className="shortcut" onClick={() => {this.openApplication("timer")}}>
         <div className="icon" />
         <div className="shortcut-name">Timer</div>
       </div>),
-      fileSystem: (<div className="shortcut"  onClick={() => {this.openApplication("fileSystem")}}>
+      fileSystem: (<div key="file-shortcut" className="shortcut"  onClick={() => {this.openApplication("fileSystem")}}>
         <div className="icon" />
         <div className="shortcut-name">FileSystem</div>
       </div>),
@@ -103,41 +103,38 @@ class Guest extends Component {
   // Fetch the list on first mount
   componentDidMount() {
     this.socket.emit("joinRoom", this.room);
-
-    console.log(`Player Room ${this.room}`)
   }
 
   render() {
     console.log(this.state)
     return (
-      <div className="App">
-        <div className="guest-container">
-          <div className="header">
-            <div className="header-time">
-              22:26
-            </div>
+      <div className="app guest">
+        <div className="header">
+          <div className="header-time">
+            22:26
           </div>
-          <div className="home-screen">
-            {Object.keys(this.state.applicationsAvailable)
-              .filter(app => this.state.applicationsAvailable[app])
-              .map(app => {
-                return this.shortcuts[app];
-              })
-            }
-            {Object.keys(this.state.applicationsOpen)
-              .filter(app => this.state.applicationsOpen[app])
-              .map(app => {
-                return (
-                  <Draggable 
-                    visible={true}
-                    closeCall={() => { this.closeApplication(app) } }
-                    appName={this.apps[app].name}
-                  >
-                    {this.apps[app].html}
-                  </Draggable>);
-              })
-            }
-          </div>
+        </div>
+        <div className="home-screen">
+          {Object.keys(this.state.applicationsAvailable)
+            .filter(app => this.state.applicationsAvailable[app])
+            .map(app => {
+              return this.shortcuts[app];
+            })
+          }
+          {Object.keys(this.state.applicationsOpen)
+            .filter(app => this.state.applicationsOpen[app])
+            .map(app => {
+              return (
+                <Draggable 
+                  key={app}
+                  visible={true}
+                  closeCall={() => { this.closeApplication(app) } }
+                  appName={this.apps[app].name}
+                >
+                  {this.apps[app].html}
+                </Draggable>);
+            })
+          }
         </div>
       </div>
     );

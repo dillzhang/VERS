@@ -1,4 +1,4 @@
-.guest-container {
+.guest {
     width: 100vw;
     height: 100vh;
 
@@ -14,9 +14,11 @@
     font-family: sans-serif;
 
     user-select: none;
+
+    overflow: hidden;
 }
 
-.guest-container .header {
+.guest .header {
     height: var(--header-height);
     background-color: var(--dark-grey);
 
@@ -27,12 +29,12 @@
     justify-content: flex-end;
 }
 
-.guest-container .header-time {
+.guest .header-time {
     color: var(--off-white);
     padding: 0 20px;
 }
 
-.guest-container .home-screen {
+.guest .home-screen {
     height: calc(100vh - var(--header-height));
     background-color: var(--light-grey);
 
@@ -45,7 +47,7 @@
     flex-wrap: wrap;
 }
 
-.guest-container .shortcut {
+.guest .shortcut {
     width: var(--shortcut-size);
     height: var(--shortcut-size);
 
@@ -59,14 +61,14 @@
     color: var(--off-white)
 }
 
-.guest-container .icon {
+.guest .icon {
     width: var(--shortcut-icon-size);
     height: var(--shortcut-icon-size);
 
     background-color: var(--off-white);
 }
 
-.guest-container .shortcut-name {
+.guest .shortcut-name {
     font-size: large;
 }
 

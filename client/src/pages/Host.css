@@ -1,0 +1,44 @@
+.host {
+    --header-height: 75px;
+
+    --sidebar-width: 450px;
+
+    overflow: hidden;
+}
+
+.header {
+    height: calc(var(--header-height) - 2px);
+    border-bottom: 2px solid black;
+
+    display: flex;
+    align-items: center;
+
+    padding: 5px 20px;
+}
+
+.header h1 {
+    font-size: larger;
+}
+
+.body {
+    display: flex;
+    height: calc(99vh - var(--header-height));
+}
+
+.main {
+    width: calc(99vw - var(--sidebar-width));
+}
+
+.side-bar {
+    width: calc(var(--sidebar-width) - 4px);
+    border-left: 2px solid black;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 0;
+}
+

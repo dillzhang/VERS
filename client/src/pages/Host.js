@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import * as SocketIO from "socket.io-client";
 
+import './Host.css'
+
 import Chat from "../components/Chat";
+import Timer from "../components/Timer";
 
 const baseURL = new URL(window.location.href).host;
 
@@ -30,11 +33,25 @@ class Host extends Component {
 
   render() {
     return (
-      <div className="App">
-        <h1>Actor for Room {this.room}</h1>
-        <Chat room={this.room} viewer="host" socket={this.socket}/>
+      <div className="app host">
+        <div class="header">
+          <h1>Actor for Room {this.room}</h1>
+        </div>
+        <div class="body">
+          <div class="main">
+            {this.renderMain()}
+          </div>
+          <div className="side-bar">
+            <Timer socket={this.socket}/>
+            <Chat room={this.room} viewer="host" socket={this.socket}/>
+          </div>
+        </div>
       </div>
     );
+  }
+
+  renderMain = () => {
+    return "hello"
   }
 }
 

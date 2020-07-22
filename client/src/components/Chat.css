@@ -33,7 +33,7 @@
 .chat-message-holder {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
-  }
+}
 
 .chat-messages {
     text-align: left;
