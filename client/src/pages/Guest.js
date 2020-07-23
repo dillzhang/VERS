@@ -66,7 +66,8 @@ class Guest extends Component {
         secureChat: false,
         timer: false,
         fileSystem: false,
-      }
+      },
+      state: 0,
     }
 
     this.shortcuts = {
@@ -98,6 +99,10 @@ class Guest extends Component {
         html: <FileSystem {...fs} callBack={() => {console.log("FS")}} />
       },
     }
+
+    this.socket.on("roomStatus", (data) => {
+        this.setState({ state: data });
+    });
   }
 
   // Fetch the list on first mount
@@ -141,7 +146,6 @@ class Guest extends Component {
   }
 
   openApplication = (app) => {
-    console.log(`Opening ${app}`)
     this.setState(state => ({
       applicationsOpen: {...state.applicationsOpen, [app]: true}
     }));

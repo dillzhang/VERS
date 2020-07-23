@@ -1,7 +1,11 @@
 const rooms = {
     TEST: {
         state: 0,
+
         messages: [],
+        
+        endTime: -1,
+        timerId: -1,
     },
 }
 
@@ -22,7 +26,11 @@ const createNewRoom = () => {
     const id = randomString();
     rooms[id] = {
         state: 0,
+
         messages: [],
+
+        endTime: -1,
+        timerId: -1,
     };
     return id;
 }
@@ -45,12 +53,30 @@ const newTextMessage = (io, socket, roomCode, content, sender) => {
 const joinRoom = (socket, roomCode) => {
     if (rooms.hasOwnProperty(roomCode)) {
         socket.join(roomCode, () => {
-            socket.emit("roomStatus", rooms[roomCode]);
-            return socket.emit("messageStatus", rooms[roomCode].messages);
+            socket.emit("roomStatus", rooms[roomCode].state);
+            socket.emit("messageStatus", rooms[roomCode].messages);
         });
     } else {
         socket.emit("error", "invalid room");
     }
+}
+
+const startTimer = (roomCode, io) => {
+    if (!rooms.hasOwnProperty(roomCode)) {
+        return;
+    }
+    rooms[roomCode].endTime = Date.now() + 1000 * 60 * 60 - 1;
+    updateTime(roomCode, io);
+}
+
+const updateTime = (roomCode, io) => {
+    clearTimeout(rooms[roomCode].timerId);
+    const remaining = rooms[roomCode].endTime - Date.now();
+    const seconds = "00" + (Math.floor(remaining / 1000) % 60);
+    const minutes = "00" + (Math.floor(remaining / (60 * 1000)) % 60);
+    const timer =  `${minutes.slice(minutes.length - 2, minutes.length)}:${seconds.slice(seconds.length - 2, seconds.length)}`;
+    io.to(roomCode).emit("timer-update", { time: timer });
+    rooms[roomCode].timerId = setTimeout(() => {updateTime(roomCode, io);}, 557);
 }
 
 module.exports = {
@@ -59,4 +85,5 @@ module.exports = {
     joinRoom,
     newTextMessage,
     randomString,
+    startTimer,
 }

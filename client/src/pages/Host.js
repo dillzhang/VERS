@@ -21,8 +21,7 @@ class Host extends Component {
     }
 
     this.socket.on("roomStatus", (data) => {
-        const { state } = data;
-        this.setState({state});
+        this.setState({ state: data });
     })
   }
 
@@ -34,11 +33,11 @@ class Host extends Component {
   render() {
     return (
       <div className="app host">
-        <div class="header">
+        <div className="header">
           <h1>Actor for Room {this.room}</h1>
         </div>
-        <div class="body">
-          <div class="main">
+        <div className="body">
+          <div className="main">
             {this.renderMain()}
           </div>
           <div className="side-bar">
@@ -51,7 +50,18 @@ class Host extends Component {
   }
 
   renderMain = () => {
-    return "hello"
+    switch (this.state.state) {
+      case 0:
+        return(
+          <div>
+            <button onClick={() => {
+              this.socket.emit("start-time", {room: this.room});
+            }}>Start Timer</button>
+          </div>
+        )
+      default:
+        return "Something wrong has occured";
+    }
   }
 }
 
