@@ -5,15 +5,13 @@ import './Reset.css';
 import Home from './pages/Home';
 import Guest from './pages/Guest';
 import Host from './pages/Host';
-import Elevator from './components/Elevator';
-
 
 class App extends Component {
   render() {
     const App = () => (
       <div>
         <Switch>
-          <Route exact path='/' component={Elevator}/>
+          <Route exact path='/' component={Home}/>
           <Route path='/actor/:code' component={Host}/>
           <Route path='/player/:code' component={Guest}/>
         </Switch>
