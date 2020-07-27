@@ -45,6 +45,7 @@ class Chat extends Component {
   
   componentDidMount() {
     this.scrollToBottom();
+    this.socket.emit("getTextMessage", {roomCode: this.room});
   }
   
   componentDidUpdate() {

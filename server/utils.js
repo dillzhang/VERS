@@ -1,6 +1,7 @@
 const rooms = {
     TEST: {
         state: 0,
+        password: "$ecretPassw0rd",
 
         messages: [],
         
@@ -11,6 +12,10 @@ const rooms = {
 
 const getRooms = () => {
     return Object.keys(rooms);
+}
+
+const verifyRoom = (roomCode, password) => {
+    return rooms.hasOwnProperty(roomCode) && rooms[roomCode].password == password;
 }
 
 const randomString = () => {
@@ -26,6 +31,7 @@ const createNewRoom = () => {
     const id = randomString();
     rooms[id] = {
         state: 0,
+        password: "$ecretPassw0rd",
 
         messages: [],
 
@@ -33,6 +39,14 @@ const createNewRoom = () => {
         timerId: -1,
     };
     return id;
+}
+
+const getMessages = (roomCode) => {
+    if (rooms.hasOwnProperty(roomCode)) {
+        return rooms[roomCode].messages;
+    } else {
+        return [];
+    }
 }
 
 const newTextMessage = (io, socket, roomCode, content, sender) => {
@@ -82,8 +96,10 @@ const updateTime = (roomCode, io) => {
 module.exports = {
     createNewRoom,
     getRooms,
+    getMessages,
     joinRoom,
     newTextMessage,
     randomString,
     startTimer,
+    verifyRoom,
 }

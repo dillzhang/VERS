@@ -56,67 +56,135 @@ class Guest extends Component {
     this.socket = SocketIO(baseURL);
     this.room = this.props.match.params.code;
 
+    const today = new Date();
+    const time = ("0" + today.getHours()).slice(-2) + ":" + ("0" + today.getMinutes()).slice(-2) + ":" + ("0" + today.getSeconds()).slice(-2);
+
     this.state = {
-      applicationsAvailable: {
-        secureChat: true,
-        timer: true,
-        fileSystem: false,
-      },
-      applicationsOpen: {
-        secureChat: false,
-        timer: false,
-        fileSystem: false,
-      },
-      state: 0,
+      state: -1,
+
+      username: "",
+      password: "",
+      unlocking: false,
+
+      currentTime: time,
+
+      applicationsAvailable: {},
+      applicationsOpen: {},
     }
 
-    this.shortcuts = {
-      secureChat: (<div key="chat-shortcut" className="shortcut" onClick={() => {this.openApplication("secureChat")}}>
-        <div className="icon" />
-        <div className="shortcut-name">Secure Chat</div>
-      </div>),
-      timer: (<div key="timer-shortcut" className="shortcut" onClick={() => {this.openApplication("timer")}}>
-        <div className="icon" />
-        <div className="shortcut-name">Timer</div>
-      </div>),
-      fileSystem: (<div key="file-shortcut" className="shortcut"  onClick={() => {this.openApplication("fileSystem")}}>
-        <div className="icon" />
-        <div className="shortcut-name">FileSystem</div>
-      </div>),
-    }
-    
-    this.apps = {
-      secureChat: {
-        name: "Secure Chat",
-        html: <Chat room={this.room} viewer="guest" socket={this.socket}/>
-      },
-      timer: {
-        name: "Timer",
-        html: <Timer socket={this.socket}/>
-      },
-      fileSystem: {
-        name: "File System",
-        html: <FileSystem {...fs} callBack={() => {console.log("FS")}} />
-      },
-    }
+    setInterval(() => {
+      const today = new Date();
+      const time = ("0" + today.getHours()).slice(-2) + ":" + ("0" + today.getMinutes()).slice(-2) + ":" + ("0" + today.getSeconds()).slice(-2);
+      this.setState({ currentTime: time });
+    }, 499);
 
-    this.socket.on("roomStatus", (data) => {
-        this.setState({ state: data });
+    this.socket.on("roomStatus", ({state}) => {
+      this.shortcuts = {
+        secureChat: (<div key="chat-shortcut" className="shortcut" onClick={() => {this.openApplication("secureChat")}}>
+          <div className="icon" />
+          <div className="shortcut-name">Secure Chat</div>
+        </div>),
+        timer: (<div key="timer-shortcut" className="shortcut" onClick={() => {this.openApplication("timer")}}>
+          <div className="icon" />
+          <div className="shortcut-name">Timer</div>
+        </div>),
+        fileSystem: (<div key="file-shortcut" className="shortcut"  onClick={() => {this.openApplication("fileSystem")}}>
+          <div className="icon" />
+          <div className="shortcut-name">FileSystem</div>
+        </div>),
+      }
+      
+      this.apps = {
+        secureChat: {
+          name: "Secure Chat",
+          html: <Chat room={this.room} viewer={this.state.username} socket={this.socket}/>
+        },
+        timer: {
+          name: "Timer",
+          html: <Timer socket={this.socket}/>
+        },
+        fileSystem: {
+          name: "File System",
+          html: <FileSystem {...fs} callBack={() => {console.log("FS")}} />
+        },
+      }
+      this.setState({ 
+          state, 
+        error: "",
+        applicationsAvailable: {
+          secureChat: true,
+          timer: true,
+          fileSystem: false,
+        },
+        applicationsOpen: {
+          secureChat: false,
+          timer: false,
+          fileSystem: false,
+        },
+      });
+    });
+
+    this.socket.on("errorMessage", ({message}) => {
+      this.setState({ error: message, unlocking: false });
     });
   }
 
   // Fetch the list on first mount
   componentDidMount() {
-    this.socket.emit("joinRoom", this.room);
+    // this.socket.emit("joinRoom", this.room);
   }
 
   render() {
     console.log(this.state)
+    if (this.state.state == -1) {
+      return (
+        <div className="app guest">
+          <div className="lock-screen">
+            <div className="user-icon" />
+            <h1>Other User</h1>
+            {this.state.error && <p>{this.state.error}</p>}
+            <label>
+              <input 
+                type="text" 
+                placeholder="Username" 
+                value={this.state.username} 
+                onChange={(e) => {
+                  const value = e.target.value;
+                  this.setState({ username: value })
+                }}
+                disabled={this.state.unlocking}
+              />
+            </label>
+            <label>
+              <input 
+                type="password" 
+                placeholder="Password" 
+                value={this.state.password} 
+                onChange={(e) => {
+                  const value = e.target.value;
+                  this.setState({ password: value })
+                }}
+                disabled={this.state.unlocking}
+              />
+            </label>
+            <button
+              onClick={() => {
+                this.socket.emit("joinRoom", { room: this.room, password: this.state.password });
+                this.setState({ unlocking: true })
+              }}
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      )
+    }
+
     return (
       <div className="app guest">
         <div className="header">
           <div className="header-time">
-            22:26
+            {this.state.username} - {this.state.currentTime}
           </div>
         </div>
         <div className="home-screen">

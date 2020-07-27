@@ -1,4 +1,5 @@
-const { joinRoom, newTextMessage, startTimer } = require("./utils");
+const { getMessages, joinRoom, newTextMessage, startTimer, verifyRoom } = require("./utils");
+const e = require("express");
 
 function handleIo(io) {
     io.on("connection", socket => {
@@ -8,9 +9,17 @@ function handleIo(io) {
             console.log("disconnected", socket.id);
         });
     
-        socket.on("joinRoom", roomCode => {
-            console.log("joinRoom");
-            const room = joinRoom(socket, roomCode);
+        socket.on("joinRoom", ({ room, password }) => {
+            const roomCode = room;
+            if (password == "HOST" || verifyRoom(room, password)) {
+                joinRoom(socket, roomCode);
+            } else {
+                socket.emit("errorMessage", { message: "Incorrect Password"});
+            }
+        });
+
+        socket.on("getTextMessage", ({roomCode}) => {
+            socket.emit("messageStatus", getMessages(roomCode));
         });
     
         socket.on("newTextMessage", ({roomCode, content, sender}) => {

@@ -18,6 +18,50 @@
     overflow: hidden;
 }
 
+.guest .lock-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--light-grey);
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.lock-screen .user-icon {
+    margin-top: -50px;
+    width: var(--shortcut-icon-size);
+    height: var(--shortcut-icon-size);
+    border: 3px solid black;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.lock-screen h1 {
+    color: var(--off-white);
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.lock-screen label {
+    margin: 5px 0;
+}
+
+.lock-screen label input {
+    width: calc(3 * var(--shortcut-icon-size));
+    height: calc(0.25 * var(--shortcut-icon-size));
+}
+
+.lock-screen button {
+    margin-top: 10px;
+    width: calc(1 * var(--shortcut-icon-size));
+    height: calc(0.25 * var(--shortcut-icon-size));
+}
+
+
+
 .guest .header {
     height: var(--header-height);
     background-color: var(--dark-grey);

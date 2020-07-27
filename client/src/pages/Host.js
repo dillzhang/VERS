@@ -22,12 +22,12 @@ class Host extends Component {
 
     this.socket.on("roomStatus", (data) => {
         this.setState({ state: data });
-    })
+    });
   }
 
   // Fetch the list on first mount
   componentDidMount() {
-    this.socket.emit("joinRoom", this.room);
+    this.socket.emit("joinRoom", { room: this.room, password: "HOST" });
   }
 
   render() {
@@ -42,7 +42,7 @@ class Host extends Component {
           </div>
           <div className="side-bar">
             <Timer socket={this.socket}/>
-            <Chat room={this.room} viewer="host" socket={this.socket}/>
+            <Chat room={this.room} viewer="@lex" socket={this.socket}/>
           </div>
         </div>
       </div>
