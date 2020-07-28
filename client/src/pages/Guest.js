@@ -36,7 +36,7 @@ class Guest extends Component {
     }, 499);
 
     this.socket.on("joinRoomStatus", ({state}) => {
-      // Add chat files here
+      // Chat Short Cuts
       this.chatFiles = {
         file1: <img onClick={() => {this.openApplication("file1")}} src="https://ichef.bbci.co.uk/news/410/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg" style={{ height: "60px", width: "80px" }}/>,
       }

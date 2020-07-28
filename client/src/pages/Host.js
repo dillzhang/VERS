@@ -20,8 +20,8 @@ class Host extends Component {
         state: 0,
     }
 
-    this.socket.on("roomStatus", (data) => {
-        this.setState({ state: data });
+    this.socket.on("joinRoomStatus", ({ state }) => {
+        this.setState({ state });
     });
   }
 
