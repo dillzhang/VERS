@@ -169,7 +169,7 @@ const newTextMessage = (io, socket, roomCode, content, sender) => {
 const joinRoom = (socket, roomCode) => {
     if (rooms.hasOwnProperty(roomCode)) {
         socket.join(roomCode, () => {
-            socket.emit("roomStatus", { state: rooms[roomCode].state });
+            socket.emit("joinRoomStatus", { state: rooms[roomCode].state });
             socket.emit("messageStatus", rooms[roomCode].messages);
         });
     } else {

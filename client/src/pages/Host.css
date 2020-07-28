@@ -6,7 +6,7 @@
     overflow: hidden;
 }
 
-.header {
+.host .header {
     height: calc(var(--header-height) - 2px);
     border-bottom: 2px solid black;
 
@@ -16,20 +16,20 @@
     padding: 5px 20px;
 }
 
-.header h1 {
+.host .header h1 {
     font-size: larger;
 }
 
-.body {
+.host .body {
     display: flex;
     height: calc(99vh - var(--header-height));
 }
 
-.main {
+.host .main {
     width: calc(99vw - var(--sidebar-width));
 }
 
-.side-bar {
+.host .side-bar {
     width: calc(var(--sidebar-width) - 4px);
     border-left: 2px solid black;
 
