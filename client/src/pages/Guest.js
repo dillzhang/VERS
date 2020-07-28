@@ -108,7 +108,7 @@ class Guest extends Component {
         },
 
         file1: {
-          name: "File1",
+          name: "Photos - File1",
           html: <img src="https://ichef.bbci.co.uk/news/410/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg" />,
         }
       }

@@ -20,14 +20,16 @@ class Draggable extends Component {
     }
 
     render() {
-        const style = { top: this.state.top, left: this.state.left }
+        const style = { 
+            top: Math.max(0, this.state.top), 
+            left: Math.max(0, this.state.left), 
+        };
         return (
             <div className={`draggable ${this.props.visible ? "" : "hidden"}`} style={style}>
-                <div className="draggable-header"
-                    onMouseDown={this.handleMouseDown}
-                >
+                <div className="draggable-header">
                     <div className="close-app" onClick={this.props.closeCall}>X</div>
-                    <div className="app-name">{this.props.appName}</div>
+                    <div className="app-name" onMouseDown={this.handleMouseDown}>{this.props.appName}</div>
+                    <div className="app-name" onMouseDown={this.handleMouseDown} />
                 </div>
                 <div className="draggable-body">
                     {this.props.children}
@@ -37,8 +39,6 @@ class Draggable extends Component {
     }
 
     handleMouseDown = (e) => {
-        console.log("down");
-
         this.dragging = true;
         this.prevX = e.clientX;
         this.prevY = e.clientY;
@@ -48,7 +48,6 @@ class Draggable extends Component {
         if (!this.dragging) {
             return;
         }
-        console.log("move");
         let newState = {
             left: this.state.left + e.clientX - this.prevX,
             top: this.state.top + e.clientY - this.prevY,
