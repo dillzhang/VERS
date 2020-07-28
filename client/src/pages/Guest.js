@@ -62,8 +62,8 @@ class Guest extends Component {
     this.state = {
       state: -1,
 
-      username: "",
-      password: "",
+      username: "Johnny",
+      password: "$ecretPassw0rd",
       unlocking: false,
 
       currentTime: time,
@@ -79,24 +79,47 @@ class Guest extends Component {
     }, 499);
 
     this.socket.on("roomStatus", ({state}) => {
-
+      console.log(state);
       // Add chat files here
       this.chatFiles = {
         file1: <img onClick={() => {this.openApplication("file1")}} src="https://ichef.bbci.co.uk/news/410/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg" style={{ height: "60px", width: "80px" }}/>,
       }
+
+      // File System ShortCuts
+      this.fileSystemFiles = {
+      }
       
+      // Desktop Short Cuts
       this.shortcuts = {
-        secureChat: (<div key="chat-shortcut" className="shortcut" onClick={() => {this.openApplication("secureChat")}}>
-          <div className="icon" />
-          <div className="shortcut-name">Secure Chat</div>
-        </div>),
-        timer: (<div key="timer-shortcut" className="shortcut" onClick={() => {this.openApplication("timer")}}>
-          <div className="icon" />
-          <div className="shortcut-name">Timer</div>
-        </div>),
+        secureChat: {
+          requirement: 0,
+          app: (
+            <div key="chat-shortcut" className="shortcut" onClick={() => {this.openApplication("secureChat")}}>
+              <div className="icon" />
+              <div className="shortcut-name">Secure Chat</div>
+            </div>
+          ),
+        },
+        timer: {
+          requirement: 10,
+          app: (
+            <div key="timer-shortcut" className="shortcut" onClick={() => {this.openApplication("timer")}}>
+              <div className="icon" />
+              <div className="shortcut-name">Timer</div>
+            </div>
+          )
+        },
+        fileSystem: {
+          requirement: 20,
+          app: (
+            <div key="file-system-shortcut" className="shortcut" onClick={() => {this.openApplication("fileSystem")}}>
+              <div className="icon" />
+              <div className="shortcut-name">Files</div>
+            </div>
+          )
+        },
       }
 
-      // Add chat pop-ups here
       this.apps = {
         secureChat: {
           name: "Secure Chat",
@@ -106,24 +129,29 @@ class Guest extends Component {
           name: "Timer",
           html: <Timer socket={this.socket}/>
         },
+        fileSystem: {
+          name: "File System",
+          html: <div>FILES</div>
+        },
 
+        // Chat Pop-ups
+
+        // Add chat pop-ups here
         file1: {
           name: "Photos - File1",
           html: <img src="https://ichef.bbci.co.uk/news/410/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg" />,
         }
-      }
 
+        // File System Pop ups
+      }
+      
       this.setState({ 
           state, 
-        error: "",
-        applicationsAvailable: {
-          secureChat: true,
-          timer: true,
-        },
-        applicationsOpen: {
-          secureChat: false,
-          timer: false,
-        },
+          error: "",
+          applicationsOpen: {
+            secureChat: false,
+            timer: false,
+          },
       });
     });
 
@@ -132,13 +160,7 @@ class Guest extends Component {
     });
   }
 
-  // Fetch the list on first mount
-  componentDidMount() {
-    // this.socket.emit("joinRoom", this.room);
-  }
-
   render() {
-    console.log(this.state)
     if (this.state.state == -1) {
       return (
         <div className="app guest">
@@ -182,7 +204,6 @@ class Guest extends Component {
         </div>
       )
     }
-
     return (
       <div className="app guest">
         <div className="header">
@@ -191,10 +212,11 @@ class Guest extends Component {
           </div>
         </div>
         <div className="home-screen">
-          {Object.keys(this.state.applicationsAvailable)
-            .filter(app => this.state.applicationsAvailable[app])
+          {Object.keys(this.shortcuts)
+            .filter(app => this.shortcuts[app].requirement <= this.state.state)
             .map(app => {
-              return this.shortcuts[app];
+              console.log(app, this.shortcuts[app])
+              return this.shortcuts[app].app;
             })
           }
           {Object.keys(this.state.applicationsOpen)

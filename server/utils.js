@@ -1,6 +1,93 @@
 const rooms = {
-    TEST: {
+    PRESHOW: {
         state: 0,
+        password: "$ecretPassw0rd",
+
+        messages: [],
+        
+        endTime: -1,
+        timerId: -1,
+    },
+
+    P1A: {
+        state: 10,
+        password: "$ecretPassw0rd",
+
+        messages: [],
+        
+        endTime: -1,
+        timerId: -1,
+    },
+
+
+    P1B: {
+        state: 20,
+        password: "$ecretPassw0rd",
+
+        messages: [],
+        
+        endTime: -1,
+        timerId: -1,
+    },
+
+
+    P2A: {
+        state: 30,
+        password: "$ecretPassw0rd",
+
+        messages: [],
+        
+        endTime: -1,
+        timerId: -1,
+    },
+
+
+    P2B: {
+        state: 40,
+        password: "$ecretPassw0rd",
+
+        messages: [],
+        
+        endTime: -1,
+        timerId: -1,
+    },
+
+
+    P3A: {
+        state: 50,
+        password: "$ecretPassw0rd",
+
+        messages: [],
+        
+        endTime: -1,
+        timerId: -1,
+    },
+
+
+    P3B: {
+        state: 60,
+        password: "$ecretPassw0rd",
+
+        messages: [],
+        
+        endTime: -1,
+        timerId: -1,
+    },
+
+
+    SUCCESS: {
+        state: 0,
+        password: "$ecretPassw0rd",
+
+        messages: [],
+        
+        endTime: -1,
+        timerId: -1,
+    },
+
+
+    FAILURE: {
+        state: 80,
         password: "$ecretPassw0rd",
 
         messages: [],
@@ -82,7 +169,7 @@ const newTextMessage = (io, socket, roomCode, content, sender) => {
 const joinRoom = (socket, roomCode) => {
     if (rooms.hasOwnProperty(roomCode)) {
         socket.join(roomCode, () => {
-            socket.emit("roomStatus", rooms[roomCode].state);
+            socket.emit("roomStatus", { state: rooms[roomCode].state });
             socket.emit("messageStatus", rooms[roomCode].messages);
         });
     } else {
