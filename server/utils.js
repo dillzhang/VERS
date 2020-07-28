@@ -49,6 +49,21 @@ const getMessages = (roomCode) => {
     }
 }
 
+const newFileMessage = (io, socket, roomCode, content, sender) => {
+    if (!rooms.hasOwnProperty(roomCode)) {
+        // TODO: Error Handling
+        return;
+    }
+    rooms[roomCode].messages.push({
+        type: "file",
+        time: Date.now(),
+        sender,
+        content,
+    });
+    io.to(roomCode).emit("messageStatus", rooms[roomCode].messages);
+
+}
+
 const newTextMessage = (io, socket, roomCode, content, sender) => {
     if (!rooms.hasOwnProperty(roomCode)) {
         // TODO: Error Handling
@@ -98,6 +113,7 @@ module.exports = {
     getRooms,
     getMessages,
     joinRoom,
+    newFileMessage,
     newTextMessage,
     randomString,
     startTimer,

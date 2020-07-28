@@ -57,11 +57,23 @@ class Host extends Component {
             <button onClick={() => {
               this.socket.emit("start-time", {room: this.room});
             }}>Start Timer</button>
+
+            {/*Example Button for sending file1*/}
+            <button onClick={() => {
+              this.sendFile("file1");
+            }}>Send File 1</button>
+            
           </div>
         )
       default:
         return "Something wrong has occured";
     }
+  }
+
+  // Use this function to "send" files 
+  // content should be the id specified in Guest
+  sendFile = (content) => {
+    this.socket.emit("newFileMessage", {content, sender: "@lex", roomCode: this.room});
   }
 }
 

@@ -79,6 +79,12 @@ class Guest extends Component {
     }, 499);
 
     this.socket.on("roomStatus", ({state}) => {
+
+      // Add chat files here
+      this.chatFiles = {
+        file1: <img onClick={() => {this.openApplication("file1")}} src="https://ichef.bbci.co.uk/news/410/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg" style={{ height: "60px", width: "80px" }}/>,
+      }
+      
       this.shortcuts = {
         secureChat: (<div key="chat-shortcut" className="shortcut" onClick={() => {this.openApplication("secureChat")}}>
           <div className="icon" />
@@ -88,38 +94,35 @@ class Guest extends Component {
           <div className="icon" />
           <div className="shortcut-name">Timer</div>
         </div>),
-        fileSystem: (<div key="file-shortcut" className="shortcut"  onClick={() => {this.openApplication("fileSystem")}}>
-          <div className="icon" />
-          <div className="shortcut-name">FileSystem</div>
-        </div>),
       }
-      
+
+      // Add chat pop-ups here
       this.apps = {
         secureChat: {
           name: "Secure Chat",
-          html: <Chat room={this.room} viewer={this.state.username} socket={this.socket}/>
+          html: <Chat room={this.room} viewer={this.state.username} socket={this.socket} files={this.chatFiles}/>
         },
         timer: {
           name: "Timer",
           html: <Timer socket={this.socket}/>
         },
-        fileSystem: {
-          name: "File System",
-          html: <FileSystem {...fs} callBack={() => {console.log("FS")}} />
-        },
+
+        file1: {
+          name: "File1",
+          html: <img src="https://ichef.bbci.co.uk/news/410/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg" />,
+        }
       }
+
       this.setState({ 
           state, 
         error: "",
         applicationsAvailable: {
           secureChat: true,
           timer: true,
-          fileSystem: false,
         },
         applicationsOpen: {
           secureChat: false,
           timer: false,
-          fileSystem: false,
         },
       });
     });

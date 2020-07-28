@@ -22,6 +22,8 @@ class Chat extends Component {
     this.socket.on("messageStatus", (data) => {
       this.setState({messages: data});
     })
+
+    console.log(this.props.files)
   }
 
   newTextMessage = () => {
@@ -57,7 +59,7 @@ class Chat extends Component {
       <div className="chat-box">
         <div className="chat-message-holder">
           {this.state.messages.map(m => {
-            return <Message key={m.time} {...m} viewer={this.viewer}/>
+            return <Message key={m.time} {...m} viewer={this.viewer} files={this.props.files}/>
           })}
           <div style={{ float:"left", clear: "both" }}
             ref={(el) => { this.messagesEnd = el; }}>
