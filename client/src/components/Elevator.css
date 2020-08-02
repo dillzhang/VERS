@@ -2,3 +2,17 @@
   display: block;
   margin: 10px;
 }
+.container {
+  margin: auto;
+}
+.buttons{
+  float: left;
+  padding-top: 10%;
+  padding-left: 25%;
+}
+.text{
+  float: right;
+  padding-top: 10%;
+  padding-right: 25%;
+
+}
