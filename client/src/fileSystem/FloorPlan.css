@@ -30,7 +30,7 @@
 }
 
 .floor-planner .sensor-source {
-    height: 120px;
+    height: 90px;
 
     display: flex;
     flex-direction: column;
@@ -40,8 +40,31 @@
     color: var(--off-white);
 
     width: 100%;
+}
+
+.floor-planner .sensor-sample {
+    height: 30px;
+    width: 30px;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    margin-bottom: 10px;
 
     cursor: grab;
+}
+
+.floor-planner .sample-camera {
+    background-image: url("/sensors/camera.png");
+}
+
+.floor-planner .sample-motion {
+    background-image: url("/sensors/motion.png");
+}
+
+.floor-planner .sample-laser {
+    background-image: url("/sensors/laser.png");
 }
 
 .floor-planner .export {
@@ -243,4 +266,42 @@
     top: 5px;
     width: 2px;
     height: 470px;
+}
+
+.floor-planner .sensor-type-camera {
+    transform: translateX(-120px) translateY(-120px);
+    height: 240px;
+    width: 240px;
+}
+
+.floor-planner .sensor-type-camera.sensor-direction-0 {
+    background-image: url("/sensors/camera-0.png");
+}
+
+.floor-planner .sensor-type-camera.sensor-direction-1 {
+    background-image: url("/sensors/camera-1.png");
+}
+
+.floor-planner .sensor-type-camera.sensor-direction-2 {
+    background-image: url("/sensors/camera-2.png");
+}
+
+.floor-planner .sensor-type-camera.sensor-direction-3 {
+    background-image: url("/sensors/camera-3.png");
+}
+
+.floor-planner .sensor-type-camera.sensor-direction-4 {
+    background-image: url("/sensors/camera-4.png");
+}
+
+.floor-planner .sensor-type-camera.sensor-direction-5 {
+    background-image: url("/sensors/camera-5.png");
+}
+
+.floor-planner .sensor-type-camera.sensor-direction-6 {
+    background-image: url("/sensors/camera-6.png");
+}
+
+.floor-planner .sensor-type-camera.sensor-direction-7 {
+    background-image: url("/sensors/camera-7.png");
 }
