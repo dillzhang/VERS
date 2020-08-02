@@ -6,6 +6,7 @@ import Draggable from "../components/Draggable";
 import FileSystem from "../components/FileSystem"
 import Timer from "../components/Timer";
 import Panorama from '../components/Panorama';
+import Translator from '../components/Translator';
 
 import './Guest.css'
 
@@ -182,6 +183,15 @@ class Guest extends Component {
             </div>
           )
         },
+        translator: {
+          requirement: 0,
+          app: (
+            <div key="translator-shortcut" className="shortcut" onClick={() => {this.openApplication("translator")}}>
+              <div className="icon" />
+              <div className="shortcut-name">Translator</div>
+            </div>
+          ),
+        },
       }
 
       this.apps = {
@@ -197,7 +207,10 @@ class Guest extends Component {
           name: "File System",
           html: <FileSystem folders={this.fileSystemFolders} level={state} openCallBack={this.openApplication} />
         },
-
+        translator: {
+          name: "Translator",
+          html: <Translator socket={this.socket} />
+        },
         // Chat Pop-ups
 
         // Add chat pop-ups here
