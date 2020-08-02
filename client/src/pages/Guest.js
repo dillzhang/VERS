@@ -37,7 +37,7 @@ class Guest extends Component {
       unlocking: false,
 
       currentTime: "00:00:00",
-      applicationsOpen: [],
+      applicationsOpen: ["securityManual"],
     }
 
     // Clock

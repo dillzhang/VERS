@@ -1,0 +1,39 @@
+.document-holder {
+    height: 600px;
+    width: 460px;
+    padding: 50px;
+
+    background-color:#eee;
+    background-position: center;
+    background-size: 300px 300px;
+    /* background-image: url("/file.png"); */
+    background-repeat: no-repeat;
+
+}
+
+.document-holder .logo {
+    height: 40px;
+    width: 50%;
+    border: 2px solid black;
+    margin-top: -20px;
+}
+
+.document-holder h2 {
+    text-align: center;
+    font-size: 2em;
+
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.document-holder h3 {
+    font-size: 1.5em;
+
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.document-holder p {
+    font-size: 0.75em;
+    line-height: 1.25em;
+}
