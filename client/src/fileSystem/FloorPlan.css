@@ -118,12 +118,37 @@
 }
 
 .floor-planner .sensor.near {
-    transform: translateX(-5px) translateY(-5px) !important; 
-    background: none !important;
-    border: 5px solid #1d5ac8 !important;
-    height: 10px !important;
-    width: 10px !important;
-    border-radius: 10px !important;
+    transform: translateX(-10px) translateY(-10px); 
+    background: none;
+    border: 10px solid #1d5ac8;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.floor-planner .dragging-sensor {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    cursor: grabbing;
+}
+
+.floor-planner .dragging-sensor.sensor-drag-camera {
+    background-image: url("/sensors/camera.png");
+}
+
+.floor-planner .dragging-sensor.sensor-drag-motion {
+    background-image: url("/sensors/motion.png");
+}
+
+.floor-planner .dragging-sensor.sensor-drag-laser {
+    background-image: url("/sensors/laser.png");
 }
 
 .floor-planner .sensor-type-undeclared {
@@ -139,7 +164,7 @@
     height: 63px;
     width: 120px;
     background-image: url("/sensors/motion-0.png");
-}x
+}
 
 .floor-planner .sensor-type-motion.sensor-direction-1 {
     transform: translateX(-60px) translateY(-60px);
