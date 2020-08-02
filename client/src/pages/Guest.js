@@ -37,9 +37,9 @@ class Guest extends Component {
       unlocking: false,
 
       currentTime: "00:00:00",
-      applicationsOpen: {
-        floorPlan4: true,
-      },
+      applicationsOpen: [
+        "floorPlan4",
+      ],
     }
 
     // Clock
@@ -275,14 +275,17 @@ class Guest extends Component {
   }
 
   openApplication = (app) => {
+    if (this.state.applicationsOpen.slice(-1)[0] == app) {
+      return;
+    }
     this.setState(state => ({
-      applicationsOpen: {...state.applicationsOpen, [app]: true}
+      applicationsOpen: [...state.applicationsOpen.filter(a => a !== app), app],
     }));
   }
 
   closeApplication = (app) => {
     this.setState(state => ({
-      applicationsOpen: {...state.applicationsOpen, [app]: false}
+      applicationsOpen: state.applicationsOpen.filter(a => a !== app),
     }));
   }
 
@@ -353,15 +356,17 @@ class Guest extends Component {
               return this.shortcuts[app].app;
             })
           }
-          {Object.keys(this.state.applicationsOpen)
-            .filter(app => this.state.applicationsOpen[app] && this.apps.hasOwnProperty(app))
-            .map(app => {
+          {this.state.applicationsOpen
+            // .filter(app => this.state.applicationsOpen[app] && this.apps.hasOwnProperty(app))
+            .map((app, index) => {
               return (
                 <Draggable
                   key={app}
                   visible={true}
+                  topCall={() => { this.openApplication(app) } }
                   closeCall={() => { this.closeApplication(app) } }
                   appName={this.apps[app].name}
+                  zIndex={index}
                 >
                   {this.apps[app].html}
                 </Draggable>);

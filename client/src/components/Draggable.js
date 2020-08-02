@@ -11,27 +11,41 @@ class Draggable extends Component {
         this.prevY = -1;
 
         this.state = {
-            top: 100,
-            left: 100,
+            top: 50 + this.props.zIndex * 30,
+            left: 200 + this.props.zIndex * 30,
+            zIndex: this.props.zIndex
         }
 
         document.addEventListener("mousemove", this.handleMouseMove);
         document.addEventListener("mouseup", this.handleMouseUp);
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.zIndex !== this.props.zIndex) {
+          this.setState({zIndex: this.props.zIndex});
+        }
+    }
+
     render() {
         const style = { 
             top: Math.max(0, this.state.top), 
             left: Math.max(0, this.state.left), 
+            zIndex: this.state.zIndex,
         };
         return (
-            <div className={`draggable ${this.props.visible ? "" : "hidden"}`} style={style}>
+            <div 
+                className={`draggable ${this.props.visible ? "" : "hidden"}`} 
+                style={style}
+            >
                 <div className="draggable-header">
                     <div className="close-app" onClick={this.props.closeCall}>X</div>
                     <div className="app-name" onMouseDown={this.handleMouseDown}>{this.props.appName}</div>
                     <div className="app-name" onMouseDown={this.handleMouseDown} />
                 </div>
-                <div className="draggable-body">
+                <div 
+                    className="draggable-body"
+                    onMouseDown={this.props.topCall}
+                >
                     {this.props.children}
                 </div>
             </div>
@@ -39,6 +53,7 @@ class Draggable extends Component {
     }
 
     handleMouseDown = (e) => {
+        this.props.topCall();
         this.dragging = true;
         this.prevX = e.clientX;
         this.prevY = e.clientY;
