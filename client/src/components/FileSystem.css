@@ -79,8 +79,6 @@
     background-image: url("/lock.png");
 }
 
-
-
 .file-system .folder.available::before {
     width: 21px;
     height: 21px;
@@ -99,4 +97,13 @@
     border-bottom: 8px solid transparent;
     
     border-left: 8px solid #eeeeee;
+}
+
+.file-system .file.available::before {
+    width: 21px;
+    height: 21px;
+    left: 5px;
+    top: 8px;
+    filter: invert(100%); 
+    background-image: url("/file.png");
 }
