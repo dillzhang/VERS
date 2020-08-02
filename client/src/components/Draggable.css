@@ -61,5 +61,5 @@
 
 .draggable-body {
     border-radius: 0 0 var(--round-over) var(--round-over);
-    padding: var(--round-over);
+    /* padding: var(--round-over); */
 }

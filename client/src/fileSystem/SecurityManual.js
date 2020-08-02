@@ -1,3 +1,5 @@
-const securityManual = <div>securityManual</div>
+import React, { Component } from 'react';
 
-export default securityManual
+const securityManual = <div>securityManual</div>;
+
+export default securityManual;

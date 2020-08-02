@@ -1,21 +1,102 @@
 .file-system {
     text-align: left;
-    padding: 5px;
+    /* padding: 5px; */
+
+    display: block;
+    height: 450px;
+    width: 600px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    color: #eeeeee;
 }
 
-.file-system-header::before {
-    content: "↳";
+.file-system .stats {
+    text-align: center;
+    border-top: 2px solid #111111;
+    padding: 10px 0;
 }
 
-.file-system-body {
-    padding-left: 20px;
+.file-system .central {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-grow: 1;
 }
 
-.file-system-hidden{
-    display: none;
+
+.file-system .folders {
+    width: 225px;
+
 }
 
-.file-system button {
-    margin-top: 2px;
-    margin-bottom: 2px;
+.file-system .files  {
+    width: 300px;
+}
+
+.file-system .folders,
+.file-system .files  {
+    display: flex;
+    flex-direction: column;
+    border-right: 8px solid var(--light-grey);
+}
+
+.file-system .folder,
+.file-system .file {
+    padding: 10px 31px;
+    position: relative;
+}
+
+.file-system .encrypted {
+    opacity: .5;
+}
+
+.file-system .available {
+    cursor: pointer;
+}
+
+.file-system .folder.selected {
+    background-color: #1d5ac8;
+}
+
+.file-system .available::before,
+.file-system .available::after,
+.file-system .encrypted::before {
+    content: "";
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.file-system .encrypted::before {
+    width: 21px;
+    height: 21px;
+    left: 5px;
+    top: 5px;
+    background-image: url("/lock.png");
+}
+
+
+
+.file-system .folder.available::before {
+    width: 21px;
+    height: 21px;
+    left: 5px;
+    top: 8px;
+    filter: invert(100%); 
+    background-image: url("/folder.png");
+}
+
+.file-system .folder.available::after {
+    right: 10px;
+    /* top: 5px; */
+    width: 0; 
+    height: 0; 
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    
+    border-left: 8px solid #eeeeee;
 }

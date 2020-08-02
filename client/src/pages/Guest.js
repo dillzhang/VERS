@@ -8,6 +8,16 @@ import Timer from "../components/Timer";
 
 import './Guest.css'
 
+import alienArticle from "../fileSystem/AlienArticle";
+import directory from "../fileSystem/Directory";
+import floorPlan from "../fileSystem/FloorPlan";
+import guard1 from "../fileSystem/Guard1";
+import guard2 from "../fileSystem/Guard2";
+import guard3 from "../fileSystem/Guard3";
+import languageTranscript1 from "../fileSystem/LanguageTranscript1";
+import languageTranscript2 from "../fileSystem/LanguageTranscript2";
+import securityManual from "../fileSystem/SecurityManual";
+
 const baseURL = new URL(window.location.href).host;
 
 class Guest extends Component {
@@ -42,7 +52,101 @@ class Guest extends Component {
       }
 
       // File System ShortCuts
-      this.fileSystemFiles = {
+      this.fileSystemFolders = {
+        info: {
+          requirement: 10,
+          display: "Info",
+          files: {
+            directory: {
+              requirement: 10,
+              display: "Building Directory.pdf",
+            }
+          },
+        },
+        blueprints: {
+          requirement: 30,
+          display: "Blueprints",
+          files: {
+            floorPlan1: {
+              requirement: 100,
+              display: "Floor 1 Plan.bp",
+            },
+            floorPlan2: {
+              requirement: 100,
+              display: "Floor 2 Plan.bp",
+            },
+            floorPlan3: {
+              requirement: 100,
+              display: "Floor 3 Plan.bp",
+            },
+            floorPlan4: {
+              requirement: 30,
+              display: "Floor 4 Plan.bp",
+            },
+            floorPlan5: {
+              requirement: 100,
+              display: "Floor 5 Plan.bp",
+            },
+            floorPlan6: {
+              requirement: 100,
+              display: "Floor 6 Plan.bp",
+            },
+          },
+        },
+        security: {
+          requirement: 30,
+          display: "Security",
+          files: {
+            emergencies: {
+              requirement: 100,
+              display: "Emergency Procedures.pdf",
+            },
+            securityManual: {
+              requirement: 30,
+              display: "Security Sensors.pdf",
+            },
+            guestPolicy: {
+              requirement: 100,
+              display: "Guest Policy.pdf",
+            },
+          },
+        },
+        guards: {
+          requirement: 50,
+          display: "Guards",
+          files: {
+            guard1: {
+              requirement: 50,
+              display: "Guard1.db",
+            },
+            guard2: {
+              requirement: 50,
+              display: "Guard2.db",
+            },
+            guard3: {
+              requirement: 50,
+              display: "Guard3.db",
+            },
+          },
+        },
+        research: {
+          requirement: 60,
+          display: "Research",
+          files: {
+            languageTranscript1: {
+              requirement: 60,
+              display: "Language Transcript 1.pdf",
+            },
+            languageTranscript2: {
+              requirement: 60,
+              display: "Language Transcript 2.pdf",
+            },
+            alienArticle: {
+              requirement: 60,
+              display: "Alien Article.pdf",
+            },
+          },
+        },
       }
       
       // Desktop Short Cuts
@@ -79,7 +183,7 @@ class Guest extends Component {
       this.apps = {
         secureChat: {
           name: "Secure Chat",
-          html: <Chat room={this.room} viewer={this.state.username} socket={this.socket} files={this.chatFiles}/>
+          html: <Chat room={this.room} viewer={this.state.username} socket={this.socket} files={this.chatFiles} />
         },
         timer: {
           name: "Timer",
@@ -87,7 +191,7 @@ class Guest extends Component {
         },
         fileSystem: {
           name: "File System",
-          html: <div>FILES</div>
+          html: <FileSystem folders={this.fileSystemFolders} level={state} openCallBack={this.openApplication} />
         },
 
         // Chat Pop-ups
@@ -96,9 +200,45 @@ class Guest extends Component {
         file1: {
           name: "Photos - File1",
           html: <img src="https://ichef.bbci.co.uk/news/410/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg" />,
-        }
+        },
 
         // File System Pop ups
+        directory: {
+          name: "Document Viewer - Building Directory",
+          html: directory,
+        },
+        floorPlan4: {
+          name: "Floor Planner - Floor 4 Plan",
+          html: floorPlan,
+        },
+        securityManual: {
+          name: "Document Viewer - Security Sensors",
+          html: securityManual,
+        },
+        guard1: {
+          name: "Database - Guard 1",
+          html: guard1,
+        },
+        guard2: {
+          name: "Database - Guard 2",
+          html: guard2,
+        },
+        guard3: {
+          name: "Database - Guard 3",
+          html: guard3,
+        },
+        languageTranscript1: {
+          name: "Document Viewer - Interview 1",
+          html: languageTranscript1,
+        },
+        languageTranscript2: {
+          name: "Document Viewer - Interview 2",
+          html: languageTranscript2,
+        },
+        alienArticle: {
+          name: "Document Viewer - Alien Article",
+          html: alienArticle,
+        },
       }
       
       this.setState({ 
@@ -187,12 +327,12 @@ class Guest extends Component {
           {Object.keys(this.shortcuts)
             .filter(app => this.shortcuts[app].requirement <= this.state.state)
             .map(app => {
-              console.log(app, this.shortcuts[app])
+              // console.log(app, this.shortcuts[app])
               return this.shortcuts[app].app;
             })
           }
           {Object.keys(this.state.applicationsOpen)
-            .filter(app => this.state.applicationsOpen[app])
+            .filter(app => this.state.applicationsOpen[app] && this.apps.hasOwnProperty(app))
             .map(app => {
               return (
                 <Draggable 

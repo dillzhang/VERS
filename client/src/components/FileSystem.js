@@ -7,34 +7,62 @@ class FileSystem extends Component {
   constructor(props){
     super(props);
     this.state = {
-        visible: true,
+        folder: "",
+        level: this.props.level,
     }
   }
 
   render() {
-    switch (this.props.type) {
-        case "ref":
-            return <button onClick={() => {this.props.callBack(this.props.action)}}>{this.props.value}</button>
-        case "img":
-            return <img src={this.props.value}></img>
-        case "fs":
-            return <div className="file-system">
-                <div className="file-system-header" onClick={this.toggle}>{`${this.props.value}${this.state.visible ? "" : " [...]"}`}</div>
-                <div className={`file-system-body${this.state.visible ? "" : " file-system-hidden"}`}>
-                    <ul>
-                        {this.props.sub.map(i => {
-                            return <li><FileSystem {...i} callBack={this.props.callBack} /></li>
-                        })}
-                    </ul>
+    return (
+        <div className="file-system">
+            <div className="central">
+                <div className="folders">
+                {Object.keys(this.props.folders).map((folder, index) => {
+                    return (
+                        <div 
+                            key={`folder${index}`}
+                            className={`folder ${this.props.folders[folder].requirement <= this.state.level ? "available" : "encrypted"} ${this.state.folder === folder ? "selected" : ""}`}
+                            onClick={() => {
+                                if (this.props.folders[folder].requirement <= this.state.level) {
+                                    this.setState({ folder });
+                                }
+                            }}
+                        >
+                            {this.props.folders[folder].display}
+                        </div>
+                    )
+                })}
                 </div>
+                {this.props.folders.hasOwnProperty(this.state.folder) && (
+                    <div className="files">
+                        {Object.keys(this.props.folders[this.state.folder].files).map((file, index) => {
+                            const fileObject = this.props.folders[this.state.folder].files[file]
+                            return (
+                                <div 
+                                    key={`file${index}`}
+                                    className={`file ${fileObject.requirement <= this.state.level ? "available" : "encrypted"}`}
+                                    onClick={() => {
+                                        if (fileObject.requirement <= this.state.level) {
+                                            this.props.openCallBack(file);
+                                        }
+                                    }}
+                                >
+                                    {fileObject.display}
+                                </div>
+                            )
+                        })}
+                    </div>
+                )}
             </div>
-    }
+            <div className="stats">
+                16 items, 545.98 GB available - Currently Decrypting
+            </div>
+        </div>
+    )
   }
 
-  toggle = () => {
-      this.setState(state => {
-          return {visible: !state.visible}
-      })
+  updateRequirement = (level) => {
+      this.setState({level});
   }
 }
 
