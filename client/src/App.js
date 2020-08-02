@@ -5,14 +5,14 @@ import './Reset.css';
 import Home from './pages/Home';
 import Guest from './pages/Guest';
 import Host from './pages/Host';
-import Panorama from './components/Panorama';
+
 
 class App extends Component {
   render() {
     const App = () => (
       <div>
         <Switch>
-          <Route exact path='/' component={Panorama}/>
+          <Route exact path='/' component={Home}/>
           <Route path='/actor/:code' component={Host}/>
           <Route path='/player/:code' component={Guest}/>
         </Switch>

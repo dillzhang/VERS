@@ -1,0 +1,32 @@
+.translate-box{
+  overflow-y: scroll;
+  display: inline-block;
+
+}
+.input-box{
+  display: block;
+  height: 200px;
+  width: 400px;
+
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: white;
+  overflow-y: scroll;
+
+}
+.output-box{
+  display: block;
+  height: 200px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color:  #eeeeee;
+  overflow-x: scroll;
+}
+.key{
+  display: inline-block;
+
+  float: right;
+}
