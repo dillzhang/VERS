@@ -10,7 +10,7 @@ import './Guest.css'
 
 import alienArticle from "../fileSystem/AlienArticle";
 import directory from "../fileSystem/Directory";
-import floorPlan from "../fileSystem/FloorPlan";
+import FloorPlan from "../fileSystem/FloorPlan";
 import guard1 from "../fileSystem/Guard1";
 import guard2 from "../fileSystem/Guard2";
 import guard3 from "../fileSystem/Guard3";
@@ -35,7 +35,9 @@ class Guest extends Component {
       unlocking: false,
 
       currentTime: "00:00:00",
-      applicationsOpen: {},
+      applicationsOpen: {
+        floorPlan4: true,
+      },
     }
 
     // Clock
@@ -209,7 +211,7 @@ class Guest extends Component {
         },
         floorPlan4: {
           name: "Floor Planner - Floor 4 Plan",
-          html: floorPlan,
+          html: <FloorPlan />,
         },
         securityManual: {
           name: "Document Viewer - Security Sensors",
