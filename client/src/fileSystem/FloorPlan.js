@@ -102,12 +102,15 @@ class FloorPlan extends Component {
                 <div className="floor-plan" />
                 <div className="controls">
                     <div className="sensor-source">
+                        <div className="sensor-sample sample-camera"/>
                         Camera
                     </div>
                     <div className="sensor-source">
+                        <div className="sensor-sample sample-motion"/>
                         Motion Sensor
                     </div>
                     <div className="sensor-source">
+                        <div className="sensor-sample sample-laser"/>
                         Laser Trip Wire
                     </div>
                     <button className="export">
