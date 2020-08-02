@@ -98,7 +98,12 @@ const rooms = {
 }
 
 const getRooms = () => {
-    return Object.keys(rooms);
+    return Object.keys(rooms).map(room => {
+        return {
+            roomCode: room,
+            password: rooms[room].password,
+        }
+    });
 }
 
 const verifyRoom = (roomCode, password) => {
@@ -108,7 +113,7 @@ const verifyRoom = (roomCode, password) => {
 const randomString = () => {
     const availableChars = "ABCDEFGHJKLMNPRSTUVWYXZ";
     let output = "";
-    while (output.length < 4) {
+    while (output.length < 6) {
         output += availableChars.substr(Math.floor(availableChars.length * Math.random()), 1)
     } 
     return output;
@@ -125,7 +130,7 @@ const createNewRoom = () => {
         endTime: -1,
         timerId: -1,
     };
-    return id;
+    return {roomCode: id, password: rooms[id].password};
 }
 
 const getMessages = (roomCode) => {

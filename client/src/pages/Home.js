@@ -30,26 +30,46 @@ class Home extends Component {
   render() {
     return (
     <div className="App">
-      <h1>VERS HOME</h1>
-      <button onClick={this.newRoom}>
-        New Room
-      </button>
-      {this.state.rooms.map(r => {
-        console.log(r);
-        return <div key={r}>
-          {r}
-          <Link to={`./actor/${r}`}>
-            <button variant="raised">
-                Actor
-            </button>
-          </Link>
-          <Link to={`./player/${r}`}>
-            <button variant="raised">
-                Player
-            </button>
-          </Link>
+      <div className="header">
+        <h1>VERS HOME</h1>
+        <button onClick={this.newRoom}>
+          New Room
+        </button>
+      </div>
+      <div className="content">
+        <div className="content-row">
+          <div>Room Code</div>
+          <div>Password</div>
+          <div>Actor</div>
+          <div>Player</div>
         </div>
-      })}
+        {this.state.rooms.map(room => {
+          console.log(room);
+          const r = room.roomCode;
+          return <div key={r} className="content-row">
+            <div>
+              {r}
+            </div>
+            <div>
+              {room.password}
+            </div>
+            <div>
+              <Link to={`./actor/${r}`}>
+                <button variant="raised">
+                    Actor
+                </button>
+              </Link>
+            </div>
+            <div>
+              <Link to={`./player/${r}`}>
+                <button variant="raised">
+                    Player
+                </button>
+              </Link>
+            </div>
+          </div>
+        })}
+      </div>
     </div>
     );
   }
