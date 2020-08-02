@@ -5,6 +5,7 @@ import Chat from "../components/Chat";
 import Draggable from "../components/Draggable";
 import FileSystem from "../components/FileSystem"
 import Timer from "../components/Timer";
+import Panorama from '../components/Panorama';
 
 import './Guest.css'
 
@@ -51,6 +52,7 @@ class Guest extends Component {
       // Chat Short Cuts
       this.chatFiles = {
         file1: <img onClick={() => {this.openApplication("file1")}} src="https://ichef.bbci.co.uk/news/410/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg" style={{ height: "60px", width: "80px" }}/>,
+        warehouse_image: <img onClick={() => {this.openApplication("warehouse_image")}} src="https://previews.123rf.com/images/mandriapix/mandriapix1803/mandriapix180300177/98410818-abandoned-building-interior-old-warehouse-in-disrepair.jpg" style={{ height: "60px", width: "80px" }}/>
       }
 
       // File System ShortCuts
@@ -150,7 +152,7 @@ class Guest extends Component {
           },
         },
       }
-      
+
       // Desktop Short Cuts
       this.shortcuts = {
         secureChat: {
@@ -204,6 +206,11 @@ class Guest extends Component {
           html: <img src="https://ichef.bbci.co.uk/news/410/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg" />,
         },
 
+        warehouse_image: {
+          name: "Photos - Warehouse Image 3D",
+          html: <Panorama></Panorama>,
+        },
+
         // File System Pop ups
         directory: {
           name: "Document Viewer - Building Directory",
@@ -242,9 +249,9 @@ class Guest extends Component {
           html: alienArticle,
         },
       }
-      
-      this.setState({ 
-        state, 
+
+      this.setState({
+        state,
         error: "",
       });
     });
@@ -281,10 +288,10 @@ class Guest extends Component {
           <h1>Other User</h1>
           {this.state.error && <p>{this.state.error}</p>}
           <label>
-            <input 
-              type="text" 
-              placeholder="Username" 
-              value={this.state.username} 
+            <input
+              type="text"
+              placeholder="Username"
+              value={this.state.username}
               onChange={(e) => {
                 const value = e.target.value;
                 this.setState({ username: value })
@@ -293,10 +300,10 @@ class Guest extends Component {
             />
           </label>
           <label>
-            <input 
-              type="password" 
-              placeholder="Password" 
-              value={this.state.password} 
+            <input
+              type="password"
+              placeholder="Password"
+              value={this.state.password}
               onChange={(e) => {
                 const value = e.target.value;
                 this.setState({ password: value })
@@ -337,7 +344,7 @@ class Guest extends Component {
             .filter(app => this.state.applicationsOpen[app] && this.apps.hasOwnProperty(app))
             .map(app => {
               return (
-                <Draggable 
+                <Draggable
                   key={app}
                   visible={true}
                   closeCall={() => { this.closeApplication(app) } }
@@ -351,7 +358,7 @@ class Guest extends Component {
       </div>
     );
   }
-  
+
 }
 
 export default Guest;

@@ -62,7 +62,9 @@ class Host extends Component {
             <button onClick={() => {
               this.sendFile("file1");
             }}>Send File 1</button>
-            
+            <button onClick={() => {
+              this.sendFile("warehouse_image");
+            }}>Send Warehouse Image</button>
           </div>
         )
       default:
@@ -70,7 +72,7 @@ class Host extends Component {
     }
   }
 
-  // Use this function to "send" files 
+  // Use this function to "send" files
   // content should be the id specified in Guest
   sendFile = (content) => {
     this.socket.emit("newFileMessage", {content, sender: "@lex", roomCode: this.room});

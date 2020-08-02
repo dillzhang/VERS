@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Pannellum } from "pannellum-react";
 
-import picture from './im.png';
+import picture from './warehouse_image.jpg';
 
 function Panorama () {
     return (
@@ -42,8 +42,8 @@ function Panorama () {
           type="info"
           pitch={11}
           yaw={-167}
-          text="Info Hotspot Text 3"
-          URL="https://github.com/farminf"
+          text="This is the warehouse"
+
           />
 
           <Pannellum.Hotspot
