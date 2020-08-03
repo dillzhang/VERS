@@ -4,13 +4,14 @@ import { Pannellum } from "pannellum-react";
 
 import picture from './warehouse_image.jpg';
 
-function Panorama () {
+function Panorama (props) {
+
     return (
       <div>
         <Pannellum
             width="800px"
             height="400px"
-            image={picture}
+            image={props.image}
             pitch={10}
             yaw={180}
             hfov={500}

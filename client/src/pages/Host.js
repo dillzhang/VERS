@@ -62,9 +62,21 @@ class Host extends Component {
             <button onClick={() => {
               this.sendFile("file1");
             }}>Send File 1</button>
-            <button onClick={() => {
-              this.sendFile("warehouse_image");
-            }}>Send Warehouse Image</button>
+
+          </div>
+        )
+      case 10:
+        return(
+          <div>
+          <button onClick={() => {
+            this.sendFile("no_thermal_warehouse");
+          }}>Send Regular Warehouse Image (Non Thermal)</button>
+          <button onClick={() => {
+            this.sendFile("thermal_warehouse");
+          }}>Thermal Image (No wires)</button>
+          <button onClick={() => {
+            this.sendFile("thermal_warehouse_wires");
+          }}>Thermal Image with Wires</button>
           </div>
         )
       default:

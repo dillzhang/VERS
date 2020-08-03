@@ -20,6 +20,11 @@ import languageTranscript1 from "../fileSystem/LanguageTranscript1";
 import languageTranscript2 from "../fileSystem/LanguageTranscript2";
 import securityManual from "../fileSystem/SecurityManual";
 
+import no_thermal_warehouse_image from "../components/warehouse_image.jpg";
+import thermal_warehouse_image from "../components/warehouse_image.jpg";
+import thermal_warehouse_wires_image from "../components/warehouse_image.jpg";
+
+
 const baseURL = new URL(window.location.href).host;
 
 class Guest extends Component {
@@ -51,7 +56,12 @@ class Guest extends Component {
       // Chat Short Cuts
       this.chatFiles = {
         file1: <img onClick={() => {this.openApplication("file1")}} src="https://ichef.bbci.co.uk/news/410/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg" style={{ height: "60px", width: "80px" }}/>,
-        warehouse_image: <img onClick={() => {this.openApplication("warehouse_image")}} src="https://previews.123rf.com/images/mandriapix/mandriapix1803/mandriapix180300177/98410818-abandoned-building-interior-old-warehouse-in-disrepair.jpg" style={{ height: "60px", width: "80px" }}/>
+
+        no_thermal_warehouse: <img onClick={() => {this.openApplication("no_thermal_warehouse")}} src={no_thermal_warehouse_image} style={{ height: "60px", width: "80px" }}/>,
+
+        thermal_warehouse: <img onClick={() => {this.openApplication("thermal_warehouse")}} src={thermal_warehouse_image} style={{ height: "60px", width: "80px" }}/>,
+
+        thermal_warehouse_wires: <img onClick={() => {this.openApplication("thermal_warehouse_wires")}} src={thermal_warehouse_wires_image} style={{ height: "60px", width: "80px" }}/>
       }
 
       // File System ShortCuts
@@ -217,9 +227,17 @@ class Guest extends Component {
           html: <img src="https://ichef.bbci.co.uk/news/410/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg" />,
         },
 
-        warehouse_image: {
-          name: "Photos - Warehouse Image 3D",
-          html: <Panorama></Panorama>,
+        no_thermal_warehouse: {
+          name: "Warehouse - No Thermal",
+          html: <Panorama image={no_thermal_warehouse_image}></Panorama>,
+        },
+        thermal_warehouse: {
+          name: "Warehouse - Thermal",
+          html: <Panorama image={thermal_warehouse_image}></Panorama>,
+        },
+        thermal_warehouse_wires: {
+          name: "Warehouse - Thermal with Wires",
+          html: <Panorama image={no_thermal_warehouse_image}></Panorama>,
         },
 
         // File System Pop ups
