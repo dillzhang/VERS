@@ -141,7 +141,7 @@ const getMessages = (roomCode) => {
     }
 }
 
-const newFileMessage = (io, socket, roomCode, content, sender) => {
+const newFileMessage = (io, socket, roomCode, content, sender, color) => {
     if (!rooms.hasOwnProperty(roomCode)) {
         // TODO: Error Handling
         return;
@@ -151,12 +151,13 @@ const newFileMessage = (io, socket, roomCode, content, sender) => {
         time: Date.now(),
         sender,
         content,
+        color
     });
     io.to(roomCode).emit("messageStatus", rooms[roomCode].messages);
 
 }
 
-const newTextMessage = (io, socket, roomCode, content, sender) => {
+const newTextMessage = (io, socket, roomCode, content, sender, color) => {
     if (!rooms.hasOwnProperty(roomCode)) {
         // TODO: Error Handling
         return;
@@ -167,6 +168,7 @@ const newTextMessage = (io, socket, roomCode, content, sender) => {
         time: Date.now(),
         sender,
         content,
+        color
     });
     io.to(roomCode).emit("messageStatus", rooms[roomCode].messages);
 }

@@ -22,12 +22,12 @@ function handleIo(io) {
             socket.emit("messageStatus", getMessages(roomCode));
         });
 
-        socket.on("newFileMessage", ({roomCode, content, sender}) => {
-            const messages = newFileMessage(io, socket, roomCode, content, sender);
+        socket.on("newFileMessage", ({roomCode, content, sender, color}) => {
+            const messages = newFileMessage(io, socket, roomCode, content, sender, color);
         });
     
-        socket.on("newTextMessage", ({roomCode, content, sender}) => {
-            const messages = newTextMessage(io, socket, roomCode, content, sender);
+        socket.on("newTextMessage", ({roomCode, content, sender, color}) => {
+            const messages = newTextMessage(io, socket, roomCode, content, sender, color);
         });
 
         socket.on("start-time", ({ room }) => {
