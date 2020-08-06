@@ -15,7 +15,8 @@
 
 .file-system .stats {
     text-align: center;
-    border-top: 2px solid #111111;
+    border-top: 1px solid #111111;
+    background: linear-gradient(0deg, #202020, #303030);
     padding: 10px 0;
 }
 
@@ -45,7 +46,7 @@
 
 .file-system .folder,
 .file-system .file {
-    padding: 10px 31px;
+    padding: 10px 36px;
     position: relative;
 }
 
@@ -74,18 +75,22 @@
 .file-system .encrypted::before {
     width: 21px;
     height: 21px;
-    left: 5px;
-    top: 5px;
-    background-image: url("/lock.png");
+    left: 8px;
+    top: 8px;
+}
+.file-system .folder.encrypted::before {
+    background-image: url("/desktop/folder-locked.svg");
+}
+.file-system .file.encrypted::before {
+    background-image: url("/desktop/file-locked.svg");
 }
 
 .file-system .folder.available::before {
     width: 21px;
     height: 21px;
-    left: 5px;
+    left: 8px;
     top: 8px;
-    filter: invert(100%); 
-    background-image: url("/folder.png");
+    background-image: url("/desktop/folder.svg");
 }
 
 .file-system .folder.available::after {
@@ -95,15 +100,13 @@
     height: 0; 
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
-    
-    border-left: 8px solid #eeeeee;
+    border-left: 8px solid rgba(238, 238, 238, 0.35);
 }
 
 .file-system .file.available::before {
     width: 21px;
     height: 21px;
-    left: 5px;
+    left: 8px;
     top: 8px;
-    filter: invert(100%); 
-    background-image: url("/file.png");
+    background-image: url("/desktop/file.svg");
 }

@@ -3,13 +3,12 @@
 
     --drag-header-size: 20px;
     --drag-header-color: #4b4b4b;
+    --close-button-color: #c54d4a;
     --round-over: 5px;
 
     background-color: #222222;
-
     border-radius: var(--round-over);
-
-    border: 2px solid #111111;
+    box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.2)
 }
 
 .hidden {
@@ -19,6 +18,7 @@
 .draggable-header {
     height: var(--drag-header-size);
     background-color: #4b4b4b;
+    background: linear-gradient(0deg, #4b4b4b, #5a5a5a);
 
     display: grid;
     grid-template-columns: var(--drag-header-size) 1fr var(--drag-header-size);
@@ -29,7 +29,7 @@
 }
 
 .draggable-header .close-app {
-    background-color: #a03f3b;
+    background-color: var(--close-button-color);
     color: #2e2e2e;
     
     margin: 2px;
@@ -62,4 +62,7 @@
 .draggable-body {
     border-radius: 0 0 var(--round-over) var(--round-over);
     /* padding: var(--round-over); */
+}
+.draggable-body div:last-child {
+    border-radius: 0 0 var(--round-over) var(--round-over);
 }

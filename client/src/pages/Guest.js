@@ -168,7 +168,9 @@ class Guest extends Component {
           requirement: 0,
           app: (
             <div key="chat-shortcut" className="shortcut" onClick={() => {this.openApplication("secureChat")}}>
-              <div className="icon" />
+              <div className="icon">
+                <img src="/desktop/secure-chat.svg" />
+              </div>
               <div className="shortcut-name">Secure Chat</div>
             </div>
           ),
@@ -177,7 +179,8 @@ class Guest extends Component {
           requirement: 10,
           app: (
             <div key="timer-shortcut" className="shortcut" onClick={() => {this.openApplication("timer")}}>
-              <div className="icon" />
+              <div className="icon">
+              <img src="/desktop/timer.svg" /></div>
               <div className="shortcut-name">Timer</div>
             </div>
           )
@@ -186,7 +189,9 @@ class Guest extends Component {
           requirement: 20,
           app: (
             <div key="file-system-shortcut" className="shortcut" onClick={() => {this.openApplication("fileSystem")}}>
-              <div className="icon" />
+              <div className="icon">
+                <img src="/desktop/filesystem.svg" />
+              </div>
               <div className="shortcut-name">Files</div>
             </div>
           )
@@ -195,7 +200,9 @@ class Guest extends Component {
           requirement: 0,
           app: (
             <div key="translator-shortcut" className="shortcut" onClick={() => {this.openApplication("translator")}}>
-              <div className="icon" />
+              <div className="icon">
+                <img src="/desktop/translator.svg" />
+              </div>
               <div className="shortcut-name">Translator</div>
             </div>
           ),
@@ -316,8 +323,10 @@ class Guest extends Component {
     return (
       <div className="app guest">
         <div className="lock-screen">
-          <div className="user-icon" />
-          <h1>Other User</h1>
+          <div className="user-icon">
+            <img src="/desktop/user.svg" />
+          </div>
+          <h1>Guest Login</h1>
           {this.state.error && <p>{this.state.error}</p>}
           <label>
             <input
@@ -349,7 +358,7 @@ class Guest extends Component {
               this.setState({ unlocking: true })
             }}
           >
-            Login
+            Sign In
           </button>
         </div>
       </div>
@@ -361,7 +370,7 @@ class Guest extends Component {
       <div className="app guest">
         <div className="header">
           <div className="header-time">
-            {this.state.username} - {this.state.currentTime}
+            {this.state.username} &middot; {this.state.currentTime}
           </div>
         </div>
         <div className="home-screen">

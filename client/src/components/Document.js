@@ -11,7 +11,9 @@ class Document extends Component {
         return (
             <div className="document-holder">
                 <div className="document-header">
-                    <div className="logo">LOGO GOES HERE</div>
+                    <div className="logo">
+                        <img src="/government/gov-wordmark-bw.svg" />
+                    </div>
                 </div>
                 {this.props.children}
             </div>
