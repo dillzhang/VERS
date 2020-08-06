@@ -1,3 +1,9 @@
+.App {
+  font-family: var(--desktop-font);
+  background-color: var(--dark-grey);
+  color: white;
+}
+
 .App .header {
   height: 60px;
   display: flex;
@@ -5,7 +11,8 @@
   align-items: center;
   padding: 10px 50px;
   font-size: 2em;
-  background-color: darkgray;
+  background-color: var(--light-grey);
+  color: white;
 }
 
 .App .content {
@@ -22,13 +29,13 @@
 
   padding: 10px 10px;
 
-  border-bottom: 2px solid darkgray;
+  border-bottom: 2px solid rgba(100, 100, 100, 0.25);
 }
 
 .App .content-row:first-child {
   font-weight: bold;
   text-align: center;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid rgba(100, 100, 100, 0.5);
 }
 
 .App .content-row div {
@@ -39,6 +46,13 @@
   margin: 0 auto;
   width: 80%;
   margin: 0 10%;
+}
+
+.App button {
+  font-family: var(--conspiracy-font);
+  background-color: var(--light-grey);
+  color: white;
+  outline: none;
 }
 
 .App-logo {

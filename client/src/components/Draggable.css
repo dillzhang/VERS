@@ -8,7 +8,7 @@
 
     background-color: #222222;
     border-radius: var(--round-over);
-    box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.2)
+    box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.2);
 }
 
 .hidden {
@@ -59,10 +59,7 @@
     justify-content: center;
 }
 
-.draggable-body {
+.draggable-body, .draggable-body > *:last-child, .draggable-body .pnlm-container  {
     border-radius: 0 0 var(--round-over) var(--round-over);
     /* padding: var(--round-over); */
-}
-.draggable-body div:last-child {
-    border-radius: 0 0 var(--round-over) var(--round-over);
 }

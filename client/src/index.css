@@ -5,10 +5,13 @@
   --dark-grey: #222222;
   --light-grey: #313334;
   --off-white: #eeeeee;
-;}
+}
 
 body {
+  width: 100%;
+  height: 100%;
   margin: 0;
+  background-color: var(--dark-grey);
   font-family: var(--desktop-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -18,6 +18,7 @@
     border-top: 1px solid #111111;
     background: linear-gradient(0deg, #202020, #303030);
     padding: 10px 0;
+    border-radius: 0 0 var(--round-over) var(--round-over);
 }
 
 .file-system .central {

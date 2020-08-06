@@ -26,6 +26,7 @@ import thermal_warehouse_wires_image from "../components/warehouse_image.jpg";
 
 
 const baseURL = new URL(window.location.href).host;
+const chatColors = ["#f94144", "#f3722c", "#f8961e", "#f9c74f", "#90be6d", "#43aa8b", "#577590", "#75B9BE", "#A8CCC9", "#B3D6C6", "#DCEAB2", "#C7D66D", "#FCD0A1", "#B1B695", "#53917E", "#63535B", "#6D1A36"];
 
 class Guest extends Component {
   // Initialize the state
@@ -40,6 +41,8 @@ class Guest extends Component {
       username: "Johnny",  // Delete after testing
       password: "$ecretPassw0rd",  // Delete after testing
       unlocking: false,
+
+      chatColor: chatColors[Math.floor(Math.random() * chatColors.length)],
 
       currentTime: "00:00:00",
       applicationsOpen: ["securityManual"],
@@ -212,7 +215,7 @@ class Guest extends Component {
       this.apps = {
         secureChat: {
           name: "Secure Chat",
-          html: <Chat room={this.room} viewer={this.state.username} socket={this.socket} files={this.chatFiles} />
+          html: <Chat room={this.room} viewer={this.state.username} chatColor={this.state.chatColor} socket={this.socket} files={this.chatFiles} />
         },
         timer: {
           name: "Timer",
@@ -235,7 +238,7 @@ class Guest extends Component {
         },
 
         no_thermal_warehouse: {
-          name: "Warehouse - No Thermal",
+          name: "Warehouse - Dark",
           html: <Panorama image={no_thermal_warehouse_image}></Panorama>,
         },
         thermal_warehouse: {
