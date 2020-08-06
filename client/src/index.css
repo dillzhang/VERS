@@ -1,8 +1,15 @@
+:root {
+  --government-font: 'Buenard', serif;
+  --conspiracy-font: 'Cutive Mono', monospace;
+  --desktop-font: 'Ubuntu', sans-serif;
+  --dark-grey: #222222;
+  --light-grey: #313334;
+  --off-white: #eeeeee;
+;}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--desktop-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
