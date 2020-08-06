@@ -18,6 +18,8 @@ class Host extends Component {
 
     this.state = {
         state: 0,
+        line: "It's dark in here... from what I can see it looks like any ordinary warehouse?",
+        chatColor: "#65fc31"
     }
 
     this.socket.on("joinRoomStatus", ({ state }) => {
@@ -34,19 +36,61 @@ class Host extends Component {
     return (
       <div className="app host">
         <div className="header">
-          <h1>Actor for Room {this.room}</h1>
+          <h1>Actor's Panel ({this.room})</h1>
         </div>
         <div className="body">
           <div className="main">
+            <div class="location">
+              <h2>Location:</h2>
+              <h2>{ this.getLocation() } ({this.state.state} / 80)</h2>
+            </div>
+            <div class="line-prompter">
+              <h2>Line Prompter</h2>
+              <p>{this.state.line}</p>
+            </div>
+            <div class="available-actions">
+              <h2>Available Actions</h2>
             {this.renderMain()}
+            </div>
           </div>
           <div className="side-bar">
             <Timer socket={this.socket}/>
-            <Chat room={this.room} viewer="@lex" socket={this.socket}/>
+            <Chat room={this.room} viewer="@lex" chatColor={this.state.chatColor} socket={this.socket}/>
           </div>
         </div>
       </div>
     );
+  }
+
+  getLocation = () => {
+    if (this.state.state < 10) {
+      return "Outside Warehouse";
+    }
+    else if (this.state.state < 20) {
+      return "Warehouse";
+    }
+    else if (this.state.state < 30) {
+      return "Elevator";
+    }
+    else if (this.state.state < 40) {
+      return "Hallways Near Elevator";
+    }
+    else if (this.state.state < 50) {
+      return "Hallways";
+    }
+    else if (this.state.state < 60) {
+      return "Outside Alien Room";
+    }
+    else if (this.state.state < 70) {
+      return "Inside Alien Room";
+    }
+    else if (this.state.state < 80) {
+      return "Success";
+    }
+    else if (this.state.state < 90) {
+      return "Failure";
+    }
+    return "Unknown";
   }
 
   renderMain = () => {
@@ -70,13 +114,13 @@ class Host extends Component {
           <div>
           <button onClick={() => {
             this.sendFile("no_thermal_warehouse");
-          }}>Send Regular Warehouse Image (Non Thermal)</button>
+          }}>Send Dark Warehouse Image</button>
           <button onClick={() => {
             this.sendFile("thermal_warehouse");
-          }}>Thermal Image (No wires)</button>
+          }}>Send Thermal Warehouse Image (Power Off)</button>
           <button onClick={() => {
             this.sendFile("thermal_warehouse_wires");
-          }}>Thermal Image with Wires</button>
+          }}>Send Thermal Warehouse Image (Power On)</button>
           </div>
         )
       default:
@@ -87,7 +131,7 @@ class Host extends Component {
   // Use this function to "send" files
   // content should be the id specified in Guest
   sendFile = (content) => {
-    this.socket.emit("newFileMessage", {content, sender: "@lex", roomCode: this.room});
+    this.socket.emit("newFileMessage", {content, sender: "@lex", roomCode: this.room, color: this.state.chatColor });
   }
 }
 
