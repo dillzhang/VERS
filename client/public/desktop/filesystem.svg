@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 239.71 192" style="enable-background:new 0 0 239.71 192;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:url(#SVGID_2_);}
+	.st2{fill:url(#SVGID_3_);}
+</style>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="53.3367" y1="206.1104" x2="186.0473" y2="-23.7512" gradientTransform="matrix(1 0 0 -1 0 192)">
+	<stop  offset="0" style="stop-color:#F5C300"/>
+	<stop  offset="1" style="stop-color:#EA9800"/>
+</linearGradient>
+<path class="st0" d="M224.4,11.23H94.5V5.56C94.5,2.5,92.07,0,89.1,0H30.3c-2.97,0-5.4,2.5-5.4,5.56v5.67h-9
+	c-5.94,0-10.8,5.01-10.8,11.12v158.52c0,6.12,4.86,11.12,10.8,11.12h208.5c5.94,0,10.8-5.01,10.8-11.12V22.36
+	C235.2,16.24,230.34,11.23,224.4,11.23z"/>
+<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="62.6808" y1="191.667" x2="181.5192" y2="-14.167" gradientTransform="matrix(1 0 0 -1 0 192)">
+	<stop  offset="0.283" style="stop-color:#FCFCFC"/>
+	<stop  offset="1" style="stop-color:#F8F8F8"/>
+</linearGradient>
+<path class="st1" d="M221.75,182.25H22.45c-2.46,0-4.48-2.01-4.48-4.48V28.73c0-2.46,2.01-4.48,4.48-4.48h199.3
+	c2.46,0,4.48,2.01,4.48,4.48v149.05C226.23,180.24,224.21,182.25,221.75,182.25z"/>
+<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="62.095" y1="185.3604" x2="183.6551" y2="-25.1881" gradientTransform="matrix(1 0 0 -1 0 192)">
+	<stop  offset="0" style="stop-color:#FFCC00"/>
+	<stop  offset="1" style="stop-color:#F4A200"/>
+</linearGradient>
+<path class="st2" d="M224.51,192H15.19c-5.71,0-10.39-4.67-10.39-10.39L0,48.48c0-5.71,4.67-10.39,10.39-10.39l76.72,0.6l1.94-2.71
+	c1.71-2.38,4.05-4.27,6.79-5.34c2.26-0.88,4.1-0.96,8.2-0.96h125.28c5.71,0,10.39,4.67,10.39,10.39l-4.8,141.53
+	C234.9,187.33,230.23,192,224.51,192z"/>
+</svg>

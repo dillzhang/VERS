@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 203.68 244" style="enable-background:new 0 0 203.68 244;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.5;}
+	.st1{opacity:0.5;fill:#DCDCDC;enable-background:new    ;}
+	.st2{fill:#F9F9F9;}
+	.st3{fill:#FDFDFD;}
+	.st4{font-family:'Buenard-Bold';}
+	.st5{font-size:10.7697px;}
+	.st6{font-family:'Buenard-Regular';}
+	.st7{font-size:6.731px;}
+	.st8{font-size:5.3848px;}
+	.st9{fill:none;}
+	.st10{fill:#FFFFFF;}
+</style>
+<g class="st0">
+	<g>
+		<g>
+			<polygon class="st1" points="174.4,27.26 174.4,182.41 128.96,182.41 128.96,216.74 30.02,216.74 30.02,244 203.68,244 
+				203.68,27.26 			"/>
+			<polygon class="st2" points="0.74,0 0.74,216.74 30.02,216.74 128.96,216.74 128.96,182.41 174.4,182.41 174.4,27.26 174.4,0 			
+				"/>
+		</g>
+		<polygon class="st3" points="128.96,216.74 174.4,182.41 128.96,182.41 		"/>
+	</g>
+	<text transform="matrix(1 0 0 1 19.0983 30.8291)" class="st4 st5">The VERS Project</text>
+	<text transform="matrix(1 0 0 1 19.0983 42.9491)" class="st6 st7">by Anand Tyagi, Dillon Zhang, </text>
+	<text transform="matrix(1 0 0 1 19.0983 51.0191)" class="st6 st7">and Shannon Peng</text>
+	<text transform="matrix(1 0 0 1 19.0983 65.5591)" class="st6 st8">In the summer of 2020, Anand, Dillon, and Shannon </text>
+	<text transform="matrix(1 0 0 1 19.0983 72.0191)" class="st6 st8">embarked on a bold quest: to build a interactive</text>
+	<text transform="matrix(1 0 0 1 19.0983 78.4891)" class="st6 st8">multiplayer experience over the course of two months.</text>
+	<text transform="matrix(1 0 0 1 19.0983 91.4091)" class="st6 st8">The goal was to combine the best of virtual escape room and</text>
+	<text transform="matrix(1 0 0 1 19.0983 97.8691)" class="st6 st8">immersive theatre — the mentally engaging, rewarding</text>
+	<text transform="matrix(1 0 0 1 19.0983 104.3291)" class="st6 st8">challenges of puzzles with the thrill of stepping into a story.</text>
+	<text transform="matrix(1 0 0 1 19.0983 117.2591)" class="st6 st8">The resulting experience follows an alien conspiracy theorist</text>
+	<text transform="matrix(1 0 0 1 19.0983 123.7191)" class="st6 st8">as they attempt to break into Area 51. The experience has two</text>
+	<text transform="matrix(1 0 0 1 19.0983 130.1791)" class="st6 st8">pieces: a Zoom call with a live actor and a web portal built</text>
+	<text transform="matrix(1 0 0 1 19.0983 136.6391)" class="st6 st8">using React and Socket.</text>
+	<text transform="matrix(1 0 0 1 19.0983 149.5691)" class="st6 st8">If you are reading this now, we hope you are enjoying the</text>
+	<text transform="matrix(1 0 0 1 19.0983 156.0291)" class="st6 st8">experience! But there is no information to be found here,</text>
+	<text transform="matrix(1 0 0 1 19.0983 162.4891)" class="st6 st8">unfortunately. Keep looking elsewhere.</text>
+	<text transform="matrix(1 0 0 1 19.0983 175.4091)" class="st6 st8">Nice thinking though. ;-)</text>
+	<text transform="matrix(1 0 0 1 19.0983 188.3391)" class="st6 st8">-Anand, Dillon, and Shannon</text>
+	<text transform="matrix(1 0 0 1 19.0983 194.7991)" class="st6 st8">August 2020</text>
+</g>
+<polygon class="st9" points="0,33.37 0.83,33.37 0.83,33.37 "/>
+<g>
+	<path class="st10" d="M116.98,148.93c-15.64,0-31.28,0-46.92,0c-0.07-0.03-0.15-0.08-0.22-0.09c-2.5-0.42-4.28-1.79-5.34-4.08
+		c-0.29-0.64-0.42-1.35-0.63-2.02c0-11.68,0-23.37,0-35.05c0.03-0.09,0.07-0.18,0.1-0.27c0.28-0.81,0.45-1.69,0.88-2.42
+		c1.4-2.4,3.57-3.52,6.34-3.51c14.21,0.01,28.41,0,42.62,0c0.87,0,1.74-0.08,2.59,0.03c0.91,0.11,1.87,0.26,2.69,0.64
+		c2.74,1.3,4.08,3.56,4.08,6.59c0.01,10.97,0,21.93,0,32.9c0,0.2,0,0.4-0.01,0.6c-0.17,2.44-1.25,4.38-3.36,5.62
+		C118.94,148.37,117.92,148.59,116.98,148.93z M93.5,114.62c-0.78,0.2-1.61,0.3-2.34,0.62c-2.04,0.89-3.26,2.49-3.53,4.71
+		c-0.29,2.33,0.6,4.19,2.46,5.6c0.14,0.11,0.32,0.29,0.32,0.44c0,1.81-0.04,3.62-0.05,5.44c0,0.56-0.01,1.14,0.07,1.69
+		c0.23,1.55,1.67,2.64,3.31,2.55c1.5-0.08,2.84-1.37,2.87-2.87c0.04-2.19,0.02-4.39-0.01-6.59c0-0.31,0.07-0.47,0.32-0.64
+		c2.15-1.49,3.06-4.16,2.28-6.65C98.43,116.44,96.13,114.75,93.5,114.62z"/>
+	<path class="st10" d="M81.39,98.56c-2.83,0-5.67,0-8.53,0c-0.02-0.09-0.06-0.18-0.06-0.28c-0.17-4.66,0.16-9.26,1.86-13.65
+		c2.75-7.12,8.02-11.22,15.47-12.5c5.54-0.96,10.68,0.23,15.32,3.42c3.77,2.6,6.11,6.23,7.43,10.56c1.2,3.93,1.49,7.96,1.35,12.04
+		c0,0.13-0.03,0.26-0.05,0.41c-2.86,0-5.7,0-8.6,0c0-0.21-0.01-0.41,0-0.6c0.08-2.55,0.01-5.09-0.6-7.59
+		c-0.91-3.77-2.82-6.8-6.44-8.51c-4.46-2.1-9.77-1.22-13.25,2.25c-1.87,1.86-2.82,4.2-3.37,6.73c-0.51,2.34-0.57,4.72-0.5,7.1
+		c0,0.17,0,0.33,0,0.5C81.44,98.47,81.42,98.5,81.39,98.56z"/>
+</g>
+</svg>
