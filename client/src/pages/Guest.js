@@ -20,9 +20,9 @@ import languageTranscript1 from "../fileSystem/LanguageTranscript1";
 import languageTranscript2 from "../fileSystem/LanguageTranscript2";
 import securityManual from "../fileSystem/SecurityManual";
 
-import no_thermal_warehouse_image from "../components/warehouse_image.jpg";
-import thermal_warehouse_image from "../components/warehouse_image.jpg";
-import thermal_warehouse_wires_image from "../components/warehouse_image.jpg";
+const no_thermal_warehouse_image = "/warehouse/warehouse-1dark.jpg";
+const thermal_warehouse_image = "/warehouse/warehouse-2thermal.jpg";
+const thermal_warehouse_wires_image = "/warehouse/warehouse-3powered.jpg";
 
 
 const baseURL = new URL(window.location.href).host;
@@ -75,7 +75,7 @@ class Guest extends Component {
           files: {
             directory: {
               requirement: 10,
-              display: "Building Directory.pdf",
+              display: "building_directory.pdf",
             }
           },
         },
@@ -85,27 +85,27 @@ class Guest extends Component {
           files: {
             floorPlan1: {
               requirement: 100,
-              display: "Floor 1 Plan.bp",
+              display: "floor1.bp",
             },
             floorPlan2: {
               requirement: 100,
-              display: "Floor 2 Plan.bp",
+              display: "floor2.bp",
             },
             floorPlan3: {
               requirement: 100,
-              display: "Floor 3 Plan.bp",
+              display: "floor3.bp",
             },
             floorPlan4: {
               requirement: 30,
-              display: "Floor 4 Plan.bp",
+              display: "floor4.bp",
             },
             floorPlan5: {
               requirement: 100,
-              display: "Floor 5 Plan.bp",
+              display: "floor5.bp",
             },
             floorPlan6: {
               requirement: 100,
-              display: "Floor 6 Plan.bp",
+              display: "floor6.bp",
             },
           },
         },
@@ -115,33 +115,33 @@ class Guest extends Component {
           files: {
             emergencies: {
               requirement: 100,
-              display: "Emergency Procedures.pdf",
+              display: "emergency_procedures.pdf",
             },
             securityManual: {
               requirement: 30,
-              display: "Security Sensors.pdf",
+              display: "security_sensors.pdf",
             },
             guestPolicy: {
               requirement: 100,
-              display: "Guest Policy.pdf",
+              display: "guest_policy.pdf",
             },
           },
         },
         guards: {
           requirement: 50,
-          display: "Guards",
+          display: "Personnel",
           files: {
             guard1: {
               requirement: 50,
-              display: "Guard1.db",
+              display: "01-shakeb.db",
             },
             guard2: {
               requirement: 50,
-              display: "Guard2.db",
+              display: "02-patricia.db",
             },
             guard3: {
               requirement: 50,
-              display: "Guard3.db",
+              display: "03-jason.db",
             },
           },
         },
@@ -151,15 +151,15 @@ class Guest extends Component {
           files: {
             languageTranscript1: {
               requirement: 60,
-              display: "Language Transcript 1.pdf",
+              display: "transcript_20190103.pdf",
             },
             languageTranscript2: {
               requirement: 60,
-              display: "Language Transcript 2.pdf",
+              display: "transcript_20190521.pdf",
             },
             alienArticle: {
               requirement: 60,
-              display: "Alien Article.pdf",
+              display: "press_article.pdf",
             },
           },
         },
@@ -247,7 +247,7 @@ class Guest extends Component {
         },
         thermal_warehouse_wires: {
           name: "Warehouse - Thermal with Wires",
-          html: <Panorama image={no_thermal_warehouse_image}></Panorama>,
+          html: <Panorama image={thermal_warehouse_wires_image}></Panorama>,
         },
 
         // File System Pop ups
