@@ -20,13 +20,29 @@ import languageTranscript1 from "../fileSystem/LanguageTranscript1";
 import languageTranscript2 from "../fileSystem/LanguageTranscript2";
 import securityManual from "../fileSystem/SecurityManual";
 
-const no_thermal_warehouse_image = "/warehouse/warehouse-1dark.jpg";
-const thermal_warehouse_image = "/warehouse/warehouse-2thermal.jpg";
-const thermal_warehouse_wires_image = "/warehouse/warehouse-3powered.jpg";
+import warehouse_1dark_preview from "../warehouse_images/warehouse-1dark-preview.jpg";
+import warehouse_2thermal_preview from "../warehouse_images/warehouse-2thermal-preview.jpg";
+import warehouse_3powered_preview from "../warehouse_images/warehouse-3powered-preview.jpg";
 
+import warehouse_1dark from "../warehouse_images/warehouse-1dark.jpg";
+import warehouse_2thermal from "../warehouse_images/warehouse-2thermal.jpg";
+import warehouse_3powered from "../warehouse_images/warehouse-3powered.jpg";
 
 const baseURL = new URL(window.location.href).host;
 const chatColors = ["#f94144", "#f3722c", "#f8961e", "#f9c74f", "#90be6d", "#43aa8b", "#577590", "#75B9BE", "#A8CCC9", "#B3D6C6", "#DCEAB2", "#C7D66D", "#FCD0A1", "#B1B695", "#53917E", "#63535B", "#6D1A36"];
+
+const stateApplications = [
+  ["secureChat"],  // 0
+  ["timer"],  // 10
+  ["fileSystem"],  //20
+  ["fileSystem"],  // 30
+  ["fileSystem"],  // 40
+  ["fileSystem"],  // 50
+  ["fileSystem", "translator"],  // 60
+  [],  // 70
+  [],  // 80
+]
+
 
 class Guest extends Component {
   // Initialize the state
@@ -45,7 +61,7 @@ class Guest extends Component {
       chatColor: chatColors[Math.floor(Math.random() * chatColors.length)],
 
       currentTime: "00:00:00",
-      applicationsOpen: ["securityManual"],
+      applicationsOpen: [],
     }
 
     // Clock
@@ -53,18 +69,25 @@ class Guest extends Component {
       const today = new Date();
       const time = ("0" + today.getHours()).slice(-2) + ":" + ("0" + today.getMinutes()).slice(-2) + ":" + ("0" + today.getSeconds()).slice(-2);
       this.setState({ currentTime: time });
-    }, 499);
+  }, 499);
+
+    this.socket.on("roomStateUpdate", ({state}) => {
+      this.setState(prev => ({
+        state,
+        applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) == -1)],
+        error: "",
+      }));
+    });
 
     this.socket.on("joinRoomStatus", ({state}) => {
       // Chat Short Cuts
       this.chatFiles = {
-        file1: <img onClick={() => {this.openApplication("file1")}} src="https://ichef.bbci.co.uk/news/410/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg" style={{ height: "60px", width: "80px" }}/>,
 
-        no_thermal_warehouse: <img onClick={() => {this.openApplication("no_thermal_warehouse")}} src={no_thermal_warehouse_image} style={{ height: "60px", width: "80px" }}/>,
+        no_thermal_warehouse: <img onClick={() => {this.openApplication("no_thermal_warehouse")}} src={warehouse_1dark_preview} style={{ height: "60px", width: "80px" }}/>,
 
-        thermal_warehouse: <img onClick={() => {this.openApplication("thermal_warehouse")}} src={thermal_warehouse_image} style={{ height: "60px", width: "80px" }}/>,
+        thermal_warehouse: <img onClick={() => {this.openApplication("thermal_warehouse")}} src={warehouse_2thermal_preview} style={{ height: "60px", width: "80px" }}/>,
 
-        thermal_warehouse_wires: <img onClick={() => {this.openApplication("thermal_warehouse_wires")}} src={thermal_warehouse_wires_image} style={{ height: "60px", width: "80px" }}/>
+        thermal_warehouse_wires: <img onClick={() => {this.openApplication("thermal_warehouse_wires")}} src={warehouse_3powered_preview} style={{ height: "60px", width: "80px" }}/>
       }
 
       // File System ShortCuts
@@ -223,7 +246,7 @@ class Guest extends Component {
         },
         fileSystem: {
           name: "File System",
-          html: <FileSystem folders={this.fileSystemFolders} level={state} openCallBack={this.openApplication} />
+          html: <FileSystem socket={this.socket} folders={this.fileSystemFolders} level={state} openCallBack={this.openApplication} />
         },
         translator: {
           name: "Translator",
@@ -239,15 +262,15 @@ class Guest extends Component {
 
         no_thermal_warehouse: {
           name: "Warehouse - Dark",
-          html: <Panorama image={no_thermal_warehouse_image}></Panorama>,
+          html: <Panorama image={warehouse_1dark}></Panorama>,
         },
         thermal_warehouse: {
           name: "Warehouse - Thermal",
-          html: <Panorama image={thermal_warehouse_image}></Panorama>,
+          html: <Panorama image={warehouse_2thermal}></Panorama>,
         },
         thermal_warehouse_wires: {
           name: "Warehouse - Thermal with Wires",
-          html: <Panorama image={thermal_warehouse_wires_image}></Panorama>,
+          html: <Panorama image={warehouse_3powered}></Panorama>,
         },
 
         // File System Pop ups
@@ -288,11 +311,11 @@ class Guest extends Component {
           html: alienArticle,
         },
       }
-
-      this.setState({
+      this.setState(prev => ({
         state,
+        applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) == -1)],
         error: "",
-      });
+      }));
     });
 
     this.socket.on("errorMessage", ({message}) => {
@@ -385,7 +408,7 @@ class Guest extends Component {
             })
           }
           {this.state.applicationsOpen
-            // .filter(app => this.state.applicationsOpen[app] && this.apps.hasOwnProperty(app))
+            .filter(app => this.state.applicationsOpen.indexOf(app) > -1 && this.apps.hasOwnProperty(app))
             .map((app, index) => {
               return (
                 <Draggable
