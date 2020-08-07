@@ -5,6 +5,7 @@ import './Host.css'
 
 import Chat from "../components/Chat";
 import Timer from "../components/Timer";
+import Elevator from  "../components/Elevator";
 
 const baseURL = new URL(window.location.href).host;
 
@@ -112,15 +113,21 @@ class Host extends Component {
       case 10:
         return(
           <div>
-          <button onClick={() => {
-            this.sendFile("no_thermal_warehouse");
-          }}>Send Dark Warehouse Image</button>
-          <button onClick={() => {
-            this.sendFile("thermal_warehouse");
-          }}>Send Thermal Warehouse Image (Power Off)</button>
-          <button onClick={() => {
-            this.sendFile("thermal_warehouse_wires");
-          }}>Send Thermal Warehouse Image (Power On)</button>
+            <button onClick={() => {
+              this.sendFile("no_thermal_warehouse");
+            }}>Send Dark Warehouse Image</button>
+            <button onClick={() => {
+              this.sendFile("thermal_warehouse");
+            }}>Send Thermal Warehouse Image (Power Off)</button>
+            <button onClick={() => {
+              this.sendFile("thermal_warehouse_wires");
+            }}>Send Thermal Warehouse Image (Power On)</button>
+          </div>
+        )
+      case 20:
+        return(
+          <div>
+            <Elevator/>
           </div>
         )
       default:
