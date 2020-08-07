@@ -31,6 +31,19 @@ import warehouse_3powered from "../warehouse_images/warehouse-3powered.jpg";
 const baseURL = new URL(window.location.href).host;
 const chatColors = ["#f94144", "#f3722c", "#f8961e", "#f9c74f", "#90be6d", "#43aa8b", "#577590", "#75B9BE", "#A8CCC9", "#B3D6C6", "#DCEAB2", "#C7D66D", "#FCD0A1", "#B1B695", "#53917E", "#63535B", "#6D1A36"];
 
+const stateApplications = [
+  ["secureChat"],  // 0
+  ["timer"],  // 10
+  ["fileSystem"],  //20
+  ["fileSystem"],  // 30
+  ["fileSystem"],  // 40
+  ["fileSystem"],  // 50
+  ["fileSystem", "translator"],  // 60
+  [],  // 70
+  [],  // 80
+]
+
+
 class Guest extends Component {
   // Initialize the state
   constructor(props){
@@ -48,7 +61,7 @@ class Guest extends Component {
       chatColor: chatColors[Math.floor(Math.random() * chatColors.length)],
 
       currentTime: "00:00:00",
-      applicationsOpen: ["securityManual"],
+      applicationsOpen: [],
     }
 
     // Clock
@@ -57,6 +70,14 @@ class Guest extends Component {
       const time = ("0" + today.getHours()).slice(-2) + ":" + ("0" + today.getMinutes()).slice(-2) + ":" + ("0" + today.getSeconds()).slice(-2);
       this.setState({ currentTime: time });
     }, 499);
+
+    this.socket.on("roomStateUpdate", ({state}) => {
+      this.setState(prev => ({
+        state,
+        applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) == -1)],
+        error: "",
+      }));
+    });
 
     this.socket.on("joinRoomStatus", ({state}) => {
       // Chat Short Cuts
@@ -290,11 +311,11 @@ class Guest extends Component {
           html: alienArticle,
         },
       }
-
-      this.setState({
+      this.setState(prev => ({
         state,
+        applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) == -1)],
         error: "",
-      });
+      }));
     });
 
     this.socket.on("errorMessage", ({message}) => {
@@ -387,7 +408,7 @@ class Guest extends Component {
             })
           }
           {this.state.applicationsOpen
-            // .filter(app => this.state.applicationsOpen[app] && this.apps.hasOwnProperty(app))
+            .filter(app => this.state.applicationsOpen.indexOf(app) > -1 && this.apps.hasOwnProperty(app))
             .map((app, index) => {
               return (
                 <Draggable

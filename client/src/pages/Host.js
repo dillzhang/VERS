@@ -19,12 +19,23 @@ class Host extends Component {
 
     this.state = {
         state: 0,
-        line: "It's dark in here... from what I can see it looks like any ordinary warehouse?",
+        lines: [],
         chatColor: "#65fc31"
     }
 
     this.socket.on("joinRoomStatus", ({ state }) => {
-        this.setState({ state });
+        this.setState({ 
+          state,
+          lines: this.getLines(state),
+        });
+    });
+
+    this.socket.on("roomStateUpdate", ({state}) => {
+      console.log(state, this.getLines(state));
+      this.setState({ 
+        state,
+        lines: this.getLines(state),
+      });
     });
   }
 
@@ -47,7 +58,7 @@ class Host extends Component {
             </div>
             <div class="line-prompter">
               <h2>Line Prompter</h2>
-              <p>{this.state.line}</p>
+              {this.state.lines.map((line, key) => (<p key={key}>{line}</p>))}
             </div>
             <div class="available-actions">
               <h2>Available Actions</h2>
@@ -94,6 +105,31 @@ class Host extends Component {
     return "Unknown";
   }
 
+  getLines = (state) => {
+    switch (state) {
+      case 0:
+        return ["It's dark in here... from what I can see it looks like any ordinary warehouse?"];
+      case 10:
+        return ["I'm enter the facility. I think I tripped an alarm. The average response time is about an hour. You can use the timer application to keep track."];
+      case 20:
+        return ["It's dark in here... from what I can see it looks like any ordinary warehouse?"];
+      case 30:
+        return [];
+      case 40:
+        return [];
+      case 50:
+        return [];
+      case 60:
+        return [];
+      case 70:
+        return [];
+      case 80:
+        return [];
+      default:
+        return ["Something wrong has occured"];
+    }
+  }
+
   renderMain = () => {
     switch (this.state.state) {
       case 0:
@@ -104,9 +140,9 @@ class Host extends Component {
             }}>Start Timer</button>
 
             {/*Example Button for sending file1*/}
-            <button onClick={() => {
+            {/* <button onClick={() => {
               this.sendFile("file1");
-            }}>Send File 1</button>
+            }}>Send File 1</button> */}
 
           </div>
         )
@@ -122,12 +158,17 @@ class Host extends Component {
             <button onClick={() => {
               this.sendFile("thermal_warehouse_wires");
             }}>Send Thermal Warehouse Image (Power On)</button>
+            <button onClick={() => {
+              this.socket.emit("setRoomState", {roomCode: this.room, state: 20});
+            }}>Move to Elevator</button>
           </div>
         )
       case 20:
         return(
           <div>
-            <Elevator/>
+            <Elevator successCallback={() => {
+              this.socket.emit("setRoomState", {roomCode: this.room, state: 30});
+            }}/>
           </div>
         )
       default:

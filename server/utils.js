@@ -162,7 +162,6 @@ const newTextMessage = (io, socket, roomCode, content, sender, color) => {
         // TODO: Error Handling
         return;
     }
-    console.log(sender);
     rooms[roomCode].messages.push({
         type: "text",
         time: Date.now(),
@@ -190,6 +189,14 @@ const startTimer = (roomCode, io) => {
     }
     rooms[roomCode].endTime = Date.now() + 1000 * 60 * 60 - 1;
     updateTime(roomCode, io);
+
+    setRoomState(roomCode, io, 10);
+}
+
+const setRoomState = (roomCode, io, state) => {
+    console.log(roomCode);
+    rooms[roomCode].state = state;
+    io.to(roomCode).emit("roomStateUpdate", { state });
 }
 
 const updateTime = (roomCode, io) => {
@@ -210,6 +217,7 @@ module.exports = {
     newFileMessage,
     newTextMessage,
     randomString,
+    setRoomState,
     startTimer,
     verifyRoom,
 }
