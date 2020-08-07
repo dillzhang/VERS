@@ -56,18 +56,43 @@ class FloorPlan extends Component {
         this.floorPlanRef = React.createRef();
         this.prevX = -1;
         this.prevY = -1;
-
-        this.state = {
-            sensors: [...Array(22)].map(_ => -1),
-            near: [...Array(22)].map(_ => false),
-            dragging: -1,
-            dragX: -1,
-            dragY: -1,
+        console.log(this.props.level);
+        if (this.props.level >= 40) {
+            this.state = {
+                interactivity: false,
+                sensors: [ 2, 0, 1, 0, 0, 0, 1, 0, 2, 2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 2 ],
+                near: [...Array(22)].map(_ => false),
+                dragging: -1,
+                dragX: -1,
+                dragY: -1,
+            };
+        } else {
+            this.state = {
+                sensors: [...Array(22)].map(_ => -1),
+                near: [...Array(22)].map(_ => false),
+                dragging: -1,
+                dragX: -1,
+                dragY: -1,
+                interactivity: true,
+            }
         }
+
+        this.props.socket.on("roomStateUpdate", ({state}) => {
+            if (state == 40) {
+                this.setState({
+                    interactivity: false,
+                    sensors: [ 2, 0, 1, 0, 0, 0, 1, 0, 2, 2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 2 ],
+                    near: [...Array(22)].map(_ => false),
+                    dragging: -1,
+                    dragX: -1,
+                    dragY: -1,
+                })
+            }
+        });
     }
 
     handleMouseMove = (e) => {
-        if (this.state.dragging >= 0) {
+        if (this.state.interactivity && this.state.dragging >= 0) {
             const dx = e.pageX - this.prevX;
             const dy = e.pageY - this.prevY;
             this.prevX = e.pageX;
@@ -90,7 +115,7 @@ class FloorPlan extends Component {
     }
 
     handleMouseUp = (e) => {
-        if (this.state.dragging >= 0) {
+        if (this.state.interactivity && this.state.dragging >= 0) {
             const sensors = this.state.sensors.map((v, i) => this.state.near[i] ? this.state.dragging : v);
             const near = this.state.near.map((_) => false);
             this.setState(state => ({
@@ -141,6 +166,9 @@ class FloorPlan extends Component {
                         <div 
                             className="sensor-sample sample-camera"
                             onMouseDown={(e) => {
+                                if (!this.state.interactivity) {
+                                    return;
+                                }
                                 const {x, y} = e.target.getBoundingClientRect();
                                 this.prevX = e.nativeEvent.pageX;
                                 this.prevY = e.nativeEvent.pageY;
@@ -157,6 +185,9 @@ class FloorPlan extends Component {
                         <div 
                             className="sensor-sample sample-motion"
                             onMouseDown={(e) => {
+                                if (!this.state.interactivity) {
+                                    return;
+                                }
                                 const {x, y} = e.target.getBoundingClientRect();
                                 this.prevX = e.nativeEvent.pageX;
                                 this.prevY = e.nativeEvent.pageY;
@@ -173,6 +204,9 @@ class FloorPlan extends Component {
                         <div 
                             className="sensor-sample sample-laser"
                             onMouseDown={(e) => {
+                                if (!this.state.interactivity) {
+                                    return;
+                                }
                                 const {x, y} = e.target.getBoundingClientRect();
                                 this.prevX = e.nativeEvent.pageX;
                                 this.prevY = e.nativeEvent.pageY;
@@ -188,7 +222,6 @@ class FloorPlan extends Component {
                     <button className="export" onClick={(e) => {
                         e.target.disabled = true;
                         this.props.socket.emit("floor-plan", {
-                            // roomCode, io, sender, color, sensors
                             roomCode: this.props.roomCode,
                             sender: this.props.sender,
                             color: this.props.color,

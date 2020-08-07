@@ -281,7 +281,7 @@ class Guest extends Component {
         },
         floorPlan4: {
           name: "Floor Planner - Floor 4 Plan",
-          html: <FloorPlan socket={this.socket} roomCode={this.room} sender={this.state.username} color={this.state.chatColor} />,
+          html: <FloorPlan level={state} socket={this.socket} roomCode={this.room} sender={this.state.username} color={this.state.chatColor} />,
         },
         securityManual: {
           name: "Document Viewer - Security Sensors",

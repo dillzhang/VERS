@@ -177,6 +177,9 @@ const joinRoom = (socket, roomCode) => {
         socket.join(roomCode, () => {
             socket.emit("joinRoomStatus", { state: rooms[roomCode].state });
             socket.emit("messageStatus", rooms[roomCode].messages);
+            setTimeout(() => {
+                socket.emit("roomStateUpdate", { state: rooms[roomCode].state });
+            }, 500);
         });
     } else {
         socket.emit("error", "invalid room");
