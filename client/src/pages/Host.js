@@ -31,10 +31,15 @@ class Host extends Component {
     });
 
     this.socket.on("roomStateUpdate", ({state}) => {
-      console.log(state, this.getLines(state));
       this.setState({ 
         state,
         lines: this.getLines(state),
+      });
+    });
+
+    this.socket.on("floor-plan-wrong", ({line}) => {
+      this.setState({ 
+        lines: [line],
       });
     });
   }
@@ -52,15 +57,15 @@ class Host extends Component {
         </div>
         <div className="body">
           <div className="main">
-            <div class="location">
+            <div className="location">
               <h2>Location:</h2>
               <h2>{ this.getLocation() } ({this.state.state} / 80)</h2>
             </div>
-            <div class="line-prompter">
+            <div className="line-prompter">
               <h2>Line Prompter</h2>
               {this.state.lines.map((line, key) => (<p key={key}>{line}</p>))}
             </div>
-            <div class="available-actions">
+            <div className="available-actions">
               <h2>Available Actions</h2>
             {this.renderMain()}
             </div>

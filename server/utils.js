@@ -209,7 +209,39 @@ const updateTime = (roomCode, io) => {
     rooms[roomCode].timerId = setTimeout(() => {updateTime(roomCode, io);}, 557);
 }
 
+const correctSensors = [ 2, 0, 1, 0, 0, 0, 1, 0, 2, 2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 2 ];
+const checkSensors = (roomCode, io, sender, color, sensors) => {
+    newFileMessage(io, null, roomCode, "floor_plan_4", sender, color);
+    const sensorCount = [0 ,0 ,0];
+    let empty = 0;
+    if (correctSensors.map((value, index) => {
+        if (sensors[index] > -1) {
+            console.log(sensors[index])
+            sensorCount[sensors[index]] += 1;
+            console.log(sensorCount);
+        } else {
+            empty += 1;
+        }
+        return sensors[index] == value;
+    }).every(a => a)) {
+        setRoomState(roomCode, io, 40)
+    } else {
+        if (empty > 0) {
+            io.to(roomCode).emit("floor-plan-wrong", {line: "You seem to be missing a few sensors."});
+        } else if (sensorCount[2] > 4) {
+            io.to(roomCode).emit("floor-plan-wrong", {line: "You seem to have too many laser trip wires."});
+        } else if (sensorCount[1] > 4) {
+            io.to(roomCode).emit("floor-plan-wrong", {line: "You seem to have too many motion sensors."});
+        } else if (sensorCount[0] > 14) {
+            io.to(roomCode).emit("floor-plan-wrong", {line: "You seem to have too many cameras."});
+        } else {
+            io.to(roomCode).emit("floor-plan-wrong", {line: "Your sensors don't match up with what I am see here."});
+        }
+    }
+}
+
 module.exports = {
+    checkSensors,
     createNewRoom,
     getRooms,
     getMessages,

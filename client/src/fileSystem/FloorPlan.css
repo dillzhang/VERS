@@ -89,7 +89,7 @@
     outline: 0;
 }
 
-.floor-planner .export:hover {
+.floor-planner .export:hover:not(:disabled) {
     background-color: #1d5ac8;
 }
 

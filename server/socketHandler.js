@@ -1,4 +1,4 @@
-const { getMessages, joinRoom, newFileMessage, newTextMessage, setRoomState, startTimer, verifyRoom } = require("./utils");
+const { checkSensors, getMessages, joinRoom, newFileMessage, newTextMessage, setRoomState, startTimer, verifyRoom } = require("./utils");
 const e = require("express");
 
 function handleIo(io) {
@@ -36,6 +36,10 @@ function handleIo(io) {
 
         socket.on("start-time", ({ room }) => {
             startTimer(room, io);
+        });
+
+        socket.on("floor-plan", ({ roomCode, sender, color, sensors }) => {
+            checkSensors(roomCode, io, sender, color, sensors);
         });
     });
 }

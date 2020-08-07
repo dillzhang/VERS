@@ -87,6 +87,16 @@
     left: 0;
 }
 
+.chat-messages .file {
+    font-weight: bolder;
+    color: #1d5ac8;
+    cursor: pointer
+}
+
+.chat-messages .file:hover {
+    color: #eeeeee;
+}
+
 .chat-form {
     width: 100%;
     display: grid;
