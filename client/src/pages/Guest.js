@@ -35,10 +35,10 @@ const stateApplications = [
   ["secureChat"],  // 0
   ["timer"],  // 10
   ["fileSystem"],  //20
-  ["fileSystem"],  // 30
-  ["fileSystem"],  // 40
-  ["fileSystem"],  // 50
-  ["fileSystem", "translator"],  // 60
+  [],  // 30
+  [],  // 40
+  [],  // 50
+  [],  // 60
   [],  // 70
   [],  // 80
 ]
@@ -82,6 +82,7 @@ class Guest extends Component {
     this.socket.on("joinRoomStatus", ({state}) => {
       // Chat Short Cuts
       this.chatFiles = {
+        floor_plan_4: <div className="file" onClick={() => {this.openApplication("floorPlan4")}}><strong>Floor Plan 4.bp</strong></div>,
 
         no_thermal_warehouse: <img onClick={() => {this.openApplication("no_thermal_warehouse")}} src={warehouse_1dark_preview} style={{ height: "60px", width: "80px" }}/>,
 
@@ -223,7 +224,7 @@ class Guest extends Component {
           )
         },
         translator: {
-          requirement: 0,
+          requirement: 60,
           app: (
             <div key="translator-shortcut" className="shortcut" onClick={() => {this.openApplication("translator")}}>
               <div className="icon">
@@ -280,7 +281,7 @@ class Guest extends Component {
         },
         floorPlan4: {
           name: "Floor Planner - Floor 4 Plan",
-          html: <FloorPlan />,
+          html: <FloorPlan socket={this.socket} roomCode={this.room} sender={this.state.username} color={this.state.chatColor} />,
         },
         securityManual: {
           name: "Document Viewer - Security Sensors",

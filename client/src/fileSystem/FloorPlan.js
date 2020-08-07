@@ -185,7 +185,20 @@ class FloorPlan extends Component {
                         />
                         Laser Trip Wire
                     </div>
-                    <button className="export">
+                    <button className="export" onClick={(e) => {
+                        e.target.disabled = true;
+                        this.props.socket.emit("floor-plan", {
+                            // roomCode, io, sender, color, sensors
+                            roomCode: this.props.roomCode,
+                            sender: this.props.sender,
+                            color: this.props.color,
+                            sensors: this.state.sensors,
+                        });
+                        const button = e.target;
+                        setTimeout(() => {
+                            button.disabled = false;
+                        }, 1000);
+                    }}>
                         Export to Chat
                     </button>
                 </div>
