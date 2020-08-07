@@ -112,11 +112,11 @@ class Host extends Component {
       case 10:
         return ["I'm enter the facility. I think I tripped an alarm. The average response time is about an hour. You can use the timer application to keep track."];
       case 20:
-        return ["It's dark in here... from what I can see it looks like any ordinary warehouse?"];
+        return ["I've attached the device to hack into their system. I'm going to head toward the elevator. What floor should I head to?"];
       case 30:
-        return [];
+        return ["This looks like the right floor, but it looks like they have a lot of security installed. Can you guide me through?", "Feel free to send the map for me to double check!"];
       case 40:
-        return [];
+        return ["This map looks like what I am seeing here. I've shared my location with you. Guide me!"];
       case 50:
         return [];
       case 60:

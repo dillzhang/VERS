@@ -10,6 +10,16 @@ class FileSystem extends Component {
         folder: "",
         level: this.props.level,
     }
+
+    this.props.socket.on("roomStateUpdate", ({state}) => {
+        this.setState({level: state});
+      });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.level !== prevProps.level) {
+      this.state({level: this.props.level});
+    }
   }
 
   render() {

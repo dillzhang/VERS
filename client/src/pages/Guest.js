@@ -69,7 +69,7 @@ class Guest extends Component {
       const today = new Date();
       const time = ("0" + today.getHours()).slice(-2) + ":" + ("0" + today.getMinutes()).slice(-2) + ":" + ("0" + today.getSeconds()).slice(-2);
       this.setState({ currentTime: time });
-    }, 499);
+  }, 499);
 
     this.socket.on("roomStateUpdate", ({state}) => {
       this.setState(prev => ({
@@ -246,7 +246,7 @@ class Guest extends Component {
         },
         fileSystem: {
           name: "File System",
-          html: <FileSystem folders={this.fileSystemFolders} level={state} openCallBack={this.openApplication} />
+          html: <FileSystem socket={this.socket} folders={this.fileSystemFolders} level={state} openCallBack={this.openApplication} />
         },
         translator: {
           name: "Translator",
