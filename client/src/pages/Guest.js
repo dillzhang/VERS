@@ -20,10 +20,13 @@ import languageTranscript1 from "../fileSystem/LanguageTranscript1";
 import languageTranscript2 from "../fileSystem/LanguageTranscript2";
 import securityManual from "../fileSystem/SecurityManual";
 
-import no_thermal_warehouse_image from "../components/warehouse_image.jpg";
-import thermal_warehouse_image from "../components/warehouse_image.jpg";
-import thermal_warehouse_wires_image from "../components/warehouse_image.jpg";
+import warehouse_1dark_preview from "../warehouse_images/warehouse-1dark-preview.jpg";
+import warehouse_2thermal_preview from "../warehouse_images/warehouse-2thermal-preview.jpg";
+import warehouse_3powered_preview from "../warehouse_images/warehouse-3powered-preview.jpg";
 
+import warehouse_1dark from "../warehouse_images/warehouse-1dark.jpg";
+import warehouse_2thermal from "../warehouse_images/warehouse-2thermal.jpg";
+import warehouse_3powered from "../warehouse_images/warehouse-3powered.jpg";
 
 const baseURL = new URL(window.location.href).host;
 const chatColors = ["#f94144", "#f3722c", "#f8961e", "#f9c74f", "#90be6d", "#43aa8b", "#577590", "#75B9BE", "#A8CCC9", "#B3D6C6", "#DCEAB2", "#C7D66D", "#FCD0A1", "#B1B695", "#53917E", "#63535B", "#6D1A36"];
@@ -58,13 +61,12 @@ class Guest extends Component {
     this.socket.on("joinRoomStatus", ({state}) => {
       // Chat Short Cuts
       this.chatFiles = {
-        file1: <img onClick={() => {this.openApplication("file1")}} src="https://ichef.bbci.co.uk/news/410/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg" style={{ height: "60px", width: "80px" }}/>,
 
-        no_thermal_warehouse: <img onClick={() => {this.openApplication("no_thermal_warehouse")}} src={no_thermal_warehouse_image} style={{ height: "60px", width: "80px" }}/>,
+        no_thermal_warehouse: <img onClick={() => {this.openApplication("no_thermal_warehouse")}} src={warehouse_1dark_preview} style={{ height: "60px", width: "80px" }}/>,
 
-        thermal_warehouse: <img onClick={() => {this.openApplication("thermal_warehouse")}} src={thermal_warehouse_image} style={{ height: "60px", width: "80px" }}/>,
+        thermal_warehouse: <img onClick={() => {this.openApplication("thermal_warehouse")}} src={warehouse_2thermal_preview} style={{ height: "60px", width: "80px" }}/>,
 
-        thermal_warehouse_wires: <img onClick={() => {this.openApplication("thermal_warehouse_wires")}} src={thermal_warehouse_wires_image} style={{ height: "60px", width: "80px" }}/>
+        thermal_warehouse_wires: <img onClick={() => {this.openApplication("thermal_warehouse_wires")}} src={warehouse_3powered_preview} style={{ height: "60px", width: "80px" }}/>
       }
 
       // File System ShortCuts
@@ -239,15 +241,15 @@ class Guest extends Component {
 
         no_thermal_warehouse: {
           name: "Warehouse - Dark",
-          html: <Panorama image={no_thermal_warehouse_image}></Panorama>,
+          html: <Panorama image={warehouse_1dark}></Panorama>,
         },
         thermal_warehouse: {
           name: "Warehouse - Thermal",
-          html: <Panorama image={thermal_warehouse_image}></Panorama>,
+          html: <Panorama image={warehouse_2thermal}></Panorama>,
         },
         thermal_warehouse_wires: {
           name: "Warehouse - Thermal with Wires",
-          html: <Panorama image={no_thermal_warehouse_image}></Panorama>,
+          html: <Panorama image={warehouse_3powered}></Panorama>,
         },
 
         // File System Pop ups
