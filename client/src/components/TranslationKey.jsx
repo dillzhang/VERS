@@ -8,39 +8,25 @@ function TranslationKey(){
   const [dictionary, setDictionary] = useState({
     //type
     0: {
-      alien: "alien letter",
-      english: "english letter"
+      alien: "",
+      english: ""
     },
 
   });
 
-  const [alien, setAlien] = useState([])
-  const [english, setEnglish] = useState([])
 
   const createDict = () => {
-    const dict = []
+    const dict = {}
 
-    for (var i in alien.length) {
-      if (alien[i] != " " | alien[i] != "") {
-        if (english[i] != " " | english[i] != ""){
-            dict[alien[i]] = english[i]
+    Object.entries(dictionary).map(([key, entry]) => {
+      if (entry.alien != " " & entry.alien != "") {
+        if (entry.english != " " & entry.english != ""){
+          dict[entry.alien.toUpperCase()] = entry.english.toUpperCase()
         }
       }
-    }
-    setCypher(dict)
-  }
+    })
+    setCypher(() => ({...dict}))
 
-  const keyDisp = () => {
-    const dictList = []
-    for (var i=0; i < alien.length; i++) {
-      console.log("i" + i)
-      dictList.push(
-
-      )
-
-    }
-    console.log("dictlist" + dictList)
-    return dictList;
   }
 
   return (
@@ -56,15 +42,9 @@ function TranslationKey(){
               <textarea className='entry_child alien' type="text" value={entry.alien} onChange={(e) => {
                 setDictionary()
                 const input = e.target.value;
-
-                console.log('prev ' + alien)
-                entry.alien = input
-                console.log('after ' + alien)
-                console.log("key "+ key)
                 dictionary[key].alien = input
                 setDictionary(() => ({...dictionary}))
-
-                console.log("dictionary " + Object.entries(dictionary[key]))
+                createDict()
 
               }}></textarea>
             </div>
@@ -72,15 +52,10 @@ function TranslationKey(){
               <textarea className='entry_child english' type="text" value={entry.english} onChange={(e) => {
                 setDictionary()
                 const input = e.target.value;
-
-                console.log('prev ' + english)
-                entry.english = input
-                console.log('after ' + english)
-                console.log("key "+ key)
                 dictionary[key].english = input
                 setDictionary(() => ({...dictionary}))
+                createDict()
 
-                console.log("dictionary " + Object.entries(dictionary[key]))
 
               }}></textarea>
             </div>
@@ -93,16 +68,12 @@ function TranslationKey(){
     }
       <button className="addEntry" onClick={() => {
         var dictLen = Object.keys(dictionary).length
-        console.log("dictLen "+dictLen)
         dictionary[dictLen] = {
-          dictLen: {
-            alien: "sdf",
-            english: "sdfs"
-          }
+            alien: "",
+            english: ""
         }
         setDictionary(() => ({...dictionary}))
-        console.log("hello " + Object.entries(dictionary))
-
+        createDict()
       }}>+</button>
     </div>
   )
