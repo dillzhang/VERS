@@ -1,7 +1,7 @@
 import React, { Component, useState} from 'react';
 import "./TranslatorKey.css";
 
-function TranslationKey(){
+function TranslationKey({ decoder }){
 
   const [cypher, setCypher] = useState({});
 
@@ -28,6 +28,8 @@ function TranslationKey(){
     setCypher(() => ({...dict}))
 
   }
+
+  decoder(cypher)
 
   return (
     <div className="translation_key">

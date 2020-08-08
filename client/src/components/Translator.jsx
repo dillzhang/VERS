@@ -8,11 +8,16 @@ function Translator() {
   // Initialize the state
   const [inputText, setInputText] = useState("")
   const [keyOpen, setKeyOpen] = useState(false)
+  const [cypher, setCypher] = useState({})
 
   const translate = () => {
     var translated_sen = ""
     for (var i = 0; i < inputText.length; i++) {
-      translated_sen += getResponseDescription(inputText[i])
+      if (Object.keys(cypher).some(e => e === inputText[i])){
+        translated_sen += cypher[inputText[i]]
+      } else {
+        translated_sen += inputText[i]
+      }
     }
     return translated_sen
   }
@@ -20,7 +25,6 @@ function Translator() {
   const openTranslationKey = () => {
 
   }
-
 
     return (
       <div className='translator'>
@@ -40,7 +44,7 @@ function Translator() {
 
         <div className="translator_elements">
           <div className='key'>
-            <Key/>
+            <Key decoder={cypherDict => setCypher(cypherDict)}/>
           </div>
         </div>
 
