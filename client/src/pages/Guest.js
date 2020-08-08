@@ -31,6 +31,19 @@ import warehouse_3powered from "../warehouse_images/warehouse-3powered.jpg";
 const baseURL = new URL(window.location.href).host;
 const chatColors = ["#f94144", "#f3722c", "#f8961e", "#f9c74f", "#90be6d", "#43aa8b", "#577590", "#75B9BE", "#A8CCC9", "#B3D6C6", "#DCEAB2", "#C7D66D", "#FCD0A1", "#B1B695", "#53917E", "#63535B", "#6D1A36"];
 
+const stateApplications = [
+  ["secureChat"],  // 0
+  ["timer"],  // 10
+  ["fileSystem"],  //20
+  [],  // 30
+  [],  // 40
+  [],  // 50
+  [],  // 60
+  [],  // 70
+  [],  // 80
+]
+
+
 class Guest extends Component {
   // Initialize the state
   constructor(props){
@@ -56,11 +69,20 @@ class Guest extends Component {
       const today = new Date();
       const time = ("0" + today.getHours()).slice(-2) + ":" + ("0" + today.getMinutes()).slice(-2) + ":" + ("0" + today.getSeconds()).slice(-2);
       this.setState({ currentTime: time });
-    }, 499);
+  }, 499);
+
+    this.socket.on("roomStateUpdate", ({state}) => {
+      this.setState(prev => ({
+        state,
+        applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) == -1)],
+        error: "",
+      }));
+    });
 
     this.socket.on("joinRoomStatus", ({state}) => {
       // Chat Short Cuts
       this.chatFiles = {
+        floor_plan_4: <div className="file" onClick={() => {this.openApplication("floorPlan4")}}><strong>Floor Plan 4.bp</strong></div>,
 
         no_thermal_warehouse: <img onClick={() => {this.openApplication("no_thermal_warehouse")}} src={warehouse_1dark_preview} style={{ height: "60px", width: "80px" }}/>,
 
@@ -77,7 +99,7 @@ class Guest extends Component {
           files: {
             directory: {
               requirement: 10,
-              display: "Building Directory.pdf",
+              display: "building_directory.pdf",
             }
           },
         },
@@ -87,27 +109,27 @@ class Guest extends Component {
           files: {
             floorPlan1: {
               requirement: 100,
-              display: "Floor 1 Plan.bp",
+              display: "floor1.bp",
             },
             floorPlan2: {
               requirement: 100,
-              display: "Floor 2 Plan.bp",
+              display: "floor2.bp",
             },
             floorPlan3: {
               requirement: 100,
-              display: "Floor 3 Plan.bp",
+              display: "floor3.bp",
             },
             floorPlan4: {
               requirement: 30,
-              display: "Floor 4 Plan.bp",
+              display: "floor4.bp",
             },
             floorPlan5: {
               requirement: 100,
-              display: "Floor 5 Plan.bp",
+              display: "floor5.bp",
             },
             floorPlan6: {
               requirement: 100,
-              display: "Floor 6 Plan.bp",
+              display: "floor6.bp",
             },
           },
         },
@@ -117,33 +139,33 @@ class Guest extends Component {
           files: {
             emergencies: {
               requirement: 100,
-              display: "Emergency Procedures.pdf",
+              display: "emergency_procedures.pdf",
             },
             securityManual: {
               requirement: 30,
-              display: "Security Sensors.pdf",
+              display: "security_sensors.pdf",
             },
             guestPolicy: {
               requirement: 100,
-              display: "Guest Policy.pdf",
+              display: "guest_policy.pdf",
             },
           },
         },
         guards: {
           requirement: 50,
-          display: "Guards",
+          display: "Personnel",
           files: {
             guard1: {
               requirement: 50,
-              display: "Guard1.db",
+              display: "01-shakeb.db",
             },
             guard2: {
               requirement: 50,
-              display: "Guard2.db",
+              display: "02-patricia.db",
             },
             guard3: {
               requirement: 50,
-              display: "Guard3.db",
+              display: "03-jason.db",
             },
           },
         },
@@ -153,15 +175,15 @@ class Guest extends Component {
           files: {
             languageTranscript1: {
               requirement: 60,
-              display: "Language Transcript 1.pdf",
+              display: "transcript_20190103.pdf",
             },
             languageTranscript2: {
               requirement: 60,
-              display: "Language Transcript 2.pdf",
+              display: "transcript_20190521.pdf",
             },
             alienArticle: {
               requirement: 60,
-              display: "Alien Article.pdf",
+              display: "press_article.pdf",
             },
           },
         },
@@ -202,7 +224,7 @@ class Guest extends Component {
           )
         },
         translator: {
-          requirement: 0,
+          requirement: 60,
           app: (
             <div key="translator-shortcut" className="shortcut" onClick={() => {this.openApplication("translator")}}>
               <div className="icon">
@@ -225,7 +247,7 @@ class Guest extends Component {
         },
         fileSystem: {
           name: "File System",
-          html: <FileSystem folders={this.fileSystemFolders} level={state} openCallBack={this.openApplication} />
+          html: <FileSystem socket={this.socket} folders={this.fileSystemFolders} level={state} openCallBack={this.openApplication} />
         },
         translator: {
           name: "Translator",
@@ -255,7 +277,7 @@ class Guest extends Component {
         },
         floorPlan4: {
           name: "Floor Planner - Floor 4 Plan",
-          html: <FloorPlan />,
+          html: <FloorPlan level={state} socket={this.socket} roomCode={this.room} sender={this.state.username} color={this.state.chatColor} />,
         },
         securityManual: {
           name: "Document Viewer - Security Sensors",
@@ -286,11 +308,11 @@ class Guest extends Component {
           html: alienArticle,
         },
       }
-
-      this.setState({
+      this.setState(prev => ({
         state,
+        applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) == -1)],
         error: "",
-      });
+      }));
     });
 
     this.socket.on("errorMessage", ({message}) => {
@@ -383,7 +405,7 @@ class Guest extends Component {
             })
           }
           {this.state.applicationsOpen
-            // .filter(app => this.state.applicationsOpen[app] && this.apps.hasOwnProperty(app))
+            .filter(app => this.state.applicationsOpen.indexOf(app) > -1 && this.apps.hasOwnProperty(app))
             .map((app, index) => {
               return (
                 <Draggable

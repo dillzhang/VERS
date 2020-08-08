@@ -19,12 +19,28 @@ class Host extends Component {
 
     this.state = {
         state: 0,
-        line: "It's dark in here... from what I can see it looks like any ordinary warehouse?",
+        lines: [],
         chatColor: "#65fc31"
     }
 
     this.socket.on("joinRoomStatus", ({ state }) => {
-        this.setState({ state });
+        this.setState({ 
+          state,
+          lines: this.getLines(state),
+        });
+    });
+
+    this.socket.on("roomStateUpdate", ({state}) => {
+      this.setState({ 
+        state,
+        lines: this.getLines(state),
+      });
+    });
+
+    this.socket.on("floor-plan-wrong", ({line}) => {
+      this.setState({ 
+        lines: [line],
+      });
     });
   }
 
@@ -41,15 +57,15 @@ class Host extends Component {
         </div>
         <div className="body">
           <div className="main">
-            <div class="location">
+            <div className="location">
               <h2>Location:</h2>
               <h2>{ this.getLocation() } ({this.state.state} / 80)</h2>
             </div>
-            <div class="line-prompter">
+            <div className="line-prompter">
               <h2>Line Prompter</h2>
-              <p>{this.state.line}</p>
+              {this.state.lines.map((line, key) => (<p key={key}>{line}</p>))}
             </div>
-            <div class="available-actions">
+            <div className="available-actions">
               <h2>Available Actions</h2>
             {this.renderMain()}
             </div>
@@ -94,6 +110,31 @@ class Host extends Component {
     return "Unknown";
   }
 
+  getLines = (state) => {
+    switch (state) {
+      case 0:
+        return ["It's dark in here... from what I can see it looks like any ordinary warehouse?"];
+      case 10:
+        return ["I'm enter the facility. I think I tripped an alarm. The average response time is about an hour. You can use the timer application to keep track."];
+      case 20:
+        return ["I've attached the device to hack into their system. I'm going to head toward the elevator. What floor should I head to?"];
+      case 30:
+        return ["This looks like the right floor, but it looks like they have a lot of security installed. Can you guide me through?", "Feel free to send the map for me to double check!"];
+      case 40:
+        return ["This map looks like what I am seeing here. I've shared my location with you. Guide me!"];
+      case 50:
+        return [];
+      case 60:
+        return [];
+      case 70:
+        return [];
+      case 80:
+        return [];
+      default:
+        return ["Something wrong has occured"];
+    }
+  }
+
   renderMain = () => {
     switch (this.state.state) {
       case 0:
@@ -104,9 +145,9 @@ class Host extends Component {
             }}>Start Timer</button>
 
             {/*Example Button for sending file1*/}
-            <button onClick={() => {
+            {/* <button onClick={() => {
               this.sendFile("file1");
-            }}>Send File 1</button>
+            }}>Send File 1</button> */}
 
           </div>
         )
@@ -122,12 +163,17 @@ class Host extends Component {
             <button onClick={() => {
               this.sendFile("thermal_warehouse_wires");
             }}>Send Thermal Warehouse Image (Power On)</button>
+            <button onClick={() => {
+              this.socket.emit("setRoomState", {roomCode: this.room, state: 20});
+            }}>Move to Elevator</button>
           </div>
         )
       case 20:
         return(
           <div>
-            <Elevator/>
+            <Elevator successCallback={() => {
+              this.socket.emit("setRoomState", {roomCode: this.room, state: 30});
+            }}/>
           </div>
         )
       default:

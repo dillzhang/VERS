@@ -37,3 +37,24 @@
     font-size: 0.85em;
     line-height: 1.25em;
 }
+
+
+/* @TODO: move this elsewhere */
+.guard {
+    padding: 24px 0;
+    font-family: var(--conspiracy-font);
+}
+.guard h1 {
+    font-size: 2em;
+}
+.guard h3 {
+    font-size: 1.25em;
+}
+.guard h1, h2, h3, h4, h6 {
+    font-weight: bold;
+    margin: 8px 0;
+}
+.guard .guard-portrait {
+    width: 180px;
+    float: right;
+}

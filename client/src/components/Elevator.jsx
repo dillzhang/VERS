@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import './Elevator.css';
 
-function Elevator(){
+function Elevator(props){
 
   const [text, setText] = useState("Ask the participants to select a floor to go to (options 1-5). Click the 'elevator' button to see what's on each floor.");
   const [isDisabled, setDisabled] = useState(false);
@@ -28,7 +28,8 @@ function Elevator(){
           break;
 
         case '4':
-          setText('floor 4 text');
+          props.successCallback();
+          // setText('floor 4 text');
           break;
         case '5':
           setText('floor 5 text');

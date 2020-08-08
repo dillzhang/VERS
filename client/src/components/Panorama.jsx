@@ -39,22 +39,6 @@ function Panorama (props) {
             onTouchend={(evt)=>{console.log("Touch End", evt);}}
             hotspotDebug={false}
         >
-          <Pannellum.Hotspot
-          type="info"
-          pitch={11}
-          yaw={-167}
-          text="This is the warehouse"
-
-          />
-
-          <Pannellum.Hotspot
-          type="custom"
-          pitch={31}
-          yaw={150}
-          handleClick={(evt , args) => this.hanldeClickImage(evt , args)}
-          handleClickArg={{ "name":"test" }}
-          />
-
         </Pannellum>
       </div>
     )
