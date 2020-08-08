@@ -1,56 +1,58 @@
-import React, { Component } from 'react';
+import React, { Component, useState} from 'react';
 
 import "./Translator.css";
 import {getResponseDescription} from './alien-translator.js'
+import Key from './TranslationKey.jsx'
 
-class Translator extends Component {
+function Translator() {
   // Initialize the state
-  constructor(props){
-    super(props);
-    this.socket = props.socket;
+  const [inputText, setInputText] = useState("")
+  const [keyOpen, setKeyOpen] = useState(false)
 
-    this.socket.on("translator-update", () => {
-      console.log("hello");
-
-    })
-
-    this.state = {
-        inputText: "",
-    }
-  }
-
-
-  setInputText = (e) => {
-    const value = e.target.value;
-    this.setState({inputText: value});
-  }
-
-  translate = (e) => {
+  const translate = () => {
     var translated_sen = ""
-    for (var i = 0; i < e.length; i++) {
-      translated_sen += getResponseDescription(e[i])
+    for (var i = 0; i < inputText.length; i++) {
+      translated_sen += getResponseDescription(inputText[i])
     }
-    console.log(translated_sen)
     return translated_sen
   }
 
-  openTranslationKey = () => {
-    console.log('open translation key')
+  const openTranslationKey = () => {
+
   }
-  render() {
+
+
     return (
-      <div className="translator-box">
-        <button className="key" onClick={this.openTranslationKey}>key</button>
-        <div >
-          <textarea className="input-box" type="text" value={this.state.inputText} onChange={this.setInputText}></textarea>
+      <div className='translator'>
+
+        <div className='translator_elements'>
+          <div className="header">
+            <button className="key_button" onClick={() => {setKeyOpen(!keyOpen)}}>key</button>
+          </div>
+          <div className="translator_box">
+            <textarea className="input_box" type="text" onChange={(e) => setInputText(e.target.value.toUpperCase())}></textarea>
+          </div>
+
+          <div>
+            <textarea className="output_box" readonly value={translate()}></textarea>
+          </div>
         </div>
 
-        <div>
-          <textarea className="output-box" readonly value={this.translate(this.state.inputText)}></textarea>
+        <div className="translator_elements">
+          <div className='key'>
+            <Key/>
+          </div>
         </div>
+
+
       </div>
     );
-  }
+
 }
 
+// { keyOpen &&
+//   <div className='key'>
+//     <p><Key/></p>
+//   </div>
+// }
 export default Translator;

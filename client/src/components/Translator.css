@@ -1,32 +1,71 @@
-.translate-box{
+.translator_elements{
+float: left;
+}
+
+.translate_box{
   overflow-y: scroll;
-  display: inline-block;
+  float:left;
+  color:blue;
+}
+
+.key{
+  min-width: 100px;
+}
+
+textarea{
+  resize: none;
+}
+textarea::-webkit-scrollbar{
+  background-color: black;
 
 }
-.input-box{
+textarea::-webkit-scrollbar-thumb {
+  background-color: #3f3f3f ;
+}
+
+
+.header{
+  /* background-color: blue; */
+
+}
+
+.key_button{
+  background-color: black;
+  border-color: black;
+  color: grey;
+}
+
+.input_box{
   display: block;
   height: 200px;
   width: 400px;
-
-
   display: flex;
   flex-direction: column;
-
-  background-color: white;
+  border-bottom-color: black;
+  background-color: black;
+  color: white;
   overflow-y: scroll;
+  text-transform: uppercase;
+
+  border-left-color: grey;
+  border-right-color: grey;
+  border-bottom-color: grey;
+  border-top-color: black;
 
 }
-.output-box{
+.output_box{
   display: block;
   height: 200px;
   width: 400px;
   display: flex;
   flex-direction: column;
-  background-color:  #eeeeee;
-  overflow-x: scroll;
+
+  background-color: black;
+  color: white;
+  overflow-y: scroll;
+
 }
 .key{
   display: inline-block;
-
   float: right;
 }

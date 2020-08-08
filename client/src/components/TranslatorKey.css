@@ -1,0 +1,50 @@
+.translation_key{
+  height: 440px;
+  max-height: 440px;
+  overflow-y: scroll;
+  max-width: 200px;
+  background-color: black
+}
+
+.keyBar{
+
+}
+
+.entry_container{
+  float:left;
+  display: inline-block;
+  width: 100%;
+}
+
+.entry_child{
+    float: left;
+    color:white;
+    background: black;
+    text-transform: uppercase;
+    float:left;
+    max-width: 75px;
+    border-color: black;
+    text-align: center;
+}
+
+.entry_child.alien {
+  border-right-color: grey;
+
+}
+
+.horizontal_breakline{
+  width: 80px;
+  align-items: center;
+
+}
+
+input[type=text] {
+  border: 1px solid #ccc;
+  background: transparent;
+  text-transform: uppercase;
+}
+
+.addEntry{
+  display:inline-block;
+  display:
+}

@@ -48,7 +48,7 @@ class Guest extends Component {
       chatColor: chatColors[Math.floor(Math.random() * chatColors.length)],
 
       currentTime: "00:00:00",
-      applicationsOpen: ["securityManual"],
+      applicationsOpen: ["translator"],
     }
 
     // Clock
@@ -229,15 +229,11 @@ class Guest extends Component {
         },
         translator: {
           name: "Translator",
-          html: <Translator socket={this.socket} />
+          html: <Translator />
         },
         // Chat Pop-ups
 
         // Add chat pop-ups here
-        file1: {
-          name: "Photos - File1",
-          html: <img src="https://ichef.bbci.co.uk/news/410/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg" />,
-        },
 
         no_thermal_warehouse: {
           name: "Warehouse - Dark",
