@@ -44,6 +44,8 @@ const stateApplications = [
   [],  // 80
 ]
 
+const STATE_SUCCESS = 70
+const STATE_FAILURE = 80
 
 class Guest extends Component {
   // Initialize the state
@@ -63,6 +65,8 @@ class Guest extends Component {
 
       currentTime: "00:00:00",
       applicationsOpen: [],
+
+      noiseDebug: false
     }
 
     // Clock
@@ -229,7 +233,7 @@ class Guest extends Component {
           app: (
             <div key="file-system-shortcut" className="shortcut" onClick={() => {this.openApplication("videoStream")}}>
               <div className="icon">
-                <img src="/desktop/filesystem.svg" />
+                <img src="/desktop/video-stream.svg" />
               </div>
               <div className="shortcut-name">Video Stream</div>
             </div>
@@ -351,6 +355,12 @@ class Guest extends Component {
     }));
   }
 
+  noiseDebug = () => {
+    this.setState({
+      noiseDebug: true
+    })
+  }
+
   render() {
     if (this.state.state == -1) {
       return this.renderLockScreen();
@@ -407,6 +417,10 @@ class Guest extends Component {
   renderDesktop = () => {
     return (
       <div className="app guest">
+        <div className="noise-wrapper" style={{ opacity: (this.state.state == STATE_FAILURE || this.state.noiseDebug) ? 0.9 : 0, "pointer-events": (this.state.state == STATE_FAILURE || this.state.noiseDebug) ? "auto" : "none" }}>
+          <div className="noise"></div>
+          <h1>Connection Lost</h1>
+        </div>
         <div className="header">
           <div className="header-time">
             {this.state.username} &middot; {this.state.currentTime}
