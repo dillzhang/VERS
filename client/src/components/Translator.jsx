@@ -40,11 +40,14 @@ function Translator() {
           </div>
         </div>
 
-        <div className="translator_elements">
-          <div className='key'>
-            <Key decoder={cypherDict => setCypher(cypherDict)}/>
+        { keyOpen &&
+          <div className="translator_elements">
+            <div className='key'>
+              <Key decoder={cypherDict => setCypher(cypherDict)}/>
+            </div>
           </div>
-        </div>
+        }
+
 
 
       </div>
@@ -52,9 +55,5 @@ function Translator() {
 
 }
 
-// { keyOpen &&
-//   <div className='key'>
-//     <p><Key/></p>
-//   </div>
-// }
+//
 export default Translator;
