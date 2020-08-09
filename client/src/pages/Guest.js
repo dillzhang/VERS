@@ -14,9 +14,7 @@ import './Guest.css'
 import alienArticle from "../fileSystem/AlienArticle";
 import directory from "../fileSystem/Directory";
 import FloorPlan from "../fileSystem/FloorPlan";
-import guard1 from "../fileSystem/Guard1";
 import guard2 from "../fileSystem/Guard2";
-import guard3 from "../fileSystem/Guard3";
 import languageTranscript1 from "../fileSystem/LanguageTranscript1";
 import languageTranscript2 from "../fileSystem/LanguageTranscript2";
 import securityManual from "../fileSystem/SecurityManual";
@@ -37,7 +35,7 @@ const stateApplications = [
   ["timer"],  // 10
   ["fileSystem"],  //20
   [],  // 30
-  [],  // 40
+  ["videoStream"],  // 40
   [],  // 50
   [],  // 60
   [],  // 70
@@ -94,7 +92,10 @@ class Guest extends Component {
 
         thermal_warehouse: <img onClick={() => {this.openApplication("thermal_warehouse")}} src={warehouse_2thermal_preview} style={{ height: "60px", width: "80px" }}/>,
 
-        thermal_warehouse_wires: <img onClick={() => {this.openApplication("thermal_warehouse_wires")}} src={warehouse_3powered_preview} style={{ height: "60px", width: "80px" }}/>
+        thermal_warehouse_wires: <img onClick={() => {this.openApplication("thermal_warehouse_wires")}} src={warehouse_3powered_preview} style={{ height: "60px", width: "80px" }}/>,
+
+        elevator_landing: <img  onClick={() => {this.openApplication("elevator_landing")}} src="/hallways/hallway.jpg" style={{ height: "60px", width: "80px" }}/>,
+        vault_door: <img  onClick={() => {this.openApplication("vault_door")}} src="/vault/door.jpg" style={{ height: "60px", width: "80px" }}/>,
       }
 
       // File System ShortCuts
@@ -162,36 +163,46 @@ class Guest extends Component {
           display: "Personnel",
           files: {
             guard1: {
-              requirement: 50,
-              display: "01-shakeb.db",
+              requirement: 100,
+              display: "P_Shannon.db",
             },
             guard2: {
-              requirement: 50,
-              display: "02-patricia.db",
+              requirement: 100,
+              display: "H_Diana.db",
             },
             guard3: {
               requirement: 50,
-              display: "03-jason.db",
+              display: "W_Patricia.db",
+            },
+            guard4: {
+              requirement: 100,
+              display: "H_Victor.db",
+            },
+            guard5: {
+              requirement: 100,
+              display: "Z_Dillon.db",
+            },
+            guard6: {
+              requirement: 100,
+              display: "T_Anand.db",
+            },
+            guard7: {
+              requirement: 100,
+              display: "H_Joshua.db",
             },
           },
         },
-        research: {
-          requirement: 60,
-          display: "Research",
-          files: {
-            languageTranscript1: {
-              requirement: 60,
-              display: "transcript_20190103.pdf",
-            },
-            languageTranscript2: {
-              requirement: 60,
-              display: "transcript_20190521.pdf",
-            },
-            alienArticle: {
-              requirement: 60,
-              display: "press_article.pdf",
-            },
-          },
+        inventory: {
+          requirement: 100,
+          display: "Inventory",
+        },
+        agreements: {
+          requirement: 100,
+          display: "Contracts"
+        },
+        schedule: {
+          requirement: 100,
+          display: "Meeting Schedules"
         },
       }
 
@@ -279,16 +290,24 @@ class Guest extends Component {
         // Add chat pop-ups here
 
         no_thermal_warehouse: {
-          name: "Warehouse - Dark",
+          name: "IMG083104",
           html: <Panorama image={warehouse_1dark}></Panorama>,
         },
         thermal_warehouse: {
-          name: "Warehouse - Thermal",
+          name: "IMG083112",
           html: <Panorama image={warehouse_2thermal}></Panorama>,
         },
         thermal_warehouse_wires: {
-          name: "Warehouse - Thermal with Wires",
+          name: "IMG083118",
           html: <Panorama image={warehouse_3powered}></Panorama>,
+        },
+        elevator_landing: {
+          name: "IMG083120",
+          html: <img src="/hallways/hallway.jpg" style={{maxHeight: 500}} />,
+        },
+        vault_door: {
+          name: "IMG083123",
+          html: <img src="/vault/door.jpg" style={{maxHeight: 500}} />,
         },
 
         // File System Pop ups
@@ -304,17 +323,9 @@ class Guest extends Component {
           name: "Document Viewer - Security Sensors",
           html: securityManual,
         },
-        guard1: {
-          name: "Database - Guard 1",
-          html: guard1,
-        },
-        guard2: {
-          name: "Database - Guard 2",
-          html: guard2,
-        },
         guard3: {
-          name: "Database - Guard 3",
-          html: guard3,
+          name: "Database - W. Patricia",
+          html: guard2,
         },
         languageTranscript1: {
           name: "Document Viewer - Interview 1",

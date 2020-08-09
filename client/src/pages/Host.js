@@ -7,8 +7,26 @@ import Chat from "../components/Chat";
 import Timer from "../components/Timer";
 import Elevator from  "../components/Elevator";
 import ActorMoving from "../components/ActorMoving";
+import VaultDoor from "../components/VaultDoor";
+
+import warehouse_1dark_preview from "../warehouse_images/warehouse-1dark-preview.jpg";
+import warehouse_2thermal_preview from "../warehouse_images/warehouse-2thermal-preview.jpg";
+import warehouse_3powered_preview from "../warehouse_images/warehouse-3powered-preview.jpg";
 
 const baseURL = new URL(window.location.href).host;
+
+const chatFiles = {
+  floor_plan_4: <div className="file"><strong>Floor Plan 4.bp</strong></div>,
+
+  no_thermal_warehouse: <img src={warehouse_1dark_preview} style={{ height: "60px", width: "80px" }}/>,
+
+  thermal_warehouse: <img src={warehouse_2thermal_preview} style={{ height: "60px", width: "80px" }}/>,
+
+  thermal_warehouse_wires: <img src={warehouse_3powered_preview} style={{ height: "60px", width: "80px" }}/>,
+
+  elevator_landing: <img src="/hallways/hallway.jpg" style={{ height: "60px", width: "80px" }}/>,
+  vault_door: <img src="/vault/door.jpg" style={{ height: "60px", width: "80px" }}/>,
+}
 
 class Host extends Component {
   // Initialize the state
@@ -73,7 +91,7 @@ class Host extends Component {
           </div>
           <div className="side-bar">
             <Timer socket={this.socket}/>
-            <Chat room={this.room} viewer="@lex" chatColor={this.state.chatColor} socket={this.socket}/>
+            <Chat room={this.room} viewer="@lex" chatColor={this.state.chatColor} files={chatFiles} socket={this.socket}/>
           </div>
         </div>
       </div>
@@ -120,13 +138,13 @@ class Host extends Component {
       case 20:
         return ["I've attached the device to hack into their system. I'm going to head toward the elevator. What floor should I head to?"];
       case 30:
-        return ["This looks like the right floor, but it looks like they have a lot of security installed. Can you guide me through?", "Feel free to send the map for me to double check!"];
+        return ["This looks like the right floor, but it looks like they have a lot of security installed. We will need to plot out where these sensors are.", "Feel free to send the map for me to double check!"];
       case 40:
-        return ["This map looks like what I am seeing here. I've shared my location with you. Guide me!"];
+        return ["This map looks like what I am seeing here. I've shared my location with you and am streaming a feed of an electrical panel. I am wearing laser reflecting material so don't worry about tripping the laser trip wires. Please guide me!"];
       case 50:
-        return [];
+        return ["I'm at the vault door! There is terminal asking for a Guard's ID number."];
       case 60:
-        return [];
+        return ["I'm inside the vault."];
       case 70:
         return [];
       case 80:
@@ -177,8 +195,22 @@ class Host extends Component {
             }}/>
           </div>
         )
+      case 30:
+        return <button onClick={() => {
+          this.sendFile("elevator_landing");
+        }}>Send Hallway Image</button>;
       case 40:
-            return <ActorMoving socket={this.socket} room={this.room} />
+            return <ActorMoving socket={this.socket} room={this.room} />;
+      case 50: 
+            return <>
+              <button onClick={() => {
+                this.sendFile("vault_door");
+              }}>Send Vault Door Image</button>
+              <VaultDoor socket={this.socket} room={this.room} /></>
+      case 60:
+        return <button onClick={() => {
+          this.socket.emit("setRoomState", {roomCode: this.room, state: 70});
+          }}>Complete Mission</button>
       default:
         return "Something wrong has occured";
     }

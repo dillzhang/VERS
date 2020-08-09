@@ -1,0 +1,27 @@
+.vault-door {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 300px;
+
+    background-color: #222222;
+    color: #eeeeee;
+}
+
+.vault-door h1 {
+    font-size: 50px;
+}
+
+.vault-door .question {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+
+    width: 400px;
+}
+
+.vault-door .alert {
+    color: red;
+}

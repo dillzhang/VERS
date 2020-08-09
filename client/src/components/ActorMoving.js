@@ -190,18 +190,47 @@ class ActorMoving extends Component {
     }
 
     updateSensors = () => {
+        let failed = false;
+
+        this.sensors[path[this.pathIndex]] = true;
+
+        failed = floorplan[this.state.location.ycor][this.state.location.xcor].indexOf(path[this.pathIndex]) > -1; 
+        this.pathIndex = (this.pathIndex + 1) % path.length;
+        this.sensors[path[this.pathIndex]] = false;
+        
         if (this.lastRandom) {
             this.sensors[this.lastRandom] = true;
+            failed = failed || floorplan[this.state.location.ycor][this.state.location.xcor].indexOf(this.lastRandom) > -1; 
         }
         this.lastRandom = Object.keys(this.sensors)
             .filter(s => this.sensors[s] && path.indexOf(s) > -1)
             .sort((a, b) => Math.random() - 0.5)
             .pop();
         this.sensors[this.lastRandom] = false;
-        this.sensors[path[this.pathIndex]] = true;
-        this.pathIndex = (this.pathIndex + 1) % path.length;
-        this.sensors[path[this.pathIndex]] = false;
+
         this.props.socket.emit("electricalUpdate", {state: this.sensors, room: this.props.room});
+
+        if (failed) {
+            this.props.socket.emit("locationUpdate", {red: true, location: this.state.location, room: this.props.room});
+            this.setState({
+                red: true,
+                message: "Oh no! The camera turned back on. I need to evade the guards. I will contact when I can."
+            });
+            setTimeout(() => {
+                this.setState(state => ({    
+                    location: {
+                        xcor: 4,
+                        ycor: 1,
+                    },
+                    red: false,
+                    message: "I'm back at the elevator and ready to go!"
+                }), () => {
+                    this.warnings = 0;
+                    this.props.socket.emit("locationUpdate", {red: false, location: this.state.location, room: this.props.room});
+                });
+            }, 10 * 1000);
+        }
+
         this.timeOutId = setTimeout(this.updateSensors, 20 * 1000);
     }
 
