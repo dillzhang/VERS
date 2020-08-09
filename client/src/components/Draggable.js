@@ -11,8 +11,8 @@ class Draggable extends Component {
         this.prevY = -1;
 
         this.state = {
-            top: 50 + this.props.offset * 30,
-            left: 200 + this.props.offset * 30,
+            top: 50 + this.props.offset * 10,
+            left: 200 + this.props.offset * 40,
             zIndex: this.props.zIndex
         }
 
