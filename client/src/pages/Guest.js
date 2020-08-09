@@ -61,7 +61,7 @@ class Guest extends Component {
       chatColor: chatColors[Math.floor(Math.random() * chatColors.length)],
 
       currentTime: "00:00:00",
-      applicationsOpen: ["translator"],
+      applicationsOpen: [],
     }
 
     // Clock

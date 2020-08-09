@@ -44,8 +44,11 @@ function handleIo(io) {
 
 
         socket.on("sensorUpdate", ({ sensors, room }) => {
-            console.log("emitting", room);
             socket.to(room).emit("sensorUpdate", {sensors});
+        });
+
+        socket.on("locationUpdate", ({ location, room }) => {
+            socket.to(room).emit("locationUpdate", {location});
         });
     });
 }
