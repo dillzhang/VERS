@@ -49,7 +49,7 @@ class VideoStream extends Component {
 
   addCurrent = () => {
     clearTimeout(this.timeoutId);
-    if (this.state.current < 20) {
+    if (this.state.current < 10) {
       this.setState(state => ({
         current: state.current + 1,
       }));

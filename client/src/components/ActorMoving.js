@@ -231,7 +231,7 @@ class ActorMoving extends Component {
             }, 10 * 1000);
         }
 
-        this.timeOutId = setTimeout(this.updateSensors, 20 * 1000);
+        this.timeOutId = setTimeout(this.updateSensors, 10 * 1000);
     }
 
     componentDidMount() {
