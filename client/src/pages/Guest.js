@@ -219,6 +219,7 @@ class Guest extends Component {
             <div className="icon">
               <img src="/desktop/filesystem.svg" />
             </div>
+            <div className="shortcut-name">Files/div>
           </div>
           )
       },
@@ -239,6 +240,7 @@ class Guest extends Component {
             <div className="icon">
               <img src="/desktop/translator.svg" />
             </div>
+            <div className="shortcut-name">Translator</div>
           </div>
           )
       },
