@@ -16,23 +16,23 @@ function Elevator(props){
       setDisabled(false); // count is 0 here
       switch(floor) {
         case '1':
-          setText('floor 1 text');
+          setText("Looks like this is where we came in from. Let's see if any of the other floors look suspicious");
           break;
 
         case '2':
-          setText('floor 2 text');
+          setText("Hmm, I can't see much but looks like a bunch of empty tables. Let's try an other floor.");
           break;
 
         case '3':
-          setText('floor 3 text');
+          setText("Looks empty, some of the walls are torn down but I don't see anything here. Let's try a different floor.");
           break;
 
         case '4':
           props.successCallback();
-          // setText('floor 4 text');
+          // setText("floor 4 text");
           break;
         case '5':
-          setText('floor 5 text');
+          setText("Nothing here but dust. Maybe there's something on another one of the floors.");
           break;
       }
     }, 3000);
