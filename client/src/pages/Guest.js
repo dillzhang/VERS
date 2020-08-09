@@ -421,7 +421,7 @@ class Guest extends Component {
             })
           }
           {Object.keys(this.apps)
-            .map(app => {
+            .map((app, offset) => {
               return (
                 <Draggable
                   key={app}
@@ -430,6 +430,7 @@ class Guest extends Component {
                   closeCall={() => { this.closeApplication(app) } }
                   appName={this.apps[app].name}
                   zIndex={this.state.applicationsOpen.indexOf(app)}
+                  offset={offset}
                 >
                   {this.apps[app].html}
                 </Draggable>);

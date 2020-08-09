@@ -93,6 +93,8 @@
     justify-content: flex-start;
     flex-direction: column;
     flex-wrap: wrap;
+
+    overflow: hidden;
 }
 
 .guest .shortcut {
