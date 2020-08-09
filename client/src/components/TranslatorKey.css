@@ -6,7 +6,41 @@
   background-color: black
 }
 
+.translation_key::-webkit-scrollbar{
+  background-color: black;
+
+}
+.translation_key::-webkit-scrollbar-thumb {
+  background-color: #3f3f3f ;
+}
+
 .keyBar{
+
+}
+
+.header_container{
+  float:left;
+  display: inline-block;
+  width: 100%;
+}
+
+.header_child{
+  float:left;
+  color:white;
+  background: black;
+  float:left;
+  width: 50%;
+  border-color: black;
+  text-align: center;
+  border-bottom-color: grey;
+  border-top-color: grey;
+  font-size: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: var(--government-font)
+}
+
+.header_child.english{
 
 }
 
@@ -17,34 +51,46 @@
 }
 
 .entry_child{
-    float: left;
+    float:left;
     color:white;
     background: black;
     text-transform: uppercase;
     float:left;
-    max-width: 75px;
+    max-width: 46%;
     border-color: black;
     text-align: center;
+    border-bottom-color: grey;
+    border-top-color: grey;
 }
 
 .entry_child.alien {
   border-right-color: grey;
 
 }
-
-.horizontal_breakline{
-  width: 80px;
-  align-items: center;
+.entry_child.english {
+  border-left-color: grey;
 
 }
 
-input[type=text] {
-  border: 1px solid #ccc;
-  background: transparent;
-  text-transform: uppercase;
+.horizontal_breakline{
+  width: 100px;
+  align-items: center;
+
+}
+textarea::-webkit-scrollbar{
+  background-color: black;
+
+}
+textarea::-webkit-scrollbar-thumb {
+  background-color: #3f3f3f ;
 }
 
 .addEntry{
   display:inline-block;
-  display:
+  background-color: black;
+  border-color: black;
+  margin-top: 4px;
+  padding-right: 1px;
+  color:grey;
+  width:96%;
 }

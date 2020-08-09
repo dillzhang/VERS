@@ -15,6 +15,7 @@ float: left;
 textarea{
   resize: none;
 }
+
 textarea::-webkit-scrollbar{
   background-color: black;
 

@@ -1,7 +1,6 @@
 import React, { Component, useState} from 'react';
 
 import "./Translator.css";
-import {getResponseDescription} from './alien-translator.js'
 import Key from './TranslationKey.jsx'
 
 function Translator() {
@@ -28,7 +27,6 @@ function Translator() {
 
     return (
       <div className='translator'>
-
         <div className='translator_elements'>
           <div className="header">
             <button className="key_button" onClick={() => {setKeyOpen(!keyOpen)}}>key</button>
