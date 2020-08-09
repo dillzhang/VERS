@@ -16,16 +16,28 @@ import warehouse_3powered_preview from "../warehouse_images/warehouse-3powered-p
 const baseURL = new URL(window.location.href).host;
 
 const chatFiles = {
+  warehouse: <img src="/warehouse.jpg" />,
   floor_plan_4: <div className="file"><strong>Floor Plan 4.bp</strong></div>,
 
-  no_thermal_warehouse: <img src={warehouse_1dark_preview} style={{ height: "60px", width: "80px" }}/>,
+  no_thermal_warehouse: <img src={warehouse_1dark_preview} style={{ maxHeight: "100px", maxWidth: "100px" }}/>,
 
-  thermal_warehouse: <img src={warehouse_2thermal_preview} style={{ height: "60px", width: "80px" }}/>,
+  thermal_warehouse: <img src={warehouse_2thermal_preview} style={{ maxHeight: "100px", maxWidth: "100px" }}/>,
 
-  thermal_warehouse_wires: <img src={warehouse_3powered_preview} style={{ height: "60px", width: "80px" }}/>,
+  thermal_warehouse_wires: <img src={warehouse_3powered_preview} style={{ maxHeight: "100px", maxWidth: "100px" }}/>,
 
-  elevator_landing: <img src="/hallways/hallway.jpg" style={{ height: "60px", width: "80px" }}/>,
-  vault_door: <img src="/vault/door.jpg" style={{ height: "60px", width: "80px" }}/>,
+  elevator_landing: <img src="/hallways/hallway.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }}/>,
+  vault_door: <img src="/vault/door.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }}/>,
+
+
+  tubes: <img src="/vault/tubes.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
+  brain: <img src="/vault/brain.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
+  subject1: <img src="/vault/subject1.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
+  subject2: <img src="/vault/subject2.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
+  computer: <img src="/vault/computer.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
+
+  languageTranscript1:  <div className="file"><p><img className="icon" src="/desktop/file.svg" />transcript_20160103.pdf</p></div>,
+  languageTranscript2:  <div className="file"><p><img className="icon" src="/desktop/file.svg" />transcript_20160521.pdf</p></div>,
+  alienArticle:  <div className="file"><p><img className="icon" src="/desktop/file.svg" />journel_20151113.pdf</p></div>,
 }
 
 class Host extends Component {
@@ -160,14 +172,11 @@ class Host extends Component {
         return(
           <div>
             <button onClick={() => {
+              this.sendFile("warehouse");
+            }}>Send Warehouse Image</button>
+            <button onClick={() => {
               this.socket.emit("start-time", {room: this.room});
             }}>Start Timer</button>
-
-            {/*Example Button for sending file1*/}
-            {/* <button onClick={() => {
-              this.sendFile("file1");
-            }}>Send File 1</button> */}
-
           </div>
         )
       case 10:
@@ -208,9 +217,33 @@ class Host extends Component {
               }}>Send Vault Door Image</button>
               <VaultDoor socket={this.socket} room={this.room} /></>
       case 60:
-        return <button onClick={() => {
-          this.socket.emit("setRoomState", {roomCode: this.room, state: 70});
+        return <>
+          <button onClick={() => {
+            this.sendFile("tubes");
+          }}>Send Tubes</button>
+          <button onClick={() => {
+            this.sendFile("brain");
+          }}>Send Brain</button>
+          <button onClick={() => {
+            this.sendFile("subject1");
+            this.sendFile("subject2");
+          }}>Send Subjects</button>
+          <button onClick={() => {
+            this.sendFile("computer");
+          }}>Send Computer</button>
+          <button onClick={() => {
+            this.sendFile("languageTranscript1");
+          }}>Send Transcript 1</button>
+          <button onClick={() => {
+            this.sendFile("languageTranscript2");
+          }}>Send Transcript 2</button>
+          <button onClick={() => {
+            this.sendFile("alienArticle");
+          }}>Send Journal</button> 
+          <button onClick={() => {
+            this.socket.emit("setRoomState", {roomCode: this.room, state: 70});
           }}>Complete Mission</button>
+        </>
       default:
         return "Something wrong has occured";
     }

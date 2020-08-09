@@ -48,11 +48,10 @@ class Chat extends Component {
   }
 
   scrollToBottom = () => {
-    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    this.messageHolder.scroll({top: this.messageHolder.scrollHeight, behavior: "smooth"});
   }
   
   componentDidMount() {
-    this.scrollToBottom();
     this.socket.emit("getTextMessage", {roomCode: this.room});
   }
   
@@ -63,13 +62,11 @@ class Chat extends Component {
   render() {
     return (
       <div className="chat-box">
-        <div className="chat-message-holder">
+        <div className="chat-message-holder"
+          ref={(el) => { this.messageHolder = el; }}>
           {this.state.messages.map(m => {
             return <Message key={m.time} {...m} viewer={this.viewer} files={this.props.files}/>
           })}
-          <div style={{ float:"left", clear: "both" }}
-            ref={(el) => { this.messagesEnd = el; }}>
-          </div>
         </div>
         <div className="chat-form">
           <input type="text" placeholder="Type your message here" value={this.state.message} onChange={this.updateMessage} onKeyPress={this.handleKeyPress}></input>

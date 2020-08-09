@@ -86,6 +86,7 @@ class Guest extends Component {
   this.socket.on("joinRoomStatus", ({state}) => {
     // Chat Short Cuts
     this.chatFiles = {
+      warehouse: <img onClick={() => {this.openApplication("warehouse")}} src="/warehouse.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
       floor_plan_4: <div className="file"><p><img className="icon" src="/desktop/file.svg" /> floor4.bp</p></div>,
 
       no_thermal_warehouse: <img onClick={() => {this.openApplication("no_thermal_warehouse")}} src={warehouse_1dark_preview}/>,
@@ -94,8 +95,18 @@ class Guest extends Component {
 
       thermal_warehouse_wires: <img onClick={() => {this.openApplication("thermal_warehouse_wires")}} src={warehouse_3powered_preview}/>,
 
-      elevator_landing: <img  onClick={() => {this.openApplication("elevator_landing")}} src="/hallways/hallway.jpg"/>,
-      vault_door: <img  onClick={() => {this.openApplication("vault_door")}} src="/vault/door.jpg"/>,
+      elevator_landing: <img  onClick={() => {this.openApplication("elevator_landing")}} src="/hallways/hallway.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
+      vault_door: <img  onClick={() => {this.openApplication("vault_door")}} src="/vault/door.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
+
+      tubes: <img onClick={() => {this.openApplication("tubes")}} src="/vault/tubes.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
+      brain: <img onClick={() => {this.openApplication("brain")}} src="/vault/brain.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
+      subject1: <img onClick={() => {this.openApplication("subject1")}} src="/vault/subject1.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
+      subject2: <img onClick={() => {this.openApplication("subject2")}} src="/vault/subject2.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
+      computer: <img onClick={() => {this.openApplication("computer")}} src="/vault/computer.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
+
+      languageTranscript1:  <div className="file pointer" onClick={() => {this.openApplication("languageTranscript1")}} ><p><img className="icon" src="/desktop/file.svg" />transcript_20160103.pdf</p></div>,
+      languageTranscript2:  <div className="file pointer" onClick={() => {this.openApplication("languageTranscript2")}} ><p><img className="icon" src="/desktop/file.svg" />transcript_20160521.pdf</p></div>,
+      alienArticle:  <div className="file pointer" onClick={() => {this.openApplication("alienArticle")}} ><p><img className="icon" src="/desktop/file.svg" />journel_20151113.pdf</p></div>,
     }
 
     // File System ShortCuts
@@ -109,6 +120,10 @@ class Guest extends Component {
             display: "building_directory.pdf",
           }
         },
+      },
+      agreements: {
+        requirement: 100,
+        display: "Contracts"
       },
       blueprints: {
         requirement: 30,
@@ -134,10 +149,6 @@ class Guest extends Component {
             requirement: 100,
             display: "floor5.bp",
           },
-          floorPlan6: {
-            requirement: 100,
-            display: "floor6.bp",
-          },
         },
       },
       security: {
@@ -157,6 +168,10 @@ class Guest extends Component {
             display: "guest_policy.pdf",
           },
         },
+      },
+      inventory: {
+        requirement: 100,
+        display: "Inventory",
       },
       guards: {
         requirement: 50,
@@ -192,32 +207,24 @@ class Guest extends Component {
           },
         },
       },
-      research: {
-        requirement: 60,
-        display: "Research",
-        files: {
-          languageTranscript1: {
-            requirement: 60,
-            display: "transcript_20160103.pdf",
-          },
-          languageTranscript2: {
-            requirement: 60,
-            display: "transcript_20160521.pdf",
-          },
-          alienArticle: {
-            requirement: 60,
-            display: "article.pdf",
-          },
-        },
-      },
-      inventory: {
-        requirement: 100,
-        display: "Inventory",
-      },
-      agreements: {
-        requirement: 100,
-        display: "Contracts"
-      },
+      // research: {
+      //   requirement: 60,
+      //   display: "Research",
+      //   files: {
+      //     languageTranscript1: {
+      //       requirement: 60,
+      //       display: "transcript_20160103.pdf",
+      //     },
+      //     languageTranscript2: {
+      //       requirement: 60,
+      //       display: "transcript_20160521.pdf",
+      //     },
+      //     alienArticle: {
+      //       requirement: 60,
+      //       display: "article.pdf",
+      //     },
+      //   },
+      // },
       schedule: {
         requirement: 100,
         display: "Meeting Schedules"
@@ -307,7 +314,10 @@ class Guest extends Component {
       // Chat Pop-ups
 
       // Add chat pop-ups here
-
+      warehouse: {
+        name: "IMG083098",
+        html: <img src="/warehouse.jpg" style={{maxHeight: 500}} />,
+      },
       no_thermal_warehouse: {
         name: "IMG083104",
         html: <Panorama image={warehouse_1dark}></Panorama>,
@@ -327,6 +337,26 @@ class Guest extends Component {
       vault_door: {
         name: "IMG083123",
         html: <img src="/vault/door.jpg" style={{maxHeight: 500}} />,
+      },
+      tubes: {
+        name: "IMG083125",
+        html: <img src="/vault/tubes.jpg" style={{maxHeight: 500}} />,
+      },
+      brain: {
+        name: "IMG083128",
+        html: <img src="/vault/brain.jpg" style={{maxHeight: 500}} />,
+      },
+      subject1: {
+        name: "IMG083130",
+        html: <img src="/vault/subject1.jpg" style={{maxHeight: 500}} />,
+      },
+      subject2: {
+        name: "IMG083131",
+        html: <img src="/vault/subject2.jpg" style={{maxHeight: 500}} />,
+      },
+      computer: {
+        name: "IMG083137",
+        html: <img src="/vault/computer.jpg" style={{maxHeight: 500}} />,
       },
 
       // File System Pop ups
