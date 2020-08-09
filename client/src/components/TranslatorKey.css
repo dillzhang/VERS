@@ -38,7 +38,7 @@
 
 }
 
-input[type=text] {
+.translator-box input[type=text] {
   border: 1px solid #ccc;
   background: transparent;
   text-transform: uppercase;
