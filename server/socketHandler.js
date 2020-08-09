@@ -47,7 +47,15 @@ function handleIo(io) {
             socket.to(room).emit("sensorUpdate", {sensors});
         });
 
+        socket.on("electricalUpdate", ({ state, room }) => {
+            socket.to(room).emit("electricalUpdate", {state});
+          });
+
         socket.on("locationUpdate", ({ location, room }) => {
+            socket.to(room).emit("locationUpdate", {location});
+        });
+
+        socket.on("resetLocation", ({ location, room }) => {
             socket.to(room).emit("locationUpdate", {location});
         });
     });

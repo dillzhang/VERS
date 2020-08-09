@@ -85,6 +85,9 @@ class FloorPlan extends Component {
                     dragging: -1,
                     dragX: -1,
                     dragY: -1,
+                    part2: true,
+                    xcor: 4,
+                    ycor: 1,
                 })
             }
         });
@@ -145,6 +148,10 @@ class FloorPlan extends Component {
             <div className="floor-planner" ref={this.floorPlanRef}>
                 <div className="sensor-container">
                     <div className="hiding-container">
+                        {this.state.part2 ? 
+                            <div className="alex-location" /> :
+                            <div className="entrance">&#8615;</div>
+                        }
                         {laserPairs.map((pair, index) => {
                             if (this.state.sensors[pair[0]] === 2 && this.state.sensors[pair[1]] === 2) {
                                 return (
@@ -170,86 +177,86 @@ class FloorPlan extends Component {
                     </div>
                 </div>
                 <div className="floor-plan" />
-                <div className="controls">
-                    <div className="sensor-source">
-                        <div 
-                            className="sensor-sample sample-camera"
-                            onMouseDown={(e) => {
-                                if (!this.state.interactivity) {
-                                    return;
-                                }
-                                const {x, y} = e.target.getBoundingClientRect();
-                                this.prevX = e.nativeEvent.pageX;
-                                this.prevY = e.nativeEvent.pageY;
-                                this.setState({
-                                    dragging: 0,
-                                    dragX: x - this.floorPlanRef.current.getBoundingClientRect().x,
-                                    dragY: y - this.floorPlanRef.current.getBoundingClientRect().y,
-                                })
-                            }}
-                        />
-                        Camera
+                    <div className="controls">
+                        <div className="sensor-source">
+                            <div 
+                                className="sensor-sample sample-camera"
+                                onMouseDown={(e) => {
+                                    if (!this.state.interactivity) {
+                                        return;
+                                    }
+                                    const {x, y} = e.target.getBoundingClientRect();
+                                    this.prevX = e.nativeEvent.pageX;
+                                    this.prevY = e.nativeEvent.pageY;
+                                    this.setState({
+                                        dragging: 0,
+                                        dragX: x - this.floorPlanRef.current.getBoundingClientRect().x,
+                                        dragY: y - this.floorPlanRef.current.getBoundingClientRect().y,
+                                    })
+                                }}
+                            />
+                            Camera
+                        </div>
+                        <div className="sensor-source">
+                            <div 
+                                className="sensor-sample sample-motion"
+                                onMouseDown={(e) => {
+                                    if (!this.state.interactivity) {
+                                        return;
+                                    }
+                                    const {x, y} = e.target.getBoundingClientRect();
+                                    this.prevX = e.nativeEvent.pageX;
+                                    this.prevY = e.nativeEvent.pageY;
+                                    this.setState({
+                                        dragging: 1,
+                                        dragX: x - this.floorPlanRef.current.getBoundingClientRect().x,
+                                        dragY: y - this.floorPlanRef.current.getBoundingClientRect().y,
+                                    })
+                                }}
+                            />
+                            Motion Sensor
+                        </div>
+                        <div className="sensor-source">
+                            <div 
+                                className="sensor-sample sample-laser"
+                                onMouseDown={(e) => {
+                                    if (!this.state.interactivity) {
+                                        return;
+                                    }
+                                    const {x, y} = e.target.getBoundingClientRect();
+                                    this.prevX = e.nativeEvent.pageX;
+                                    this.prevY = e.nativeEvent.pageY;
+                                    this.setState({
+                                        dragging: 2,
+                                        dragX: x - this.floorPlanRef.current.getBoundingClientRect().x,
+                                        dragY: y - this.floorPlanRef.current.getBoundingClientRect().y,
+                                    })
+                                }}
+                            />
+                            Laser Trip Wire
+                        </div>
+                        <button className="export" onClick={(e) => {
+                            e.target.disabled = true;
+                            this.props.socket.emit("floor-plan", {
+                                roomCode: this.props.roomCode,
+                                sender: this.props.sender,
+                                color: this.props.color,
+                                sensors: this.state.sensors,
+                            });
+                            const button = e.target;
+                            setTimeout(() => {
+                                button.disabled = false;
+                            }, 1000);
+                        }}>
+                            Export to Chat
+                        </button>
                     </div>
-                    <div className="sensor-source">
+                    {this.state.dragging > -1 && (
                         <div 
-                            className="sensor-sample sample-motion"
-                            onMouseDown={(e) => {
-                                if (!this.state.interactivity) {
-                                    return;
-                                }
-                                const {x, y} = e.target.getBoundingClientRect();
-                                this.prevX = e.nativeEvent.pageX;
-                                this.prevY = e.nativeEvent.pageY;
-                                this.setState({
-                                    dragging: 1,
-                                    dragX: x - this.floorPlanRef.current.getBoundingClientRect().x,
-                                    dragY: y - this.floorPlanRef.current.getBoundingClientRect().y,
-                                })
-                            }}
+                            key="draggingSensor"
+                            style={{top: this.state.dragY, left: this.state.dragX}}
+                            className={`dragging-sensor sensor-drag-${sensors[this.state.dragging].class}`}
                         />
-                        Motion Sensor
-                    </div>
-                    <div className="sensor-source">
-                        <div 
-                            className="sensor-sample sample-laser"
-                            onMouseDown={(e) => {
-                                if (!this.state.interactivity) {
-                                    return;
-                                }
-                                const {x, y} = e.target.getBoundingClientRect();
-                                this.prevX = e.nativeEvent.pageX;
-                                this.prevY = e.nativeEvent.pageY;
-                                this.setState({
-                                    dragging: 2,
-                                    dragX: x - this.floorPlanRef.current.getBoundingClientRect().x,
-                                    dragY: y - this.floorPlanRef.current.getBoundingClientRect().y,
-                                })
-                            }}
-                        />
-                        Laser Trip Wire
-                    </div>
-                    <button className="export" onClick={(e) => {
-                        e.target.disabled = true;
-                        this.props.socket.emit("floor-plan", {
-                            roomCode: this.props.roomCode,
-                            sender: this.props.sender,
-                            color: this.props.color,
-                            sensors: this.state.sensors,
-                        });
-                        const button = e.target;
-                        setTimeout(() => {
-                            button.disabled = false;
-                        }, 1000);
-                    }}>
-                        Export to Chat
-                    </button>
-                </div>
-                {this.state.dragging > -1 && (
-                    <div 
-                        key="draggingSensor"
-                        style={{top: this.state.dragY, left: this.state.dragX}}
-                        className={`dragging-sensor sensor-drag-${sensors[this.state.dragging].class}`}
-                    />
                 )}
             </div>
         )

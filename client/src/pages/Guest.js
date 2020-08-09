@@ -3,7 +3,8 @@ import * as SocketIO from "socket.io-client";
 
 import Chat from "../components/Chat";
 import Draggable from "../components/Draggable";
-import FileSystem from "../components/FileSystem"
+import FileSystem from "../components/FileSystem";
+import VideoStream from "../components/VideoStream"
 import Timer from "../components/Timer";
 import Panorama from '../components/Panorama';
 import Translator from '../components/Translator';
@@ -223,6 +224,17 @@ class Guest extends Component {
             </div>
           )
         },
+        videoStream: {
+          requirement: 40,
+          app: (
+            <div key="file-system-shortcut" className="shortcut" onClick={() => {this.openApplication("videoStream")}}>
+              <div className="icon">
+                <img src="/desktop/filesystem.svg" />
+              </div>
+              <div className="shortcut-name">Video Stream</div>
+            </div>
+          )
+        },
         translator: {
           requirement: 60,
           app: (
@@ -248,6 +260,10 @@ class Guest extends Component {
         fileSystem: {
           name: "File System",
           html: <FileSystem socket={this.socket} folders={this.fileSystemFolders} level={state} openCallBack={this.openApplication} />
+        },
+        videoStream: {
+          name: "Video Stream - Streaming from @lex",
+          html: <VideoStream socket={this.socket} />
         },
         translator: {
           name: "Translator",
