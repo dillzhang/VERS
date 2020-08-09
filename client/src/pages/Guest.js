@@ -139,7 +139,6 @@ class Guest extends Component {
             display: "floor6.bp",
           },
         },
-<<<<<<< Updated upstream
         guards: {
           requirement: 50,
           display: "Personnel",
@@ -187,76 +186,6 @@ class Guest extends Component {
           display: "Meeting Schedules"
         },
       }
-
-      // Desktop Short Cuts
-      this.shortcuts = {
-        secureChat: {
-          requirement: 0,
-          app: (
-            <div key="chat-shortcut" className="shortcut" onClick={() => {this.openApplication("secureChat")}}>
-              <div className="icon">
-                <img src="/desktop/secure-chat.svg" />
-              </div>
-              <div className="shortcut-name">Secure Chat</div>
-            </div>
-          ),
-=======
-      },
-      security: {
-        requirement: 30,
-        display: "Security",
-        files: {
-          emergencies: {
-            requirement: 100,
-            display: "emergency_procedures.pdf",
-          },
-          securityManual: {
-            requirement: 30,
-            display: "security_sensors.pdf",
-          },
-          guestPolicy: {
-            requirement: 100,
-            display: "guest_policy.pdf",
-          },
-        },
-      },
-      guards: {
-        requirement: 50,
-        display: "Personnel",
-        files: {
-          guard1: {
-            requirement: 50,
-            display: "01-shakeb.db",
-          },
-          guard2: {
-            requirement: 50,
-            display: "02-patricia.db",
-          },
-          guard3: {
-            requirement: 50,
-            display: "03-jason.db",
-          },
-        },
-      },
-      research: {
-        requirement: 60,
-        display: "Research",
-        files: {
-          languageTranscript1: {
-            requirement: 60,
-            display: "transcript_20160103.pdf",
-          },
-          languageTranscript2: {
-            requirement: 60,
-            display: "transcript_20160521.pdf",
-          },
-          alienArticle: {
-            requirement: 60,
-            display: "press_article.pdf",
-          },
->>>>>>> Stashed changes
-        },
-      },
     }
 
     // Desktop Short Cuts
@@ -277,7 +206,8 @@ class Guest extends Component {
         app: (
           <div key="timer-shortcut" className="shortcut" onClick={() => {this.openApplication("timer")}}>
             <div className="icon">
-            <img src="/desktop/timer.svg" /></div>
+              <img src="/desktop/timer.svg" />
+            </div>
             <div className="shortcut-name">Timer</div>
           </div>
         )
@@ -289,33 +219,18 @@ class Guest extends Component {
             <div className="icon">
               <img src="/desktop/filesystem.svg" />
             </div>
-<<<<<<< Updated upstream
-          )
-        },
-        videoStream: {
-          requirement: 40,
-          app: (
-            <div key="video-stream-shortcut" className="shortcut" onClick={() => {this.openApplication("videoStream")}}>
-              <div className="icon">
-                <img src="/desktop/video-stream.svg" />
-              </div>
-              <div className="shortcut-name">Video Stream</div>
-=======
-            <div className="shortcut-name">Files</div>
           </div>
-        )
+          )
       },
       videoStream: {
         requirement: 40,
         app: (
-          <div key="file-system-shortcut" className="shortcut" onClick={() => {this.openApplication("videoStream")}}>
+          <div key="video-stream-shortcut" className="shortcut" onClick={() => {this.openApplication("videoStream")}}>
             <div className="icon">
               <img src="/desktop/video-stream.svg" />
->>>>>>> Stashed changes
             </div>
             <div className="shortcut-name">Video Stream</div>
-          </div>
-        )
+          </div>)
       },
       translator: {
         requirement: 60,
@@ -324,97 +239,8 @@ class Guest extends Component {
             <div className="icon">
               <img src="/desktop/translator.svg" />
             </div>
-<<<<<<< Updated upstream
-          ),
-        },
-      }
-
-      this.apps = {
-        secureChat: {
-          name: "Secure Chat",
-          html: <Chat room={this.room} viewer={this.state.username} chatColor={this.state.chatColor} socket={this.socket} files={this.chatFiles} />
-        },
-        timer: {
-          name: "Timer",
-          html: <Timer socket={this.socket}/>
-        },
-        fileSystem: {
-          name: "File System",
-          html: <FileSystem socket={this.socket} folders={this.fileSystemFolders} level={state} openCallBack={this.openApplication} />
-        },
-        videoStream: {
-          name: "Video Stream - Streaming from @lex",
-          html: <VideoStream socket={this.socket} />
-        },
-        translator: {
-          name: "Translator",
-          html: <Translator />
-        },
-        // Chat Pop-ups
-
-        // Add chat pop-ups here
-
-        no_thermal_warehouse: {
-          name: "IMG083104",
-          html: <Panorama image={warehouse_1dark}></Panorama>,
-        },
-        thermal_warehouse: {
-          name: "IMG083112",
-          html: <Panorama image={warehouse_2thermal}></Panorama>,
-        },
-        thermal_warehouse_wires: {
-          name: "IMG083118",
-          html: <Panorama image={warehouse_3powered}></Panorama>,
-        },
-        elevator_landing: {
-          name: "IMG083120",
-          html: <img src="/hallways/hallway.jpg" style={{maxHeight: 500}} />,
-        },
-        vault_door: {
-          name: "IMG083123",
-          html: <img src="/vault/door.jpg" style={{maxHeight: 500}} />,
-        },
-
-        // File System Pop ups
-        directory: {
-          name: "Document Viewer - Building Directory",
-          html: directory,
-        },
-        floorPlan4: {
-          name: "Floor Planner - Floor 4 Plan",
-          html: <FloorPlan level={state} socket={this.socket} roomCode={this.room} sender={this.state.username} color={this.state.chatColor} />,
-        },
-        securityManual: {
-          name: "Document Viewer - Security Sensors",
-          html: securityManual,
-        },
-        guard3: {
-          name: "Database - W. Patricia",
-          html: guard2,
-        },
-        languageTranscript1: {
-          name: "Document Viewer - Interview 1",
-          html: languageTranscript1,
-        },
-        languageTranscript2: {
-          name: "Document Viewer - Interview 2",
-          html: languageTranscript2,
-        },
-        alienArticle: {
-          name: "Document Viewer - Alien Article",
-          html: alienArticle,
-        },
-      }
-      this.setState(prev => ({
-        state,
-        applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) == -1)],
-        error: "",
-      }));
-    });
-=======
-            <div className="shortcut-name">Translator</div>
           </div>
-        ),
+          )
       },
     }
 
@@ -444,16 +270,24 @@ class Guest extends Component {
       // Add chat pop-ups here
 
       no_thermal_warehouse: {
-        name: "Warehouse - Dark",
+        name: "IMG083104",
         html: <Panorama image={warehouse_1dark}></Panorama>,
       },
       thermal_warehouse: {
-        name: "Warehouse - Thermal",
+        name: "IMG083112",
         html: <Panorama image={warehouse_2thermal}></Panorama>,
       },
       thermal_warehouse_wires: {
-        name: "Warehouse - Thermal with Wires",
+        name: "IMG083118",
         html: <Panorama image={warehouse_3powered}></Panorama>,
+      },
+      elevator_landing: {
+        name: "IMG083120",
+        html: <img src="/hallways/hallway.jpg" style={{maxHeight: 500}} />,
+      },
+      vault_door: {
+        name: "IMG083123",
+        html: <img src="/vault/door.jpg" style={{maxHeight: 500}} />,
       },
 
       // File System Pop ups
@@ -469,17 +303,9 @@ class Guest extends Component {
         name: "Document Viewer - Security Sensors",
         html: securityManual,
       },
-      guard1: {
-        name: "Database - Guard 1",
-        html: guard1,
-      },
-      guard2: {
-        name: "Database - Guard 2",
-        html: guard2,
-      },
       guard3: {
-        name: "Database - Guard 3",
-        html: guard3,
+        name: "Database - W. Patricia",
+        html: guard2,
       },
       languageTranscript1: {
         name: "Document Viewer - Interview 1",
@@ -494,13 +320,14 @@ class Guest extends Component {
         html: alienArticle,
       },
     }
+
     this.setState(prev => ({
       state,
       applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) == -1)],
       error: "",
     }));
-  });
->>>>>>> Stashed changes
+
+    });
 
   this.socket.on("errorMessage", ({message}) => {
       this.setState({ error: message, unlocking: false });

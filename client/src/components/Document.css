@@ -62,6 +62,7 @@
     -webkit-user-select: text;
     user-select: text;
     font-family: var(--conspiracy-font);
+    overflow-y: scroll;
 }
 .transcript p {
     margin: 4px 0;
