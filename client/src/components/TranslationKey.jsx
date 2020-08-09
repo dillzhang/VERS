@@ -41,15 +41,69 @@ function TranslationKey({ decoder }){
 
 
   const createDict = () => {
-    const dict = {}
+    const dict = {
+      "a":"ට",
+      "b":"⅋",
+      "c":"९",
+      "d":"𝟠",
+      "e":"Ϭ",
+      "f":"Ҩ",
+      "g":"Ա",
+      "h":"చ",
+      "i":"Ỽ",
+      "j":"Ӌ",
+      "k":"ჯ",
+      "l":"ហ",
+      "m":"հ",
+      "n":"մ",
+      "o":"վ",
+      "p":"↻",
+      "q":"Ƕ",
+      "r":"ل",
+      "s":"Ɱ",
+      "t":"∫",
+      "u":"∂",
+      "v":"◊",
+      "w":"‰",
+      "x":"Œ",
+      "y":"§",
+      "z":"‡",
+      "A":"ට",
+      "B":"⅋",
+      "C":"९",
+      "D":"𝟠",
+      "E":"Ϭ",
+      "F":"Ҩ",
+      "G":"Ա",
+      "H":"చ",
+      "I":"Ỽ",
+      "J":"Ӌ",
+      "K":"ჯ",
+      "L":"ហ",
+      "M":"հ",
+      "N":"մ",
+      "O":"վ",
+      "P":"↻",
+      "Q":"Ƕ",
+      "R":"ل",
+      "S":"Ɱ",
+      "T":"∫",
+      "U":"∂",
+      "V":"◊",
+      "W":"‰",
+      "X":"Œ",
+      "Y":"§",
+      "Z":"‡",
+      " ":" "
+    }
+    // Object.entries(dictionary).map(([key, entry]) => {
+    //   if (entry.alien != " " & entry.alien != "") {
+    //     if (entry.english != " " & entry.english != ""){
+    //       dict[entry.alien.toUpperCase()] = entry.english.toUpperCase()
+    //     }
+    //   }
+    // })
 
-    Object.entries(dictionary).map(([key, entry]) => {
-      if (entry.alien != " " & entry.alien != "") {
-        if (entry.english != " " & entry.english != ""){
-          dict[entry.alien.toUpperCase()] = entry.english.toUpperCase()
-        }
-      }
-    })
     setCypher(() => ({...dict}))
 
   }

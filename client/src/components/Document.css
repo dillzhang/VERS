@@ -58,3 +58,11 @@
     width: 180px;
     float: right;
 }
+.transcript {
+    -webkit-user-select: text;
+    user-select: text;
+    font-family: var(--conspiracy-font);
+}
+.transcript p {
+    margin: 4px 0;
+}
