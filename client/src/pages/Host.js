@@ -109,7 +109,7 @@ class Host extends Component {
       return "Elevator";
     }
     else if (this.state.state < 40) {
-      return "Hallways Near Elevator";
+      return "Hallways By Elevator";
     }
     else if (this.state.state < 50) {
       return "Hallways";

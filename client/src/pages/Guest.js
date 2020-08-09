@@ -75,89 +75,71 @@ class Guest extends Component {
       this.setState({ currentTime: time });
     }, 499);
 
-    this.socket.on("roomStateUpdate", ({state}) => {
-      this.setState(prev => ({
-        state,
-        applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) == -1)],
-        error: "",
-      }));
-    });
+  this.socket.on("roomStateUpdate", ({state}) => {
+    this.setState(prev => ({
+      state,
+      applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) == -1)],
+      error: "",
+    }));
+  });
 
-    this.socket.on("joinRoomStatus", ({state}) => {
-      // Chat Short Cuts
-      this.chatFiles = {
-        floor_plan_4: <div className="file"><strong>Floor Plan 4.bp</strong></div>,
+  this.socket.on("joinRoomStatus", ({state}) => {
+    // Chat Short Cuts
+    this.chatFiles = {
+      floor_plan_4: <div className="file"><p><img className="icon" src="/desktop/file.svg" /> floor4.bp</p></div>,
 
-        no_thermal_warehouse: <img onClick={() => {this.openApplication("no_thermal_warehouse")}} src={warehouse_1dark_preview} style={{ height: "60px", width: "80px" }}/>,
+      no_thermal_warehouse: <img onClick={() => {this.openApplication("no_thermal_warehouse")}} src={warehouse_1dark_preview}/>,
 
-        thermal_warehouse: <img onClick={() => {this.openApplication("thermal_warehouse")}} src={warehouse_2thermal_preview} style={{ height: "60px", width: "80px" }}/>,
+      thermal_warehouse: <img onClick={() => {this.openApplication("thermal_warehouse")}} src={warehouse_2thermal_preview}/>,
 
-        thermal_warehouse_wires: <img onClick={() => {this.openApplication("thermal_warehouse_wires")}} src={warehouse_3powered_preview} style={{ height: "60px", width: "80px" }}/>,
+      thermal_warehouse_wires: <img onClick={() => {this.openApplication("thermal_warehouse_wires")}} src={warehouse_3powered_preview} style={{ height: "60px", width: "80px" }}/>,
 
-        elevator_landing: <img  onClick={() => {this.openApplication("elevator_landing")}} src="/hallways/hallway.jpg" style={{ height: "60px", width: "80px" }}/>,
-        vault_door: <img  onClick={() => {this.openApplication("vault_door")}} src="/vault/door.jpg" style={{ height: "60px", width: "80px" }}/>,
-      }
+      elevator_landing: <img  onClick={() => {this.openApplication("elevator_landing")}} src="/hallways/hallway.jpg" style={{ height: "60px", width: "80px" }}/>,
+      vault_door: <img  onClick={() => {this.openApplication("vault_door")}} src="/vault/door.jpg" style={{ height: "60px", width: "80px" }}/>,
+    }
 
-      // File System ShortCuts
-      this.fileSystemFolders = {
-        info: {
-          requirement: 10,
-          display: "Info",
-          files: {
-            directory: {
-              requirement: 10,
-              display: "building_directory.pdf",
-            }
+    // File System ShortCuts
+    this.fileSystemFolders = {
+      info: {
+        requirement: 10,
+        display: "Info",
+        files: {
+          directory: {
+            requirement: 10,
+            display: "building_directory.pdf",
+          }
+        },
+      },
+      blueprints: {
+        requirement: 30,
+        display: "Blueprints",
+        files: {
+          floorPlan1: {
+            requirement: 100,
+            display: "floor1.bp",
+          },
+          floorPlan2: {
+            requirement: 100,
+            display: "floor2.bp",
+          },
+          floorPlan3: {
+            requirement: 100,
+            display: "floor3.bp",
+          },
+          floorPlan4: {
+            requirement: 30,
+            display: "floor4.bp",
+          },
+          floorPlan5: {
+            requirement: 100,
+            display: "floor5.bp",
+          },
+          floorPlan6: {
+            requirement: 100,
+            display: "floor6.bp",
           },
         },
-        blueprints: {
-          requirement: 30,
-          display: "Blueprints",
-          files: {
-            floorPlan1: {
-              requirement: 100,
-              display: "floor1.bp",
-            },
-            floorPlan2: {
-              requirement: 100,
-              display: "floor2.bp",
-            },
-            floorPlan3: {
-              requirement: 100,
-              display: "floor3.bp",
-            },
-            floorPlan4: {
-              requirement: 30,
-              display: "floor4.bp",
-            },
-            floorPlan5: {
-              requirement: 100,
-              display: "floor5.bp",
-            },
-            floorPlan6: {
-              requirement: 100,
-              display: "floor6.bp",
-            },
-          },
-        },
-        security: {
-          requirement: 30,
-          display: "Security",
-          files: {
-            emergencies: {
-              requirement: 100,
-              display: "emergency_procedures.pdf",
-            },
-            securityManual: {
-              requirement: 30,
-              display: "security_sensors.pdf",
-            },
-            guestPolicy: {
-              requirement: 100,
-              display: "guest_policy.pdf",
-            },
-          },
-        },
+<<<<<<< Updated upstream
         guards: {
           requirement: 50,
           display: "Personnel",
@@ -218,26 +200,96 @@ class Guest extends Component {
               <div className="shortcut-name">Secure Chat</div>
             </div>
           ),
+=======
+      },
+      security: {
+        requirement: 30,
+        display: "Security",
+        files: {
+          emergencies: {
+            requirement: 100,
+            display: "emergency_procedures.pdf",
+          },
+          securityManual: {
+            requirement: 30,
+            display: "security_sensors.pdf",
+          },
+          guestPolicy: {
+            requirement: 100,
+            display: "guest_policy.pdf",
+          },
         },
-        timer: {
-          requirement: 10,
-          app: (
-            <div key="timer-shortcut" className="shortcut" onClick={() => {this.openApplication("timer")}}>
-              <div className="icon">
-              <img src="/desktop/timer.svg" /></div>
-              <div className="shortcut-name">Timer</div>
-            </div>
-          )
+      },
+      guards: {
+        requirement: 50,
+        display: "Personnel",
+        files: {
+          guard1: {
+            requirement: 50,
+            display: "01-shakeb.db",
+          },
+          guard2: {
+            requirement: 50,
+            display: "02-patricia.db",
+          },
+          guard3: {
+            requirement: 50,
+            display: "03-jason.db",
+          },
         },
-        fileSystem: {
-          requirement: 20,
-          app: (
-            <div key="file-system-shortcut" className="shortcut" onClick={() => {this.openApplication("fileSystem")}}>
-              <div className="icon">
-                <img src="/desktop/filesystem.svg" />
-              </div>
-              <div className="shortcut-name">Files</div>
+      },
+      research: {
+        requirement: 60,
+        display: "Research",
+        files: {
+          languageTranscript1: {
+            requirement: 60,
+            display: "transcript_20160103.pdf",
+          },
+          languageTranscript2: {
+            requirement: 60,
+            display: "transcript_20160521.pdf",
+          },
+          alienArticle: {
+            requirement: 60,
+            display: "press_article.pdf",
+          },
+>>>>>>> Stashed changes
+        },
+      },
+    }
+
+    // Desktop Short Cuts
+    this.shortcuts = {
+      secureChat: {
+        requirement: 0,
+        app: (
+          <div key="chat-shortcut" className="shortcut" onClick={() => {this.openApplication("secureChat")}}>
+            <div className="icon">
+              <img src="/desktop/secure-chat.svg" />
             </div>
+            <div className="shortcut-name">Secure Chat</div>
+          </div>
+        ),
+      },
+      timer: {
+        requirement: 10,
+        app: (
+          <div key="timer-shortcut" className="shortcut" onClick={() => {this.openApplication("timer")}}>
+            <div className="icon">
+            <img src="/desktop/timer.svg" /></div>
+            <div className="shortcut-name">Timer</div>
+          </div>
+        )
+      },
+      fileSystem: {
+        requirement: 20,
+        app: (
+          <div key="file-system-shortcut" className="shortcut" onClick={() => {this.openApplication("fileSystem")}}>
+            <div className="icon">
+              <img src="/desktop/filesystem.svg" />
+            </div>
+<<<<<<< Updated upstream
           )
         },
         videoStream: {
@@ -248,18 +300,31 @@ class Guest extends Component {
                 <img src="/desktop/video-stream.svg" />
               </div>
               <div className="shortcut-name">Video Stream</div>
+=======
+            <div className="shortcut-name">Files</div>
+          </div>
+        )
+      },
+      videoStream: {
+        requirement: 40,
+        app: (
+          <div key="file-system-shortcut" className="shortcut" onClick={() => {this.openApplication("videoStream")}}>
+            <div className="icon">
+              <img src="/desktop/video-stream.svg" />
+>>>>>>> Stashed changes
             </div>
-          )
-        },
-        translator: {
-          requirement: 60,
-          app: (
-            <div key="translator-shortcut" className="shortcut" onClick={() => {this.openApplication("translator")}}>
-              <div className="icon">
-                <img src="/desktop/translator.svg" />
-              </div>
-              <div className="shortcut-name">Translator</div>
+            <div className="shortcut-name">Video Stream</div>
+          </div>
+        )
+      },
+      translator: {
+        requirement: 60,
+        app: (
+          <div key="translator-shortcut" className="shortcut" onClick={() => {this.openApplication("translator")}}>
+            <div className="icon">
+              <img src="/desktop/translator.svg" />
             </div>
+<<<<<<< Updated upstream
           ),
         },
       }
@@ -346,8 +411,98 @@ class Guest extends Component {
         error: "",
       }));
     });
+=======
+            <div className="shortcut-name">Translator</div>
+          </div>
+        ),
+      },
+    }
 
-    this.socket.on("errorMessage", ({message}) => {
+    this.apps = {
+      secureChat: {
+        name: "Secure Chat",
+        html: <Chat room={this.room} viewer={this.state.username} chatColor={this.state.chatColor} socket={this.socket} files={this.chatFiles} />
+      },
+      timer: {
+        name: "Timer",
+        html: <Timer socket={this.socket}/>
+      },
+      fileSystem: {
+        name: "File System",
+        html: <FileSystem socket={this.socket} folders={this.fileSystemFolders} level={state} openCallBack={this.openApplication} />
+      },
+      videoStream: {
+        name: "Video Stream - Streaming from @lex",
+        html: <VideoStream socket={this.socket} />
+      },
+      translator: {
+        name: "Translator",
+        html: <Translator />
+      },
+      // Chat Pop-ups
+
+      // Add chat pop-ups here
+
+      no_thermal_warehouse: {
+        name: "Warehouse - Dark",
+        html: <Panorama image={warehouse_1dark}></Panorama>,
+      },
+      thermal_warehouse: {
+        name: "Warehouse - Thermal",
+        html: <Panorama image={warehouse_2thermal}></Panorama>,
+      },
+      thermal_warehouse_wires: {
+        name: "Warehouse - Thermal with Wires",
+        html: <Panorama image={warehouse_3powered}></Panorama>,
+      },
+
+      // File System Pop ups
+      directory: {
+        name: "Document Viewer - Building Directory",
+        html: directory,
+      },
+      floorPlan4: {
+        name: "Floor Planner - Floor 4 Plan",
+        html: <FloorPlan level={state} socket={this.socket} roomCode={this.room} sender={this.state.username} color={this.state.chatColor} />,
+      },
+      securityManual: {
+        name: "Document Viewer - Security Sensors",
+        html: securityManual,
+      },
+      guard1: {
+        name: "Database - Guard 1",
+        html: guard1,
+      },
+      guard2: {
+        name: "Database - Guard 2",
+        html: guard2,
+      },
+      guard3: {
+        name: "Database - Guard 3",
+        html: guard3,
+      },
+      languageTranscript1: {
+        name: "Document Viewer - Interview 1",
+        html: languageTranscript1,
+      },
+      languageTranscript2: {
+        name: "Document Viewer - Interview 2",
+        html: languageTranscript2,
+      },
+      alienArticle: {
+        name: "Document Viewer - Alien Article",
+        html: alienArticle,
+      },
+    }
+    this.setState(prev => ({
+      state,
+      applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) == -1)],
+      error: "",
+    }));
+  });
+>>>>>>> Stashed changes
+
+  this.socket.on("errorMessage", ({message}) => {
       this.setState({ error: message, unlocking: false });
     });
   }

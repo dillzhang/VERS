@@ -9,6 +9,7 @@
     background-color: #222222;
 
     --send-icon-size: 48px;
+    --file-icon-size: 14px;
     --color-bubble-size: 36px;
 }
 
@@ -54,7 +55,8 @@
     height: var(--color-bubble-size);
     border-radius: 50%;
     position: absolute;
-    top: 50%;
+    bottom: 0;
+    margin-bottom: 4px;
 }
 .chat-messages .sender-name  {
     opacity: 0.5;
@@ -63,7 +65,7 @@
     position: relative;
     left: 20%;
 }
-.chat-messages .message-bubble {
+.chat-messages .message-bubble, .chat-messages .file {
     background-color: #363636;
     padding: 16px;
     border-radius: 8px;
@@ -86,15 +88,22 @@
 .chat-messages.chat-sender * {
     left: 0;
 }
-
-.chat-messages .file {
-    font-weight: bolder;
-    color: #1d5ac8;
-    cursor: pointer
+.chat-messages .message-bubble-image img {
+    max-width: 220px;
 }
 
-.chat-messages .file:hover {
-    color: #eeeeee;
+.chat-messages .file p {
+    font-weight: bold;
+    background-color: #303030;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+.chat-messages .file .icon {
+    display: inline;
+    max-width: var(--file-icon-size);
+    max-height: var(--file-icon-size);
+    margin-right: 4px;
+    border-radius: 0;
 }
 
 .chat-form {
