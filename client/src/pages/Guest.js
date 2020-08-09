@@ -174,6 +174,7 @@ class Guest extends Component {
           },
         },
       },
+<<<<<<< Updated upstream
       research: {
         requirement: 60,
         display: "Research",
@@ -192,6 +193,8 @@ class Guest extends Component {
           },
         },
       },
+=======
+>>>>>>> Stashed changes
       inventory: {
         requirement: 100,
         display: "Inventory",
