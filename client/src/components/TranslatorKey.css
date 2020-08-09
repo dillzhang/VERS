@@ -80,9 +80,16 @@
 textarea::-webkit-scrollbar{
   background-color: black;
 
+<<<<<<< HEAD
 }
 textarea::-webkit-scrollbar-thumb {
   background-color: #3f3f3f ;
+=======
+.translator-box input[type=text] {
+  border: 1px solid #ccc;
+  background: transparent;
+  text-transform: uppercase;
+>>>>>>> 0669118746ab7c8f55e3316c3a67267279220c89
 }
 
 .addEntry{
