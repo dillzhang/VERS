@@ -6,6 +6,7 @@ import './Host.css'
 import Chat from "../components/Chat";
 import Timer from "../components/Timer";
 import Elevator from  "../components/Elevator";
+import ActorMoving from "../components/ActorMoving";
 
 const baseURL = new URL(window.location.href).host;
 
@@ -176,6 +177,8 @@ class Host extends Component {
             }}/>
           </div>
         )
+      case 40:
+            return <ActorMoving socket={this.socket} room={this.room} />
       default:
         return "Something wrong has occured";
     }

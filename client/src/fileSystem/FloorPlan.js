@@ -63,6 +63,11 @@ class FloorPlan extends Component {
                 near: [...Array(22)].map(_ => false),
                 dragging: -1,
                 dragX: -1,
+                part2: true,
+                location: {
+                    xcor: 4,
+                    ycor: 1,
+                },
                 dragY: -1,
             };
         } else {
@@ -86,9 +91,11 @@ class FloorPlan extends Component {
                     dragX: -1,
                     dragY: -1,
                     part2: true,
-                    xcor: 4,
-                    ycor: 1,
-                })
+                    location: {
+                        xcor: 4,
+                        ycor: 1,
+                    },
+                });
             }
         });
 
@@ -98,6 +105,10 @@ class FloorPlan extends Component {
                 sensors,
             });
         });
+
+        this.props.socket.on("locationUpdate", ({red, location}) => {
+            this.setState({location, red})
+        })
     }
 
     handleMouseMove = (e) => {
@@ -147,9 +158,12 @@ class FloorPlan extends Component {
         return (
             <div className="floor-planner" ref={this.floorPlanRef}>
                 <div className="sensor-container">
-                    <div className="hiding-container">
+                    <div className={`hiding-container ${this.state.red ? "red-alert" : ""}`}>
                         {this.state.part2 ? 
-                            <div className="alex-location" /> :
+                            (!this.state.red ? <div className="alex-location" style={{
+                                top: this.state.location.ycor * 60 + 20, 
+                                left: this.state.location.xcor * 60 + 20, 
+                            }} /> : null) :
                             <div className="entrance">&#8615;</div>
                         }
                         {laserPairs.map((pair, index) => {

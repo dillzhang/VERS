@@ -53,6 +53,7 @@ class Guest extends Component {
     super(props);
     this.socket = SocketIO(baseURL);
     this.room = this.props.match.params.code;
+    this.homeRef = React.createRef();
 
     this.state = {
       state: -1,
@@ -74,7 +75,7 @@ class Guest extends Component {
       const today = new Date();
       const time = ("0" + today.getHours()).slice(-2) + ":" + ("0" + today.getMinutes()).slice(-2) + ":" + ("0" + today.getSeconds()).slice(-2);
       this.setState({ currentTime: time });
-  }, 499);
+    }, 499);
 
     this.socket.on("roomStateUpdate", ({state}) => {
       this.setState(prev => ({
@@ -231,7 +232,7 @@ class Guest extends Component {
         videoStream: {
           requirement: 40,
           app: (
-            <div key="file-system-shortcut" className="shortcut" onClick={() => {this.openApplication("videoStream")}}>
+            <div key="video-stream-shortcut" className="shortcut" onClick={() => {this.openApplication("videoStream")}}>
               <div className="icon">
                 <img src="/desktop/video-stream.svg" />
               </div>
@@ -340,6 +341,12 @@ class Guest extends Component {
     });
   }
 
+  componentDidUpdate() {
+    if (this.homeRef.current) {
+      this.homeRef.current.scrollTop = 0;
+    }
+  }
+
   openApplication = (app) => {
     if (this.state.applicationsOpen.slice(-1)[0] == app) {
       return;
@@ -426,7 +433,7 @@ class Guest extends Component {
             {this.state.username} &middot; {this.state.currentTime}
           </div>
         </div>
-        <div className="home-screen">
+        <div className="home-screen" ref={this.homeRef}>
           {Object.keys(this.shortcuts)
             .filter(app => this.shortcuts[app].requirement <= this.state.state)
             .map(app => {

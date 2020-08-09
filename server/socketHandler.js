@@ -51,8 +51,8 @@ function handleIo(io) {
             socket.to(room).emit("electricalUpdate", {state});
           });
 
-        socket.on("locationUpdate", ({ location, room }) => {
-            socket.to(room).emit("locationUpdate", {location});
+        socket.on("locationUpdate", ({ red, location, room }) => {
+            socket.to(room).emit("locationUpdate", { red, location});
         });
 
         socket.on("resetLocation", ({ location, room }) => {

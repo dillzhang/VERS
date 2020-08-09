@@ -107,6 +107,17 @@
     height: 480px;
 }
 
+.floor-planner .red-alert::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 300;
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
 .floor-planner .sensor {
     position: absolute;
     box-sizing: border-box;
@@ -168,9 +179,7 @@
     width: 20px;
     background-color: #1d5ac8;
     box-shadow: 0 0 5px #ffffff inset;
-    left: 260px;
-    top: 80px;
-    transition: top 0.2s, left 0.2s;
+    transition: top 0.5s, left 0.5s;
     border-radius: 50%;
 }
 
@@ -352,4 +361,57 @@
 
 .floor-planner .sensor-type-camera.sensor-direction-7 {
     background-image: url("/sensors/camera-7.png");
+}
+
+.floor-planner .d-pad {
+    display: grid;
+    height: 500px;
+    width: 210px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 60px 60px 350px;
+    row-gap: 10px;
+    column-gap: 10px;
+
+    margin: 0 10px;
+}
+
+.floor-planner .d-pad .message {
+    grid-column: 1 / -1;
+    grid-row: 3;
+
+    background-color: black;
+    padding: 5px;
+    height: 300px;
+}
+
+.floor-planner .d-pad .disabled {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 60px;
+    width: 60px;
+
+    border-radius: 10px;
+    background-color: black;
+}
+
+.floor-planner .d-pad .up {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.floor-planner .d-pad .left {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.floor-planner .d-pad .right {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.floor-planner .d-pad .down {
+    grid-column: 2;
+    grid-row: 2;
 }

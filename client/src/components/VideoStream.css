@@ -45,3 +45,27 @@
     background-color: rgba(0, 0, 0, 0.4);
     box-shadow: none;
 }
+
+.video-streamer .current-info {
+    display: flex;
+    flex-direction: row;
+    grid-column: 1 / -1;
+    align-items: baseline;
+}
+
+.video-streamer .current-holder {
+    display: flex;
+    flex-direction: row;
+    width: 10px;
+    flex-grow: 1;
+    padding: 0 10px;
+}
+
+.video-streamer .current {
+    width: calc(5% - 2px);
+    height: 10px;
+    background-color: rgba(256, 0, 0, 0.8);
+    border: 1px solid black;
+    border-radius: 4px;
+    box-shadow: 1px 1px 3px red;
+}
