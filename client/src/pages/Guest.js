@@ -92,10 +92,10 @@ class Guest extends Component {
 
       thermal_warehouse: <img onClick={() => {this.openApplication("thermal_warehouse")}} src={warehouse_2thermal_preview}/>,
 
-      thermal_warehouse_wires: <img onClick={() => {this.openApplication("thermal_warehouse_wires")}} src={warehouse_3powered_preview} style={{ height: "60px", width: "80px" }}/>,
+      thermal_warehouse_wires: <img onClick={() => {this.openApplication("thermal_warehouse_wires")}} src={warehouse_3powered_preview}/>,
 
-      elevator_landing: <img  onClick={() => {this.openApplication("elevator_landing")}} src="/hallways/hallway.jpg" style={{ height: "60px", width: "80px" }}/>,
-      vault_door: <img  onClick={() => {this.openApplication("vault_door")}} src="/vault/door.jpg" style={{ height: "60px", width: "80px" }}/>,
+      elevator_landing: <img  onClick={() => {this.openApplication("elevator_landing")}} src="/hallways/hallway.jpg"/>,
+      vault_door: <img  onClick={() => {this.openApplication("vault_door")}} src="/vault/door.jpg"/>,
     }
 
     // File System ShortCuts
@@ -139,112 +139,131 @@ class Guest extends Component {
             display: "floor6.bp",
           },
         },
-        guards: {
-          requirement: 50,
-          display: "Personnel",
-          files: {
-            guard1: {
-              requirement: 100,
-              display: "P_Shannon.db",
-            },
-            guard2: {
-              requirement: 100,
-              display: "H_Diana.db",
-            },
-            guard3: {
-              requirement: 50,
-              display: "W_Patricia.db",
-            },
-            guard4: {
-              requirement: 100,
-              display: "H_Victor.db",
-            },
-            guard5: {
-              requirement: 100,
-              display: "Z_Dillon.db",
-            },
-            guard6: {
-              requirement: 100,
-              display: "T_Anand.db",
-            },
-            guard7: {
-              requirement: 100,
-              display: "H_Joshua.db",
-            },
+      },
+      guards: {
+        requirement: 50,
+        display: "Personnel",
+        files: {
+          guard1: {
+            requirement: 100,
+            display: "P_Shannon.db",
+          },
+          guard2: {
+            requirement: 100,
+            display: "H_Diana.db",
+          },
+          guard3: {
+            requirement: 50,
+            display: "W_Patricia.db",
+          },
+          guard4: {
+            requirement: 100,
+            display: "H_Victor.db",
+          },
+          guard5: {
+            requirement: 100,
+            display: "Z_Dillon.db",
+          },
+          guard6: {
+            requirement: 100,
+            display: "T_Anand.db",
+          },
+          guard7: {
+            requirement: 100,
+            display: "H_Joshua.db",
           },
         },
-        inventory: {
-          requirement: 100,
-          display: "Inventory",
+      },
+      research: {
+        requirement: 60,
+        display: "Research",
+        files: {
+          languageTranscript1: {
+            requirement: 60,
+            display: "transcript_20160103.pdf",
+          },
+          languageTranscript2: {
+            requirement: 60,
+            display: "transcript_20160521.pdf",
+          },
+          alienArticle: {
+            requirement: 60,
+            display: "article.pdf",
+          },
         },
-        agreements: {
-          requirement: 100,
-          display: "Contracts"
-        },
-        schedule: {
-          requirement: 100,
-          display: "Meeting Schedules"
-        },
-      }
+      },
+      inventory: {
+        requirement: 100,
+        display: "Inventory",
+      },
+      agreements: {
+        requirement: 100,
+        display: "Contracts"
+      },
+      schedule: {
+        requirement: 100,
+        display: "Meeting Schedules"
+      },
     }
 
     // Desktop Short Cuts
-    this.shortcuts = {
-      secureChat: {
-        requirement: 0,
-        app: (
-          <div key="chat-shortcut" className="shortcut" onClick={() => {this.openApplication("secureChat")}}>
-            <div className="icon">
-              <img src="/desktop/secure-chat.svg" />
+      this.shortcuts = {
+        secureChat: {
+          requirement: 0,
+          app: (
+            <div key="chat-shortcut" className="shortcut" onClick={() => {this.openApplication("secureChat")}}>
+              <div className="icon">
+                <img src="/desktop/secure-chat.svg" />
+              </div>
+              <div className="shortcut-name">Secure Chat</div>
             </div>
-            <div className="shortcut-name">Secure Chat</div>
-          </div>
-        ),
-      },
-      timer: {
-        requirement: 10,
-        app: (
-          <div key="timer-shortcut" className="shortcut" onClick={() => {this.openApplication("timer")}}>
-            <div className="icon">
-              <img src="/desktop/timer.svg" />
+          ),
+        },
+        timer: {
+          requirement: 10,
+          app: (
+            <div key="timer-shortcut" className="shortcut" onClick={() => {this.openApplication("timer")}}>
+              <div className="icon">
+                <img src="/desktop/timer.svg" />
+              </div>
+              <div className="shortcut-name">Timer</div>
             </div>
-            <div className="shortcut-name">Timer</div>
-          </div>
-        )
-      },
-      fileSystem: {
-        requirement: 20,
-        app: (
-          <div key="file-system-shortcut" className="shortcut" onClick={() => {this.openApplication("fileSystem")}}>
-            <div className="icon">
-              <img src="/desktop/filesystem.svg" />
-            </div>
-            <div className="shortcut-name">Files</div>
-          </div>
           )
-      },
-      videoStream: {
-        requirement: 40,
-        app: (
-          <div key="video-stream-shortcut" className="shortcut" onClick={() => {this.openApplication("videoStream")}}>
-            <div className="icon">
-              <img src="/desktop/video-stream.svg" />
+        },
+        fileSystem: {
+          requirement: 20,
+          app: (
+            <div key="file-system-shortcut" className="shortcut" onClick={() => {this.openApplication("fileSystem")}}>
+              <div className="icon">
+                <img src="/desktop/filesystem.svg" />
+              </div>
+              <div className="shortcut-name">Files</div>
             </div>
-            <div className="shortcut-name">Video Stream</div>
-          </div>)
-      },
-      translator: {
-        requirement: 60,
-        app: (
-          <div key="translator-shortcut" className="shortcut" onClick={() => {this.openApplication("translator")}}>
-            <div className="icon">
-              <img src="/desktop/translator.svg" />
-            </div>
-            <div className="shortcut-name">Translator</div>
-          </div>
           )
-      },
-    }
+        },
+        videoStream: {
+          requirement: 40,
+          app: (
+            <div key="video-stream-shortcut" className="shortcut" onClick={() => {this.openApplication("videoStream")}}>
+              <div className="icon">
+                <img src="/desktop/video-stream.svg" />
+              </div>
+              <div className="shortcut-name">Video Stream</div>
+            </div>
+          )
+        },
+        translator: {
+          requirement: 60,
+          app: (
+            <div key="translator-shortcut" className="shortcut" onClick={() => {this.openApplication("translator")}}>
+              <div className="icon">
+                <img src="/desktop/translator.svg" />
+              </div>
+              <div className="shortcut-name">Translator</div>
+            </div>
+          ),
+        },
+      }
 
     this.apps = {
       secureChat: {
