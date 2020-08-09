@@ -56,7 +56,6 @@ class FloorPlan extends Component {
         this.floorPlanRef = React.createRef();
         this.prevX = -1;
         this.prevY = -1;
-        console.log(this.props.level);
         if (this.props.level >= 40) {
             this.state = {
                 interactivity: false,
@@ -88,6 +87,13 @@ class FloorPlan extends Component {
                     dragY: -1,
                 })
             }
+        });
+
+        this.props.socket.on("sensorUpdate", ({sensors}) => {
+            console.log("here")
+            this.setState({
+                sensors,
+            });
         });
     }
 
@@ -122,7 +128,10 @@ class FloorPlan extends Component {
                 dragging: -1,
                 sensors,
                 near,
-            }));
+            }), () => {
+
+                this.props.socket.emit("sensorUpdate", { sensors: this.state.sensors, room: this.props.roomCode });
+            });
         }
     }
 

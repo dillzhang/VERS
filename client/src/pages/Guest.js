@@ -82,7 +82,7 @@ class Guest extends Component {
     this.socket.on("joinRoomStatus", ({state}) => {
       // Chat Short Cuts
       this.chatFiles = {
-        floor_plan_4: <div className="file" onClick={() => {this.openApplication("floorPlan4")}}><strong>Floor Plan 4.bp</strong></div>,
+        floor_plan_4: <div className="file"><strong>Floor Plan 4.bp</strong></div>,
 
         no_thermal_warehouse: <img onClick={() => {this.openApplication("no_thermal_warehouse")}} src={warehouse_1dark_preview} style={{ height: "60px", width: "80px" }}/>,
 
@@ -404,9 +404,8 @@ class Guest extends Component {
               return this.shortcuts[app].app;
             })
           }
-          {this.state.applicationsOpen
-            .filter(app => this.state.applicationsOpen.indexOf(app) > -1 && this.apps.hasOwnProperty(app))
-            .map((app, index) => {
+          {Object.keys(this.apps)
+            .map(app => {
               return (
                 <Draggable
                   key={app}
@@ -414,7 +413,7 @@ class Guest extends Component {
                   topCall={() => { this.openApplication(app) } }
                   closeCall={() => { this.closeApplication(app) } }
                   appName={this.apps[app].name}
-                  zIndex={index}
+                  zIndex={this.state.applicationsOpen.indexOf(app)}
                 >
                   {this.apps[app].html}
                 </Draggable>);

@@ -41,6 +41,12 @@ function handleIo(io) {
         socket.on("floor-plan", ({ roomCode, sender, color, sensors }) => {
             checkSensors(roomCode, io, sender, color, sensors);
         });
+
+
+        socket.on("sensorUpdate", ({ sensors, room }) => {
+            console.log("emitting", room);
+            socket.to(room).emit("sensorUpdate", {sensors});
+        });
     });
 }
 
