@@ -190,9 +190,6 @@ class ActorMoving extends Component {
     }
 
     updateSensors = () => {
-        this.sensors[path[this.pathIndex]] = true;
-        this.pathIndex = (this.pathIndex + 1) % path.length;
-        this.sensors[path[this.pathIndex]] = false;
         if (this.lastRandom) {
             this.sensors[this.lastRandom] = true;
         }
@@ -201,7 +198,9 @@ class ActorMoving extends Component {
             .sort((a, b) => Math.random() - 0.5)
             .pop();
         this.sensors[this.lastRandom] = false;
-        console.log(this.sensors);
+        this.sensors[path[this.pathIndex]] = true;
+        this.pathIndex = (this.pathIndex + 1) % path.length;
+        this.sensors[path[this.pathIndex]] = false;
         this.props.socket.emit("electricalUpdate", {state: this.sensors, room: this.props.room});
         this.timeOutId = setTimeout(this.updateSensors, 20 * 1000);
     }
@@ -222,7 +221,6 @@ class ActorMoving extends Component {
     }
     
     move = (dir) => {
-        console.log(dir);
         const [dy, dx] = directions[dir];
 
         const dangers = floorplan[this.state.location.ycor + dy][this.state.location.xcor + dx].filter(d => {
@@ -236,7 +234,6 @@ class ActorMoving extends Component {
             }
         });
 
-        console.log(floorplan[this.state.location.ycor + dy][this.state.location.xcor + dx], dangers);
         if (dangers.length > 0 && this.warnings < 3) {
             this.warnings += 1;
             this.setState({
@@ -277,7 +274,6 @@ class ActorMoving extends Component {
         }), () => {
             setTimeout(() => {
                 this.setState({moving: false});
-                console.log(this.state.location);
                 if (this.state.location.xcor === 3 && this.state.location.ycor === 6) {
                     clearTimeout(this.timeOutId);
                     this.props.socket.emit("setRoomState", {roomCode: this.props.room, state: 50});
