@@ -140,6 +140,24 @@ class Guest extends Component {
           },
         },
       },
+      security: {
+        requirement: 30,
+        display: "Security",
+        files: {
+          emergencies: {
+            requirement: 100,
+            display: "emergency_procedures.pdf",
+          },
+          securityManual: {
+            requirement: 30,
+            display: "security_sensors.pdf",
+          },
+          guestPolicy: {
+            requirement: 100,
+            display: "guest_policy.pdf",
+          },
+        },
+      },
       guards: {
         requirement: 50,
         display: "Personnel",
