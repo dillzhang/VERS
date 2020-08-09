@@ -1,5 +1,6 @@
 .translator_elements{
-float: left;
+  float: left;
+  height: 100%;
 }
 
 .translate_box{
@@ -10,6 +11,7 @@ float: left;
 
 .key{
   min-width: 100px;
+
 }
 
 textarea{
@@ -26,19 +28,23 @@ textarea::-webkit-scrollbar-thumb {
 
 
 .header{
-  /* background-color: blue; */
+  background-color: blue;
 
 }
 
 .key_button{
-  background-color: black;
-  border-color: black;
+  background-color: transparent;
+  border-color: transparent;
   color: grey;
+  height:100%;
+  text-align: right;
+
+
 }
 
 .input_box{
   display: block;
-  height: 200px;
+  height: 215px;
   width: 400px;
   display: flex;
   flex-direction: column;
@@ -47,16 +53,12 @@ textarea::-webkit-scrollbar-thumb {
   color: white;
   overflow-y: scroll;
   text-transform: uppercase;
-
-  border-left-color: grey;
-  border-right-color: grey;
-  border-bottom-color: grey;
-  border-top-color: black;
-
+  border-color: grey;
 }
+
 .output_box{
   display: block;
-  height: 200px;
+  height: 215px;
   width: 400px;
   display: flex;
   flex-direction: column;

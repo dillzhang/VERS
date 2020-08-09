@@ -34,6 +34,7 @@ function TranslationKey({ decoder }){
     24: { alien: "", english: "" },
     25: { alien: "", english: "" },
     26: { alien: "", english: "" },
+    27: { alien: "", english: "" },
 
 
   });

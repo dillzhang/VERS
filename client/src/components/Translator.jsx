@@ -28,9 +28,7 @@ function Translator() {
     return (
       <div className='translator'>
         <div className='translator_elements'>
-          <div className="header">
-            <button className="key_button" onClick={() => {setKeyOpen(!keyOpen)}}>key</button>
-          </div>
+
           <div className="translator_box">
             <textarea className="input_box" type="text" onChange={(e) => setInputText(e.target.value.toUpperCase())}></textarea>
           </div>
@@ -39,21 +37,20 @@ function Translator() {
             <textarea className="output_box" readonly value={translate()}></textarea>
           </div>
         </div>
-
-        { keyOpen &&
-          <div className="translator_elements">
-            <div className='key'>
-              <Key decoder={cypherDict => setCypher(cypherDict)}/>
-            </div>
+        <div className="translator_elements">
+          <div className='key'>
+            <Key decoder={cypherDict => setCypher(cypherDict)}/>
           </div>
-        }
-
-
+        </div>
 
       </div>
     );
 
 }
+// <div className="header">
+//   <button className="key_button" onClick={() => {setKeyOpen(!keyOpen)}}>Key</button>
+// </div>
+//{ keyOpen &&
+  // }
 
-//
 export default Translator;
