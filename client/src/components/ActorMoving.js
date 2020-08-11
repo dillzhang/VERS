@@ -175,7 +175,7 @@ class ActorMoving extends Component {
             L9: true,
             L10: true,
             L12: true,
-        },
+        };
 
         this.warnings = 0;
         
