@@ -104,7 +104,7 @@ class VideoStream extends Component {
             <div className="current-info">
               <div className="current-holder">
                 {[...Array(this.state.current)].map((_, index) => {
-                  return <div key={index} className={`current ${this.state.current >= 10 ? 'overload' : ''}`} />;
+                  return <div key={index} className={`current ${index >= 6 && this.state.current >= 6 ? 'caution' : ''} ${((index >= 8 && this.state.current >= 8) || this.state.current >= 10) ? 'overload' : ''}`} />;
                 })}
               </div>
             </div>

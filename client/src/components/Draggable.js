@@ -45,6 +45,7 @@ class Draggable extends Component {
                 <div 
                     className="draggable-body"
                     onMouseDown={this.props.topCall}
+                    style={{ overflow: this.props.overflowHidden ? 'hidden' : 'auto'}}
                 >
                     {this.props.children}
                 </div>
