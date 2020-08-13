@@ -1,0 +1,34 @@
+S: Where am I?
+O1: Ƕ∂ỼϬ∫. Quiet!
+O1: 𝟠վ §վ∂ ჯմվ‰ ‰చට∫ ⱮచϬ'Ɱ Ɱට§ỼմԱ?
+O2: ⱮచϬ'Ɱ ටⱮჯỼմԱ ‰చϬلϬ ⱮచϬ ỼⱮ.
+O2: You are in a government facility. Do not worry, you are safe.
+S: What year is it? Where is my family?
+O1: ‰చට∫ ỼⱮ ⱮచϬ Ɱට§ỼմԱ?
+O2: ⱮచϬ ỼⱮ ටⱮჯỼմԱ Ҩվل ∫చϬ §Ϭටل ටմ𝟠 చϬل ҨටհỼហ§.
+O2: The year is 2016. Your husband and kids are safe in their home.
+S: Home? They're alive?! Why am I here?
+S: What language are you speaking?
+S: Who are you? Tell me!
+O1: Ƕ∂ỼϬ∫!
+S: ...
+O2: We have many questions to ask you.
+O2: Can you tell us what is this?
+S: A photograph?
+O2: ට ↻చվ∫վԱلට↻చ.
+O1: վჯ.
+O2: What is a photograph?
+S: Are you serious?
+S: It's a picture. To capture a memory?
+S: How do you not know what a photo is?
+O2: ට հϬհվل§.
+O2: What is a memory?
+S: It's something that happened in the past.
+O2: ∫చϬ ↻ටⱮ∫.
+O1: վჯ.
+O2: What is this past you speak of?
+S: The past is something that's gone. Like my patience.
+O1: Ɱ∫ට§ 𝟠վ‰մ!. Stay down!
+S: I'm sick of this. Who are you? Tell me now!
+O2: ∫∂لմ վҨҨ ∫చϬ հỼ९لվ↻చվմϬ.
+O1: վჯ.
