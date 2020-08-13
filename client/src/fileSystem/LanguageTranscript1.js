@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const languageTranscript1 =
 	<div className="document-holder">
         <div className="document-header">
             <div className="logo">
-                <img src="/government/gov-wordmark-bw.svg" />
+                <img src="/government/gov-wordmark-bw.svg"alt="Government logo"/>
             </div>
             <div className="transcript">
             	<h6>2016-01-03</h6>
             	<h6>SUBJECT NO: 7293</h6>
-            	<p><strong>S:</strong> Please. Where am I?</p>
+            	<p><strong>S:</strong> Where am I?</p>
             	<p><strong>O1:</strong> Ƕ∂ỼϬ∫. Quiet!</p>
             	<p><strong>O1:</strong> 𝟠վ §վ∂ ჯմվ‰ ‰చට∫ ⱮచϬ'Ɱ Ɱට§ỼմԱ?</p>
             	<p><strong>O2:</strong> ⱮచϬ'Ɱ ටⱮჯỼմԱ ‰చϬلϬ ⱮచϬ ỼⱮ.</p>
@@ -40,7 +40,7 @@ const languageTranscript1 =
             	<p><strong>O2:</strong> What is this past you speak of?</p>
             	<p><strong>S:</strong> The past is something that's gone. Like my patience.</p>
             	<p><strong>O1:</strong> Ɱ∫ට§ 𝟠վ‰մ!. Stay down!</p>
-            	<p><strong>S:</strong> I'm getting sick of this. Who are you? Tell me now!</p>
+            	<p><strong>S:</strong> I'm sick of this. Who are you? Tell me now!</p>
             	<p><strong>O2:</strong> ∫∂لմ վҨҨ ∫చϬ հỼ९لվ↻చվմϬ.</p>
             	<p><strong>O1:</strong> վჯ.</p>
             </div>

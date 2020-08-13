@@ -1,4 +1,4 @@
- var englishToAlienDict =  {
+const englishToAlienDict = {
   "A":"ට",
   "B":"⅋",
   "C":"९",
@@ -27,7 +27,7 @@
   "Z":"‡"
 }
 
-var alienToEnglishDict =  {
+const alienToEnglishDict = {
   "§": "y",
   "Œ": "x",
   "Ƕ": "q",
