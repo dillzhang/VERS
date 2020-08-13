@@ -9,6 +9,8 @@
     /* background-image: url("/file.png"); */
     background-repeat: no-repeat;
 
+    overflow-y: scroll;
+
     font-family: var(--government-font);
     color: #222222;
 }
@@ -39,7 +41,7 @@
 }
 
 
-/* @TODO: move this elsewhere */
+/* special types of documents */
 .guard {
     padding: 24px 0;
     font-family: var(--conspiracy-font);
@@ -62,8 +64,7 @@
     -webkit-user-select: text;
     user-select: text;
     font-family: var(--conspiracy-font);
-    overflow-y: scroll;
 }
 .transcript p {
-    margin: 4px 0;
+    margin: 8px 0;
 }
