@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { Pannellum } from "pannellum-react";
-
-import picture from './warehouse_image.jpg';
 
 function Panorama (props) {
 
@@ -28,7 +26,7 @@ function Panorama (props) {
             showControls
             showFullscreenCtrl
             showZoomCtrl
-            onLoad={()=>{console.log("panorama loaded");}}
+            onLoad={()=>{}}
             onScenechange={(id)=>{console.log("Scene has change on " + id);}}
             onScenechangefadedone={()=>{console.log("panorama loaded");}}
             onError={(err)=>{console.log("Error" , err);}}

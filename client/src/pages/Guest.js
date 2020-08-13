@@ -30,6 +30,8 @@ import warehouse_3powered from "../warehouse_images/warehouse-3powered.jpg";
 const baseURL = new URL(window.location.href).host;
 const chatColors = ["#f94144", "#f3722c", "#f8961e", "#f9c74f", "#90be6d", "#43aa8b", "#577590", "#75B9BE", "#A8CCC9", "#B3D6C6", "#DCEAB2", "#C7D66D", "#FCD0A1", "#B1B695", "#53917E", "#63535B", "#6D1A36"];
 
+const STATE_FAILURE = 80
+
 const stateApplications = [
   ["secureChat"],  // 0
   ["timer"],  // 10
@@ -41,9 +43,6 @@ const stateApplications = [
   [],  // 70
   [],  // 80
 ]
-
-const STATE_SUCCESS = 70
-const STATE_FAILURE = 80
 
 class Guest extends Component {
   // Initialize the state
@@ -78,7 +77,7 @@ class Guest extends Component {
   this.socket.on("roomStateUpdate", ({state}) => {
     this.setState(prev => ({
       state,
-      applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) == -1)],
+      applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) === -1)],
       error: "",
     }));
   });
@@ -86,27 +85,27 @@ class Guest extends Component {
   this.socket.on("joinRoomStatus", ({state}) => {
     // Chat Short Cuts
     this.chatFiles = {
-      warehouse: <img onClick={() => {this.openApplication("warehouse")}} src="/warehouse.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
-      floor_plan_4: <div className="file"><p><img className="icon" src="/desktop/file.svg" /> floor4.bp</p></div>,
+      warehouse: <img onClick={() => {this.openApplication("warehouse")}} src="/warehouse.jpg" alt="Warehouse exterior"/>,
+      floor_plan_4: <div className="file"><p><img className="icon" src="/desktop/file.svg" alt="File icon"/> floor4.bp</p></div>,
 
-      no_thermal_warehouse: <img onClick={() => {this.openApplication("no_thermal_warehouse")}} src={warehouse_1dark_preview}/>,
+      no_thermal_warehouse: <img onClick={() => {this.openApplication("no_thermal_warehouse")}} src={warehouse_1dark_preview} alt="Warehouse"/>,
 
-      thermal_warehouse: <img onClick={() => {this.openApplication("thermal_warehouse")}} src={warehouse_2thermal_preview}/>,
+      thermal_warehouse: <img onClick={() => {this.openApplication("thermal_warehouse")}} src={warehouse_2thermal_preview} alt="Warehouse (thermal)"/>,
 
-      thermal_warehouse_wires: <img onClick={() => {this.openApplication("thermal_warehouse_wires")}} src={warehouse_3powered_preview}/>,
+      thermal_warehouse_wires: <img onClick={() => {this.openApplication("thermal_warehouse_wires")}} src={warehouse_3powered_preview} alt="Warehouse (thermal, power on)"/>,
 
-      elevator_landing: <img  onClick={() => {this.openApplication("elevator_landing")}} src="/hallways/hallway.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
-      vault_door: <img  onClick={() => {this.openApplication("vault_door")}} src="/vault/door.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
+      elevator_landing: <img  onClick={() => {this.openApplication("elevator_landing")}} src="/hallways/hallway.jpg" alt="Hallways outside elevator"/>,
+      vault_door: <img  onClick={() => {this.openApplication("vault_door")}} src="/vault/door.jpg" alt="Vault door" />,
 
-      tubes: <img onClick={() => {this.openApplication("tubes")}} src="/vault/tubes.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
-      brain: <img onClick={() => {this.openApplication("brain")}} src="/vault/brain.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
-      subject1: <img onClick={() => {this.openApplication("subject1")}} src="/vault/subject1.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
-      subject2: <img onClick={() => {this.openApplication("subject2")}} src="/vault/subject2.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
-      computer: <img onClick={() => {this.openApplication("computer")}} src="/vault/computer.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
+      tubes: <img onClick={() => {this.openApplication("tubes")}} src="/vault/tubes.jpg" alt="Tubes"/>,
+      brain: <img onClick={() => {this.openApplication("brain")}} src="/vault/brain.jpg" alt="Brain"/>,
+      subject1: <img onClick={() => {this.openApplication("subject1")}} src="/vault/subject1.jpg" alt="Subject"/>,
+      subject2: <img onClick={() => {this.openApplication("subject2")}} src="/vault/subject2.jpg" alt="Subject"/>,
+      computer: <img onClick={() => {this.openApplication("computer")}} src="/vault/computer.jpg" alt="Computer"/>,
 
-      languageTranscript1:  <div className="file pointer" onClick={() => {this.openApplication("languageTranscript1")}} ><p><img className="icon" src="/desktop/file.svg" />transcript_20160103.pdf</p></div>,
-      languageTranscript2:  <div className="file pointer" onClick={() => {this.openApplication("languageTranscript2")}} ><p><img className="icon" src="/desktop/file.svg" />transcript_20160521.pdf</p></div>,
-      alienArticle:  <div className="file pointer" onClick={() => {this.openApplication("alienArticle")}} ><p><img className="icon" src="/desktop/file.svg" />journel_20151113.pdf</p></div>,
+      languageTranscript1:  <div className="file pointer" onClick={() => {this.openApplication("languageTranscript1")}} ><p><img className="icon" src="/desktop/file.svg" alt="File icon"/>transcript_20160103.pdf</p></div>,
+      languageTranscript2:  <div className="file pointer" onClick={() => {this.openApplication("languageTranscript2")}} ><p><img className="icon" src="/desktop/file.svg" alt="File icon"/>transcript_20160521.pdf</p></div>,
+      alienArticle:  <div className="file pointer" onClick={() => {this.openApplication("alienArticle")}} ><p><img className="icon" src="/desktop/file.svg" alt="File icon"/>journal_20151113.pdf</p></div>,
     }
 
     // File System ShortCuts
@@ -238,7 +237,7 @@ class Guest extends Component {
           app: (
             <div key="chat-shortcut" className="shortcut" onClick={() => {this.openApplication("secureChat")}}>
               <div className="icon">
-                <img src="/desktop/secure-chat.svg" />
+                <img src="/desktop/secure-chat.svg" alt="Secure chat shortcut icon"/>
               </div>
               <div className="shortcut-name">Secure Chat</div>
             </div>
@@ -249,7 +248,7 @@ class Guest extends Component {
           app: (
             <div key="timer-shortcut" className="shortcut" onClick={() => {this.openApplication("timer")}}>
               <div className="icon">
-                <img src="/desktop/timer.svg" />
+                <img src="/desktop/timer.svg" alt="Timer shortcut icon"/>
               </div>
               <div className="shortcut-name">Timer</div>
             </div>
@@ -260,7 +259,7 @@ class Guest extends Component {
           app: (
             <div key="file-system-shortcut" className="shortcut" onClick={() => {this.openApplication("fileSystem")}}>
               <div className="icon">
-                <img src="/desktop/filesystem.svg" />
+                <img src="/desktop/filesystem.svg" alt="Filesystem shortcut icon"/>
               </div>
               <div className="shortcut-name">Files</div>
             </div>
@@ -271,7 +270,7 @@ class Guest extends Component {
           app: (
             <div key="video-stream-shortcut" className="shortcut" onClick={() => {this.openApplication("videoStream")}}>
               <div className="icon">
-                <img src="/desktop/video-stream.svg" />
+                <img src="/desktop/video-stream.svg" alt="Video Stream shortcut icon"/>
               </div>
               <div className="shortcut-name">Video Stream</div>
             </div>
@@ -282,7 +281,7 @@ class Guest extends Component {
           app: (
             <div key="translator-shortcut" className="shortcut" onClick={() => {this.openApplication("translator")}}>
               <div className="icon">
-                <img src="/desktop/translator.svg" />
+                <img src="/desktop/translator.svg" alt="Translator shortcut icon"/>
               </div>
               <div className="shortcut-name">Translator</div>
             </div>
@@ -316,7 +315,7 @@ class Guest extends Component {
       // Add chat pop-ups here
       warehouse: {
         name: "IMG083098",
-        html: <img src="/warehouse.jpg" style={{maxHeight: 500}} />,
+        html: <img src="/warehouse.jpg" style={{maxHeight: 500}} alt="Warehouse exterior"/>,
       },
       no_thermal_warehouse: {
         name: "IMG083104",
@@ -332,31 +331,31 @@ class Guest extends Component {
       },
       elevator_landing: {
         name: "IMG083120",
-        html: <img src="/hallways/hallway.jpg" style={{maxHeight: 500}} />,
+        html: <img src="/hallways/hallway.jpg" style={{maxHeight: 500}} alt="Hallways outside elevator"/>,
       },
       vault_door: {
         name: "IMG083123",
-        html: <img src="/vault/door.jpg" style={{maxHeight: 500}} />,
+        html: <img src="/vault/door.jpg" style={{maxHeight: 500}} alt="Vault door"/>,
       },
       tubes: {
         name: "IMG083125",
-        html: <img src="/vault/tubes.jpg" style={{maxHeight: 500}} />,
+        html: <img src="/vault/tubes.jpg" style={{maxHeight: 500}} alt="Tubes"/>,
       },
       brain: {
         name: "IMG083128",
-        html: <img src="/vault/brain.jpg" style={{maxHeight: 500}} />,
+        html: <img src="/vault/brain.jpg" style={{maxHeight: 500}} alt="Brain"/>,
       },
       subject1: {
         name: "IMG083130",
-        html: <img src="/vault/subject1.jpg" style={{maxHeight: 500}} />,
+        html: <img src="/vault/subject1.jpg" style={{maxHeight: 500}} alt="Subject"/>,
       },
       subject2: {
         name: "IMG083131",
-        html: <img src="/vault/subject2.jpg" style={{maxHeight: 500}} />,
+        html: <img src="/vault/subject2.jpg" style={{maxHeight: 500}} alt="Subject"/>,
       },
       computer: {
         name: "IMG083137",
-        html: <img src="/vault/computer.jpg" style={{maxHeight: 500}} />,
+        html: <img src="/vault/computer.jpg" style={{maxHeight: 500}} alt="Computer"/>,
       },
 
       // File System Pop ups
@@ -392,7 +391,7 @@ class Guest extends Component {
 
     this.setState(prev => ({
       state,
-      applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) == -1)],
+      applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) === -1)],
       error: "",
     }));
 
@@ -410,7 +409,7 @@ class Guest extends Component {
   }
 
   openApplication = (app) => {
-    if (this.state.applicationsOpen.slice(-1)[0] == app) {
+    if (this.state.applicationsOpen.slice(-1)[0] === app) {
       return;
     }
     this.setState(state => ({
@@ -431,7 +430,7 @@ class Guest extends Component {
   }
 
   render() {
-    if (this.state.state == -1) {
+    if (this.state.state === -1) {
       return this.renderLockScreen();
     }
     return this.renderDesktop();
@@ -442,7 +441,7 @@ class Guest extends Component {
       <div className="app guest">
         <div className="lock-screen">
           <div className="user-icon">
-            <img src="/desktop/user.svg" />
+            <img src="/desktop/user.svg" alt="User icon"/>
           </div>
           <h1>Guest Login</h1>
           {this.state.error && <p>{this.state.error}</p>}
@@ -486,7 +485,7 @@ class Guest extends Component {
   renderDesktop = () => {
     return (
       <div className="app guest">
-        <div className="noise-wrapper" style={{ opacity: (this.state.state == STATE_FAILURE || this.state.noiseDebug) ? 0.9 : 0, "pointer-events": (this.state.state == STATE_FAILURE || this.state.noiseDebug) ? "auto" : "none" }}>
+        <div className="noise-wrapper" style={{ opacity: (this.state.state === STATE_FAILURE || this.state.noiseDebug) ? 0.9 : 0, pointerEvents: (this.state.state === STATE_FAILURE || this.state.noiseDebug) ? "auto" : "none" }}>
           <div className="noise"></div>
           <h1>Connection Lost</h1>
         </div>

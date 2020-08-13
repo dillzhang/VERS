@@ -1,4 +1,4 @@
-import React, { Component, useState} from 'react';
+import React, { useState } from 'react';
 
 import "./Translator.css";
 import Key from './TranslationKey.jsx'
@@ -30,12 +30,13 @@ function Translator() {
         <div className='translator_elements'>
 
           <div className="translator_box">
-            <textarea className="input_box" type="text" onChange={(e) => setInputText(e.target.value.toUpperCase())}></textarea>
+            <textarea className="input_box" type="text" placeholder="Input" onChange={(e) => setInputText(e.target.value.toUpperCase())}></textarea>
           </div>
 
           <div>
-            <textarea className="output_box" readonly value={translate()}></textarea>
+            <textarea className="output_box" placeholder="Translation" readOnly value={translate()}></textarea>
           </div>
+
         </div>
         <div className="translator_elements">
           <div className='key'>

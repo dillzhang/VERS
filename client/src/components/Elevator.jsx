@@ -29,10 +29,14 @@ function Elevator(props){
 
         case '4':
           props.successCallback();
-          // setText("floor 4 text");
           break;
+
         case '5':
           setText("Nothing here but dust. Maybe there's something on another one of the floors.");
+          break;
+
+        default:
+          setText("Something wrong has occurred");
           break;
       }
     }, 3000);

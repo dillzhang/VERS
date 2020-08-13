@@ -82,7 +82,7 @@ class FloorPlan extends Component {
         }
 
         this.props.socket.on("roomStateUpdate", ({state}) => {
-            if (state == 40) {
+            if (state === 40) {
                 this.setState({
                     interactivity: false,
                     sensors: [ 2, 0, 1, 0, 0, 0, 1, 0, 2, 2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 2 ],
@@ -125,7 +125,7 @@ class FloorPlan extends Component {
             ).sort(
                 (a, b) => a[0] - b[0]
             );
-            const near = this.state.near.map((_, i) => best.length > 0 && i == best[0][1])
+            const near = this.state.near.map((_, i) => best.length > 0 && i === best[0][1])
             this.setState(state => ({
                 dragX: state.dragX + dx,
                 dragY: state.dragY + dy,

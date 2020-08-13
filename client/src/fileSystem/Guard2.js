@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Guard2 =
 	<div className="document-holder">
         <div className="document-header">
             <div className="logo">
-                <img src="/government/gov-wordmark-bw.svg" />
+                <img src="/government/gov-wordmark-bw.svg" alt="Government logo"/>
             </div>
             <div className="guard">
             	<h6>ID: EI1120</h6>
-            	<img className="guard-portrait" src="/personnel/patricia.jpg"/>
+            	<img className="guard-portrait" src="/personnel/patricia.jpg" alt="Patricia Will"/>
             	<h1>Patricia Will</h1>
 
             	<h3>Biographical Data</h3>

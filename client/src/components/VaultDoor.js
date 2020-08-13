@@ -104,8 +104,8 @@ class VaultDoor extends Component {
                     <div className="question">{question.question}</div>
                     <div className="question">
                         {this.state.correctGuard && (
-                            <button  onClick={() => {
-                                if (this.state.questionIndex == 4) {
+                            <button onClick={() => {
+                                if (this.state.questionIndex === 4) {
                                     clearTimeout(this.timeOutId);
                                 }
                                 this.setState(state => ({questionIndex: state.questionIndex + 1}));
@@ -130,6 +130,10 @@ class VaultDoor extends Component {
                             this.props.socket.emit("setRoomState", {roomCode: this.props.room, state: 60});
                         }}>Enter</button>
                     </div>
+                </>
+            default:
+                return <>
+                    Error: Invalid question index
                 </>
         }
     }

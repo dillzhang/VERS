@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Document from "../components/Document";
 
 const directory = (
@@ -6,7 +6,7 @@ const directory = (
         <h2>Floor Directory</h2>
         <h3>Floor 1</h3>
         <p>
-          Ground Floor Entrence.
+          Ground Floor Entrance.
         </p>
         <h3>Floor 2</h3>
         <p>
