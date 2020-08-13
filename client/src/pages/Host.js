@@ -16,7 +16,7 @@ import warehouse_3powered_preview from "../warehouse_images/warehouse-3powered-p
 const baseURL = new URL(window.location.href).host;
 
 const chatFiles = {
-  warehouse: <img src="/warehouse.jpg" alt="Warehouse Exterior"/>,
+  warehouse: <img src="/warehouse.jpg" alt="Warehouse exterior"/>,
   floor_plan_4: <div className="file"><strong>Floor Plan 4.bp</strong></div>,
 
   no_thermal_warehouse: <img src={warehouse_1dark_preview} alt="Warehouse"/>,
@@ -246,7 +246,7 @@ class Host extends Component {
           }} className="warning">(8) Complete Mission</button>
         </>
       default:
-        return "Something wrong has occured";
+        return "Something wrong has occurred";
     }
   }
 

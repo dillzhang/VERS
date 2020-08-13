@@ -149,8 +149,8 @@ class ActorMoving extends Component {
 
         this.sensors = {
             A1: true,
-            A3: false, // Always
-            A4: false, // Always
+            A3: true, // Always
+            A4: true, // Always
             A10: true,
             B1: true,
             B3: true,
@@ -159,9 +159,11 @@ class ActorMoving extends Component {
             C4: true,
             C5: false, // Always
             C9: false, // Always
+            C13: true, // Always
             D1: true,
             D6: true,
             D12: true,
+            D14: true, // Always
             E8: true,
             E9: true,
             E11: false, // Always
@@ -175,6 +177,9 @@ class ActorMoving extends Component {
             L9: true,
             L10: true,
             L12: true,
+            M2: true, // Always
+            M6: true, // Always
+            M11: true, // Always
         };
 
         this.warnings = 0;

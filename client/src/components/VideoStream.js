@@ -19,9 +19,11 @@ class VideoStream extends Component {
         C4: true,
         C5: false, // Always
         C9: false, // Always
+        C13: true, // Always
         D1: true,
         D6: true,
         D12: true,
+        D14: true, // Always
         E8: true,
         E9: true,
         E11: false, // Always
@@ -35,6 +37,9 @@ class VideoStream extends Component {
         L9: true,
         L10: true,
         L12: true,
+        M2: true, // Always
+        M6: true, // Always
+        M11: true, // Always
       },
       current: 0,
     }
@@ -64,24 +69,44 @@ class VideoStream extends Component {
   render() {
       return (
         <div className="video-streamer">
-          <div className="electrical-panel">Electrical Panel</div>
-          {Object.keys(this.state.sensors).map(sensor => {
-            return <>
-              <div key={`${sensor}-status`} className={`status status-${this.state.sensors[sensor]}`}/>
-              <div key={sensor} className="sensor">{sensor}</div>
-            </>
-          })}
-          <div className="current-info">
-            <div>
-              Current:
-            </div>
-            <div className="current-holder">
-              {[...Array(this.state.current)].map((_, index) => {
-                return <div key={index} className="current" />;
+          <div className="noise-wrapper">
+            <div className="noise"></div>
+          </div>
+          <div className="electrical-panel">
+            <div className="cluster">
+              {Object.keys(this.state.sensors).slice(0, 8).map(sensor => {
+                return <>
+                  <div key={`${sensor}-status`} className={`status status-${this.state.sensors[sensor]}`}/>
+                </>
               })}
             </div>
-            <div>
-              OVERLOAD!
+            <div className="cluster">
+              {Object.keys(this.state.sensors).slice(8, 16).map(sensor => {
+                return <>
+                  <div key={`${sensor}-status`} className={`status status-${this.state.sensors[sensor]}`}/>
+                </>
+              })}
+            </div>
+            <div className="cluster">
+              {Object.keys(this.state.sensors).slice(16, 24).map(sensor => {
+                return <>
+                  <div key={`${sensor}-status`} className={`status status-${this.state.sensors[sensor]}`}/>
+                </>
+              })}
+            </div>
+            <div className="cluster">
+              {Object.keys(this.state.sensors).slice(24, 32).map(sensor => {
+                return <>
+                  <div key={`${sensor}-status`} className={`status status-${this.state.sensors[sensor]}`}/>
+                </>
+              })}
+            </div>
+            <div className="current-info">
+              <div className="current-holder">
+                {[...Array(this.state.current)].map((_, index) => {
+                  return <div key={index} className={`current ${this.state.current >= 10 ? 'overload' : ''}`} />;
+                })}
+              </div>
             </div>
           </div>
         </div>
