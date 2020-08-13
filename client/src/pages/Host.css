@@ -15,6 +15,7 @@
     align-items: center;
 
     border-bottom: 2px solid #404040;
+    background-color: blue;
 }
 
 .host .header h1 {
@@ -47,31 +48,43 @@
     max-width: 500px;
     margin: 24px auto;
 }
-.host .main button {
-    color: inherit;
-    font-family: inherit;
-    font-size: 1em;
-    font-weight: bold;
-    background-color: #303030;
-    border-radius: 8px;
-    display: block;
-    margin: 18px auto;
-    padding: 18px;
-    border: 2px solid #404040;
-}
-.host .main button:hover {
-    background-color: #262626;
-    cursor: pointer;
-}
-.host .main button:focus {
-    outline: none;
-}
 .host .main .location h2:nth-child(2) {
     color: #65fc31;
 }
 .host .main .line-prompter, .host .main .available-actions {
     min-height: 100px;
     margin: 24px;
+}
+.host .actions {
+    display: flex;
+    flex-wrap: wrap;
+}
+.host .actions button {
+    color: inherit;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #303030;
+    border-radius: 8px;
+    flex: 1 0 45%;
+    margin: 12px;
+    padding: 18px 12px;
+    border: 2px solid #404040;
+}
+.host .actions button:hover {
+    background-color: #262626;
+    cursor: pointer;
+}
+.host .actions button:focus {
+    outline: none;
+}
+.host .actions button.warning {
+    background: #c12f25;
+    color: white;
+    border-color: #bf4633;
+}
+.host .actions button.warning:hover {
+    background: #821100;
 }
 
 .host .side-bar {

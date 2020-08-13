@@ -16,28 +16,27 @@ import warehouse_3powered_preview from "../warehouse_images/warehouse-3powered-p
 const baseURL = new URL(window.location.href).host;
 
 const chatFiles = {
-  warehouse: <img src="/warehouse.jpg" />,
+  warehouse: <img src="/warehouse.jpg" alt="Warehouse Exterior"/>,
   floor_plan_4: <div className="file"><strong>Floor Plan 4.bp</strong></div>,
 
-  no_thermal_warehouse: <img src={warehouse_1dark_preview} style={{ maxHeight: "100px", maxWidth: "100px" }}/>,
+  no_thermal_warehouse: <img src={warehouse_1dark_preview} alt="Warehouse"/>,
 
-  thermal_warehouse: <img src={warehouse_2thermal_preview} style={{ maxHeight: "100px", maxWidth: "100px" }}/>,
+  thermal_warehouse: <img src={warehouse_2thermal_preview} alt="Warehouse (thermal)"/>,
 
-  thermal_warehouse_wires: <img src={warehouse_3powered_preview} style={{ maxHeight: "100px", maxWidth: "100px" }}/>,
+  thermal_warehouse_wires: <img src={warehouse_3powered_preview} alt="Warehouse (thermal, power on)"/>,
 
-  elevator_landing: <img src="/hallways/hallway.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }}/>,
-  vault_door: <img src="/vault/door.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }}/>,
+  elevator_landing: <img src="/hallways/hallway.jpg" alt="Hallways outside elevator"/>,
+  vault_door: <img src="/vault/door.jpg" alt="Vault door"/>,
 
+  tubes: <img src="/vault/tubes.jpg" alt="Tubes"/>,
+  brain: <img src="/vault/brain.jpg" alt="Brain"/>,
+  subject1: <img src="/vault/subject1.jpg" alt="Subject"/>,
+  subject2: <img src="/vault/subject2.jpg" alt="Subject"/>,
+  computer: <img src="/vault/computer.jpg" alt="Computer"/>,
 
-  tubes: <img src="/vault/tubes.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
-  brain: <img src="/vault/brain.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
-  subject1: <img src="/vault/subject1.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
-  subject2: <img src="/vault/subject2.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
-  computer: <img src="/vault/computer.jpg" style={{ maxHeight: "100px", maxWidth: "100px" }} />,
-
-  languageTranscript1:  <div className="file"><p><img className="icon" src="/desktop/file.svg" />transcript_20160103.pdf</p></div>,
-  languageTranscript2:  <div className="file"><p><img className="icon" src="/desktop/file.svg" />transcript_20160521.pdf</p></div>,
-  alienArticle:  <div className="file"><p><img className="icon" src="/desktop/file.svg" />journel_20151113.pdf</p></div>,
+  languageTranscript1: <div className="file"><p><img className="icon" src="/desktop/file.svg" alt="File icon"/>transcript_20160103.pdf</p></div>,
+  languageTranscript2: <div className="file"><p><img className="icon" src="/desktop/file.svg" alt="File icon"/>transcript_20160521.pdf</p></div>,
+  alienArticle: <div className="file"><p><img className="icon" src="/desktop/file.svg" alt="File icon"/>journal_20151113.pdf</p></div>,
 }
 
 class Host extends Component {
@@ -98,7 +97,9 @@ class Host extends Component {
             </div>
             <div className="available-actions">
               <h2>Available Actions</h2>
-            {this.renderMain()}
+            <div className="actions">
+              {this.renderMain()}
+            </div>
             </div>
           </div>
           <div className="side-bar">
@@ -162,7 +163,7 @@ class Host extends Component {
       case 80:
         return [];
       default:
-        return ["Something wrong has occured"];
+        return ["Something wrong has occurred"];
     }
   }
 
@@ -173,10 +174,10 @@ class Host extends Component {
           <div>
             <button onClick={() => {
               this.sendFile("warehouse");
-            }}>Send Warehouse Image</button>
+            }}>(1) Send Warehouse Image</button>
             <button onClick={() => {
               this.socket.emit("start-time", {room: this.room});
-            }}>Start Timer</button>
+            }} className="warning">(2) Start Timer</button>
           </div>
         )
       case 10:
@@ -184,16 +185,16 @@ class Host extends Component {
           <div>
             <button onClick={() => {
               this.sendFile("no_thermal_warehouse");
-            }}>Send Dark Warehouse Image</button>
+            }}>(1) Send Dark Warehouse Image</button>
             <button onClick={() => {
               this.sendFile("thermal_warehouse");
-            }}>Send Thermal Warehouse Image (Power Off)</button>
+            }}>(2) Send Thermal Warehouse Image (Power Off)</button>
             <button onClick={() => {
               this.sendFile("thermal_warehouse_wires");
-            }}>Send Thermal Warehouse Image (Power On)</button>
+            }}>(3) Send Thermal Warehouse Image (Power On)</button>
             <button onClick={() => {
               this.socket.emit("setRoomState", {roomCode: this.room, state: 20});
-            }}>Move to Elevator</button>
+            }} className="warning">(4) Move to Elevator</button>
           </div>
         )
       case 20:
@@ -207,42 +208,42 @@ class Host extends Component {
       case 30:
         return <button onClick={() => {
           this.sendFile("elevator_landing");
-        }}>Send Hallway Image</button>;
+        }}>(1) Send Hallway Image</button>;
       case 40:
             return <ActorMoving socket={this.socket} room={this.room} />;
       case 50: 
             return <>
               <button onClick={() => {
                 this.sendFile("vault_door");
-              }}>Send Vault Door Image</button>
+              }}>(1) Send Vault Door Image</button>
               <VaultDoor socket={this.socket} room={this.room} /></>
       case 60:
         return <>
           <button onClick={() => {
             this.sendFile("tubes");
-          }}>Send Tubes</button>
+          }}>(1) Send Tubes</button>
           <button onClick={() => {
             this.sendFile("brain");
-          }}>Send Brain</button>
+          }}>(2) Send Brain</button>
           <button onClick={() => {
             this.sendFile("subject1");
             this.sendFile("subject2");
-          }}>Send Subjects</button>
+          }}>(3) Send Subjects</button>
           <button onClick={() => {
             this.sendFile("computer");
-          }}>Send Computer</button>
+          }}>(4) Send Computer</button>
           <button onClick={() => {
             this.sendFile("languageTranscript1");
-          }}>Send Transcript 1</button>
+          }}>(5) Send Transcript 1</button>
           <button onClick={() => {
             this.sendFile("languageTranscript2");
-          }}>Send Transcript 2</button>
+          }}>(6) Send Transcript 2</button>
           <button onClick={() => {
             this.sendFile("alienArticle");
-          }}>Send Journal</button> 
+          }}>(7) Send Journal</button> 
           <button onClick={() => {
             this.socket.emit("setRoomState", {roomCode: this.room, state: 70});
-          }}>Complete Mission</button>
+          }} className="warning">(8) Complete Mission</button>
         </>
       default:
         return "Something wrong has occured";
