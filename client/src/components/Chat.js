@@ -21,9 +21,7 @@ class Chat extends Component {
 
     this.socket.on("messageStatus", (data) => {
       this.setState({messages: data});
-    })
-
-    console.log(this.props.files)
+    });
   }
 
   handleKeyPress = (e) => {
@@ -71,7 +69,7 @@ class Chat extends Component {
         <div className="chat-form">
           <input type="text" placeholder="Type your message here" value={this.state.message} onChange={this.updateMessage} onKeyPress={this.handleKeyPress}></input>
           <button className="send-button" onClick={this.newTextMessage}>
-            <img src="/desktop/send.svg" />
+            <img src="/desktop/send.svg" alt="Send icon"/>
           </button>
         </div>
       </div>
