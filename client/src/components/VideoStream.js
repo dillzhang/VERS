@@ -66,10 +66,10 @@ class VideoStream extends Component {
         <div className="video-streamer">
           <div className="electrical-panel">Electrical Panel</div>
           {Object.keys(this.state.sensors).map(sensor => {
-            return <div key={`sensor-${sensor}`}>
+            return <>
               <div key={`${sensor}-status`} className={`status status-${this.state.sensors[sensor]}`}/>
               <div key={sensor} className="sensor">{sensor}</div>
-            </div>
+            </>
           })}
           <div className="current-info">
             <div>
