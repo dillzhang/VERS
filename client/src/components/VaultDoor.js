@@ -5,11 +5,11 @@ import "./VaultDoor.css"
 const questions = [
     {
         question: "What is your mother's maiden name?",
-        answer: "Correct",
+        answer: "Carrigan",
     },
     {
         question: "Where did you attend high school?",
-        answer: "Correct",
+        answer: "Meadow High School",
     },
     {
         question: "What is your zip code?",
@@ -21,7 +21,7 @@ const questions = [
     },
     {
         question: "What was the name of your childhood pet?",
-        answer: "Correct",
+        answer: "Oakley",
     },
     {
         question: "What is your phone number ending in 0616?",
@@ -29,11 +29,11 @@ const questions = [
     },
     {
         question: "In what city does your nearest sibling live?",
-        answer: "Correct",
+        answer: "Austin",
     },
     {
         question: "In what city did you meet your spouse/significant other?",
-        answer: "Correct",
+        answer: "Austin",
     },
 ]
 

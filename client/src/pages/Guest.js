@@ -14,6 +14,7 @@ import './Guest.css'
 import alienArticle from "../fileSystem/AlienArticle";
 import directory from "../fileSystem/Directory";
 import FloorPlan from "../fileSystem/FloorPlan";
+import guard1 from "../fileSystem/Guard1";
 import guard2 from "../fileSystem/Guard2";
 import languageTranscript1 from "../fileSystem/LanguageTranscript1";
 import languageTranscript2 from "../fileSystem/LanguageTranscript2";
@@ -177,16 +178,16 @@ class Guest extends Component {
         display: "Personnel",
         files: {
           guard1: {
-            requirement: 100,
-            display: "P_Shannon.db",
+            requirement: 50,
+            display: "A_Shakeb.db",
           },
           guard2: {
             requirement: 100,
             display: "H_Diana.db",
           },
           guard3: {
-            requirement: 50,
-            display: "W_Patricia.db",
+            requirement: 100,
+            display: "H_Joshua.db",
           },
           guard4: {
             requirement: 100,
@@ -194,15 +195,19 @@ class Guest extends Component {
           },
           guard5: {
             requirement: 100,
-            display: "Z_Dillon.db",
+            display: "P_Shannon.db",
           },
           guard6: {
             requirement: 100,
             display: "T_Anand.db",
           },
           guard7: {
+            requirement: 50,
+            display: "W_Patricia.db",
+          },
+          guard8: {
             requirement: 100,
-            display: "H_Joshua.db",
+            display: "Z_Dillon.db",
           },
         },
       },
@@ -371,20 +376,24 @@ class Guest extends Component {
         name: "Document Viewer - Security Sensors",
         html: securityManual,
       },
-      guard3: {
+      guard1: {
+        name: "Database - A. Shakeb",
+        html: guard1,
+      },
+      guard7: {
         name: "Database - W. Patricia",
         html: guard2,
       },
       languageTranscript1: {
-        name: "Document Viewer - Interview 1",
+        name: "Document Viewer - transcript_20160103",
         html: languageTranscript1,
       },
       languageTranscript2: {
-        name: "Document Viewer - Interview 2",
+        name: "Document Viewer - transcript_20160521",
         html: languageTranscript2,
       },
       alienArticle: {
-        name: "Document Viewer - Alien Article",
+        name: "Document Viewer - journal_20151113",
         html: alienArticle,
       },
     }
@@ -513,6 +522,7 @@ class Guest extends Component {
                   appName={this.apps[app].name}
                   zIndex={this.state.applicationsOpen.indexOf(app)}
                   offset={offset}
+                  overflowHidden={app === 'videoStream'}
                 >
                   {this.apps[app].html}
                 </Draggable>);
