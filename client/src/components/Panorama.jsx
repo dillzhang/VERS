@@ -11,7 +11,7 @@ function Panorama (props) {
             height="400px"
             image={props.image}
             pitch={10}
-            yaw={180}
+            yaw={0}
             hfov={500}
             autoLoad
             author=""
