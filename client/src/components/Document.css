@@ -47,17 +47,18 @@
     font-family: var(--conspiracy-font);
 }
 .guard h1 {
-    font-size: 2em;
+    font-size: 1.5em;
 }
-.guard h3 {
-    font-size: 1.25em;
-}
-.guard h1, h2, h3, h4, h6 {
+.guard h1, h6 {
     font-weight: bold;
     margin: 8px 0;
 }
+.guard strong {
+    font-weight: bold;
+}
 .guard .guard-portrait {
     width: 180px;
+    margin: 0 20px;
     float: right;
 }
 .transcript {
@@ -67,4 +68,9 @@
 }
 .transcript p {
     margin: 8px 0;
+}
+.transcript h2 {
+    background-color: black;
+    color: white;
+    padding: 4px;
 }
