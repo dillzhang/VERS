@@ -7,34 +7,32 @@ function TranslationKey({ decoder }){
 
   const [dictionary, setDictionary] = useState({
     //type
-    0: { alien: "", english: "" },
-    1: { alien: "", english: "" },
-    2: { alien: "", english: "" },
-    3: { alien: "", english: "" },
-    4: { alien: "", english: "" },
-    5: { alien: "", english: "" },
-    6: { alien: "", english: "" },
-    7: { alien: "", english: "" },
-    8: { alien: "", english: "" },
-    9: { alien: "", english: "" },
-    10: { alien: "", english: "" },
-    11: { alien: "", english: "" },
-    12: { alien: "", english: "" },
-    13: { alien: "", english: "" },
-    14: { alien: "", english: "" },
-    15: { alien: "", english: "" },
-    16: { alien: "", english: "" },
-    17: { alien: "", english: "" },
-    18: { alien: "", english: "" },
-    19: { alien: "", english: "" },
-    20: { alien: "", english: "" },
-    21: { alien: "", english: "" },
-    22: { alien: "", english: "" },
-    23: { alien: "", english: "" },
-    24: { alien: "", english: "" },
-    25: { alien: "", english: "" },
-    26: { alien: "", english: "" },
-    27: { alien: "", english: "" },
+    0 :{alien: "§", english: ""},
+    1 :{alien: "Œ", english: ""},
+    2 :{alien: "Ƕ", english: ""},
+    3 :{alien: "Ϭ", english: ""},
+    4 :{alien: "Ҩ", english: ""},
+    5 :{alien: "Ӌ", english: ""},
+    6 :{alien: "Ա", english: ""},
+    7 :{alien: "հ", english: ""},
+    8 :{alien: "մ", english: ""},
+    9 :{alien: "վ", english: ""},
+    10 :{alien: "ل", english: ""},
+    11 :{alien: "९", english: ""},
+    12 :{alien: "చ", english: ""},
+    13 :{alien: "ට", english: ""},
+    14 :{alien: "ჯ", english: ""},
+    15 :{alien: "ហ", english: ""},
+    16 :{alien: "Ỽ", english: ""},
+    17 :{alien: "‡", english: ""},
+    18 :{alien: "‰", english: ""},
+    19 :{alien: "⅋", english: ""},
+    20 :{alien: "↻", english: ""},
+    21 :{alien: "∂", english: ""},
+    22 :{alien: "∫", english: ""},
+    23 :{alien: "◊", english: ""},
+    24 :{alien: "Ɱ", english: ""},
+    25 :{alien: "𝟠", english: ""}
   });
 
 
@@ -93,15 +91,6 @@ function TranslationKey({ decoder }){
 
       )
     }
-      <button className="addEntry" onClick={() => {
-        var dictLen = Object.keys(dictionary).length
-        dictionary[dictLen] = {
-            alien: "",
-            english: ""
-        }
-        setDictionary(() => ({...dictionary}))
-        createDict()
-      }}>+</button>
     </div>
   )
 }
