@@ -64,14 +64,7 @@ function TranslationKey({ decoder }){
         <div className='keyBar'>
           <div className='entry_container'>
             <div>
-              <textarea className='entry_child alien' type="text" value={entry.alien} maxlength="1" onChange={(e) => {
-                setDictionary()
-                const input = e.target.value;
-                dictionary[key].alien = input
-                setDictionary(() => ({...dictionary}))
-                createDict()
-
-              }}></textarea>
+              <textarea className='entry_child alien' type="text" readOnly value={entry.alien}></textarea>
             </div>
             <div>
               <textarea className='entry_child english' type="text" value={entry.english} maxlength="1" onChange={(e) => {
