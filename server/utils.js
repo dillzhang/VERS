@@ -76,7 +76,7 @@ const rooms = {
 
 
     SUCCESS: {
-        state: 0,
+        state: 70,
         password: "$ecretPassw0rd",
 
         messages: [],
