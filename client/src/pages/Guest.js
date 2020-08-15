@@ -31,6 +31,7 @@ import warehouse_3powered from "../warehouse_images/warehouse-3powered.jpg";
 const baseURL = new URL(window.location.href).host;
 const chatColors = ["#f94144", "#f3722c", "#f8961e", "#f9c74f", "#90be6d", "#43aa8b", "#577590", "#75B9BE", "#A8CCC9", "#B3D6C6", "#DCEAB2", "#C7D66D", "#FCD0A1", "#B1B695", "#53917E", "#63535B", "#6D1A36"];
 
+const STATE_SUCCESS = 70
 const STATE_FAILURE = 80
 
 const stateApplications = [
@@ -56,7 +57,7 @@ class Guest extends Component {
     this.state = {
       state: -1,
 
-      username: "Johnny",  // Delete after testing
+      username: "",  // Delete after testing
       password: "$ecretPassw0rd",  // Delete after testing
       unlocking: false,
 
@@ -64,8 +65,6 @@ class Guest extends Component {
 
       currentTime: "00:00:00",
       applicationsOpen: [],
-
-      noiseDebug: false
     }
 
     // Clock
@@ -432,12 +431,6 @@ class Guest extends Component {
     }));
   }
 
-  noiseDebug = () => {
-    this.setState({
-      noiseDebug: true
-    })
-  }
-
   render() {
     if (this.state.state === -1) {
       return this.renderLockScreen();
@@ -494,10 +487,18 @@ class Guest extends Component {
   renderDesktop = () => {
     return (
       <div className="app guest">
-        <div className="noise-wrapper" style={{ opacity: (this.state.state === STATE_FAILURE || this.state.noiseDebug) ? 0.9 : 0, pointerEvents: (this.state.state === STATE_FAILURE || this.state.noiseDebug) ? "auto" : "none" }}>
-          <div className="noise"></div>
-          <h1>Connection Lost</h1>
-        </div>
+        { this.state.state === STATE_FAILURE &&
+          <div className="noise-wrapper failure">
+            <div className="noise"></div>
+            <h1>Connection Lost</h1>
+          </div>
+        }
+        { this.state.state === STATE_SUCCESS &&
+          <div className="noise-wrapper success">
+            <div className="noise"></div>
+            <h1>Disconnected</h1>
+          </div>
+        }
         <div className="header">
           <div className="header-time">
             {this.state.username} &middot; {this.state.currentTime}

@@ -1,4 +1,4 @@
-import React, { Component, useState} from 'react';
+import React, { useState } from 'react';
 import "./TranslatorKey.css";
 
 function TranslationKey({ decoder }){
@@ -35,9 +35,8 @@ function TranslationKey({ decoder }){
     25 :{alien: "𝟠", english: ""}
   });
 
-
   const createDict = () => {
-    const dict = {}
+    const dict =  {}
     Object.entries(dictionary).map(([key, entry]) => {
       if (entry.alien != " " & entry.alien != "") {
         if (entry.english != " " & entry.english != ""){
@@ -52,38 +51,25 @@ function TranslationKey({ decoder }){
 
   return (
     <div className="translation_key">
-    <div className="header_container">
-      <p className="header_child alien">Alien</p>
-      <p className="header_child english">English</p>
-    </div>
-
     {dictionary != null &&
       Object.entries(dictionary).map(([key, entry]) => {
         return(
-
-        <div className='keyBar'>
-          <div className='entry_container'>
-            <div>
-              <textarea className='entry_child alien' type="text" readOnly value={entry.alien}></textarea>
-            </div>
-            <div>
-              <textarea className='entry_child english' type="text" value={entry.english} maxlength="1" onChange={(e) => {
+          <div key={'keyBar-' + key} className='keyBar'>
+            <div className='entry_container'>
+              <p className="entry_index">{key}:</p>
+              <input className='entry_child alien' type="text" readOnly value={entry.alien}/>
+              &#8594;
+              <input className='entry_child english' type="text" value={entry.english} maxLength="1" onChange={(e) => {
                 setDictionary()
                 const input = e.target.value;
                 dictionary[key].english = input
                 setDictionary(() => ({...dictionary}))
                 createDict()
-
-
-              }}></textarea>
+              }}/>
             </div>
           </div>
-
-        </div>
-      )}
-
-      )
-    }
+        )})
+      }
     </div>
   )
 }

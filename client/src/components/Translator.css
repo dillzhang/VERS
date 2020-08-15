@@ -1,74 +1,65 @@
-.translator_elements{
-  float: left;
-  height: 100%;
+.translator {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.25em;
+  font-family: monospace;
+  background-color: #153135;
+  color: #cfffe5;
+  width: 720px;
+  height: 600px;
+  overflow: hidden;
 }
 
-.translate_box{
+.translator .translator-section {
+  height: calc(100% - 40px);
+  margin: 10px;
+  padding: 10px;
+  flex: 0 1 calc(60% - 40px);
+}
+.translator .key {
+  flex: 0 1 calc(40% - 40px);
   overflow-y: scroll;
-  float:left;
-  color:blue;
 }
 
-.key{
-  min-width: 100px;
-
-}
-
-textarea{
+.translator textarea {
   resize: none;
 }
-
-textarea::-webkit-scrollbar{
-  background-color: black;
-
-}
-textarea::-webkit-scrollbar-thumb {
-  background-color: #3f3f3f ;
+.translator textarea::-webkit-scrollbar {
+  display: none;
 }
 
-
-.header{
-  background-color: blue;
-
-}
-
-.key_button{
-  background-color: transparent;
-  border-color: transparent;
-  color: grey;
-  height:100%;
-  text-align: right;
-
-
-}
-
-.input_box{
-  display: block;
-  height: 215px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  border-bottom-color: black;
-  background-color: black;
-  color: white;
+.translator .translator-box {
+  width: calc(100% - 40px);
+  height: calc(50% - 60px);
+  padding: 20px;
+  margin: 10px 0;
+  display: inline-block;
+  border-radius: 6px;
   overflow-y: scroll;
   text-transform: uppercase;
-  border-color: grey;
+  font-size: 1em;
+}
+.translator .translator-box:focus {
+  outline: none;
 }
 
-.output_box{
-  display: block;
-  height: 215px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-
-  background-color: black;
-  color: white;
-  overflow-y: scroll;
-
+.translator .input-box {
+  background-color: #111F23;
+  border: 2px solid #314948;
+  color: #96B9A6;
 }
-.key{
-  display: inline-block;
-  float: right;
+.translator .input-box::placeholder {
+  color: #cfffe5;
+  opacity: 0.5;
 }
+.translator .output-box {
+  background-color: #0B191E;
+  border: 2px solid transparent;
+  color: #cfffe5;
+}
+.translator .output-box::placeholder {
+  color: #cfffe5;
+  opacity: 0.5;
+}
+
+

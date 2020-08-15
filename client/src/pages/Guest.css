@@ -138,20 +138,30 @@
   height: 100%;
   overflow: hidden;
   z-index: 10;
-  background: radial-gradient(ellipse at center, #4ea92d 0%, black 100%);
+  opacity: 0.9;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.guest .noise-wrapper.failure {
+  background: radial-gradient(ellipse at center, #4ea92d 0%, black 100%);
+}
+.guest .noise-wrapper.success {
+  background: radial-gradient(ellipse at center, white 0%, black 100%);
+}
+
 .guest .noise-wrapper h1 {
-  color: yellow;
+  color: white;
   font-family: var(--conspiracy-font);
   font-size: 4em;
   text-transform: uppercase;
   font-weight: bold;
   background-color: black;
   padding: 20px;
+}
+.guest .noise-wrapper.failure h1 {
+  color: yellow;
 }
 
 .guest .noise {

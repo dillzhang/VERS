@@ -1,96 +1,58 @@
-.translation_key{
-  height: 440px;
-  max-height: 440px;
-  overflow-y: scroll;
-  max-width: 200px;
-  background-color: black
+.translation_key {
+  color: #96B9A6;
+  border: 2px solid #314948;
+  border-radius: 5px;
+  padding: 10px;
 }
 
-.translation_key::-webkit-scrollbar{
-  background-color: black;
-
+.header_container {
+  display: flex;
 }
-.translation_key::-webkit-scrollbar-thumb {
-  background-color: #3f3f3f ;
-}
-
-.keyBar{
-
-}
-
-.header_container{
-  float:left;
-  display: inline-block;
-  width: 100%;
-}
-
-.header_child{
-  float:left;
-  color:white;
-  background: black;
-  float:left;
-  width: 50%;
-  border-color: black;
+.header_child {
+  flex: 0 1 50%;
   text-align: center;
-  border-bottom-color: grey;
-  border-top-color: grey;
-  font-size: 15px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  font-family: var(--government-font)
+  padding: 4px;
 }
 
-.header_child.english{
-
-}
-
-.entry_container{
-  float:left;
-  display: inline-block;
+.keyBar {
   width: 100%;
 }
-
-.entry_child{
-    float:left;
-    color:white;
-    background: black;
-    text-transform: uppercase;
-    float:left;
-    max-width: 46%;
-    border-color: black;
-    text-align: center;
-    border-bottom-color: grey;
-    border-top-color: grey;
+.entry_container > * {
+  display: inline-block;
+  margin: 4px 0;
+}
+.entry_container .entry_index {
+  width: 30px;
+  text-align: right;
+}
+.entry_child {
+  width: calc(50% - 40px);
+  color: inherit;
+  font-family: monospace;
+  text-transform: uppercase;
+  background-color: #111F23;
+  border-radius: 5px;
+  border: 2px solid #314948;
+  text-align: center;
+  margin: 4px;
+  padding: 8px 4px;
+}
+.entry_child:focus {
+  outline: none;
+  background-color: #102328;
 }
 
-.entry_child.alien {
-  border-right-color: grey;
-
-}
-.entry_child.english {
-  border-left-color: grey;
-
-}
-
-.horizontal_breakline{
+.horizontal_breakline {
   width: 100px;
   align-items: center;
-
-}
-textarea::-webkit-scrollbar{
-  background-color: black;
-
-}
-textarea::-webkit-scrollbar-thumb {
-  background-color: #3f3f3f ;
 }
 
-.addEntry{
-  display:inline-block;
-  background-color: black;
-  border-color: black;
+.addEntry {
+  display: inline-block;
+  background-color: var(--dark-grey);
+  border-color: var(--dark-grey);
   margin-top: 4px;
   padding-right: 1px;
-  color:grey;
-  width:96%;
+  color: grey;
+  width: 96%;
 }
