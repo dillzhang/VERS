@@ -181,6 +181,7 @@ class Host extends Component {
           </div>
         )
       case 10:
+      case 15:
         return(
           <div>
             <button onClick={() => {
@@ -190,11 +191,14 @@ class Host extends Component {
               this.sendFile("thermal_warehouse");
             }}>(2) Send Thermal Warehouse Image (Power Off)</button>
             <button onClick={() => {
+            this.socket.emit("setRoomState", {roomCode: this.room, state: 15});
+          }} className="warning">(3) Flip Switch and Attach File System</button>
+            <button onClick={() => {
               this.sendFile("thermal_warehouse_wires");
-            }}>(3) Send Thermal Warehouse Image (Power On)</button>
+            }}>(4) Send Thermal Warehouse Image (Power On)</button>
             <button onClick={() => {
               this.socket.emit("setRoomState", {roomCode: this.room, state: 20});
-            }} className="warning">(4) Move to Elevator</button>
+            }} className="warning">(5) Move to Elevator</button>
           </div>
         )
       case 20:

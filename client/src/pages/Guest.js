@@ -34,17 +34,18 @@ const chatColors = ["#f94144", "#f3722c", "#f8961e", "#f9c74f", "#90be6d", "#43a
 const STATE_SUCCESS = 70
 const STATE_FAILURE = 80
 
-const stateApplications = [
-  ["secureChat"],  // 0
-  ["timer"],  // 10
-  ["fileSystem"],  //20
-  [],  // 30
-  ["videoStream"],  // 40
-  [],  // 50
-  [],  // 60
-  [],  // 70
-  [],  // 80
-]
+const stateApplications = {
+  0: ["secureChat"],  // 0
+  10: ["timer"],  // 10
+  15: ["fileSystem"],  //15
+  20: [],  // 20
+  30: [],  // 30
+  40: ["videoStream"],  // 40
+  50: [],  // 50
+  60: [],  // 60
+  70: [],  // 70
+  80: [],  // 80
+}
 
 class Guest extends Component {
   // Initialize the state
@@ -77,7 +78,7 @@ class Guest extends Component {
   this.socket.on("roomStateUpdate", ({state}) => {
     this.setState(prev => ({
       state,
-      applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) === -1)],
+      applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state].filter(s => prev.applicationsOpen.indexOf(s) === -1)],
       error: "",
     }));
   });
@@ -259,7 +260,7 @@ class Guest extends Component {
           )
         },
         fileSystem: {
-          requirement: 20,
+          requirement: 15,
           app: (
             <div key="file-system-shortcut" className="shortcut" onClick={() => {this.openApplication("fileSystem")}}>
               <div className="icon">
@@ -399,7 +400,7 @@ class Guest extends Component {
 
     this.setState(prev => ({
       state,
-      applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state / 10].filter(s => prev.applicationsOpen.indexOf(s) === -1)],
+      applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state].filter(s => prev.applicationsOpen.indexOf(s) === -1)],
       error: "",
     }));
 
