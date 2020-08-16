@@ -147,6 +147,7 @@ class Host extends Component {
       case 0:
         return ["Huh, these should be the right coordinates… all I can see around here is this warehouse. It looks abandoned… should I try to go in? Here, I’ll send a picture over."];
       case 10:
+      case 15:
         return ["I’m in the warehouse! It’s dark in here… from what I can see it looks like any ordinary warehouse. Here, I’ll send a picture. I swear to God, you guys, this must be the right place... The past 4 years were not for nothing..."];
       case 20:
         return ["Alright, I’m in the elevator and there are 5 floor buttons, 1 through 5. Which do you think is the right floor?"];
