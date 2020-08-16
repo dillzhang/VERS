@@ -145,25 +145,25 @@ class Host extends Component {
   getLines = (state) => {
     switch (state) {
       case 0:
-        return ["It's dark in here... from what I can see it looks like any ordinary warehouse?"];
+        return ["Huh, these should be the right coordinates… all I can see around here is this warehouse. It looks abandoned… should I try to go in? Here, I’ll send a picture over."];
       case 10:
-        return ["I'm enter the facility. I think I tripped an alarm. The average response time is about an hour. You can use the timer application to keep track."];
+        return ["I’m in the warehouse! It’s dark in here… from what I can see it looks like any ordinary warehouse. Here, I’ll send a picture. I swear to God, you guys, this must be the right place... The past 4 years were not for nothing..."];
       case 20:
-        return ["I've attached the device to hack into their system. I'm going to head toward the elevator. What floor should I head to?"];
+        return ["Alright, I’m in the elevator and there are 5 floor buttons, 1 through 5. Which do you think is the right floor?"];
       case 30:
-        return ["This looks like the right floor, but it looks like they have a lot of security installed. We will need to plot out where these sensors are.", "Feel free to send the map for me to double check!"];
+        return ["I see— (suddenly switch to whispering.) Holy sh.. This looks like the right floor. There’s a bunch of hallways with security cameras. I gotta lay low. Here’s what I’m seeing."];
       case 40:
-        return ["This map looks like what I am seeing here. I've shared my location with you and am streaming a feed of an electrical panel. I am wearing laser reflecting material so don't worry about tripping the laser trip wires. Please guide me!"];
+        return ["(whispering.) This looks good to me. I’m sharing my location and setting up a video stream of the circuit breaker panel so you can monitor the sensors. Can you guide me through the hallways? I’ve got a mirror to deflect lasers, so don’t worry about the laser trip wires."];
       case 50:
-        return ["I'm at the vault door! There is terminal asking for a Guard's ID number."];
+        return ["(out of breath.) Whew, I made it to the vault door! I can’t believe it.", "We’re so close. There’s a keypad lock on the door. The screen is asking for an ID number and passcode. Do you have any idea what I should put in?"];
       case 60:
-        return ["I'm inside the vault."];
+        return ["We’re in! Whoa.", "Holy shit. It’s a secret laboratory? It’s all dark and green in here. There are alien creatures in here in giant glass tubes. Yep, those are definitely alien. Look at this."];
       case 70:
-        return [];
+        return [""];
       case 80:
-        return [];
+        return [""];
       default:
-        return ["Something wrong has occurred"];
+        return ["No lines found"];
     }
   }
 

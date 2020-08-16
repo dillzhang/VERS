@@ -58,7 +58,7 @@ class Guest extends Component {
       state: -1,
 
       username: "",  // Delete after testing
-      password: "$ecretPassw0rd",  // Delete after testing
+      password: "",  // Delete after testing
       unlocking: false,
 
       chatColor: chatColors[Math.floor(Math.random() * chatColors.length)],
