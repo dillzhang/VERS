@@ -11,7 +11,7 @@ const languageTranscript2 =
         	<p><strong>S:</strong> What?</p>
         	<p><strong>I2:</strong> What is the past?</p>
         	<p><strong>S:</strong> The past is what's behind us in time. What we leave behind.</p>
-        	<p><strong>I2:</strong> ∫చϬ ↻ටⱮ∫ ỼⱮ ‰చට∫'Ɱ ⅋ϬచỼՄ𝟠 ∂Ɱ ỼՄ ∫ỼՀϬ. ‰చට∫ ‰Ϭ ហϬට◊Ϭ ⅋ϬచỼՄ𝟠.</p>
+        	<p><strong>I2:</strong> ∫చϬ ↻ටⱮ∫ ỼⱮ ‰చට∫'Ɱ ⅋ϬచỼՄ⑃ ∂Ɱ ỼՄ ∫ỼՀϬ. ‰చට∫ ‰Ϭ ហϬට◊Ϭ ⅋ϬచỼՄ⑃.</p>
         	<p><strong>I1:</strong> վჯ.</p>
         	<p><strong>I2:</strong> How do you know what is in the past?</p>
         	<p><strong>S:</strong> You have a memory of it.</p>
@@ -24,7 +24,7 @@ const languageTranscript2 =
 			<p><strong>I2:</strong> How?</p>
 			<p><strong>S:</strong> Well... your brain is made up of cells called neurons? And memory is stored in neuron firing patterns.</p>
 			<p><strong>S:</strong> I mean, you must remember from biology class, right? Is this some sort of test?</p>
-			<p><strong>I2:</strong> §վ∂ل ⅋لටỼմ ỼⱮ հට𝟠Ϭ ∂↻ վҨ ९ϬហហⱮ ९ටហហϬ𝟠 մϬ∂لվմⱮ, ටմ𝟠 հϬհվل§ ỼⱮ Ɱ∫վلϬ𝟠 Ỽմ մϬ∂لվմ ҨỼلỼմԱ ↻ට∫∫ϬلմⱮ.</p>
+			<p><strong>I2:</strong> §վ∂ل ⅋لටỼմ ỼⱮ հට⑃Ϭ ∂↻ վҨ ९ϬហហⱮ ९ටហហϬ⑃ մϬ∂لվմⱮ, ටմ⑃ հϬհվل§ ỼⱮ Ɱ∫վلϬ⑃ Ỽմ մϬ∂لվմ ҨỼلỼմԱ ↻ට∫∫ϬلմⱮ.</p>
         	<p><strong>I1:</strong> վჯ.</p>
 			<p><strong>I2:</strong> Thank you for your answers.</p>
 			<p><strong>I2:</strong> ҨហටⱮచ చỼհ.</p>
