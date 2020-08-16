@@ -32,7 +32,7 @@ function TranslationKey({ decoder }){
     22 :{alien: "∫", english: ""},
     23 :{alien: "◊", english: ""},
     24 :{alien: "Ɱ", english: ""},
-    25 :{alien: "𝟠", english: ""}
+    25 :{alien: "⑃", english: ""}
   });
 
   const createDict = () => {

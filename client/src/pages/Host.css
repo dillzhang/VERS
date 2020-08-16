@@ -86,6 +86,14 @@
 .host .actions button.warning:hover {
     background: #821100;
 }
+.host .actions button.confirm {
+    background: #2BC125;
+    color: white;
+    border-color: #6DC16A;
+}
+.host .actions button.confirm:hover {
+    background: #268423;
+}
 
 .host .side-bar {
     width: calc(var(--sidebar-width) - 4px);

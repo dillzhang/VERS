@@ -8,8 +8,8 @@ const questions = [
         answer: "Carrigan",
     },
     {
-        question: "Where did you attend high school?",
-        answer: "Meadow High School",
+        question: "What street did you live on as a child?",
+        answer: "Charmaine Lane",
     },
     {
         question: "What is your zip code?",

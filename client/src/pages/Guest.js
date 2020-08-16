@@ -417,6 +417,17 @@ class Guest extends Component {
     }
   }
 
+  handleKeyPress = (e) => {
+    if(e.key === 'Enter') {
+      this.submitLogin();
+    }
+  }
+
+  submitLogin = () => {
+    this.socket.emit("joinRoom", { room: this.room, password: this.state.password });
+    this.setState({ unlocking: true })
+  }
+
   openApplication = (app) => {
     if (this.state.applicationsOpen.slice(-1)[0] === app) {
       return;
@@ -442,12 +453,12 @@ class Guest extends Component {
   renderLockScreen = () => {
     return (
       <div className="app guest">
-        <div className="lock-screen">
+        <div className="lock-screen" onKeyPress={this.handleKeyPress}>
           <div className="user-icon">
             <img src="/desktop/user.svg" alt="User icon"/>
           </div>
           <h1>Guest Login</h1>
-          {this.state.error && <p>{this.state.error}</p>}
+          {this.state.error && <p className="error-message">{this.state.error}</p>}
           <label>
             <input
               type="text"
@@ -473,10 +484,7 @@ class Guest extends Component {
             />
           </label>
           <button
-            onClick={() => {
-              this.socket.emit("joinRoom", { room: this.room, password: this.state.password });
-              this.setState({ unlocking: true })
-            }}
+            onClick={this.submitLogin}
           >
             Sign In
           </button>

@@ -39,11 +39,10 @@ function Elevator(props){
           setText("Something wrong has occurred");
           break;
       }
-    }, 3000);
+    }, 8000);
     console.log('disabled')
     setDisabled(true);
     setText('The elevator is going to floor ' + floor)
-
   }
 
   useEffect(() => {

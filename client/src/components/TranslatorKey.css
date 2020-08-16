@@ -26,10 +26,10 @@
   text-align: right;
 }
 .entry_child {
-  width: calc(50% - 40px);
+  width: calc(50% - 42px);
   color: inherit;
-  font-family: monospace;
-  text-transform: uppercase;
+  font-family: monospace, var(--conspiracy-font);
+  font-size: 0.85em;
   background-color: #111F23;
   border-radius: 5px;
   border: 2px solid #314948;

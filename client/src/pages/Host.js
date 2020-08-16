@@ -248,7 +248,7 @@ class Host extends Component {
           }}>(7) Send Journal</button> 
           <button onClick={() => {
             this.socket.emit("setRoomState", {roomCode: this.room, state: 70});
-          }} className="warning">(8) Complete Mission</button>
+          }} className="confirm">(8) Complete Mission</button>
         </>
       default:
         return "Something wrong has occurred";

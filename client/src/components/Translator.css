@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   font-size: 1.25em;
-  font-family: monospace;
+  font-family: monospace, var(--conspiracy-font);
   background-color: #153135;
   color: #cfffe5;
   width: 720px;
