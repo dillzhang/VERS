@@ -26,6 +26,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "express": "^4.17.1",
+    "react-scripts": "^3.4.3",
     "socket.io": "^2.3.0"
   }
 }
