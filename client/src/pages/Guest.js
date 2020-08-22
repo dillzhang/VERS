@@ -424,6 +424,10 @@ class Guest extends Component {
   }
 
   submitLogin = () => {
+    if (this.state.username.trim().toLowerCase() === "@lex") {
+      this.setState({ error: "Username Taken" });
+      return;
+    }
     this.socket.emit("joinRoom", { room: this.room, password: this.state.password });
     this.setState({ unlocking: true })
   }
@@ -466,7 +470,7 @@ class Guest extends Component {
               value={this.state.username}
               onChange={(e) => {
                 const value = e.target.value;
-                this.setState({ username: value })
+                this.setState({ error: "", username: value })
               }}
               disabled={this.state.unlocking}
             />
@@ -478,7 +482,7 @@ class Guest extends Component {
               value={this.state.password}
               onChange={(e) => {
                 const value = e.target.value;
-                this.setState({ password: value })
+                this.setState({ error: "", password: value })
               }}
               disabled={this.state.unlocking}
             />
