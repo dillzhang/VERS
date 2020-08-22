@@ -283,7 +283,7 @@ class Guest extends Component {
           )
         },
         translator: {
-          requirement: 60,
+          requirement: 65,
           app: (
             <div key="translator-shortcut" className="shortcut" onClick={() => {this.openApplication("translator")}}>
               <div className="icon">
