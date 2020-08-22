@@ -1,102 +1,102 @@
 const { adjectives, animals } = require("./constants");
 
 const rooms = {
-    PRESHOW: {
-        state: 0,
-        password: "$ecretPassw0rd",
+    // PRESHOW: {
+    //     state: 0,
+    //     password: "$ecretPassw0rd",
 
-        messages: [],
+    //     messages: [],
         
-        endTime: -1,
-        timerId: -1,
-    },
+    //     endTime: -1,
+    //     timerId: -1,
+    // },
 
-    P1A: {
-        state: 10,
-        password: "$ecretPassw0rd",
+    // P1A: {
+    //     state: 10,
+    //     password: "$ecretPassw0rd",
 
-        messages: [],
+    //     messages: [],
         
-        endTime: -1,
-        timerId: -1,
-    },
+    //     endTime: -1,
+    //     timerId: -1,
+    // },
 
 
-    P1B: {
-        state: 20,
-        password: "$ecretPassw0rd",
+    // P1B: {
+    //     state: 20,
+    //     password: "$ecretPassw0rd",
 
-        messages: [],
+    //     messages: [],
         
-        endTime: -1,
-        timerId: -1,
-    },
+    //     endTime: -1,
+    //     timerId: -1,
+    // },
 
 
-    P2A: {
-        state: 30,
-        password: "$ecretPassw0rd",
+    // P2A: {
+    //     state: 30,
+    //     password: "$ecretPassw0rd",
 
-        messages: [],
+    //     messages: [],
         
-        endTime: -1,
-        timerId: -1,
-    },
+    //     endTime: -1,
+    //     timerId: -1,
+    // },
 
 
-    P2B: {
-        state: 40,
-        password: "$ecretPassw0rd",
+    // P2B: {
+    //     state: 40,
+    //     password: "$ecretPassw0rd",
 
-        messages: [],
+    //     messages: [],
         
-        endTime: -1,
-        timerId: -1,
-    },
+    //     endTime: -1,
+    //     timerId: -1,
+    // },
 
 
-    P3A: {
-        state: 50,
-        password: "$ecretPassw0rd",
+    // P3A: {
+    //     state: 50,
+    //     password: "$ecretPassw0rd",
 
-        messages: [],
+    //     messages: [],
         
-        endTime: -1,
-        timerId: -1,
-    },
+    //     endTime: -1,
+    //     timerId: -1,
+    // },
 
 
-    P3B: {
-        state: 60,
-        password: "$ecretPassw0rd",
+    // P3B: {
+    //     state: 60,
+    //     password: "$ecretPassw0rd",
 
-        messages: [],
+    //     messages: [],
         
-        endTime: -1,
-        timerId: -1,
-    },
+    //     endTime: -1,
+    //     timerId: -1,
+    // },
 
 
-    SUCCESS: {
-        state: 70,
-        password: "$ecretPassw0rd",
+    // SUCCESS: {
+    //     state: 70,
+    //     password: "$ecretPassw0rd",
 
-        messages: [],
+    //     messages: [],
         
-        endTime: -1,
-        timerId: -1,
-    },
+    //     endTime: -1,
+    //     timerId: -1,
+    // },
 
 
-    FAILURE: {
-        state: 80,
-        password: "$ecretPassw0rd",
+    // FAILURE: {
+    //     state: 80,
+    //     password: "$ecretPassw0rd",
 
-        messages: [],
+    //     messages: [],
         
-        endTime: -1,
-        timerId: -1,
-    },
+    //     endTime: -1,
+    //     timerId: -1,
+    // },
 }
 
 const getRooms = () => {
