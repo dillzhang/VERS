@@ -42,7 +42,8 @@ const stateApplications = {
   30: [],  // 30
   40: ["videoStream"],  // 40
   50: [],  // 50
-  60: ["translator"],  // 60
+  60: [],  // 60
+  65: ["translator"],  // 65
   70: [],  // 70
   80: [],  // 80
 }
@@ -282,7 +283,7 @@ class Guest extends Component {
           )
         },
         translator: {
-          requirement: 60,
+          requirement: 65,
           app: (
             <div key="translator-shortcut" className="shortcut" onClick={() => {this.openApplication("translator")}}>
               <div className="icon">
@@ -424,6 +425,10 @@ class Guest extends Component {
   }
 
   submitLogin = () => {
+    if (this.state.username.trim().toLowerCase() === "@lex") {
+      this.setState({ error: "Username Taken" });
+      return;
+    }
     this.socket.emit("joinRoom", { room: this.room, password: this.state.password });
     this.setState({ unlocking: true })
   }
@@ -466,7 +471,7 @@ class Guest extends Component {
               value={this.state.username}
               onChange={(e) => {
                 const value = e.target.value;
-                this.setState({ username: value })
+                this.setState({ error: "", username: value })
               }}
               disabled={this.state.unlocking}
             />
@@ -478,7 +483,7 @@ class Guest extends Component {
               value={this.state.password}
               onChange={(e) => {
                 const value = e.target.value;
-                this.setState({ password: value })
+                this.setState({ error: "", password: value })
               }}
               disabled={this.state.unlocking}
             />

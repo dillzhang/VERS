@@ -183,8 +183,12 @@
     width: 20px;
     background-color: #1d5ac8;
     box-shadow: 0 0 5px #ffffff inset;
-    transition: top 0.5s, left 0.5s;
+    transition: top 0.3s, left 0.3s;
     border-radius: 50%;
+}
+
+.floor-planner .alex-location.laser {
+    transition: top 0.8s, left 0.8s;
 }
 
 .floor-planner .sensor-type-undeclared {
@@ -372,16 +376,26 @@
     height: 500px;
     width: 210px;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 60px 60px 350px;
+    grid-template-rows: 60px 60px 40px 350px;
     row-gap: 10px;
     column-gap: 10px;
 
     margin: 0 10px;
 }
 
-.floor-planner .d-pad .message {
+.floor-planner .d-pad .mirror-holder {
     grid-column: 1 / -1;
     grid-row: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.floor-planner .d-pad .message {
+    grid-column: 1 / -1;
+    grid-row: 4;
 
     background-color: black;
     padding: 5px;

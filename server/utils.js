@@ -1,3 +1,5 @@
+const { adjectives, animals } = require("./constants");
+
 const rooms = {
     PRESHOW: {
         state: 0,
@@ -119,11 +121,19 @@ const randomString = () => {
     return output;
 }
 
+const generatePassword = () => {
+    const randomInt = Math.floor(99 * Math.random()) + 1;
+    const randomAdj = adjectives[Math.floor(adjectives.length * Math.random())];
+    const randomAnimal = animals[Math.floor(animals.length * Math.random())];
+
+    return `${randomInt} ${randomAdj} ${randomAnimal}`.toLowerCase();
+}
+
 const createNewRoom = () => {
     const id = randomString();
     rooms[id] = {
         state: 0,
-        password: "$ecretPassw0rd",
+        password: generatePassword(),
 
         messages: [],
 
@@ -190,7 +200,7 @@ const startTimer = (roomCode, io) => {
     if (!rooms.hasOwnProperty(roomCode)) {
         return;
     }
-    rooms[roomCode].endTime = Date.now() + 1000 * 60 * 60 - 1;
+    rooms[roomCode].endTime = Date.now() + 1000 * 60 * 50 - 1;
     updateTime(roomCode, io);
 
     setRoomState(roomCode, io, 10);
@@ -205,6 +215,10 @@ const setRoomState = (roomCode, io, state) => {
 const updateTime = (roomCode, io) => {
     clearTimeout(rooms[roomCode].timerId);
     const remaining = rooms[roomCode].endTime - Date.now();
+    if (remaining < 0) {
+        setRoomState(roomCode, io, 80);
+        return;
+    }
     const seconds = "00" + (Math.floor(remaining / 1000) % 60);
     const minutes = "00" + (Math.floor(remaining / (60 * 1000)) % 60);
     const timer =  `${minutes.slice(minutes.length - 2, minutes.length)}:${seconds.slice(seconds.length - 2, seconds.length)}`;

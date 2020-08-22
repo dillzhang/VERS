@@ -154,10 +154,11 @@ class Host extends Component {
       case 30:
         return ["I see— (suddenly switch to whispering.) Holy sh.. This looks like the right floor. There’s a bunch of hallways with security cameras. I gotta lay low. Here’s what I’m seeing."];
       case 40:
-        return ["(whispering.) This looks good to me. I’m sharing my location and setting up a video stream of the circuit breaker panel so you can monitor the sensors. Can you guide me through the hallways? I’ve got a mirror to deflect lasers, so don’t worry about the laser trip wires."];
+        return ["(whispering.) This looks good to me. I’m sharing my location and setting up a video stream of the circuit breaker panel so you can monitor the sensors. Can you guide me through the hallways? Remember I can evade the laser trip wires, but you need to warn me about them. I also won't be able to move as quickly."];
       case 50:
         return ["(out of breath.) Whew, I made it to the vault door! I can’t believe it.", "We’re so close. There’s a keypad lock on the door. The screen is asking for an ID number and passcode. Do you have any idea what I should put in?"];
       case 60:
+      case 65:
         return ["We’re in! Whoa.", "Holy shit. It’s a secret laboratory? It’s all dark and green in here. There are alien creatures in here in giant glass tubes. Yep, those are definitely alien. Look at this."];
       case 70:
         return [""];
@@ -223,6 +224,7 @@ class Host extends Component {
               }}>(1) Send Vault Door Image</button>
               <VaultDoor socket={this.socket} room={this.room} /></>
       case 60:
+      case 65:
         return <>
           <button onClick={() => {
             this.sendFile("tubes");
@@ -247,8 +249,11 @@ class Host extends Component {
             this.sendFile("alienArticle");
           }}>(7) Send Journal</button> 
           <button onClick={() => {
+            this.socket.emit("setRoomState", {roomCode: this.room, state: 65});
+          }} className="warning">(8) Send Translator Application </button>
+          <button onClick={() => {
             this.socket.emit("setRoomState", {roomCode: this.room, state: 70});
-          }} className="confirm">(8) Complete Mission</button>
+          }} className="confirm">(9) Complete Mission</button>
         </>
       default:
         return "Something wrong has occurred";

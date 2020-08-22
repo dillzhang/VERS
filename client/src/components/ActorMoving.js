@@ -260,7 +260,7 @@ class ActorMoving extends Component {
         const dangers = floorplan[this.state.location.ycor + dy][this.state.location.xcor + dx].filter(d => {
             switch (d) {
                 case "Laser Trip Wire":
-                    return false;
+                    return this.state.useMirror ? false : true;
                 case "Motion Sensor":
                     return true;
                 default:
@@ -271,7 +271,7 @@ class ActorMoving extends Component {
         if (dangers.length > 0 && this.warnings < 3) {
             this.warnings += 1;
             this.setState({
-                message: dangers.indexOf("Motion Sensor") > -1 ? "There seems to be a motion sensor on the corner." : "The camera looks like its still recording",
+                message: dangers.indexOf("Motion Sensor") > -1 ? "There seems to be a motion sensor on the corner." : dangers.indexOf("Laser Trip Wire") > -1 ? "Are there any lasers I need to worry about?" : "The camera looks like its still recording",
             });
             return;
         } else if (dangers.length > 0) {
@@ -280,7 +280,9 @@ class ActorMoving extends Component {
                 red: true,
                 message: dangers.indexOf("Motion Sensor") > -1 ? 
                     "We were caught on a motion sensor.  I need to evade the guards. I will reach back to you soon." : 
-                    "We were caught on camera. I need to evade the guards. I will reach back to you soon.",
+                    dangers.indexOf("Laser Trip Wire") > -1 ? 
+                        "We crossed a laser trip wire. I need to evade the guards. I will reach back to you soon." : 
+                        "We were caught on camera. I need to evade the guards. I will reach back to you soon.",
             });
             setTimeout(() => {
                 this.setState(state => ({    
@@ -312,7 +314,7 @@ class ActorMoving extends Component {
                     clearTimeout(this.timeOutId);
                     this.props.socket.emit("setRoomState", {roomCode: this.props.room, state: 50});
                 }
-            }, 500);
+            }, this.state.useMirror ? 750 : 250);
             this.props.socket.emit("locationUpdate", {red: false, location: this.state.location, room: this.props.room});
         });
 
@@ -327,7 +329,7 @@ class ActorMoving extends Component {
             <div className="floor-planner" ref={this.floorPlanRef}>
                 <div className="sensor-container">
                     <div className={`hiding-container ${this.state.red ? "red-alert" : ""}`}>
-                        {!this.state.red && <div className="alex-location" style={style} />}
+                        {!this.state.red && <div className={`alex-location ${this.state.useMirror ? "laser" : ""}`} style={style} />}
                     </div>
                 </div>
                 <div className="floor-plan" />
@@ -335,6 +337,15 @@ class ActorMoving extends Component {
                 <div className="controls d-pad">
                     <div className="message">
                         {this.state.message} (Warnings Given {this.warnings} / 3)
+                    </div> 
+                    <div className="mirror-holder">
+                        <button onClick={
+                            () => {
+                                this.setState(state => ({
+                                    useMirror: !state.useMirror,
+                                }));
+                            }
+                        }>{ this.state.useMirror ? "Move Quickly" : "Slow for Lasers" }</button>
                     </div>
                     {Object.keys(directions).map(dir => {
                         if (!this.state.red && !this.state.moving && this.canMove(dir)) {
