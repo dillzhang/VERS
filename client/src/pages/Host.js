@@ -145,21 +145,21 @@ class Host extends Component {
   getLines = (state) => {
     switch (state) {
       case 0:
-        return ["Huh, these should be the right coordinates… all I can see around here is this warehouse. It looks abandoned… should I try to go in? Here, I’ll send a picture over."];
+        return ["Huh, so… I’ve been walking around for a while, and all I can see is this abandoned warehouse. Should I go in? I’ll send a picture over."];
       case 10:
       case 15:
-        return ["I’m in the warehouse! It’s dark in here… from what I can see it looks like any ordinary warehouse. Here, I’ll send a picture. I swear to God, you guys, this must be the right place... The past 4 years were not for nothing..."];
+        return ["I made it into the warehouse. It’s awful dark in here… and I don’t see anything suspicious?"];
       case 20:
-        return ["Alright, I’m in the elevator and there are 5 floor buttons, 1 through 5. Which do you think is the right floor?"];
+        return ["Alright, I’m in the elevator and there are 5 buttons, ground through sublevel 4. Which should I press?"];
       case 30:
-        return ["I see— (suddenly switch to whispering.) Holy sh.. This looks like the right floor. There’s a bunch of hallways with security cameras. I gotta lay low. Here’s what I’m seeing."];
+        return ["I see— (Suddenly switch to whispering.) Holy sh- this looks like the right floor. There’s a bunch of hallways with security cameras. I gotta lay low. Here’s what I’m seeing."];
       case 40:
-        return ["(whispering.) This looks good to me. I’m sharing my location and setting up a video stream of the circuit breaker panel so you can monitor the sensors. Can you guide me through the hallways? Remember I can evade the laser trip wires, but you need to warn me about them. I also won't be able to move as quickly."];
+        return ["Looks good to me. I’m sharing my location and streaming a video of the circuit breaker panel so you can monitor which sensors are active. Tell me when to go north, east, south, or west! Remember I can evade the laser trip wires, but you need to warn me about them. I also won't be able to move as quickly."];
       case 50:
-        return ["(out of breath.) Whew, I made it to the vault door! I can’t believe it.", "We’re so close. There’s a keypad lock on the door. The screen is asking for an ID number and passcode. Do you have any idea what I should put in?"];
+        return ["Whew, I made it to the vault door! I can’t believe it. We’re so close.", "Ok, the door’s locked with a keyboard. The screen’s asking for an ID number. Any idea what I should put in?"];
       case 60:
       case 65:
-        return ["We’re in! Whoa.", "Holy shit. It’s a secret laboratory? It’s all dark and green in here. There are alien creatures in here in giant glass tubes. Yep, those are definitely alien. Look at this."];
+        return ["We’re in! Whoa.", "It’s a secret laboratory. It’s all dark and green. There are alien creatures in giant glass tubes? Yep, those are definitely alien. Look at this."];
       case 70:
         return [""];
       case 80:
