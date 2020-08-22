@@ -154,7 +154,7 @@ class Host extends Component {
       case 30:
         return ["I see— (suddenly switch to whispering.) Holy sh.. This looks like the right floor. There’s a bunch of hallways with security cameras. I gotta lay low. Here’s what I’m seeing."];
       case 40:
-        return ["(whispering.) This looks good to me. I’m sharing my location and setting up a video stream of the circuit breaker panel so you can monitor the sensors. Can you guide me through the hallways? Remember I've got mirrors in my bag for the laser trip wires. Let me know when I need them."];
+        return ["(whispering.) This looks good to me. I’m sharing my location and setting up a video stream of the circuit breaker panel so you can monitor the sensors. Can you guide me through the hallways? Remember I can evade the laser trip wires, but you need to warn me about them. I also won't be able to move as quickly."];
       case 50:
         return ["(out of breath.) Whew, I made it to the vault door! I can’t believe it.", "We’re so close. There’s a keypad lock on the door. The screen is asking for an ID number and passcode. Do you have any idea what I should put in?"];
       case 60:

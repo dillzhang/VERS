@@ -183,8 +183,12 @@
     width: 20px;
     background-color: #1d5ac8;
     box-shadow: 0 0 5px #ffffff inset;
-    transition: top 0.5s, left 0.5s;
+    transition: top 0.3s, left 0.3s;
     border-radius: 50%;
+}
+
+.floor-planner .alex-location.laser {
+    transition: top 0.8s, left 0.8s;
 }
 
 .floor-planner .sensor-type-undeclared {
