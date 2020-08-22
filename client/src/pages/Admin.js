@@ -60,14 +60,14 @@ class Admin extends Component {
               {room.password}
             </div>
             <div>
-              <Link to={`./actor/${r}`}>
+              <Link to={`/actor/${r}`}>
                 <button variant="raised">
                     Actor
                 </button>
               </Link>
             </div>
             <div>
-              <Link to={`./player/${r}`}>
+              <Link to={`/player/${r}`}>
                 <button variant="raised">
                     Player
                 </button>

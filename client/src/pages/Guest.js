@@ -42,7 +42,8 @@ const stateApplications = {
   30: [],  // 30
   40: ["videoStream"],  // 40
   50: [],  // 50
-  60: ["translator"],  // 60
+  60: [],  // 60
+  65: ["translator"],  // 65
   70: [],  // 70
   80: [],  // 80
 }

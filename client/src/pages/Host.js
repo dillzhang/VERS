@@ -158,6 +158,7 @@ class Host extends Component {
       case 50:
         return ["(out of breath.) Whew, I made it to the vault door! I can’t believe it.", "We’re so close. There’s a keypad lock on the door. The screen is asking for an ID number and passcode. Do you have any idea what I should put in?"];
       case 60:
+      case 65:
         return ["We’re in! Whoa.", "Holy shit. It’s a secret laboratory? It’s all dark and green in here. There are alien creatures in here in giant glass tubes. Yep, those are definitely alien. Look at this."];
       case 70:
         return [""];
@@ -223,6 +224,7 @@ class Host extends Component {
               }}>(1) Send Vault Door Image</button>
               <VaultDoor socket={this.socket} room={this.room} /></>
       case 60:
+      case 65:
         return <>
           <button onClick={() => {
             this.sendFile("tubes");
@@ -247,8 +249,11 @@ class Host extends Component {
             this.sendFile("alienArticle");
           }}>(7) Send Journal</button> 
           <button onClick={() => {
+            this.socket.emit("setRoomState", {roomCode: this.room, state: 65});
+          }} className="warning">(8) Send Translator Application </button>
+          <button onClick={() => {
             this.socket.emit("setRoomState", {roomCode: this.room, state: 70});
-          }} className="confirm">(8) Complete Mission</button>
+          }} className="confirm">(9) Complete Mission</button>
         </>
       default:
         return "Something wrong has occurred";
