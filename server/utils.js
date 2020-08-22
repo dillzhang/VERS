@@ -1,3 +1,5 @@
+const { adjectives, animals } = require("./constants");
+
 const rooms = {
     PRESHOW: {
         state: 0,
@@ -119,11 +121,19 @@ const randomString = () => {
     return output;
 }
 
+const generatePassword = () => {
+    const randomInt = Math.floor(99 * Math.random()) + 1;
+    const randomAdj = adjectives[Math.floor(adjectives.length * Math.random())];
+    const randomAnimal = animals[Math.floor(animals.length * Math.random())];
+
+    return `${randomInt} ${randomAdj} ${randomAnimal}`.toLowerCase();
+}
+
 const createNewRoom = () => {
     const id = randomString();
     rooms[id] = {
         state: 0,
-        password: "$ecretPassw0rd",
+        password: generatePassword(),
 
         messages: [],
 
