@@ -15,6 +15,10 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 // Define API
 app.use("/api", api);
 
+app.get("/background", (req, res) => {
+    res.sendFile(path.join(__dirname+'/desert.jpg'));
+});
+
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{
     res.sendFile(path.join(__dirname+'/../client/build/index.html'));
