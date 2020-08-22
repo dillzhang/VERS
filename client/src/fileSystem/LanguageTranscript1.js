@@ -7,9 +7,9 @@ const languageTranscript1 =
             <h6>2016-01-03</h6>
             <h6>INTERVIEW TRANSCRIPT</h6>
             <h6>SUBJECT ID. #7104</h6>
-            <p><strong>S:</strong> Where am I?</p>
-            <p><strong>I1:</strong> Ƕ∂ỼϬ∫. Quiet!</p>
-            <p><strong>I1:</strong> ⑃վ §վ∂ ჯմվ‰ ‰చට∫ ⱮచϬ'Ɱ Ɱට§ỼմԱ?</p>
+            <p><strong>SUBJECT:</strong> Where am I?</p>
+            <p><strong>INTERVIEWER 1:</strong> Ƕ∂ỼϬ∫. Quiet!</p>
+            <p><strong>INTERVIEWER 2:</strong> ⑃վ §վ∂ ჯմվ‰ ‰చට∫ ⱮచϬ'Ɱ Ɱට§ỼմԱ?</p>
             <p><strong>I2:</strong> ⱮచϬ'Ɱ ටⱮჯỼմԱ ‰చϬلϬ ⱮచϬ ỼⱮ.</p>
             <p><strong>I2:</strong> You are in a government facility. Do not worry, you are safe.</p>
             <p><strong>S:</strong> What year is it? Where is my family?</p>
