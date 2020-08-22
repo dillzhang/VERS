@@ -53,11 +53,11 @@ function Elevator(props){
     <div>
     <grid className="container">
       <grid item className="buttons">
-        <button className='button' onClick={() => load_floor('1')} disabled={isDisabled}>1</button>
-        <button className='button' onClick={() => load_floor('2')} disabled={isDisabled}>2</button>
-        <button className='button' onClick={() => load_floor('3')} disabled={isDisabled}>3</button>
-        <button className='button' onClick={() => load_floor('4')} disabled={isDisabled}>4</button>
-        <button className='button' onClick={() => load_floor('5')} disabled={isDisabled}>5</button>
+        <button className='button' onClick={() => load_floor('1')} disabled={isDisabled}>G</button>
+        <button className='button' onClick={() => load_floor('2')} disabled={isDisabled}>S1</button>
+        <button className='button' onClick={() => load_floor('3')} disabled={isDisabled}>S2</button>
+        <button className='button' onClick={() => load_floor('4')} disabled={isDisabled}>S3</button>
+        <button className='button' onClick={() => load_floor('5')} disabled={isDisabled}>S4</button>
       </grid>
 
       <grid item className="text">
