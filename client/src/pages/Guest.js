@@ -77,12 +77,16 @@ class Guest extends Component {
       this.setState({ currentTime: time });
     }, 499);
 
-  this.socket.on("roomStateUpdate", ({state}) => {
-    this.setState(prev => ({
-      state,
-      applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state].filter(s => prev.applicationsOpen.indexOf(s) === -1)],
-      error: "",
+    this.socket.on("roomStateUpdate", ({state}) => {
+      this.setState(prev => ({
+        state,
+        applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state].filter(s => prev.applicationsOpen.indexOf(s) === -1)],
+        error: "",
     }));
+
+    this.socket.on('reconnect', (_) => {
+      this.socket.emit("rejoinRoom", { room: this.room, password: this.state.password });
+    });
   });
 
   this.socket.on("joinRoomStatus", ({state}) => {

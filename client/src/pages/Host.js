@@ -74,6 +74,10 @@ class Host extends Component {
         lines: [line],
       });
     });
+
+    this.socket.on('reconnect', (_) => {
+      this.socket.emit("rejoinRoom", { room: this.room, password: "HOST" });
+    });
   }
 
   // Fetch the list on first mount
@@ -88,7 +92,7 @@ class Host extends Component {
           <h1>Actor's Panel ({this.room})</h1>
           {this.state.playerUrl && ( 
             <a href={this.state.playerUrl}>
-              Player View
+              {this.state.playerUrl}
             </a>)
           }
         </div>

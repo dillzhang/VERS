@@ -18,6 +18,13 @@ function handleIo(io) {
             }
         });
 
+        socket.on("rejoinRoom", ({ room, password }) => {
+            const roomCode = room;
+            if (verifyRoom(room, password)) {
+                joinRoom(socket, roomCode);
+            }
+        });
+
         socket.on("getTextMessage", ({roomCode}) => {
             socket.emit("messageStatus", getMessages(roomCode));
         });
