@@ -15,14 +15,18 @@
     align-items: center;
 
     border-bottom: 2px solid #404040;
-    background-color: blue;
+    background-color: var(--light-grey);
+
+    font-weight: bold;
 }
 
 .host .header h1 {
     width: 100%;
     font-size: 2em;
-    font-weight: bold;
     text-align: center;
+    color: #65fc31;
+}
+.host .header a {
     color: #65fc31;
 }
 
