@@ -149,6 +149,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .guest .noise-wrapper.failure {
@@ -170,6 +171,13 @@
 .guest .noise-wrapper.failure h1 {
   color: red;
 }
+.guest .noise-wrapper h6 {
+  background-color: rgba(102, 255, 46, 0.5);
+  padding: 8px;
+}
+.guest .noise-wrapper a {
+  color: inherit;
+}
 
 .guest .noise {
   position: absolute;
@@ -181,6 +189,7 @@
   background-size: 320px 320px;
   opacity: 0.35;
   animation: noise 1s steps(8, end) infinite both;
+  pointer-events: none;
 }
 
 @keyframes noise {
