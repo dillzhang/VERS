@@ -92,6 +92,7 @@ class Guest extends Component {
   this.socket.on("joinRoomStatus", ({state}) => {
     // Chat Short Cuts
     this.chatFiles = {
+      backpack: <div><p>Backpack</p><ul><li>Thermal Camera</li><li>Mirror</li><li>Multi-tool</li></ul></div>,
       warehouse: <img onClick={() => {this.openApplication("warehouse")}} src="/warehouse.jpg" alt="Warehouse exterior"/>,
       floor_plan_4: <div className="file"><p><img className="icon" src="/desktop/file.svg" alt="File icon"/> floor4.bp</p></div>,
 
