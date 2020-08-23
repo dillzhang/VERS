@@ -15,23 +15,23 @@ function Elevator(props){
       console.log('abled')
       setDisabled(false); // count is 0 here
       switch(floor) {
-        case '1':
+        case 'G':
           setText("Looks like this is where we came in from. Let's see if any of the other floors look suspicious");
           break;
 
-        case '2':
+        case 'S1':
           setText("Hmm, I can't see much but looks like a bunch of empty tables. Let's try an other floor.");
           break;
 
-        case '3':
+        case 'S2':
           setText("Looks empty, some of the walls are torn down but I don't see anything here. Let's try a different floor.");
           break;
 
-        case '4':
+        case 'S3':
           props.successCallback();
           break;
 
-        case '5':
+        case 'S4':
           setText("Nothing here but dust. Maybe there's something on another one of the floors.");
           break;
 
@@ -53,11 +53,11 @@ function Elevator(props){
     <div>
     <grid className="container">
       <grid item className="buttons">
-        <button className='button' onClick={() => load_floor('1')} disabled={isDisabled}>G</button>
-        <button className='button' onClick={() => load_floor('2')} disabled={isDisabled}>S1</button>
-        <button className='button' onClick={() => load_floor('3')} disabled={isDisabled}>S2</button>
-        <button className='button' onClick={() => load_floor('4')} disabled={isDisabled}>S3</button>
-        <button className='button' onClick={() => load_floor('5')} disabled={isDisabled}>S4</button>
+        <button className='button' onClick={() => load_floor('G')} disabled={isDisabled}>G</button>
+        <button className='button' onClick={() => load_floor('S1')} disabled={isDisabled}>S1</button>
+        <button className='button' onClick={() => load_floor('S2')} disabled={isDisabled}>S2</button>
+        <button className='button' onClick={() => load_floor('S3')} disabled={isDisabled}>S3</button>
+        <button className='button' onClick={() => load_floor('S4')} disabled={isDisabled}>S4</button>
       </grid>
 
       <grid item className="text">
