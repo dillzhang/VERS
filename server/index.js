@@ -15,6 +15,12 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 // Define API
 app.use("/api", api);
 
+const { createNewRoom } = require("./utils");
+app.get("/newroom", (req, res) => {
+    const room = createNewRoom();
+    res.redirect(`/actor/${room.roomCode}`);
+});
+
 app.get("/background", (req, res) => {
     res.sendFile(path.join(__dirname+'/desert.jpg'));
 });

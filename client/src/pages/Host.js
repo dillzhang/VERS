@@ -14,8 +14,10 @@ import warehouse_2thermal_preview from "../warehouse_images/warehouse-2thermal-p
 import warehouse_3powered_preview from "../warehouse_images/warehouse-3powered-preview.jpg";
 
 const baseURL = new URL(window.location.href).host;
+const baseProto = new URL(window.location.href).protocol;
 
 const chatFiles = {
+  backpack: <div><p>Backpack</p><ul><li>Thermal Camera</li><li>Mirror</li><li>Multi-tool</li></ul></div>,
   warehouse: <img src="/warehouse.jpg" alt="Warehouse exterior"/>,
   floor_plan_4: <div className="file"><strong>Floor Plan 4.bp</strong></div>,
 
@@ -53,9 +55,11 @@ class Host extends Component {
         chatColor: "#65fc31"
     }
 
-    this.socket.on("joinRoomStatus", ({ state }) => {
+    this.socket.on("joinRoomStatus", ({ state, password }) => {
+        console.log("verified");
         this.setState({ 
           state,
+          playerUrl: `${baseProto}//${baseURL}/player/${this.props.match.params.code}/${password}`,
           lines: this.getLines(state),
         });
     });
@@ -72,6 +76,10 @@ class Host extends Component {
         lines: [line],
       });
     });
+
+    this.socket.on('reconnect', (_) => {
+      this.socket.emit("rejoinRoom", { room: this.room, password: "HOST" });
+    });
   }
 
   // Fetch the list on first mount
@@ -84,6 +92,11 @@ class Host extends Component {
       <div className="app host">
         <div className="header">
           <h1>Actor's Panel ({this.room})</h1>
+          {this.state.playerUrl && ( 
+            <a href={this.state.playerUrl}>
+              {this.state.playerUrl}
+            </a>)
+          }
         </div>
         <div className="body">
           <div className="main">
@@ -175,11 +188,14 @@ class Host extends Component {
         return(
           <div>
             <button onClick={() => {
+              this.sendFile("backpack");
+            }}>(1) Send Backpack Content</button>
+            <button onClick={() => {
               this.sendFile("warehouse");
-            }}>(1) Send Warehouse Image</button>
+            }}>(2) Send Warehouse Image</button>
             <button onClick={() => {
               this.socket.emit("start-time", {room: this.room});
-            }} className="warning">(2) Start Timer</button>
+            }} className="warning">(3) Start Timer</button>
           </div>
         )
       case 10:

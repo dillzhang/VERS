@@ -54,13 +54,14 @@ class Guest extends Component {
     super(props);
     this.socket = SocketIO(baseURL);
     this.room = this.props.match.params.code;
+    this.password = this.props.match.params.password;
     this.homeRef = React.createRef();
 
     this.state = {
       state: -1,
 
       username: "",  // Delete after testing
-      password: "",  // Delete after testing
+      password: this.password,  // Delete after testing
       unlocking: false,
 
       chatColor: chatColors[Math.floor(Math.random() * chatColors.length)],
@@ -76,17 +77,22 @@ class Guest extends Component {
       this.setState({ currentTime: time });
     }, 499);
 
-  this.socket.on("roomStateUpdate", ({state}) => {
-    this.setState(prev => ({
-      state,
-      applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state].filter(s => prev.applicationsOpen.indexOf(s) === -1)],
-      error: "",
+    this.socket.on("roomStateUpdate", ({state}) => {
+      this.setState(prev => ({
+        state,
+        applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state].filter(s => prev.applicationsOpen.indexOf(s) === -1)],
+        error: "",
     }));
+
+    this.socket.on('reconnect', (_) => {
+      this.socket.emit("rejoinRoom", { room: this.room, password: this.state.password });
+    });
   });
 
   this.socket.on("joinRoomStatus", ({state}) => {
     // Chat Short Cuts
     this.chatFiles = {
+      backpack: <div><p>Backpack</p><ul><li>Thermal Camera</li><li>Mirror</li><li>Multi-tool</li></ul></div>,
       warehouse: <img onClick={() => {this.openApplication("warehouse")}} src="/warehouse.jpg" alt="Warehouse exterior"/>,
       floor_plan_4: <div className="file"><p><img className="icon" src="/desktop/file.svg" alt="File icon"/> floor4.bp</p></div>,
 
@@ -286,7 +292,7 @@ class Guest extends Component {
           )
         },
         translator: {
-          requirement: 65,
+          requirement: 60,
           app: (
             <div key="translator-shortcut" className="shortcut" onClick={() => {this.openApplication("translator")}}>
               <div className="icon">
@@ -479,6 +485,7 @@ class Guest extends Component {
               disabled={this.state.unlocking}
             />
           </label>
+          {!this.password && (
           <label>
             <input
               type="password"
@@ -490,7 +497,7 @@ class Guest extends Component {
               }}
               disabled={this.state.unlocking}
             />
-          </label>
+          </label>)}
           <button
             onClick={this.submitLogin}
           >
