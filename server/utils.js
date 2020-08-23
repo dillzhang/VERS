@@ -1,102 +1,102 @@
 const { adjectives, animals } = require("./constants");
 
 const rooms = {
-    // PRESHOW: {
-    //     state: 0,
-    //     password: "$ecretPassw0rd",
+    PRESHOW: {
+        state: 0,
+        password: "$ecretPassw0rd",
 
-    //     messages: [],
+        messages: [],
         
-    //     endTime: -1,
-    //     timerId: -1,
-    // },
+        endTime: -1,
+        timerId: -1,
+    },
 
-    // P1A: {
-    //     state: 10,
-    //     password: "$ecretPassw0rd",
+    P1A: {
+        state: 10,
+        password: "$ecretPassw0rd",
 
-    //     messages: [],
+        messages: [],
         
-    //     endTime: -1,
-    //     timerId: -1,
-    // },
+        endTime: -1,
+        timerId: -1,
+    },
 
 
-    // P1B: {
-    //     state: 20,
-    //     password: "$ecretPassw0rd",
+    P1B: {
+        state: 20,
+        password: "$ecretPassw0rd",
 
-    //     messages: [],
+        messages: [],
         
-    //     endTime: -1,
-    //     timerId: -1,
-    // },
+        endTime: -1,
+        timerId: -1,
+    },
 
 
-    // P2A: {
-    //     state: 30,
-    //     password: "$ecretPassw0rd",
+    P2A: {
+        state: 30,
+        password: "$ecretPassw0rd",
 
-    //     messages: [],
+        messages: [],
         
-    //     endTime: -1,
-    //     timerId: -1,
-    // },
+        endTime: -1,
+        timerId: -1,
+    },
 
 
-    // P2B: {
-    //     state: 40,
-    //     password: "$ecretPassw0rd",
+    P2B: {
+        state: 40,
+        password: "$ecretPassw0rd",
 
-    //     messages: [],
+        messages: [],
         
-    //     endTime: -1,
-    //     timerId: -1,
-    // },
+        endTime: -1,
+        timerId: -1,
+    },
 
 
-    // P3A: {
-    //     state: 50,
-    //     password: "$ecretPassw0rd",
+    P3A: {
+        state: 50,
+        password: "$ecretPassw0rd",
 
-    //     messages: [],
+        messages: [],
         
-    //     endTime: -1,
-    //     timerId: -1,
-    // },
+        endTime: -1,
+        timerId: -1,
+    },
 
 
-    // P3B: {
-    //     state: 60,
-    //     password: "$ecretPassw0rd",
+    P3B: {
+        state: 60,
+        password: "$ecretPassw0rd",
 
-    //     messages: [],
+        messages: [],
         
-    //     endTime: -1,
-    //     timerId: -1,
-    // },
+        endTime: -1,
+        timerId: -1,
+    },
 
 
-    // SUCCESS: {
-    //     state: 70,
-    //     password: "$ecretPassw0rd",
+    SUCCESS: {
+        state: 70,
+        password: "$ecretPassw0rd",
 
-    //     messages: [],
+        messages: [],
         
-    //     endTime: -1,
-    //     timerId: -1,
-    // },
+        endTime: -1,
+        timerId: -1,
+    },
 
 
-    // FAILURE: {
-    //     state: 80,
-    //     password: "$ecretPassw0rd",
+    FAILURE: {
+        state: 80,
+        password: "$ecretPassw0rd",
 
-    //     messages: [],
+        messages: [],
         
-    //     endTime: -1,
-    //     timerId: -1,
-    // },
+        endTime: -1,
+        timerId: -1,
+    },
 }
 
 const getRooms = () => {
@@ -109,7 +109,7 @@ const getRooms = () => {
 }
 
 const verifyRoom = (roomCode, password) => {
-    return rooms.hasOwnProperty(roomCode) && rooms[roomCode].password == password;
+    return rooms.hasOwnProperty(roomCode) && (rooms[roomCode].password == password || password == "HOST");
 }
 
 const randomString = () => {
@@ -185,7 +185,7 @@ const newTextMessage = (io, socket, roomCode, content, sender, color) => {
 const joinRoom = (socket, roomCode) => {
     if (rooms.hasOwnProperty(roomCode)) {
         socket.join(roomCode, () => {
-            socket.emit("joinRoomStatus", { state: rooms[roomCode].state });
+            socket.emit("joinRoomStatus", { state: rooms[roomCode].state, password: rooms[roomCode].password });
             socket.emit("messageStatus", rooms[roomCode].messages);
             setTimeout(() => {
                 socket.emit("roomStateUpdate", { state: rooms[roomCode].state });
@@ -207,7 +207,6 @@ const startTimer = (roomCode, io) => {
 }
 
 const setRoomState = (roomCode, io, state) => {
-    console.log(roomCode);
     rooms[roomCode].state = state;
     io.to(roomCode).emit("roomStateUpdate", { state });
 }
@@ -233,9 +232,7 @@ const checkSensors = (roomCode, io, sender, color, sensors) => {
     let empty = 0;
     if (correctSensors.map((value, index) => {
         if (sensors[index] > -1) {
-            console.log(sensors[index])
             sensorCount[sensors[index]] += 1;
-            console.log(sensorCount);
         } else {
             empty += 1;
         }

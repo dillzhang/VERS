@@ -14,10 +14,11 @@ class App extends Component {
       <div>
         <Switch>
           <Route exact path='/' component={Home}/>
-          <Route exact path='/admin' component={Admin}/>
           <Route path='/admin/:password' component={Admin}/>
+          <Route exact path='/admin' component={Admin}/>
           <Route path='/actor/:code' component={Host}/>
-          <Route path='/player/:code' component={Guest}/>
+          <Route path='/player/:code/:password' component={Guest}/>
+          <Route exact path='/player/:code' component={Guest}/>
         </Switch>
       </div>
     )

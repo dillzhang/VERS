@@ -54,13 +54,14 @@ class Guest extends Component {
     super(props);
     this.socket = SocketIO(baseURL);
     this.room = this.props.match.params.code;
+    this.password = this.props.match.params.password;
     this.homeRef = React.createRef();
 
     this.state = {
       state: -1,
 
       username: "",  // Delete after testing
-      password: "",  // Delete after testing
+      password: this.password,  // Delete after testing
       unlocking: false,
 
       chatColor: chatColors[Math.floor(Math.random() * chatColors.length)],
@@ -283,7 +284,7 @@ class Guest extends Component {
           )
         },
         translator: {
-          requirement: 65,
+          requirement: 60,
           app: (
             <div key="translator-shortcut" className="shortcut" onClick={() => {this.openApplication("translator")}}>
               <div className="icon">
@@ -476,6 +477,7 @@ class Guest extends Component {
               disabled={this.state.unlocking}
             />
           </label>
+          {!this.password && (
           <label>
             <input
               type="password"
@@ -487,7 +489,7 @@ class Guest extends Component {
               }}
               disabled={this.state.unlocking}
             />
-          </label>
+          </label>)}
           <button
             onClick={this.submitLogin}
           >

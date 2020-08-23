@@ -53,9 +53,11 @@ class Host extends Component {
         chatColor: "#65fc31"
     }
 
-    this.socket.on("joinRoomStatus", ({ state }) => {
+    this.socket.on("joinRoomStatus", ({ state, password }) => {
+        console.log("verified");
         this.setState({ 
           state,
+          playerUrl: `${baseURL}/player/${this.props.match.params.code}/${password}`,
           lines: this.getLines(state),
         });
     });
@@ -84,6 +86,11 @@ class Host extends Component {
       <div className="app host">
         <div className="header">
           <h1>Actor's Panel ({this.room})</h1>
+          {this.state.playerUrl && ( 
+            <a href={this.state.playerUrl}>
+              Player View
+            </a>)
+          }
         </div>
         <div className="body">
           <div className="main">

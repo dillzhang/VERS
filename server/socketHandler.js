@@ -11,7 +11,7 @@ function handleIo(io) {
     
         socket.on("joinRoom", ({ room, password }) => {
             const roomCode = room;
-            if (password == "HOST" || verifyRoom(room, password)) {
+            if (verifyRoom(room, password)) {
                 joinRoom(socket, roomCode);
             } else {
                 socket.emit("errorMessage", { message: "Incorrect Password"});
