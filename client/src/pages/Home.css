@@ -1,0 +1,33 @@
+.home {
+	width: 100vw;
+	height: 100vh;
+	background: var(--dark-grey);
+	display: flex;
+}
+.home .content {
+	margin: auto;
+	color: white;
+	text-align: center;
+	font-family: var(--conspiracy-font);
+	text-transform: uppercase;
+}
+.home a {
+	color: #66FF2E;
+}
+.home h1 {
+	font-size: 2em;
+}
+.home h3 {
+	font-size: 1.25em;
+}
+.home h1, .home h3, .home h6, .home p {
+	font-weight: bold;
+	margin: 12px;
+}
+.home p {
+	background: black;
+	padding: 12px;
+}
+.home .logo {
+	margin: 24px;
+}
