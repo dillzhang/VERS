@@ -149,6 +149,46 @@ class FloorPlan extends Component {
         }
     }
 
+    handleSensorClick = (e) => {
+        if (!this.state.interactivity) {
+            return;
+        }
+        const fpX = this.floorPlanRef.current.getBoundingClientRect().x;
+        const fpY = this.floorPlanRef.current.getBoundingClientRect().y;
+        const clickX = e.pageX;
+        const clickY = e.pageY;
+        const locX = clickX - fpX;
+        const locY = clickY - fpY;
+
+        const best = sensorLocations.map((location, index) => {
+            return [(locX + 15 - location[0]) ** 2 + (locY + 15 - location[1]) ** 2, index];
+        }).filter(
+            distance => distance[0] < 900
+        ).sort(
+            (a, b) => a[0] - b[0]
+        );
+
+        if (best.length > 0) {
+            const dragging = this.state.sensors[best[0][1]];
+            const sensors = this.state.sensors.map((v, i) => i === best[0][1] ? -1 : v);
+            const near = this.state.near.map((v, i) => i === best[0][1] ? true : v);
+
+            this.prevX = e.nativeEvent.pageX;
+            this.prevY = e.nativeEvent.pageY;
+            this.setState(state => ({
+                dragging,
+                sensors,
+                near,
+                dragX: sensorLocations[best[0][1]][0] - 15,
+                dragY: sensorLocations[best[0][1]][1] - 15,
+            }), () => {
+
+                this.props.socket.emit("sensorUpdate", { sensors: this.state.sensors, room: this.props.roomCode });
+            });
+        }
+
+    }
+
     componentDidMount() {
         document.addEventListener("mousemove", this.handleMouseMove);
         document.addEventListener("mouseup", this.handleMouseUp);
@@ -156,7 +196,7 @@ class FloorPlan extends Component {
 
     render() {
         return (
-            <div className="floor-planner" ref={this.floorPlanRef}>
+            <div className="floor-planner" ref={this.floorPlanRef} onMouseDown={this.handleSensorClick}>
                 <div className="sensor-container">
                     <div className={`hiding-container ${this.state.red ? "red-alert" : ""}`}>
                         {this.state.part2 ? 
