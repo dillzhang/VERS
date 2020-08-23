@@ -233,27 +233,36 @@ class Host extends Component {
             this.sendFile("brain");
           }}>(2) Send Brain</button>
           <button onClick={() => {
-            this.sendFile("subject1");
-            this.sendFile("subject2");
-          }}>(3) Send Subjects</button>
-          <button onClick={() => {
             this.sendFile("computer");
-          }}>(4) Send Computer</button>
+          }}>(3) Send Computer</button>
           <button onClick={() => {
             this.sendFile("languageTranscript1");
-          }}>(5) Send Transcript 1</button>
-          <button onClick={() => {
-            this.sendFile("languageTranscript2");
-          }}>(6) Send Transcript 2</button>
+          }}>(4) Send Transcript 1</button>
           <button onClick={() => {
             this.sendFile("alienArticle");
-          }}>(7) Send Journal</button> 
+          }}>(5) Send Journal</button> 
           <button onClick={() => {
             this.socket.emit("setRoomState", {roomCode: this.room, state: 65});
-          }} className="warning">(8) Send Translator Application </button>
+          }}>(6) Send Translator Application </button>
+          <button onClick={() => {
+            this.sendFile("languageTranscript2");
+          }}>(7) Send Transcript 2</button>
+          <button onClick={() => {
+            this.sendFile("cameras");
+          }}>(8) Send Cameras</button>
+          <button onClick={() => {
+            this.sendFile("powder");
+          }}>(9) Send Powder</button>
+          <button onClick={() => {
+            this.sendFile("subject1");
+            this.sendFile("subject2");
+          }}>(10) Send Subjects</button>
+          <button onClick={() => {
+            this.sendFile("baby");
+          }}>(11) Send Baby</button>
           <button onClick={() => {
             this.socket.emit("setRoomState", {roomCode: this.room, state: 70});
-          }} className="confirm">(9) Complete Mission</button>
+          }} className="confirm">(12) Complete Mission</button>
         </>
       default:
         return "Something wrong has occurred";

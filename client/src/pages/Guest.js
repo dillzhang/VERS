@@ -101,6 +101,9 @@ class Guest extends Component {
 
       tubes: <img onClick={() => {this.openApplication("tubes")}} src="/vault/tubes.jpg" alt="Tubes"/>,
       brain: <img onClick={() => {this.openApplication("brain")}} src="/vault/brain.jpg" alt="Brain"/>,
+      baby: <img onClick={() => {this.openApplication("baby")}} src="/vault/baby.jpg" alt="Baby"/>,
+      cameras: <img onClick={() => {this.openApplication("cameras")}} src="/vault/cameras.jpg" alt="Cameras"/>,
+      powder: <img onClick={() => {this.openApplication("powder")}} src="/vault/powder.jpg" alt="Powder"/>,
       subject1: <img onClick={() => {this.openApplication("subject1")}} src="/vault/subject1.jpg" alt="Subject"/>,
       subject2: <img onClick={() => {this.openApplication("subject2")}} src="/vault/subject2.jpg" alt="Subject"/>,
       computer: <img onClick={() => {this.openApplication("computer")}} src="/vault/computer.jpg" alt="Computer"/>,
