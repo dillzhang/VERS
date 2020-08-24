@@ -40,6 +40,10 @@
     line-height: 1.25em;
 }
 
+ul {
+    list-style: disc inside;
+}
+
 
 /* special types of documents */
 .guard {
