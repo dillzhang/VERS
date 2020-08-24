@@ -138,29 +138,53 @@
 }
 
 .guest .error-pop-up {
-  width: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 440px;
+  height: 230px;
+  line-height: 1.15em;
+  background-color: #EFEFEF;
+  color: var(--dark-grey);
+  padding: 12px 24px;
+}
 
-  color: var(--off-white);
+.guest .error-pop-up .warning-symbol {
+  font-size: 3em;
+  float: left;
+  margin: 24px 0;
 }
 
 .error-pop-up h2 {
   font-size: 1.25em;
-  margin-top: 20px;
-  color: #c54d4a;
+  font-weight: bold;
+  color: #B2223D;
+  margin: 14px 0;
 }
 
-.error-pop-up p {
-  margin: 20px 20px;
-  font-size: 0.9em;
+.error-pop-up .details {
+  margin: 8px 0;
+}
+
+.error-pop-up h2, .error-pop-up .details {
+  margin-left: 72px;
+}
+
+.error-pop-up .details p {
+  margin: 8px 0;
+}
+.error-pop-up .details ul {
+  list-style-type: none;
+  margin: 12px 0;
+  font-weight: bold;
+  text-align: center;
+}
+.error-pop-up .details li {
+  margin: 4px 0;
 }
 
 .error-pop-up button {
-  padding: 5px 10px;
-  margin: 20px 20px;
-  align-self: flex-end;
+  padding: 4px 12px;
+  margin: 8px 4px;
+  font-family: var(--desktop-font);
+  float: right;
 }
 
 /* https://codepen.io/anatravas/pen/vyOwOZ */

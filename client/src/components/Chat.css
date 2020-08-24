@@ -75,6 +75,18 @@
     display: inline-block;
     position: relative;
 }
+.chat-messages .message-bubble, .chat-messages .backpack {
+    background-color: #FEF49C;
+    color: var(--dark-grey);
+    font-family: var(--conspiracy-font), monospace;
+    padding: 16px;
+    border-radius: 8px;
+    display: inline-block;
+    position: relative;
+}
+.chat-messages .message-bubble, .chat-messages .backpack p {
+    font-weight: bold;
+}
 .chat-messages .message-bubble-image {
     padding: 0;
     display: inline-block;

@@ -17,7 +17,7 @@ const baseURL = new URL(window.location.href).host;
 const baseProto = new URL(window.location.href).protocol;
 
 const chatFiles = {
-  backpack: <div><p>Backpack</p><ul><li>Thermal Camera</li><li>Mirror</li><li>Multi-tool</li></ul></div>,
+  backpack: <div className="backpack"><p>Backpack</p><ul><li>Thermal Camera</li><li>Mirror</li><li>Multi-tool</li></ul></div>,
   warehouse: <img src="/warehouse.jpg" alt="Warehouse exterior"/>,
   floor_plan_4: <div className="file"><strong>Floor Plan 4.bp</strong></div>,
 
@@ -189,7 +189,7 @@ class Host extends Component {
           <div>
             <button onClick={() => {
               this.sendFile("backpack");
-            }}>(1) Send Backpack Content</button>
+            }}>(1) Send Backpack Contents</button>
             <button onClick={() => {
               this.sendFile("warehouse");
             }}>(2) Send Warehouse Image</button>

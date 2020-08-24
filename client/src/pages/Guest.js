@@ -93,7 +93,7 @@ class Guest extends Component {
   this.socket.on("joinRoomStatus", ({state}) => {
     // Chat Short Cuts
     this.chatFiles = {
-      backpack: <div><p>Backpack</p><ul><li>Thermal Camera</li><li>Mirror</li><li>Multi-tool</li></ul></div>,
+      backpack: <div className="backpack"><p>Backpack</p><ul><li>Thermal Camera</li><li>Mirror</li><li>Multi-tool</li></ul></div>,
       warehouse: <img onClick={() => {this.openApplication("warehouse")}} src="/warehouse.jpg" alt="Warehouse exterior"/>,
       floor_plan_4: <div className="file"><p><img className="icon" src="/desktop/file.svg" alt="File icon"/> floor4.bp</p></div>,
 
@@ -410,12 +410,20 @@ class Guest extends Component {
 
       // Error Pop ups
       tooMuchRamPopUp: {
-        name: "System Error",
+        name: "System Warning",
         html: (
           <div className="error-pop-up">
-            <h2>Memory Limits Exceeded!</h2>
-            <p>Applications, like Video Streamer and Floor Planner, require a lot system memory. Close some applications and try again.</p>
-            <button onClick={() => {this.closeApplication("tooMuchRamPopUp")}}>Okay</button>
+            <h1 className="warning-symbol">⚠️</h1>
+            <h2>Your computer is low on memory.</h2>
+            <div className="details">
+            <p>Programs using significant energy:</p>
+            <ul>
+              <li>Video Streamer</li>
+              <li>Floor Planner</li>
+            </ul>
+            <p>To restore enough memory for programs to work correctly, close one of the above applications and try again.</p>
+            <button onClick={() => {this.closeApplication("tooMuchRamPopUp")}}>OK</button>
+            </div>
           </div>
         )
       }
