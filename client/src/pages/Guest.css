@@ -137,6 +137,32 @@
     text-align: center;
 }
 
+.guest .error-pop-up {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: var(--off-white);
+}
+
+.error-pop-up h2 {
+  font-size: 1.25em;
+  margin-top: 20px;
+  color: #c54d4a;
+}
+
+.error-pop-up p {
+  margin: 20px 20px;
+  font-size: 0.9em;
+}
+
+.error-pop-up button {
+  padding: 5px 10px;
+  margin: 20px 20px;
+  align-self: flex-end;
+}
+
 /* https://codepen.io/anatravas/pen/vyOwOZ */
 
 .guest .noise-wrapper {

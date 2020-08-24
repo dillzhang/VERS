@@ -68,7 +68,7 @@ class Guest extends Component {
 
       currentTime: "00:00:00",
       applicationsOpen: [],
-    }
+    };
 
     // Clock
     setInterval(() => {
@@ -80,9 +80,10 @@ class Guest extends Component {
     this.socket.on("roomStateUpdate", ({state}) => {
       this.setState(prev => ({
         state,
-        applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state].filter(s => prev.applicationsOpen.indexOf(s) === -1)],
         error: "",
-    }));
+    }), () => {
+      stateApplications[state].forEach(app => {this.openApplication(app)});
+    });
 
     this.socket.on('reconnect', (_) => {
       this.socket.emit("rejoinRoom", { room: this.room, password: this.state.password });
@@ -141,23 +142,23 @@ class Guest extends Component {
         files: {
           floorPlan1: {
             requirement: 100,
-            display: "floor1.bp",
+            display: "ground.bp",
           },
           floorPlan2: {
             requirement: 100,
-            display: "floor2.bp",
+            display: "subfloor1.bp",
           },
           floorPlan3: {
             requirement: 100,
-            display: "floor3.bp",
+            display: "subfloor2.bp",
           },
           floorPlan4: {
             requirement: 30,
-            display: "floor4.bp",
+            display: "subfloor3.bp",
           },
           floorPlan5: {
             requirement: 100,
-            display: "floor5.bp",
+            display: "subfloor4.bp",
           },
         },
       },
@@ -379,7 +380,7 @@ class Guest extends Component {
         html: directory,
       },
       floorPlan4: {
-        name: "Floor Planner - Floor 4 Plan",
+        name: "Floor Planner - Subfloor 3 Plan",
         html: <FloorPlan level={state} socket={this.socket} roomCode={this.room} sender={this.state.username} color={this.state.chatColor} />,
       },
       securityManual: {
@@ -406,13 +407,26 @@ class Guest extends Component {
         name: "Document Viewer - journal_20151113",
         html: alienArticle,
       },
+
+      // Error Pop ups
+      tooMuchRamPopUp: {
+        name: "System Error",
+        html: (
+          <div className="error-pop-up">
+            <h2>Memory Limits Exceeded!</h2>
+            <p>Applications, like Video Streamer and Floor Planner, require a lot system memory. Close some applications and try again.</p>
+            <button onClick={() => {this.closeApplication("tooMuchRamPopUp")}}>Okay</button>
+          </div>
+        )
+      }
     }
 
     this.setState(prev => ({
       state,
-      applicationsOpen: [...prev.applicationsOpen, ...stateApplications[state].filter(s => prev.applicationsOpen.indexOf(s) === -1)],
       error: "",
-    }));
+    }), () => {
+      stateApplications[state].forEach(app => {this.openApplication(app)});
+    });
 
     });
 
@@ -446,6 +460,17 @@ class Guest extends Component {
     if (this.state.applicationsOpen.slice(-1)[0] === app) {
       return;
     }
+
+    if (app === "floorPlan4" && this.state.applicationsOpen.indexOf("videoStream") > -1) {
+      this.openApplication("tooMuchRamPopUp");
+      return;
+    }
+
+    if (app === "videoStream" && this.state.applicationsOpen.indexOf("floorPlan4") > -1) {
+      this.openApplication("tooMuchRamPopUp");
+      return;
+    }
+
     this.setState(state => ({
       applicationsOpen: [...state.applicationsOpen.filter(a => a !== app), app],
     }));
