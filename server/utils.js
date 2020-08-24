@@ -200,7 +200,7 @@ const startTimer = (roomCode, io) => {
     if (!rooms.hasOwnProperty(roomCode)) {
         return;
     }
-    rooms[roomCode].endTime = Date.now() + 1000 * 60 * 50 - 1;
+    rooms[roomCode].endTime = Date.now() + 1000 * 60 * 45 - 1;
     updateTime(roomCode, io);
 
     setRoomState(roomCode, io, 10);
@@ -216,6 +216,9 @@ const updateTime = (roomCode, io) => {
     const remaining = rooms[roomCode].endTime - Date.now();
     if (remaining < 0) {
         setRoomState(roomCode, io, 80);
+        return;
+    }
+    if (rooms[roomCode].state >= 70) {
         return;
     }
     const seconds = "00" + (Math.floor(remaining / 1000) % 60);
