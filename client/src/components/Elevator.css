@@ -1,18 +1,14 @@
-.button{
+.button {
   display: block;
   margin: 10px;
 }
 .container {
-  margin: auto;
+  margin-left: 60px;
 }
-.buttons{
-  float: left;
-  padding-top: 10%;
-  padding-left: 25%;
+.buttons, .text {
+  display: inline-block;
+  margin: 12px;
 }
-.text{
-  float: right;
-  padding-top: 10%;
-  padding-right: 25%;
-
+.text {
+  width: 62.5%;
 }
