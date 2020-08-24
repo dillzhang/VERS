@@ -456,8 +456,8 @@ class Guest extends Component {
   }
 
   submitLogin = () => {
-    if (this.state.username.trim().toLowerCase() === "@lex") {
-      this.setState({ error: "Username Taken" });
+    if (this.state.username.trim().toLowerCase() === "@lex" || this.state.username.trim().toLowerCase() === "") {
+      this.setState({ error: "Invalid Username" });
       return;
     }
     this.socket.emit("joinRoom", { room: this.room, password: this.state.password });
