@@ -75,7 +75,7 @@
     display: inline-block;
     position: relative;
 }
-.chat-messages .message-bubble, .chat-messages .backpack {
+.chat-messages .backpack {
     background-color: #FEF49C;
     color: var(--dark-grey);
     font-family: var(--conspiracy-font), monospace;
