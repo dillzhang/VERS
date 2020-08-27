@@ -549,7 +549,7 @@ class Guest extends Component {
             <div className="noise"></div>
             <div className="content">
               <h1>Connection Lost</h1>
-              <h6>How are we doing? Send us your feedback <a href="//forms.gle/c2n75uFoKtaq1DraA" target="_blank">here</a>.</h6>
+              <h6>How did we do? Send us your feedback <a href="//forms.gle/c2n75uFoKtaq1DraA" target="_blank">here</a>.</h6>
             </div>
           </div>
         }
@@ -558,7 +558,7 @@ class Guest extends Component {
             <div className="noise"></div>
              <div className="content">
               <h1>Disconnected</h1>
-              <h6>How are we doing? Send us your feedback <a href="//forms.gle/c2n75uFoKtaq1DraA" target="_blank">here</a>.</h6>
+              <h6>How did we do? Send us your feedback <a href="//forms.gle/c2n75uFoKtaq1DraA" target="_blank">here</a>.</h6>
             </div>
           </div>
         }
