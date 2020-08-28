@@ -120,6 +120,9 @@ class Host extends Component {
           </div>
           <div className="side-bar">
             <Timer socket={this.socket}/>
+            {this.state.state >= 10 && <button onClick={() => {
+              this.socket.emit("add-five-minutes", {roomCode: this.room});
+              }}> Add 5 Minutes</button>}
             <Chat room={this.room} viewer="@lex" chatColor={this.state.chatColor} files={chatFiles} socket={this.socket}/>
           </div>
         </div>
