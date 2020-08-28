@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as SocketIO from "socket.io-client";
+import ReactAudioPlayer from 'react-audio-player';
 
 import './Host.css'
 
@@ -52,7 +53,9 @@ class Host extends Component {
     this.state = {
         state: 0,
         lines: [],
-        chatColor: "#65fc31"
+        chatColor: "#65fc31",
+        activeSounds: [],
+        soundsToRemove: [],
     }
 
     this.socket.on("joinRoomStatus", ({ state, password }) => {
@@ -87,9 +90,33 @@ class Host extends Component {
     this.socket.emit("joinRoom", { room: this.room, password: "HOST" });
   }
 
+  playSound = (name, className, source) => {
+    var newSound = {
+      name: name,
+      class: className,
+      source: source,
+      time: Date.now()
+    }
+    this.setState(prevState => ({
+      activeSounds: [...prevState.activeSounds, newSound]
+    }))
+  }
+
   render() {
     return (
       <div className="app host">
+        <div className="sounds">
+          {this.state.activeSounds.map((sound) => {
+              return (
+                <ReactAudioPlayer
+                  key={sound.id}
+                  className={sound.class}
+                  src={sound.source}
+                  autoPlay
+                />);
+            })
+          }
+        </div>
         <div className="header">
           <h1>Actor's Panel ({this.room})</h1>
           Player URL: {this.state.playerUrl && ( 
@@ -117,7 +144,7 @@ class Host extends Component {
           </div>
           <div className="side-bar">
             <Timer socket={this.socket}/>
-            <Chat room={this.room} viewer="@lex" chatColor={this.state.chatColor} files={chatFiles} socket={this.socket}/>
+            <Chat room={this.room} viewer="@lex" chatColor={this.state.chatColor} files={chatFiles} socket={this.socket} playSound={this.playSound}/>
           </div>
         </div>
       </div>
@@ -289,6 +316,7 @@ class Host extends Component {
   // content should be the id specified in Guest
   sendFile = (content) => {
     this.socket.emit("newFileMessage", {content, sender: "@lex", roomCode: this.room, color: this.state.chatColor });
+    this.playSound("message-sent", "sound-message-sent", "/sounds/message-sent.ogg")
   }
 }
 

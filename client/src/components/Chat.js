@@ -38,6 +38,7 @@ class Chat extends Component {
     }
     this.socket.emit("newTextMessage", {content, sender, roomCode: this.room, color: this.props.chatColor});
     this.setState({message: ""});
+    this.props.playSound("message-sent", "sound-message-sent", "/sounds/message-sent.ogg")
   }
 
   updateMessage = (e) => {
@@ -53,7 +54,10 @@ class Chat extends Component {
     this.socket.emit("getTextMessage", {roomCode: this.room});
   }
   
-  componentDidUpdate() {
+  componentDidUpdate(prevProps,prevState) {
+    if (prevState.messages.length < this.state.messages.length && this.state.messages[this.state.messages.length - 1].sender !== this.viewer) {
+      this.props.playSound("message-received", "sound-message-received", "/sounds/message-received.ogg")
+    }
     this.scrollToBottom();
   }
 

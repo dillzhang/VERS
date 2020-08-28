@@ -84,7 +84,7 @@
     display: inline-block;
     position: relative;
 }
-.chat-messages .message-bubble, .chat-messages .backpack p {
+.chat-messages .backpack p {
     font-weight: bold;
 }
 .chat-messages .message-bubble-image {

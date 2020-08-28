@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as SocketIO from "socket.io-client";
+import ReactAudioPlayer from 'react-audio-player';
 
 import Chat from "../components/Chat";
 import Draggable from "../components/Draggable";
@@ -68,6 +69,9 @@ class Guest extends Component {
 
       currentTime: "00:00:00",
       applicationsOpen: [],
+
+      activeSounds: [],
+      soundsToRemove: [],
     };
 
     // Clock
@@ -83,6 +87,9 @@ class Guest extends Component {
         error: "",
     }), () => {
       stateApplications[state].forEach(app => {this.openApplication(app)});
+      if (stateApplications[state].length > 0 && state > 0) {
+        this.playSound("new-app", "sound-new-app", "/sounds/new-app.ogg")
+      }
     });
 
     this.socket.on('reconnect', (_) => {
@@ -308,7 +315,7 @@ class Guest extends Component {
     this.apps = {
       secureChat: {
         name: "Secure Chat",
-        html: <Chat room={this.room} viewer={this.state.username} chatColor={this.state.chatColor} socket={this.socket} files={this.chatFiles} />
+        html: <Chat room={this.room} viewer={this.state.username} chatColor={this.state.chatColor} socket={this.socket} files={this.chatFiles} playSound={this.playSound}/>
       },
       timer: {
         name: "Timer",
@@ -455,6 +462,22 @@ class Guest extends Component {
     }
   }
 
+  handleDesktopClick = () => {
+    this.playSound('click', 'sound-click', '/sounds/click.ogg');
+  }
+
+  playSound = (name, className, source) => {
+    var newSound = {
+      name: name,
+      class: className,
+      source: source,
+      time: Date.now()
+    }
+    this.setState(prevState => ({
+      activeSounds: [...prevState.activeSounds, newSound]
+    }))
+  }
+
   submitLogin = () => {
     if (this.state.username.trim().toLowerCase() === "@lex" || this.state.username.trim().toLowerCase() === "") {
       this.setState({ error: "Invalid Username" });
@@ -471,11 +494,13 @@ class Guest extends Component {
 
     if (app === "floorPlan4" && this.state.applicationsOpen.indexOf("videoStream") > -1) {
       this.openApplication("tooMuchRamPopUp");
+      this.playSound("warning", "sound-warning", "/sounds/warning.ogg");
       return;
     }
 
     if (app === "videoStream" && this.state.applicationsOpen.indexOf("floorPlan4") > -1) {
       this.openApplication("tooMuchRamPopUp");
+      this.playSound("warning", "sound-warning", "/sounds/warning.ogg");
       return;
     }
 
@@ -543,7 +568,7 @@ class Guest extends Component {
 
   renderDesktop = () => {
     return (
-      <div className="app guest">
+      <div className="app guest" onMouseDown={this.handleDesktopClick}>
         { this.state.state === STATE_FAILURE &&
           <div className="noise-wrapper failure">
             <div className="noise"></div>
@@ -562,6 +587,18 @@ class Guest extends Component {
             </div>
           </div>
         }
+        <div className="sounds">
+          {this.state.activeSounds.map((sound) => {
+              return (
+                <ReactAudioPlayer
+                  key={sound.id}
+                  className={sound.class}
+                  src={sound.source}
+                  autoPlay
+                />);
+            })
+          }
+        </div>
         <div className="header">
           <div className="header-time">
             {this.state.username} &middot; {this.state.currentTime}
