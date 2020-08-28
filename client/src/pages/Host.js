@@ -35,6 +35,9 @@ const chatFiles = {
   subject1: <img src="/vault/subject1.jpg" alt="Subject"/>,
   subject2: <img src="/vault/subject2.jpg" alt="Subject"/>,
   computer: <img src="/vault/computer.jpg" alt="Computer"/>,
+  baby: <img src="/vault/baby.jpg" alt="Baby"/>,
+  cameras: <img src="/vault/cameras.jpg" alt="Cameras"/>,
+  powder: <img src="/vault/powder.jpg" alt="Powder"/>,
 
   languageTranscript1: <div className="file"><p><img className="icon" src="/desktop/file.svg" alt="File icon"/>transcript_20160103.pdf</p></div>,
   languageTranscript2: <div className="file"><p><img className="icon" src="/desktop/file.svg" alt="File icon"/>transcript_20160521.pdf</p></div>,
@@ -167,6 +170,7 @@ class Host extends Component {
       case 30:
         return ["I see— (Suddenly switch to whispering.) Holy sh- this looks like the right floor. There’s a bunch of hallways with security cameras. I gotta lay low. Here’s what I’m seeing."];
       case 40:
+      case 45:
         return ["Looks good to me. I’m sharing my location and streaming a video of the circuit breaker panel so you can monitor which sensors are active. Tell me when to go north, east, south, or west! Remember I can avoid the laser trip wires, but you need to warn me about them. I also won't be able to move as quickly."];
       case 50:
         return ["Whew, I made it to the vault door! I can’t believe it. We’re so close.", "Ok, the door’s locked with a keyboard. The screen’s asking for an ID number. Any idea what I should put in?"];
@@ -232,7 +236,13 @@ class Host extends Component {
           this.sendFile("elevator_landing");
         }}>(1) Send Hallway Image</button>;
       case 40:
-            return <ActorMoving socket={this.socket} room={this.room} />;
+      case 45:
+            return <> 
+              <button onClick={() => {
+                this.socket.emit("setRoomState", {roomCode: this.room, state: 45});
+                }}>(1) Send Live Stream </button>
+              <ActorMoving socket={this.socket} room={this.room} />
+            </>;
       case 50: 
             return <>
               <button onClick={() => {

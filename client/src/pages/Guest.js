@@ -40,7 +40,8 @@ const stateApplications = {
   15: ["fileSystem"],  //15
   20: [],  // 20
   30: [],  // 30
-  40: ["videoStream"],  // 40
+  40: [],  // 40
+  45: ["videoStream"],
   50: [],  // 50
   60: [],  // 60
   65: ["translator"],  // 65
@@ -372,6 +373,18 @@ class Guest extends Component {
       computer: {
         name: "IMG083137",
         html: <img src="/vault/computer.jpg" style={{maxHeight: 500}} alt="Computer"/>,
+      },
+      baby: { 
+        name: "IMG083141", 
+        html: <img src="/vault/baby.jpg" style={{maxHeight: 500}} alt="Baby"/>, 
+      },
+      cameras: { 
+        name: "IMG083143", 
+        html: <img src="/vault/cameras.jpg" style={{maxHeight: 500}} alt="Cameras"/>, 
+      },
+      powder: { 
+        name: "IMG083145", 
+        html: <img src="/vault/powder.jpg" style={{maxHeight: 500}} alt="Powder"/>, 
       },
 
       // File System Pop ups
