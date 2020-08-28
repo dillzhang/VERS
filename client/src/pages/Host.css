@@ -63,7 +63,8 @@
     display: flex;
     flex-wrap: wrap;
 }
-.host .actions button {
+.host .actions button,
+.host .side-bar button {
     color: inherit;
     font-family: inherit;
     font-size: 1em;
@@ -76,11 +77,13 @@
     padding: 18px 12px;
     border: 2px solid #404040;
 }
-.host .actions button:hover {
+.host .actions button:hover,
+.host .side-bar button:hover {
     background-color: #262626;
     cursor: pointer;
 }
-.host .actions button:focus {
+.host .actions button:focus,
+.host .side-bar button:focus {
     outline: none;
 }
 .host .actions button.warning {

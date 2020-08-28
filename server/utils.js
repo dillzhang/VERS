@@ -143,6 +143,16 @@ const createNewRoom = () => {
     return {roomCode: id, password: rooms[id].password};
 }
 
+const addFiveMinutes = (roomCode) => {
+    if (!rooms.hasOwnProperty(roomCode)) {
+        // TODO: Error Handling
+        return;
+    }
+    if (rooms[roomCode].endTime > -1) {
+        rooms[roomCode].endTime += 5 * 60 * 1000;
+    }
+}
+
 const getMessages = (roomCode) => {
     if (rooms.hasOwnProperty(roomCode)) {
         return rooms[roomCode].messages;
@@ -222,7 +232,7 @@ const updateTime = (roomCode, io) => {
         return;
     }
     const seconds = "00" + (Math.floor(remaining / 1000) % 60);
-    const minutes = "00" + (Math.floor(remaining / (60 * 1000)) % 60);
+    const minutes = "00" + (Math.floor(remaining / (60 * 1000)));
     const timer =  `${minutes.slice(minutes.length - 2, minutes.length)}:${seconds.slice(seconds.length - 2, seconds.length)}`;
     io.to(roomCode).emit("timer-update", { time: timer });
     rooms[roomCode].timerId = setTimeout(() => {updateTime(roomCode, io);}, 557);
@@ -258,6 +268,7 @@ const checkSensors = (roomCode, io, sender, color, sensors) => {
 }
 
 module.exports = {
+    addFiveMinutes,
     checkSensors,
     createNewRoom,
     getRooms,
