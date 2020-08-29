@@ -53,9 +53,12 @@ ul {
 .guard h1 {
     font-size: 1.5em;
 }
-.guard h1, h6 {
+.guard h1, .guard h6 {
     font-weight: bold;
-    margin: 8px 0;
+    margin: 10px 0;
+}
+.guard h6 {
+    margin-bottom: 12px;
 }
 .guard strong {
     font-weight: bold;
@@ -77,4 +80,63 @@ ul {
     background-color: black;
     color: white;
     padding: 4px;
+}
+.directory h3 {
+    font-weight: bold;
+}
+.directory ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.directory li {
+    margin: 2px 0;
+}
+.security-manual .note {
+    padding: 12px 0;
+}
+.security-manual p {
+    margin: 12px 0;
+}
+.security-manual .invoice {
+    font-family: sans-serif;
+    border-top: 1px solid black;
+    padding-top: 8px;
+}
+.security-manual .invoice table {
+    margin: 16px 0;
+    font-size: 90%;
+}
+.security-manual .invoice td, .security-manual .invoice th {
+    width: 70px;
+    border: 1px solid black;
+    padding: 8px;
+    text-align: right;
+}
+.security-manual .invoice td:nth-child(1), .security-manual .invoice th:nth-child(1) {
+    width: 190px;
+    text-align: left;
+}
+.security-manual .invoice th {
+    background-color: #aaaaaa;
+    font-weight: bold;
+}
+.security-manual .invoice h3, .security-manual .invoice h6 {
+    font-weight: bold;
+    margin: 4px 0;
+    line-height: 1.15em;
+}
+.security-manual .invoice .redacted {
+    background-color: var(--dark-grey);
+}
+.security-manual .invoice .total {
+    text-align: right;
+    margin: 8px 0;
+    font-size: 90%;
+}
+.security-manual .special-notes {
+    margin: 16px 0;
+    font-size: 80%;
+}
+.security-manual .special-notes h6 {
+    margin: 8px 0;
 }

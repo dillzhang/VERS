@@ -3,6 +3,7 @@ import Document from "../components/Document";
 
 const directory = (
     <Document>
+      <div className="directory">
         <h2>Floor Directory</h2>
         <h3>Ground Level</h3>
         <ul>
@@ -70,7 +71,7 @@ const directory = (
             Lab
           </li>
         </ul>
-
+      </div>
     </Document>
 )
 
