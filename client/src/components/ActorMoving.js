@@ -271,7 +271,7 @@ class ActorMoving extends Component {
         if (dangers.length > 0 && this.warnings < 3) {
             this.warnings += 1;
             this.setState({
-                message: dangers.indexOf("Motion Sensor") > -1 ? "There seems to be a motion sensor on the corner." : dangers.indexOf("Laser Trip Wire") > -1 ? "Are there any lasers I need to worry about?" : "The camera looks like its still recording",
+                message: dangers.indexOf("Motion Sensor") > -1 ? "There seems to be a motion sensor on the corner." : dangers.indexOf("Laser Trip Wire") > -1 ? "Are there any lasers I need to worry about?" : "The camera looks like its still recording.",
             });
             return;
         } else if (dangers.length > 0) {
@@ -320,13 +320,28 @@ class ActorMoving extends Component {
 
     }
 
+    handleKeyDown = (e) => {
+      if (e.key === 'ArrowUp' && this.canMove('up')) {
+        this.move('up');
+      }
+      else if (e.key === 'ArrowRight' && this.canMove('right')) {
+        this.move('right');
+      }
+      else if (e.key === 'ArrowLeft' && this.canMove('left')) {
+        this.move('left');
+      }
+      else if (e.key === 'ArrowDown' && this.canMove('down')) {
+        this.move('down');
+      }
+    }
+
     render() {
         const style = {
             top: this.state.location.ycor * 60 + 20, 
             left: this.state.location.xcor * 60 + 20, 
         }
         return (
-            <div className="floor-planner" ref={this.floorPlanRef}>
+            <div className="floor-planner" ref={this.floorPlanRef} onKeyDown={this.handleKeyDown} tabIndex="0">
                 <div className="sensor-container">
                     <div className={`hiding-container ${this.state.red ? "red-alert" : ""}`}>
                         {!this.state.red && <div className={`alex-location ${this.state.useMirror ? "laser" : ""}`} style={style} />}
