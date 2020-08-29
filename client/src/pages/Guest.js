@@ -180,7 +180,7 @@ class Guest extends Component {
           },
           securityManual: {
             requirement: 30,
-            display: "security_sensors.pdf",
+            display: "security_invoice.pdf",
           },
           guestPolicy: {
             requirement: 100,
@@ -404,7 +404,7 @@ class Guest extends Component {
         html: <FloorPlan level={state} socket={this.socket} roomCode={this.room} sender={this.state.username} color={this.state.chatColor} />,
       },
       securityManual: {
-        name: "Document Viewer - Security Sensors",
+        name: "Document Viewer - Security Invoice",
         html: securityManual,
       },
       guard1: {
