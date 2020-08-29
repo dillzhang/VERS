@@ -293,16 +293,16 @@ class Host extends Component {
           }}>(3) Send Computer</button>
           <button onClick={() => {
             this.sendFile("languageTranscript1");
-          }}>(4) Send Transcript 1</button>
+          }} className="highlight">(4) Send Transcript 1</button>
           <button onClick={() => {
             this.sendFile("alienArticle");
-          }}>(5) Send Journal</button> 
+          }} className="highlight">(5) Send Journal</button> 
           <button onClick={() => {
             this.socket.emit("setRoomState", {roomCode: this.room, state: 65});
-          }}>(6) Send Translator Application </button>
+          }} className="highlight">(6) Send Translator Application </button>
           <button onClick={() => {
             this.sendFile("languageTranscript2");
-          }}>(7) Send Transcript 2</button>
+          }} className="highlight">(7) Send Transcript 2</button>
           <button onClick={() => {
             this.sendFile("cameras");
           }}>(8) Send Cameras</button>

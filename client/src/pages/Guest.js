@@ -601,10 +601,10 @@ class Guest extends Component {
           </div>
         }
         <div className="sounds">
-          {this.state.activeSounds.map((sound) => {
+          {this.state.activeSounds.map((sound, idx) => {
               return (
                 <ReactAudioPlayer
-                  key={sound.id}
+                  key={sound.id + '-' + idx}
                   className={sound.class}
                   src={sound.source}
                   autoPlay

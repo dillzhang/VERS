@@ -86,6 +86,14 @@
 .host .side-bar button:focus {
     outline: none;
 }
+.host .actions button.highlight {
+    background: #C18B25;
+    color: white;
+    border-color: #DB944D;
+}
+.host .actions button.highlight:hover {
+    background: #825900;
+}
 .host .actions button.warning {
     background: #c12f25;
     color: white;
