@@ -15,6 +15,7 @@ const securityManual = (
         <p>
             PrimeGuard Security Solutions<br/>
             3697 Wescam Court<br/>
+            Fallon, NV 89406<br/>
             +1 555-867-4092<br/>
         </p>
 
