@@ -5,8 +5,8 @@
   font-family: monospace, var(--conspiracy-font);
   background-color: #153135;
   color: #cfffe5;
-  width: 720px;
-  height: 600px;
+  width: 960px;
+  height: 700px;
   overflow: hidden;
 }
 
@@ -18,7 +18,6 @@
 }
 .translator .key {
   flex: 0 1 calc(40% - 40px);
-  overflow-y: scroll;
 }
 
 .translator textarea {
@@ -30,9 +29,9 @@
 
 .translator .translator-box {
   width: calc(100% - 40px);
-  height: calc(50% - 60px);
+  height: calc(50% - 50px);
   padding: 20px;
-  margin: 10px 0;
+  margin-bottom: 10px;
   display: inline-block;
   border-radius: 6px;
   overflow-y: scroll;

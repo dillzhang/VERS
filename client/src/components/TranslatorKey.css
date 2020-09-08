@@ -3,19 +3,19 @@
   border: 2px solid #314948;
   border-radius: 5px;
   padding: 10px;
+  height: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .header_container {
   display: flex;
 }
-.header_child {
-  flex: 0 1 50%;
-  text-align: center;
-  padding: 4px;
-}
-
 .keyBar {
-  width: 100%;
+  width: 50%;
+  flex: 0 1 auto;
+  margin-right: 8px;
 }
 .entry_container > * {
   display: inline-block;
