@@ -36,6 +36,7 @@
   text-align: center;
   margin: 4px;
   padding: 8px 4px;
+  text-transform: uppercase;
 }
 .entry_child:focus {
   outline: none;
