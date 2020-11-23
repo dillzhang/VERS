@@ -11,6 +11,8 @@
     --send-icon-size: 48px;
     --file-icon-size: 14px;
     --color-bubble-size: 36px;
+
+    user-select: text;
 }
 
 .chat-header {
