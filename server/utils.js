@@ -210,7 +210,8 @@ const startTimer = (roomCode, io) => {
     if (!rooms.hasOwnProperty(roomCode)) {
         return;
     }
-    rooms[roomCode].endTime = Date.now() + 1000 * 60 * 45 - 1;
+    rooms[roomCode].startTime = Date.now();
+    rooms[roomCode].endTime = Date.now() + 1000 * 60 * 60 - 1;
     updateTime(roomCode, io);
 
     setRoomState(roomCode, io, 10);
