@@ -17,16 +17,28 @@
   flex: 0 1 auto;
   margin-right: 8px;
 }
+.entry_container {
+  position: relative;
+}
 .entry_container > * {
   display: inline-block;
   margin: 4px 0;
 }
 .entry_container .entry_index {
-  width: 30px;
-  text-align: right;
+  position: absolute;
+  bottom: 0;
+  font-size: 12px; 
+}
+.entry_container .arrow {
+  width: 20px;
+  margin-left: 15px;
+  margin-right: 10px;
+  display: inline-block;
+  text-align: center;
+  font-size: 30px;
 }
 .entry_child {
-  width: calc(50% - 42px);
+  width: calc(50% - 50px);
   color: inherit;
   font-family: monospace, var(--conspiracy-font);
   font-size: 0.85em;

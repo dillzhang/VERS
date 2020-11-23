@@ -56,9 +56,9 @@ function TranslationKey({ decoder }){
         return(
           <div key={'keyBar-' + key} className='keyBar'>
             <div className='entry_container'>
-              <p className="entry_index">{key}:</p>
               <input className='entry_child alien' type="text" readOnly value={entry.alien}/>
-              &#8594;
+              <p className="entry_index">{parseInt(key) + 1}</p>
+              <p className="arrow">&#8594;</p>
               <input className='entry_child english' type="text" value={entry.english} maxLength="1" onChange={(e) => {
                 setDictionary()
                 const input = e.target.value;
