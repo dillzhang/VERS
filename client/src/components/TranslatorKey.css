@@ -54,6 +54,9 @@
   outline: none;
   background-color: #102328;
 }
+.entry_child.dup {
+  border-color: red;
+}
 
 .horizontal_breakline {
   width: 100px;
