@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as SocketIO from "socket.io-client";
-import ReactAudioPlayer from 'react-audio-player';
+// import ReactAudioPlayer from 'react-audio-player';
 
 import Chat from "../components/Chat";
 import Draggable from "../components/Draggable";
@@ -600,7 +600,7 @@ class Guest extends Component {
             </div>
           </div>
         }
-        <div className="sounds">
+        {/* <div className="sounds">
           {this.state.activeSounds.map((sound, idx) => {
               return (
                 <ReactAudioPlayer
@@ -611,7 +611,7 @@ class Guest extends Component {
                 />);
             })
           }
-        </div>
+        </div> */}
         <div className="header">
           <div className="header-time">
             {this.state.username} &middot; {this.state.currentTime}

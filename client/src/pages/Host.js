@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as SocketIO from "socket.io-client";
-import ReactAudioPlayer from 'react-audio-player';
+// import ReactAudioPlayer from 'react-audio-player';
 
 import './Host.css'
 
@@ -108,7 +108,7 @@ class Host extends Component {
   render() {
     return (
       <div className="app host">
-        <div className="sounds">
+        {/* <div className="sounds">
           {this.state.activeSounds.map((sound) => {
               return (
                 <ReactAudioPlayer
@@ -119,7 +119,7 @@ class Host extends Component {
                 />);
             })
           }
-        </div>
+        </div> */}
         <div className="header">
           <h1>Actor's Panel ({this.room})</h1>
           Player URL: {this.state.playerUrl && ( 
