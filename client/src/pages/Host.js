@@ -62,7 +62,6 @@ class Host extends Component {
     }
 
     this.socket.on("joinRoomStatus", ({ state, password }) => {
-        console.log("verified");
         this.setState({ 
           state,
           playerUrl: `${baseProto}//${baseURL}/player/${this.props.match.params.code}/${password}`,

@@ -98,7 +98,6 @@ class VaultDoor extends Component {
             case 2: 
             case 3: 
             case 4: 
-                console.log(this.state.questions);
                 const question = this.state.questions[this.state.questionIndex - 2]
                 return <>
                     <div className="question">{question.question}</div>

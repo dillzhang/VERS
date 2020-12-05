@@ -100,7 +100,6 @@ class FloorPlan extends Component {
         });
 
         this.props.socket.on("sensorUpdate", ({sensors}) => {
-            console.log("here")
             this.setState({
                 sensors,
             });
