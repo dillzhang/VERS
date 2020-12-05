@@ -10,9 +10,7 @@ function Elevator(props){
   const disRef = useRef(isDisabled);
 
   const load_floor = (floor) => {
-    // console.log(floor)
     setTimeout(() => {
-      console.log('abled')
       setDisabled(false); // count is 0 here
       switch(floor) {
         case 'G':
@@ -40,7 +38,6 @@ function Elevator(props){
           break;
       }
     }, 8000);
-    console.log('disabled')
     setDisabled(true);
     setText('The elevator is going to floor ' + floor)
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as SocketIO from "socket.io-client";
 // import ReactAudioPlayer from 'react-audio-player';
 
+import Calculator from "../components/Calculator"
 import Chat from "../components/Chat";
 import Draggable from "../components/Draggable";
 import FileSystem from "../components/FileSystem";
@@ -36,7 +37,7 @@ const STATE_SUCCESS = 70
 const STATE_FAILURE = 80
 
 const stateApplications = {
-  0: ["secureChat"],  // 0
+  0: [],  // 0
   10: ["timer"],  // 10
   15: ["fileSystem"],  //15
   20: [],  // 20
@@ -80,7 +81,7 @@ class Guest extends Component {
       const today = new Date();
       const time = ("0" + today.getHours()).slice(-2) + ":" + ("0" + today.getMinutes()).slice(-2) + ":" + ("0" + today.getSeconds()).slice(-2);
       this.setState({ currentTime: time });
-    }, 499);
+    }, 999);
 
     this.socket.on("roomStateUpdate", ({state}) => {
       this.setState(prev => ({
@@ -256,6 +257,17 @@ class Guest extends Component {
 
     // Desktop Short Cuts
       this.shortcuts = {
+        calculator: {
+          requirement: 0,
+          app: (
+            <div key="calculator-shortcut" className="shortcut" onClick={() => {this.openApplication("calculator")}}>
+              <div className="icon">
+                <img src="/desktop/secure-chat.svg" alt="Calculator shortcut icon"/>
+              </div>
+              <div className="shortcut-name">Calculator</div>
+            </div>
+          ),
+        },
         secureChat: {
           requirement: 0,
           app: (
@@ -314,6 +326,10 @@ class Guest extends Component {
       }
 
     this.apps = {
+      calculator: {
+        name: "Calculator",
+        html: <Calculator />,
+      },
       secureChat: {
         name: "Secure Chat",
         html: <Chat room={this.room} viewer={this.state.username} chatColor={this.state.chatColor} socket={this.socket} files={this.chatFiles} playSound={this.playSound}/>
@@ -621,7 +637,6 @@ class Guest extends Component {
           {Object.keys(this.shortcuts)
             .filter(app => this.shortcuts[app].requirement <= this.state.state)
             .map(app => {
-              // console.log(app, this.shortcuts[app])
               return this.shortcuts[app].app;
             })
           }
