@@ -233,25 +233,6 @@ class FloorPlan extends Component {
                     <div className="controls">
                         <div className="sensor-source">
                             <div 
-                                className="sensor-sample sample-camera"
-                                onMouseDown={(e) => {
-                                    if (!this.state.interactivity) {
-                                        return;
-                                    }
-                                    const {x, y} = e.target.getBoundingClientRect();
-                                    this.prevX = e.nativeEvent.pageX;
-                                    this.prevY = e.nativeEvent.pageY;
-                                    this.setState({
-                                        dragging: 0,
-                                        dragX: x - this.floorPlanRef.current.getBoundingClientRect().x,
-                                        dragY: y - this.floorPlanRef.current.getBoundingClientRect().y,
-                                    })
-                                }}
-                            />
-                            Camera
-                        </div>
-                        <div className="sensor-source">
-                            <div 
                                 className="sensor-sample sample-motion"
                                 onMouseDown={(e) => {
                                     if (!this.state.interactivity) {
@@ -267,7 +248,7 @@ class FloorPlan extends Component {
                                     })
                                 }}
                             />
-                            Motion Sensor
+                            <div class="tool-tip">Motion Sensor</div>
                         </div>
                         <div className="sensor-source">
                             <div 
@@ -286,7 +267,26 @@ class FloorPlan extends Component {
                                     })
                                 }}
                             />
-                            Laser Trip Wire
+                            <div class="tool-tip">Laser Trip Wire</div>
+                        </div>
+                        <div className="sensor-source">
+                            <div 
+                                className="sensor-sample sample-camera"
+                                onMouseDown={(e) => {
+                                    if (!this.state.interactivity) {
+                                        return;
+                                    }
+                                    const {x, y} = e.target.getBoundingClientRect();
+                                    this.prevX = e.nativeEvent.pageX;
+                                    this.prevY = e.nativeEvent.pageY;
+                                    this.setState({
+                                        dragging: 0,
+                                        dragX: x - this.floorPlanRef.current.getBoundingClientRect().x,
+                                        dragY: y - this.floorPlanRef.current.getBoundingClientRect().y,
+                                    })
+                                }}
+                            />
+                            <div class="tool-tip">Camera</div>
                         </div>
                         <button className="export" onClick={(e) => {
                             e.target.disabled = true;
@@ -301,7 +301,8 @@ class FloorPlan extends Component {
                                 button.disabled = false;
                             }, 1000);
                         }}>
-                            Export to Chat
+                            <img src="/desktop/send.svg" alt="Send icon"/>
+                            <div class="tool-tip">Export to Chat</div>
                         </button>
                     </div>
                     {this.state.dragging > -1 && (
