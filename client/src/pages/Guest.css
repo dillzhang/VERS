@@ -135,6 +135,7 @@
 .guest .shortcut-name {
     font-size: large;
     text-align: center;
+    text-shadow: 0 0 4px #202020;
 }
 
 .guest .error-pop-up {

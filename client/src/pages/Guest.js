@@ -138,7 +138,7 @@ class Guest extends Component {
           app: (
             <div key="calculator-shortcut" className="shortcut" onClick={() => {this.openApplication("calculator")}}>
               <div className="icon">
-                <img src="/desktop/secure-chat.svg" alt="Calculator shortcut icon"/>
+                <img src="/desktop/calculator.svg" alt="Calculator shortcut icon"/>
               </div>
               <div className="shortcut-name">Calculator</div>
             </div>
