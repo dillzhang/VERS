@@ -196,41 +196,7 @@ class FloorPlan extends Component {
     render() {
         return (
             <div className="floor-planner" ref={this.floorPlanRef} onMouseDown={this.handleSensorClick}>
-                <div className="sensor-container">
-                    <div className={`hiding-container ${this.state.red ? "red-alert" : ""}`}>
-                        {this.state.part2 ? 
-                            (!this.state.red ? <div className="alex-location" style={{
-                                top: this.state.location.ycor * 60 + 20, 
-                                left: this.state.location.xcor * 60 + 20, 
-                            }} /> : null) :
-                            <div className="entrance">&#8615;</div>
-                        }
-                        {laserPairs.map((pair, index) => {
-                            if (this.state.sensors[pair[0]] === 2 && this.state.sensors[pair[1]] === 2) {
-                                return (
-                                    <div 
-                                        key={`laser-${index}`} 
-                                        className={`laser-line laser-${index}`} 
-                                    />
-                                );
-                            } else {
-                                return null;
-                            }
-                        })}
-                        {sensorLocations.map((location, index) => {
-                            const style = { left: location[0], top: location[1] };
-                            return (
-                                <div 
-                                    key={`sensor-${index}`} 
-                                    style={style}
-                                    className={`sensor sensor-direction-${location[2]} ${this.state.near[index] ? "near" : `sensor-type-${sensors[this.state.sensors[index]].class}`}`} 
-                                />
-                            );
-                        })}
-                    </div>
-                </div>
-                <div className="floor-plan" />
-                    <div className="controls">
+                <div className="controls">
                         <div className="sensor-source">
                             <div 
                                 className="sensor-sample sample-motion"
@@ -305,12 +271,46 @@ class FloorPlan extends Component {
                             <div class="tool-tip">Export to Chat</div>
                         </button>
                     </div>
-                    {this.state.dragging > -1 && (
-                        <div 
-                            key="draggingSensor"
-                            style={{top: this.state.dragY, left: this.state.dragX}}
-                            className={`dragging-sensor sensor-drag-${sensors[this.state.dragging].class}`}
-                        />
+                <div className="sensor-container">
+                    <div className={`hiding-container ${this.state.red ? "red-alert" : ""}`}>
+                        {this.state.part2 ? 
+                            (!this.state.red ? <div className="alex-location" style={{
+                                top: this.state.location.ycor * 60 + 20, 
+                                left: this.state.location.xcor * 60 + 20, 
+                            }} /> : null) :
+                            <div className="entrance">&#8615;</div>
+                        }
+                        {laserPairs.map((pair, index) => {
+                            if (this.state.sensors[pair[0]] === 2 && this.state.sensors[pair[1]] === 2) {
+                                return (
+                                    <div 
+                                        key={`laser-${index}`} 
+                                        className={`laser-line laser-${index}`} 
+                                    />
+                                );
+                            } else {
+                                return null;
+                            }
+                        })}
+                        {sensorLocations.map((location, index) => {
+                            const style = { left: location[0], top: location[1] };
+                            return (
+                                <div 
+                                    key={`sensor-${index}`} 
+                                    style={style}
+                                    className={`sensor sensor-direction-${location[2]} ${this.state.near[index] ? "near" : `sensor-type-${sensors[this.state.sensors[index]].class}`}`} 
+                                />
+                            );
+                        })}
+                    </div>
+                </div>
+                <div className="floor-plan" />
+                {this.state.dragging > -1 && (
+                    <div 
+                        key="draggingSensor"
+                        style={{top: this.state.dragY, left: this.state.dragX}}
+                        className={`dragging-sensor sensor-drag-${sensors[this.state.dragging].class}`}
+                    />
                 )}
             </div>
         )

@@ -8,11 +8,14 @@
     background-color: #E2E2E2;
     
     position: relative;
+    overflow: hidden;
 }
 
 .floor-planner .floor-plan {
     width: 720px;
     height: 480px;
+
+    left: 108px;
 
     background-position: center;
     background-repeat: no-repeat;
@@ -35,6 +38,7 @@
     background-color: #cdcdcd;
     margin-top: 115px;
     margin-left: 22px;
+    margin-right: 22px;
     padding: 12px 0;
 }
 
@@ -66,8 +70,8 @@
 .floor-planner .tool-tip {
     font-size: 80%;
     position: absolute;
-    right: 96px;
-    margin-bottom: 12px;
+    left: 96px;
+    margin-bottom: 8px;
     text-align: right;
     background: rgb(15, 15, 15, 0.8);
     border-radius: 4px;
@@ -75,10 +79,11 @@
     opacity: 0;
     visibility: hidden;
     transition: 0.2s;
+    z-index: 99;
 }
 
 .floor-planner .export .tool-tip {
-    margin-top: -25px;
+    margin-top: -26px;
 }
 
 .floor-planner .sensor-source:hover .tool-tip, .floor-planner .export:hover .tool-tip {
