@@ -101,10 +101,11 @@ ul {
     font-family: sans-serif;
     border-top: 1px solid black;
     padding-top: 8px;
+    font-size: 85%;
 }
 .security-manual .invoice table {
     margin: 16px 0;
-    font-size: 90%;
+    font-size: 85%;
 }
 .security-manual .invoice td, .security-manual .invoice th {
     width: 70px;
@@ -135,7 +136,7 @@ ul {
 }
 .security-manual .special-notes {
     margin: 16px 0;
-    font-size: 80%;
+    font-size: 85%;
 }
 .security-manual .special-notes h6 {
     margin: 8px 0;
