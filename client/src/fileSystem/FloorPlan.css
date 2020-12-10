@@ -15,7 +15,7 @@
     width: 720px;
     height: 480px;
 
-    left: 108px;
+    left: 112px;
 
     background-position: center;
     background-repeat: no-repeat;
@@ -34,7 +34,7 @@
     width: 64px;
     height: 220px;
     border-radius: 24px;
-    box-shadow: 0 0 8px 0px #808080;
+    border: 2px solid rgba(160, 160, 160, 0.8);
     background-color: #cdcdcd;
     margin-top: 115px;
     margin-left: 22px;
