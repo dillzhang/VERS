@@ -7,7 +7,9 @@ class Calculator extends Component {
   constructor(props){
     super(props);
     this.state = {
-      value: "",
+      value: "0",
+      decimal: true,
+      equalsPressed: false,
     }
   };
 
@@ -16,39 +18,62 @@ class Calculator extends Component {
     "4", "5", "6", "×",
     "1", "2", "3", "-",
     "00", "0", ".", "+",
-    "clear", "="
+    "c", "del", "="
   ];
-
-
 
   handleButton(v) {
     switch(v) {
-      case "clear":
-        this.setState({value: "", decimal: true});
+      case "c":
+        this.setState({value: "0", decimal: true});
+        break;
+      case "del":
+        if (this.state.value === "0") {
+          return;
+        }
+        if (this.state.value.length === 1) {
+          this.setState({value: "0", decimal: true});
+          return;
+        }
+        this.setState(old => ({value: old.value.substring(0, old.value.length - 1), decimal: true}));
         break;
       case "=":
         if (this.state.value.length > 0) {
           const value = this.calculateOutput();
-          this.setState({value, decimal: value !== Math.floor(parseFloat(value)) });
+          this.setState({value, decimal: value !== Math.floor(parseFloat(value)), equalsPressed: true });
         }
         break;
       case ".":
-        if (this.state.decimal) {
-          this.setState(old => ({value: old.value + v, decimal: false}));
+        if (!this.state.decimal && !this.state.equalsPressed) {
+          return;
+        }
+        else if (this.state.equalsPressed) {
+          this.setState(old => ({value: v, decimal: false, equalsPressed: false }));
+        }
+        else if (this.state.decimal) {
+          this.setState(old => ({value: old.value + v, decimal: false }));
         }
         return;
       case "÷":
       case "×":
-      case "−":
+      case "-":
       case "+":
-        if (this.state.value === "") {
+        var lastChar = this.state.value[this.state.value.length - 1];
+        if (lastChar === "÷" || lastChar === "×" || lastChar === "-" || lastChar === "+") {
           return;
-        } else {
-          this.setState(old => ({value: old.value + v, decimal: true}));
         }
+        if (this.state.value === "0" && v === "-") {
+          this.setState(old => ({value: v, decimal: true, equalsPressed: false }));
+          return
+        }
+        this.setState(old => ({value: old.value + v, decimal: true, equalsPressed: false }));
         return;
       default:
-        this.setState(old => ({value: old.value + v}));
+        if (this.state.equalsPressed || this.state.value === "0") {
+          this.setState(old => ({value: v, equalsPressed: false }));
+        }
+        else {
+          this.setState(old => ({value: old.value + v}));
+        }
     }
   }
 
@@ -96,9 +121,6 @@ class Calculator extends Component {
         <div className="calculator-display">
           <div className="input-value">
             {this.state.value}
-          </div>
-          <div className="output-value">
-            {this.calculateOutput()}
           </div>
         </div>
         <div className="calculator-buttons">
