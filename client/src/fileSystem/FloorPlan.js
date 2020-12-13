@@ -69,6 +69,7 @@ class FloorPlan extends Component {
                     ycor: 1,
                 },
                 dragY: -1,
+                holdingShift: false,
             };
         } else {
             this.state = {
@@ -78,6 +79,7 @@ class FloorPlan extends Component {
                 dragX: -1,
                 dragY: -1,
                 interactivity: true,
+                holdingShift: false,
             }
         }
 
@@ -95,6 +97,7 @@ class FloorPlan extends Component {
                         xcor: 4,
                         ycor: 1,
                     },
+                    holdingShift: false,
                 });
             }
         });
@@ -118,8 +121,6 @@ class FloorPlan extends Component {
             const dy = e.pageY - this.prevY;
             this.prevX = e.pageX;
             this.prevY = e.pageY;
-
-            console.log(this.state.dragX, this.state.dragY);
 
             const best = sensorLocations.map((location, index) => {
                 return [(this.state.dragX - this.xoffset + 15 - location[0]) ** 2 + (this.state.dragY + 15 - location[1]) ** 2, index];
@@ -172,9 +173,9 @@ class FloorPlan extends Component {
         );
 
         if (best.length > 0) {
-            const dragging = this.state.sensors[best[0][1]];
-            const sensors = this.state.sensors.map((v, i) => i === best[0][1] ? -1 : v);
-            const near = this.state.near.map((v, i) => i === best[0][1] ? true : v);
+            const dragging = this.state.holdingShift ? -1 : this.state.sensors[best[0][1]];
+            const sensors = this.state.sensors.map((v, i) => (dragging !== -1 || this.state.holdingShift) && i === best[0][1] ? -1 : v);
+            const near = this.state.near.map((v, i) => (dragging !== -1 || this.state.holdingShift) && i === best[0][1] ? true : v && this.state.holdingShift);
 
             this.prevX = e.nativeEvent.pageX;
             this.prevY = e.nativeEvent.pageY;
@@ -192,9 +193,31 @@ class FloorPlan extends Component {
 
     }
 
+    handleKeyDown = (e) => {
+        if (e.key === "Shift") {
+            this.setState({holdingShift: true});
+        }
+    }
+
+    handleKeyUp = (e) => {
+        if (e.key === "Shift") {
+            this.setState({holdingShift: false});
+        }
+    }
+
     componentDidMount() {
         document.addEventListener("mousemove", this.handleMouseMove);
         document.addEventListener("mouseup", this.handleMouseUp);
+        document.addEventListener("keydown", this.handleKeyDown);
+        document.addEventListener("keyup", this.handleKeyUp);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("mousemove", this.handleMouseMove);
+        document.removeEventListener("mouseup", this.handleMouseUp);
+        document.removeEventListener("keydown", this.handleKeyDown);
+        document.removeEventListener("keyup", this.handleKeyUp);
+
     }
 
     render() {
