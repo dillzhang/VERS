@@ -9,7 +9,6 @@ class Timer extends Component {
     this.socket = props.socket;
 
     this.socket.on("timer-update", ({time}) => {
-      console.log("hello");
       this.setState({time})
     })
 

@@ -61,7 +61,6 @@ class Translator extends Component {
             }
             acc[entry.english].push(cur);
           }
-          console.log(acc);
           return acc;
         }, {}
       )

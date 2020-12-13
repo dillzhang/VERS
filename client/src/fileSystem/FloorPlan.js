@@ -107,9 +107,11 @@ class FloorPlan extends Component {
 
         this.props.socket.on("locationUpdate", ({red, location}) => {
             this.setState({location, red})
-        })
-    }
+        });
 
+        
+        this.xoffset = 120;
+    }
     handleMouseMove = (e) => {
         if (this.state.interactivity && this.state.dragging >= 0) {
             const dx = e.pageX - this.prevX;
@@ -117,8 +119,10 @@ class FloorPlan extends Component {
             this.prevX = e.pageX;
             this.prevY = e.pageY;
 
+            console.log(this.state.dragX, this.state.dragY);
+
             const best = sensorLocations.map((location, index) => {
-                return [(this.state.dragX + 15 - location[0]) ** 2 + (this.state.dragY + 15 - location[1]) ** 2, index];
+                return [(this.state.dragX - this.xoffset + 15 - location[0]) ** 2 + (this.state.dragY + 15 - location[1]) ** 2, index];
             }).filter(
                 distance => distance[0] < 225
             ).sort(
@@ -160,7 +164,7 @@ class FloorPlan extends Component {
         const locY = clickY - fpY;
 
         const best = sensorLocations.map((location, index) => {
-            return [(locX + 15 - location[0]) ** 2 + (locY + 15 - location[1]) ** 2, index];
+            return [(locX - this.xoffset + 15 - location[0]) ** 2 + (locY + 15 - location[1]) ** 2, index];
         }).filter(
             distance => distance[0] < 900
         ).sort(
@@ -178,7 +182,7 @@ class FloorPlan extends Component {
                 dragging,
                 sensors,
                 near,
-                dragX: sensorLocations[best[0][1]][0] - 15,
+                dragX: sensorLocations[best[0][1]][0] - 15 + this.xoffset,
                 dragY: sensorLocations[best[0][1]][1] - 15,
             }), () => {
 
@@ -214,7 +218,7 @@ class FloorPlan extends Component {
                                     })
                                 }}
                             />
-                            <div class="tool-tip">Motion Sensor</div>
+                            <div className="tool-tip">Motion Sensor</div>
                         </div>
                         <div className="sensor-source">
                             <div 
@@ -233,7 +237,7 @@ class FloorPlan extends Component {
                                     })
                                 }}
                             />
-                            <div class="tool-tip">Laser Trip Wire</div>
+                            <div className="tool-tip">Laser Trip Wire</div>
                         </div>
                         <div className="sensor-source">
                             <div 
@@ -252,7 +256,7 @@ class FloorPlan extends Component {
                                     })
                                 }}
                             />
-                            <div class="tool-tip">Camera</div>
+                            <div className="tool-tip">Camera</div>
                         </div>
                         <button className="export" onClick={(e) => {
                             e.target.disabled = true;
@@ -268,7 +272,7 @@ class FloorPlan extends Component {
                             }, 1000);
                         }}>
                             <img src="/desktop/send.svg" alt="Send icon"/>
-                            <div class="tool-tip">Export to Chat</div>
+                            <div className="tool-tip">Export to Chat</div>
                         </button>
                     </div>
                 <div className="sensor-container">
