@@ -53,14 +53,13 @@ function handleIo(io) {
             addFiveMinutes(roomCode);
         })
 
-
         socket.on("sensorUpdate", ({ sensors, room }) => {
             socket.to(room).emit("sensorUpdate", {sensors});
         });
 
         socket.on("electricalUpdate", ({ state, room }) => {
             socket.to(room).emit("electricalUpdate", {state});
-          });
+        });
 
         socket.on("locationUpdate", ({ red, location, room }) => {
             socket.to(room).emit("locationUpdate", { red, location});
@@ -68,6 +67,10 @@ function handleIo(io) {
 
         socket.on("resetLocation", ({ location, room }) => {
             socket.to(room).emit("locationUpdate", {location});
+        });
+
+        socket.on("translatorUpdate", ({ key, i, room }) => {
+            socket.to(room).emit("translatorUpdate", {key, i});
         });
     });
 }

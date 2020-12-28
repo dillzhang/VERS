@@ -48,7 +48,7 @@ const appsCreator = (openApplication, closeApplication, room, level, state, sock
     },
     translator: {
       name: "Translator",
-      html: <Translator />
+      html: <Translator socket={socket} room={room} />
     },
     // Chat Pop-ups
     warehouse: {

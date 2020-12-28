@@ -37,6 +37,21 @@ class Translator extends Component {
         25 :{alien: "⑃", english: ""}
       }
     }
+
+    this.socket.on("translatorUpdate",({key, i}) => {
+      console.log("hello", key, i);
+      this.setState(state => {
+        return {
+          translation: {
+            ...state.translation,
+            [key]: {
+              ...state.translation[key],
+              english: i,
+            },
+          }
+        }
+      });
+    })
   }
 
   getTranslation() {
@@ -107,18 +122,18 @@ class Translator extends Component {
                   value={entry.english} 
                   maxLength="1" 
                   onChange={e => {
-                    const input = e.target.value.toUpperCase();
+                    const i = e.target.value.toUpperCase();
                     this.setState(state => {
                       return {
                         translation: {
                           ...state.translation,
                           [key]: {
                             ...state.translation[key],
-                            english: input,
+                            english: i,
                           },
                         }
                       }
-                    })
+                    }, () => {this.socket.emit("translatorUpdate", {key, i, room:this.props.room})})
                   }} />
               </div>
             </div>)
