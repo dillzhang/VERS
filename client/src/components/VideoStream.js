@@ -75,36 +75,28 @@ class VideoStream extends Component {
           <div className="electrical-panel">
             <div className="cluster">
               {Object.keys(this.state.sensors).slice(0, 8).map(sensor => {
-                return <>
-                  <div key={`${sensor}-status`} className={`status status-${this.state.sensors[sensor]}`}/>
-                </>
+                return <div key={`0-${sensor}-status`} className={`status status-${this.state.sensors[sensor]}`}/>
               })}
             </div>
             <div className="cluster">
               {Object.keys(this.state.sensors).slice(8, 16).map(sensor => {
-                return <>
-                  <div key={`${sensor}-status`} className={`status status-${this.state.sensors[sensor]}`}/>
-                </>
+                return <div key={`1-${sensor}-status`} className={`status status-${this.state.sensors[sensor]}`}/>
               })}
             </div>
             <div className="cluster">
               {Object.keys(this.state.sensors).slice(16, 24).map(sensor => {
-                return <>
-                  <div key={`${sensor}-status`} className={`status status-${this.state.sensors[sensor]}`}/>
-                </>
+                return <div key={`2-${sensor}-status`} className={`status status-${this.state.sensors[sensor]}`}/>
               })}
             </div>
             <div className="cluster">
               {Object.keys(this.state.sensors).slice(24, 32).map(sensor => {
-                return <>
-                  <div key={`${sensor}-status`} className={`status status-${this.state.sensors[sensor]}`}/>
-                </>
+                return <div key={`3-${sensor}-status`} className={`status status-${this.state.sensors[sensor]}`}/>
               })}
             </div>
             <div className="current-info">
               <div className="current-holder">
                 {[...Array(this.state.current)].map((_, index) => {
-                  return <div key={index} className={`current ${index >= 6 && this.state.current >= 6 ? 'caution' : ''} ${((index >= 8 && this.state.current >= 8) || this.state.current >= 10) ? 'overload' : ''}`} />;
+                  return <div key={`timer-${index}`} className={`current ${index >= 6 && this.state.current >= 6 ? 'caution' : ''} ${((index >= 8 && this.state.current >= 8) || this.state.current >= 10) ? 'overload' : ''}`} />;
                 })}
               </div>
             </div>
