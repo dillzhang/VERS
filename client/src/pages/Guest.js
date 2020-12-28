@@ -1,65 +1,23 @@
 import React, { Component } from 'react';
 import * as SocketIO from "socket.io-client";
 // import ReactAudioPlayer from 'react-audio-player';
-
-import Calculator from "../components/Calculator"
-import Chat from "../components/Chat";
 import Draggable from "../components/Draggable";
-import FileSystem from "../components/FileSystem";
-import VideoStream from "../components/VideoStream"
-import Timer from "../components/Timer";
-import Panorama from '../components/Panorama';
-import Translator from '../components/Translator';
 
-import fileSystemFolders from "../constants/fileSystemFolders";
+import shortcutCreator from "../constants/shortcuts";
+import chatFilesCreator from "../constants/chatFiles";
+import appCreator from "../constants/apps";
+import {
+  chatColors,
+  STATE_SUCCESS,
+  STATE_FAILURE,
+  stateApplications,
+  alwayVisibleSet,
+} from "../constants/guest";
 
 import './Guest.css'
 
-import alienArticle from "../fileSystem/AlienArticle";
-import directory from "../fileSystem/Directory";
-import FloorPlan from "../fileSystem/FloorPlan";
-import guard1 from "../fileSystem/Guard1";
-import guard2 from "../fileSystem/Guard2";
-import languageTranscript1 from "../fileSystem/LanguageTranscript1";
-import languageTranscript2 from "../fileSystem/LanguageTranscript2";
-import securityManual from "../fileSystem/SecurityManual";
-
-import warehouse_1dark_preview from "../warehouse_images/warehouse-1dark-preview.jpg";
-import warehouse_2thermal_preview from "../warehouse_images/warehouse-2thermal-preview.jpg";
-import warehouse_3powered_preview from "../warehouse_images/warehouse-3powered-preview.jpg";
-
-import warehouse_1dark from "../warehouse_images/warehouse-1dark.jpg";
-import warehouse_2thermal from "../warehouse_images/warehouse-2thermal.jpg";
-import warehouse_3powered from "../warehouse_images/warehouse-3powered.jpg";
 
 const baseURL = new URL(window.location.href).host;
-const chatColors = ["#f94144", "#f3722c", "#f8961e", "#f9c74f", "#90be6d", "#43aa8b", "#577590", "#75B9BE", "#A8CCC9", "#B3D6C6", "#DCEAB2", "#C7D66D", "#FCD0A1", "#B1B695", "#53917E", "#63535B", "#6D1A36"];
-
-const STATE_SUCCESS = 70
-const STATE_FAILURE = 80
-
-const stateApplications = {
-  0: [],  // 0
-  10: ["timer"],  // 10
-  15: ["fileSystem"],  //15
-  20: [],  // 20
-  30: [],  // 30
-  40: [],  // 40
-  45: ["videoStream"],
-  50: [],  // 50
-  60: [],  // 60
-  65: ["translator"],  // 65
-  70: [],  // 70
-  80: [],  // 80
-}
-const alwayVisibleSet = new Set([
-  "secureChat",
-  "timer",
-  "fileSystem",
-  "videoStream",
-  "floorPlan4",
-  "translator",
-]);
 
 class Guest extends Component {
   // Initialize the state
@@ -76,8 +34,8 @@ class Guest extends Component {
     this.state = {
       state: -1,
 
-      username: "",  // Delete after testing
-      password: this.password,  // Delete after testing
+      username: "",
+      password: this.password,
       unlocking: false,
 
       chatColor: chatColors[Math.floor(Math.random() * chatColors.length)],
@@ -106,244 +64,10 @@ class Guest extends Component {
     });
 
     this.socket.on("joinRoomStatus", ({ state }) => {
-      // Chat Short Cuts
-      this.chatFiles = {
-        backpack: <div className="backpack"><p>Backpack</p><ul><li>Thermal Camera</li><li>Mirror</li><li>Multi-tool</li></ul></div>,
-        warehouse: <img onClick={() => { this.openApplication("warehouse") }} src="/warehouse.jpg" alt="Warehouse exterior" />,
-        floor_plan_4: <div className="file"><p><img className="icon" src="/desktop/file.svg" alt="File icon" /> floor4.bp</p></div>,
-
-        no_thermal_warehouse: <img onClick={() => { this.openApplication("no_thermal_warehouse") }} src={warehouse_1dark_preview} alt="Warehouse" />,
-
-        thermal_warehouse: <img onClick={() => { this.openApplication("thermal_warehouse") }} src={warehouse_2thermal_preview} alt="Warehouse (thermal)" />,
-
-        thermal_warehouse_wires: <img onClick={() => { this.openApplication("thermal_warehouse_wires") }} src={warehouse_3powered_preview} alt="Warehouse (thermal, power on)" />,
-
-        elevator_landing: <img onClick={() => { this.openApplication("elevator_landing") }} src="/hallways/hallway.jpg" alt="Hallways outside elevator" />,
-        vault_door: <img onClick={() => { this.openApplication("vault_door") }} src="/vault/door.jpg" alt="Vault door" />,
-
-        tubes: <img onClick={() => { this.openApplication("tubes") }} src="/vault/tubes.jpg" alt="Tubes" />,
-        brain: <img onClick={() => { this.openApplication("brain") }} src="/vault/brain.jpg" alt="Brain" />,
-        baby: <img onClick={() => { this.openApplication("baby") }} src="/vault/baby.jpg" alt="Baby" />,
-        cameras: <img onClick={() => { this.openApplication("cameras") }} src="/vault/cameras.jpg" alt="Cameras" />,
-        powder: <img onClick={() => { this.openApplication("powder") }} src="/vault/powder.jpg" alt="Powder" />,
-        subject1: <img onClick={() => { this.openApplication("subject1") }} src="/vault/subject1.jpg" alt="Subject" />,
-        subject2: <img onClick={() => { this.openApplication("subject2") }} src="/vault/subject2.jpg" alt="Subject" />,
-        computer: <img onClick={() => { this.openApplication("computer") }} src="/vault/computer.jpg" alt="Computer" />,
-
-        languageTranscript1: <div className="file pointer" onClick={() => { this.openApplication("languageTranscript1") }} ><p><img className="icon" src="/desktop/file.svg" alt="File icon" />transcript_20160103.pdf</p></div>,
-        languageTranscript2: <div className="file pointer" onClick={() => { this.openApplication("languageTranscript2") }} ><p><img className="icon" src="/desktop/file.svg" alt="File icon" />transcript_20160521.pdf</p></div>,
-        alienArticle: <div className="file pointer" onClick={() => { this.openApplication("alienArticle") }} ><p><img className="icon" src="/desktop/file.svg" alt="File icon" />journal_20151113.pdf</p></div>,
-      }
-
       // Desktop Short Cuts
-      this.shortcuts = {
-        calculator: {
-          requirement: 0,
-          app: (
-            <div key="calculator-shortcut" className="shortcut" onClick={() => { this.openApplication("calculator") }}>
-              <div className="icon">
-                <img src="/desktop/calculator.svg" alt="Calculator shortcut icon" />
-              </div>
-              <div className="shortcut-name">Calculator</div>
-            </div>
-          ),
-        },
-        secureChat: {
-          requirement: 0,
-          app: (
-            <div key="chat-shortcut" className="shortcut" onClick={() => { this.openApplication("secureChat") }}>
-              <div className="icon">
-                <img src="/desktop/secure-chat.svg" alt="Secure chat shortcut icon" />
-              </div>
-              <div className="shortcut-name">Secure Chat</div>
-            </div>
-          ),
-        },
-        timer: {
-          requirement: 10,
-          app: (
-            <div key="timer-shortcut" className="shortcut" onClick={() => { this.openApplication("timer") }}>
-              <div className="icon">
-                <img src="/desktop/timer.svg" alt="Timer shortcut icon" />
-              </div>
-              <div className="shortcut-name">Timer</div>
-            </div>
-          )
-        },
-        fileSystem: {
-          requirement: 15,
-          app: (
-            <div key="file-system-shortcut" className="shortcut" onClick={() => { this.openApplication("fileSystem") }}>
-              <div className="icon">
-                <img src="/desktop/filesystem.svg" alt="Filesystem shortcut icon" />
-              </div>
-              <div className="shortcut-name">Files</div>
-            </div>
-          )
-        },
-        videoStream: {
-          requirement: 40,
-          app: (
-            <div key="video-stream-shortcut" className="shortcut" onClick={() => { this.openApplication("videoStream") }}>
-              <div className="icon">
-                <img src="/desktop/video-stream.svg" alt="Video Stream shortcut icon" />
-              </div>
-              <div className="shortcut-name">Video Stream</div>
-            </div>
-          )
-        },
-        translator: {
-          requirement: 60,
-          app: (
-            <div key="translator-shortcut" className="shortcut" onClick={() => { this.openApplication("translator") }}>
-              <div className="icon">
-                <img src="/desktop/translator.svg" alt="Translator shortcut icon" />
-              </div>
-              <div className="shortcut-name">Translator</div>
-            </div>
-          ),
-        },
-      }
-
-      this.apps = {
-        calculator: {
-          name: "Calculator",
-          html: <Calculator />,
-        },
-        secureChat: {
-          name: "Secure Chat",
-          html: <Chat room={this.room} viewer={this.state.username} chatColor={this.state.chatColor} socket={this.socket} files={this.chatFiles} playSound={this.playSound} />
-        },
-        timer: {
-          name: "Timer",
-          html: <Timer socket={this.socket} />
-        },
-        fileSystem: {
-          name: "File System",
-          html: <FileSystem socket={this.socket} folders={fileSystemFolders} level={state} openCallBack={this.openApplication} />
-        },
-        videoStream: {
-          name: "Video Stream - Streaming from @lex",
-          html: <VideoStream socket={this.socket} />
-        },
-        translator: {
-          name: "Translator",
-          html: <Translator />
-        },
-        // Chat Pop-ups
-
-        // Add chat pop-ups here
-        warehouse: {
-          name: "IMG083098",
-          html: <img src="/warehouse.jpg" style={{ maxHeight: 500 }} alt="Warehouse exterior" />,
-        },
-        no_thermal_warehouse: {
-          name: "IMG083104",
-          html: <Panorama image={warehouse_1dark}></Panorama>,
-        },
-        thermal_warehouse: {
-          name: "IMG083112",
-          html: <Panorama image={warehouse_2thermal}></Panorama>,
-        },
-        thermal_warehouse_wires: {
-          name: "IMG083118",
-          html: <Panorama image={warehouse_3powered}></Panorama>,
-        },
-        elevator_landing: {
-          name: "IMG083120",
-          html: <img src="/hallways/hallway.jpg" style={{ maxHeight: 500 }} alt="Hallways outside elevator" />,
-        },
-        vault_door: {
-          name: "IMG083123",
-          html: <img src="/vault/door.jpg" style={{ maxHeight: 500 }} alt="Vault door" />,
-        },
-        tubes: {
-          name: "IMG083125",
-          html: <img src="/vault/tubes.jpg" style={{ maxHeight: 500 }} alt="Tubes" />,
-        },
-        brain: {
-          name: "IMG083128",
-          html: <img src="/vault/brain.jpg" style={{ maxHeight: 500 }} alt="Brain" />,
-        },
-        subject1: {
-          name: "IMG083130",
-          html: <img src="/vault/subject1.jpg" style={{ maxHeight: 500 }} alt="Subject" />,
-        },
-        subject2: {
-          name: "IMG083131",
-          html: <img src="/vault/subject2.jpg" style={{ maxHeight: 500 }} alt="Subject" />,
-        },
-        computer: {
-          name: "IMG083137",
-          html: <img src="/vault/computer.jpg" style={{ maxHeight: 500 }} alt="Computer" />,
-        },
-        baby: {
-          name: "IMG083141",
-          html: <img src="/vault/baby.jpg" style={{ maxHeight: 500 }} alt="Baby" />,
-        },
-        cameras: {
-          name: "IMG083143",
-          html: <img src="/vault/cameras.jpg" style={{ maxHeight: 500 }} alt="Cameras" />,
-        },
-        powder: {
-          name: "IMG083145",
-          html: <img src="/vault/powder.jpg" style={{ maxHeight: 500 }} alt="Powder" />,
-        },
-
-        // File System Pop ups
-        directory: {
-          name: "Document Viewer - Building Directory",
-          html: directory,
-        },
-        floorPlan4: {
-          name: "Floor Planner - Subfloor 3 Plan",
-          html: <FloorPlan level={state} socket={this.socket} roomCode={this.room} sender={this.state.username} color={this.state.chatColor} />,
-        },
-        securityManual: {
-          name: "Document Viewer - Security Invoice",
-          html: securityManual,
-        },
-        guard1: {
-          name: "Database - A. Shakeb",
-          html: guard1,
-        },
-        guard7: {
-          name: "Database - W. Patricia",
-          html: guard2,
-        },
-        languageTranscript1: {
-          name: "Document Viewer - transcript_20160103",
-          html: languageTranscript1,
-        },
-        languageTranscript2: {
-          name: "Document Viewer - transcript_20160521",
-          html: languageTranscript2,
-        },
-        alienArticle: {
-          name: "Document Viewer - journal_20151113",
-          html: alienArticle,
-        },
-
-        // Error Pop ups
-        tooMuchRamPopUp: {
-          name: "System Warning",
-          html: (
-            <div className="error-pop-up">
-              <h1 className="warning-symbol">⚠️</h1>
-              <h2>Your computer is low on memory.</h2>
-              <div className="details">
-                <p>Programs using significant energy:</p>
-                <ul>
-                  <li>Video Streamer</li>
-                  <li>Floor Planner</li>
-                </ul>
-                <p>To restore enough memory for programs to work correctly, close one of the above applications and try again.</p>
-                <button onClick={() => { this.closeApplication("tooMuchRamPopUp") }}>OK</button>
-              </div>
-            </div>
-          )
-        }
-      }
+      this.shortcuts = shortcutCreator(this.openApplication);
+      const chatFiles = chatFilesCreator(this.openApplication);
+      this.apps = appCreator(this.openApplication, this.closeApplication, this.room, state, this.state, this.socket, chatFiles, this.playSound);
 
       this.setState(prev => ({
         state,
