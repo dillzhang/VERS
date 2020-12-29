@@ -61,4 +61,21 @@
   opacity: 0.5;
 }
 
+.translator .key .button {
+  display: flex;
+  width: 65%;
+  height: 30px;
+  margin: 10px auto;
 
+  color: #96B9A6;
+  border: 2px solid #314948;
+  border-radius: 5px;
+  padding: 10px 30px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 24px;
+}
+
+.translator .key .button img {
+  height: 20px;
+}
