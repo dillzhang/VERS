@@ -262,7 +262,10 @@ const checkSensors = (roomCode, io, sender, color, sensors) => {
       })
       .every((a) => a)
   ) {
-    setRoomState(roomCode, io, 40);
+    setRoomState(roomCode, io, 39);
+    io.to(roomCode).emit("update-line-from-submission", {
+      line: "This seems to match what I see here. I found this electrical panel. Let me share my location and a live stream with you.",
+    });
   } else {
     if (empty > 0) {
       io.to(roomCode).emit("update-line-from-submission", {

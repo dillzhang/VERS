@@ -9,6 +9,7 @@ const stateApplications = {
   15: ["fileSystem"],  //15
   20: [],  // 20
   30: [],  // 30
+  39: [],  // 39
   40: [],  // 40
   45: ["videoStream"],
   50: [],  // 50
