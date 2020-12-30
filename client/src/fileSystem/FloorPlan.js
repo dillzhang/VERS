@@ -113,7 +113,7 @@ class FloorPlan extends Component {
         });
 
         
-        this.xoffset = 120;
+        this.xoffset = 112;
     }
     handleMouseMove = (e) => {
         if (this.state.interactivity && this.state.dragging >= 0) {

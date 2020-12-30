@@ -11,6 +11,11 @@
     overflow: hidden;
 }
 
+.host .floor-planner {
+    height: auto;
+    width: auto;
+}
+
 .floor-planner .floor-plan {
     width: 720px;
     height: 480px;
@@ -23,6 +28,10 @@
 
     background-image: url("/floorPlan.png");
     position: absolute;
+}
+
+.host .floor-planner .floor-plan {
+    left: 0;
 }
 
 .floor-planner .controls {
@@ -47,7 +56,6 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    postion: relative;
 
     color: var(--off-white);
 
