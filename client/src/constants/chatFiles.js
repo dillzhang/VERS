@@ -30,6 +30,7 @@ const chatFilesCreator = (openApplication) => ({
     languageTranscript1: <div className="file pointer" onClick={() => { openApplication("languageTranscript1") }} ><p><img className="icon" src="/desktop/file.svg" alt="File icon" />transcript_20160103.pdf</p></div>,
     languageTranscript2: <div className="file pointer" onClick={() => { openApplication("languageTranscript2") }} ><p><img className="icon" src="/desktop/file.svg" alt="File icon" />transcript_20160521.pdf</p></div>,
     alienArticle: <div className="file pointer" onClick={() => { openApplication("alienArticle") }} ><p><img className="icon" src="/desktop/file.svg" alt="File icon" />journal_20151113.pdf</p></div>,
+    translationKey: <div className="file"><p><img className="icon" src="/desktop/file.svg" alt="File icon" /> translator.key</p></div>,
 });
 
 export default chatFilesCreator;

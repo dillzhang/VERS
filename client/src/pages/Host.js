@@ -10,40 +10,12 @@ import Elevator from  "../components/Elevator";
 import ActorMoving from "../components/ActorMoving";
 import VaultDoor from "../components/VaultDoor";
 
-import warehouse_1dark_preview from "../warehouse_images/warehouse-1dark-preview.jpg";
-import warehouse_2thermal_preview from "../warehouse_images/warehouse-2thermal-preview.jpg";
-import warehouse_3powered_preview from "../warehouse_images/warehouse-3powered-preview.jpg";
+import chatFilesCreator from '../constants/chatFiles';
 
 const baseURL = new URL(window.location.href).host;
 const baseProto = new URL(window.location.href).protocol;
 
-const chatFiles = {
-  backpack: <div className="backpack"><p>Backpack</p><ul><li>Thermal Camera</li><li>Mirror</li><li>Multi-tool</li></ul></div>,
-  warehouse: <img src="/warehouse.jpg" alt="Warehouse exterior"/>,
-  floor_plan_4: <div className="file"><strong>Floor Plan 4.bp</strong></div>,
-
-  no_thermal_warehouse: <img src={warehouse_1dark_preview} alt="Warehouse"/>,
-
-  thermal_warehouse: <img src={warehouse_2thermal_preview} alt="Warehouse (thermal)"/>,
-
-  thermal_warehouse_wires: <img src={warehouse_3powered_preview} alt="Warehouse (thermal, power on)"/>,
-
-  elevator_landing: <img src="/hallways/hallway.jpg" alt="Hallways outside elevator"/>,
-  vault_door: <img src="/vault/door.jpg" alt="Vault door"/>,
-
-  tubes: <img src="/vault/tubes.jpg" alt="Tubes"/>,
-  brain: <img src="/vault/brain.jpg" alt="Brain"/>,
-  subject1: <img src="/vault/subject1.jpg" alt="Subject"/>,
-  subject2: <img src="/vault/subject2.jpg" alt="Subject"/>,
-  computer: <img src="/vault/computer.jpg" alt="Computer"/>,
-  baby: <img src="/vault/baby.jpg" alt="Baby"/>,
-  cameras: <img src="/vault/cameras.jpg" alt="Cameras"/>,
-  powder: <img src="/vault/powder.jpg" alt="Powder"/>,
-
-  languageTranscript1: <div className="file"><p><img className="icon" src="/desktop/file.svg" alt="File icon"/>transcript_20160103.pdf</p></div>,
-  languageTranscript2: <div className="file"><p><img className="icon" src="/desktop/file.svg" alt="File icon"/>transcript_20160521.pdf</p></div>,
-  alienArticle: <div className="file"><p><img className="icon" src="/desktop/file.svg" alt="File icon"/>journal_20151113.pdf</p></div>,
-}
+const chatFiles = chatFilesCreator((_) => {});
 
 class Host extends Component {
   // Initialize the state
@@ -76,7 +48,7 @@ class Host extends Component {
       });
     });
 
-    this.socket.on("floor-plan-wrong", ({line}) => {
+    this.socket.on("update-line-from-submission", ({line}) => {
       this.setState({ 
         lines: [line],
       });
@@ -280,6 +252,7 @@ class Host extends Component {
               <VaultDoor socket={this.socket} room={this.room} /></>
       case 60:
       case 65:
+      case 69:
         return <>
           <button onClick={() => {
             this.sendFile("tubes");
@@ -315,9 +288,10 @@ class Host extends Component {
           <button onClick={() => {
             this.sendFile("baby");
           }}>(11) Send Baby</button>
+          {this.state.state >= 69 && 
           <button onClick={() => {
             this.socket.emit("setRoomState", {roomCode: this.room, state: 70});
-          }} className="confirm">(12) Complete Mission</button>
+          }} className="confirm">(12) Start Email End Sequence </button>}
         </>
       default:
         return "Something wrong has occurred";

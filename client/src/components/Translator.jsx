@@ -133,12 +133,24 @@ class Translator extends Component {
                           },
                         }
                       }
-                    }, () => { this.socket.emit("translatorUpdate", { key, i, room: this.props.room }) })
+                    }, () => { this.socket.emit("translatorUpdate", { key, i, room: this.props.roomCode }) })
                   }} />
               </div>)
           })}
         </div>
-        <div className={"button"}>
+        <div className={"button"} onClick={(e) => {
+                            e.target.disabled = true;
+                            this.props.socket.emit("translation-key", {
+                                roomCode: this.props.roomCode,
+                                sender: this.props.sender,
+                                color: this.props.color,
+                                translation: this.state.translation,
+                            });
+                            const button = e.target;
+                            setTimeout(() => {
+                                button.disabled = false;
+                            }, 1000);
+        }}>
           Export to Chat <img src="/desktop/send.svg" alt="Send icon" />
         </div>
       </div>
