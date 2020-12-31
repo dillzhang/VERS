@@ -50,7 +50,47 @@
 
 .host .main {
   width: 100%;
-  padding: 12px;
+  overflow-y: auto;
+  background-color: #cccccc;
+}
+
+.host .act {
+  margin: 36px 24px 12px 24px;
+  padding: 24px 12px 12px 12px;
+  border-radius: 0 0 24px 24px;
+
+  border: 2px solid #404040;
+  position: relative;
+  min-height: 30vh;
+  background-color: var(--dark-grey);
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  transition: opacity 1s ease-in-out, min-height 1s ease-in-out;
+}
+
+.host .act.act-active {
+  min-height: 70vh;
+  margin-bottom: calc(20vh - var(--header-height));
+  opacity: 100%;
+}
+
+.host .act.act-inactive {
+  opacity: 60%;
+}
+
+.host .act .act-header {
+  position: absolute;
+  top: -24px;
+  left: -12px;
+  border: 1px solid #404040;
+  width: calc(100% + 12px);
+  height: 36px;
+  background-color: var(--dark-grey);
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  padding-left: 12px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .host .main h2 {
@@ -174,6 +214,12 @@
 
 .host .show-controls .add-time {
   grid-column: span 2;
+}
+
+.host .side-bar .show-controls button.disabled {
+  background-color: #222222;
+  color: #333333;
+  border-color: #111111;
 }
 
 .host .chat-box {

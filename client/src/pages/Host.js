@@ -11,6 +11,7 @@ import VaultDoor from "../components/VaultDoor";
 
 import chatFilesCreator from "../constants/chatFiles";
 import { STATE_FAILURE, STATE_SUCCESS } from "../constants/guest";
+import { actHeaders } from "../constants/host";
 
 const baseURL = new URL(window.location.href).host;
 const baseProto = new URL(window.location.href).protocol;
@@ -123,9 +124,12 @@ class Host extends Component {
               <div
                 key={`act-${act}`}
                 className={`act act-${act} act-${
-                  act === currentAct ? "active" : "inactive"
+                  act === `${currentAct}` ? "active" : "inactive"
                 }`}
               >
+                <div className={`act-header act-header-${act}`}>
+                  {actHeaders[act].value} - {actHeaders[act].setting}
+                </div>
                 {this.showActs[act]()}
               </div>
             );
