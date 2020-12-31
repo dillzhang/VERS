@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import * as SocketIO from "socket.io-client";
-// import ReactAudioPlayer from 'react-audio-player';
 
 import "./Host.css";
 
@@ -11,6 +10,7 @@ import ActorMoving from "../components/ActorMoving";
 import VaultDoor from "../components/VaultDoor";
 
 import chatFilesCreator from "../constants/chatFiles";
+import { STATE_FAILURE, STATE_SUCCESS } from "../constants/guest";
 
 const baseURL = new URL(window.location.href).host;
 const baseProto = new URL(window.location.href).protocol;
@@ -29,22 +29,18 @@ class Host extends Component {
       state: 0,
       lines: [],
       chatColor: "#65fc31",
-      activeSounds: [],
-      soundsToRemove: [],
     };
 
     this.socket.on("joinRoomStatus", ({ state, password }) => {
       this.setState({
         state,
         playerUrl: `${baseProto}//${baseURL}/player/${this.props.match.params.code}/${password}`,
-        lines: this.getLines(state),
       });
     });
 
     this.socket.on("roomStateUpdate", ({ state }) => {
       this.setState({
         state,
-        lines: this.getLines(state),
       });
     });
 
@@ -64,415 +60,216 @@ class Host extends Component {
     this.socket.emit("joinRoom", { room: this.room, password: "HOST" });
   }
 
-  playSound = (name, className, source) => {
-    var newSound = {
-      name: name,
-      class: className,
-      source: source,
-      time: Date.now(),
-    };
-    this.setState((prevState) => ({
-      activeSounds: [...prevState.activeSounds, newSound],
-    }));
-  };
-
   render() {
     return (
       <div className="app host">
-        {/* <div className="sounds">
-          {this.state.activeSounds.map((sound) => {
-              return (
-                <ReactAudioPlayer
-                  key={sound.id}
-                  className={sound.class}
-                  src={sound.source}
-                  autoPlay
-                />);
-            })
-          }
-        </div> */}
-        <div className="header">
-          <h1>Actor's Panel ({this.room})</h1>
-          Player URL:{" "}
-          {this.state.playerUrl && (
-            <a href={this.state.playerUrl} target="_blank">
-              {this.state.playerUrl}
-            </a>
-          )}
+        <div className={`header`}>
+          <h1>VERS Actor Panel</h1>
+          {this.maybeRenderPlayerLink()}
         </div>
-        <div className="body">
-          <div className="main">
-            <div className="location">
-              <h2>Location:</h2>
-              <h2>
-                {this.getLocation()} ({this.state.state} / 80)
-              </h2>
-            </div>
-            <div className="line-prompter">
-              <h2>Line Prompter</h2>
-              {this.state.lines.map((line, key) => (
-                <p key={key}>{line}</p>
-              ))}
-            </div>
-            <div className="available-actions">
-              <h2>Available Actions</h2>
-              <div className="actions">{this.renderMain()}</div>
-            </div>
-          </div>
-          <div className="side-bar">
-            <Timer socket={this.socket} />
-            {this.state.state >= 10 && (
-              <button
-                onClick={() => {
-                  this.socket.emit("add-five-minutes", { roomCode: this.room });
-                }}
-              >
-                {" "}
-                Add 5 Minutes
-              </button>
-            )}
-            <Chat
-              room={this.room}
-              viewer="@lex"
-              chatColor={this.state.chatColor}
-              files={chatFiles}
-              socket={this.socket}
-              playSound={this.playSound}
-            />
-          </div>
-        </div>
+        {this.renderMain()}
+        {this.renderSideBar()}
       </div>
     );
   }
 
-  getLocation = () => {
-    if (this.state.state < 10) {
-      return "Outside Warehouse";
-    } else if (this.state.state < 20) {
-      return "Warehouse";
-    } else if (this.state.state < 30) {
-      return "Elevator";
-    } else if (this.state.state < 40) {
-      return "Hallways By Elevator";
-    } else if (this.state.state < 50) {
-      return "Hallways";
-    } else if (this.state.state < 60) {
-      return "Outside Alien Room";
-    } else if (this.state.state < 70) {
-      return "Inside Alien Room";
-    } else if (this.state.state < 80) {
-      return "Success";
-    } else if (this.state.state < 90) {
-      return "Failure";
-    }
-    return "Unknown";
+  maybeRenderPlayerLink() {
+    return (
+      <div className={`player-link`}>
+        {this.state.playerUrl && (
+          <a href={this.state.playerUrl} target="_blank">
+            {this.state.playerUrl}
+          </a>
+        )}
+        <button
+          onClick={() => {
+            navigator.clipboard.writeText(this.state.playerUrl);
+          }}
+        >
+          Copy Player URL
+        </button>
+      </div>
+    );
+  }
+
+  showActs = {
+    0: this.maybeRenderPreshow,
+    1: this.maybeRenderP1A,
+    2: this.maybeRenderP1B,
+    3: this.maybeRenderP2A,
+    4: this.maybeRenderP2B,
+    5: this.maybeRenderP3A,
+    6: this.maybeRenderP3B,
+    7: this.maybeRenderSuccess,
+    8: this.maybeRenderFailure,
   };
 
-  getLines = (state) => {
-    switch (state) {
-      case 0:
-        return [
-          "Huh, so… I’ve been walking around for a while, and all I can see is this abandoned warehouse. Should I go in? I’ll send a picture over.",
-        ];
-      case 10:
-      case 15:
-        return [
-          "I made it into the warehouse. It’s awful dark in here… and I don’t see anything suspicious?",
-        ];
-      case 20:
-        return [
-          "Alright, I’m in the elevator and there are 5 buttons, ground through sublevel 4. Which should I press?",
-        ];
-      case 30:
-        return [
-          "I see— (Suddenly switch to whispering.) Holy sh- this looks like the right floor. There’s a bunch of hallways with security cameras. I gotta lay low. Here’s what I’m seeing.",
-        ];
-      case 40:
-      case 45:
-        return [
-          "Looks good to me. I’m sharing my location and streaming a video of the circuit breaker panel so you can monitor which sensors are active. Tell me when to go north, east, south, or west! Remember I can avoid the laser trip wires, but you need to warn me about them. I also won't be able to move as quickly.",
-        ];
-      case 50:
-        return [
-          "Whew, I made it to the vault door! I can’t believe it. We’re so close.",
-          "Ok, the door’s locked with a keyboard. The screen’s asking for an ID number. Any idea what I should put in?",
-        ];
-      case 60:
-      case 65:
-        return [
-          "We’re in! Whoa.",
-          "It’s a secret laboratory. It’s all dark and green. There are alien creatures in giant glass tubes? Yep, those are definitely alien. Look at this.",
-        ];
-      case 70:
-      case 71:
-      case 72:
-      case 73:
-      case 74:
-      case 75:
-        return ["Yay we did it!"];
-      case 80:
-        return [""];
-      default:
-        return ["No lines found"];
-    }
-  };
+  renderMain() {
+    const currentAct = Math.floor(this.state.state / 10);
+    return (
+      <div className="main">
+        {Object.keys(this.showActs)
+          .filter((act) => {
+            if (this.state.state >= 80) {
+              // Render only failure state if players fail
+              return act === `8`;
+            } else {
+              // Render all states that have been seen
+              return act <= currentAct;
+            }
+          })
+          .map((act) => {
+            return (
+              <div
+                key={`act-${act}`}
+                className={`act act-${act} act-${
+                  act === currentAct ? "active" : "inactive"
+                }`}
+              >
+                {this.showActs[act]()}
+              </div>
+            );
+          })}
+      </div>
+    );
+  }
 
-  renderMain = () => {
-    switch (this.state.state) {
-      case 0:
-        return (
-          <div>
-            <button
-              onClick={() => {
-                this.sendFile("backpack");
-              }}
-            >
-              (1) Send Backpack Contents
-            </button>
-            <button
-              onClick={() => {
-                this.sendFile("warehouse");
-              }}
-            >
-              (2) Send Warehouse Image
-            </button>
-            <button
-              onClick={() => {
-                this.socket.emit("start-time", { room: this.room });
-              }}
-              className="warning"
-            >
-              (3) Start Timer
-            </button>
-          </div>
-        );
-      case 10:
-      case 15:
-        return (
-          <div>
-            <button
-              onClick={() => {
-                this.sendFile("no_thermal_warehouse");
-              }}
-            >
-              (1) Send Dark Warehouse Image
-            </button>
-            <button
-              onClick={() => {
-                this.sendFile("thermal_warehouse");
-              }}
-            >
-              (2) Send Thermal Warehouse Image (Power Off)
-            </button>
-            <button
-              onClick={() => {
-                this.socket.emit("setRoomState", {
-                  roomCode: this.room,
-                  state: 15,
-                });
-              }}
-              className="warning"
-            >
-              (3) Flip Switch and Attach File System
-            </button>
-            <button
-              onClick={() => {
-                this.sendFile("thermal_warehouse_wires");
-              }}
-            >
-              (4) Send Thermal Warehouse Image (Power On)
-            </button>
-            <button
-              onClick={() => {
-                this.socket.emit("setRoomState", {
-                  roomCode: this.room,
-                  state: 20,
-                });
-              }}
-              className="warning"
-            >
-              (5) Move to Elevator
-            </button>
-          </div>
-        );
-      case 20:
-        return (
-          <div>
-            <Elevator
-              successCallback={() => {
-                this.socket.emit("setRoomState", {
-                  roomCode: this.room,
-                  state: 30,
-                });
-              }}
-            />
-          </div>
-        );
-      case 30:
-      case 39:
-        return (
-          <>
-            <button
-              onClick={() => {
-                this.sendFile("elevator_landing");
-              }}
-            >
-              (1) Send Hallway Image
-            </button>
+  maybeRenderPreshow() {
+    return <>PRESHOW</>;
+  }
 
-            {this.state.state >= 39 && (
-              <button
-                onClick={() => {
+  maybeRenderP1A() {
+    return <>P1A</>;
+  }
+
+  maybeRenderP1B() {
+    return <>P1B</>;
+  }
+
+  maybeRenderP2A() {
+    return <>P2A</>;
+  }
+
+  maybeRenderP2B() {
+    return <>P2B</>;
+  }
+
+  maybeRenderP3A() {
+    return <>P3A</>;
+  }
+
+  maybeRenderP3B() {
+    return <>P3B</>;
+  }
+
+  maybeRenderSuccess() {
+    return <>Success</>;
+  }
+
+  maybeRenderFailure() {
+    return <>Failure</>;
+  }
+  renderSideBar() {
+    return (
+      <div className="side-bar">
+        {this.renderTimerAndControls()}
+        {this.renderChat()}
+      </div>
+    );
+  }
+  renderTimerAndControls() {
+    return (
+      <>
+        <div className={`show-info`}>
+          <Timer host={true} socket={this.socket} />
+          <div className={`timeline`}>
+            <div>Preshow</div>
+            {[...Array(6).keys()].map((puzzle) => {
+              return (
+                <div
+                  key={`progress-${puzzle}`}
+                  className={`progress progress-${
+                    puzzle + 1 < Math.floor(this.state.state / 10)
+                      ? "complete"
+                      : "incomplete"
+                  }`}
+                />
+              );
+            })}
+            <div>Success</div>
+          </div>
+        </div>
+        <div className={`show-controls`}>
+          <button
+            className={`add-time ${
+              10 <= this.state.state && this.state.state < STATE_SUCCESS
+                ? ""
+                : "disabled"
+            }`}
+            onClick={() => {
+              if (10 <= this.state.state && this.state.state < STATE_SUCCESS) {
+                this.socket.emit("add-five-minutes", { roomCode: this.room });
+              }
+            }}
+          >
+            Add 5 Minutes
+          </button>
+          <button
+            className={`${this.state.state >= STATE_SUCCESS ? "disabled" : ""}`}
+            onClick={() => {
+              const currentPuzzle = Math.floor(this.state.state / 10);
+              console.log(currentPuzzle);
+              if (currentPuzzle < 7) {
+                const confirmation = window.confirm(
+                  "Are you sure you want to skip this puzzle?"
+                );
+                if (confirmation) {
                   this.socket.emit("setRoomState", {
                     roomCode: this.room,
-                    state: 40,
+                    state: (currentPuzzle + 1) * 10,
                   });
-                }}
-                className="confirm"
-              >
-                (2) Share location and stream
-              </button>
-            )}
-          </>
-        );
-      case 40:
-      case 45:
-        return (
-          <>
-            <button
-              onClick={() => {
-                this.socket.emit("setRoomState", {
-                  roomCode: this.room,
-                  state: 45,
-                });
-              }}
-            >
-              (1) Send Live Stream
-            </button>
-            <ActorMoving socket={this.socket} room={this.room} />
-          </>
-        );
-      case 50:
-        return (
-          <>
-            <button
-              onClick={() => {
-                this.sendFile("vault_door");
-              }}
-            >
-              (1) Send Vault Door Image
-            </button>
-            <VaultDoor socket={this.socket} room={this.room} />
-          </>
-        );
-      case 60:
-      case 65:
-      case 69:
-        return (
-          <>
-            <button
-              onClick={() => {
-                this.sendFile("tubes");
-              }}
-            >
-              (1) Send Tubes
-            </button>
-            <button
-              onClick={() => {
-                this.sendFile("brain");
-              }}
-            >
-              (2) Send Brain
-            </button>
-            <button
-              onClick={() => {
-                this.sendFile("computer");
-              }}
-            >
-              (3) Send Computer
-            </button>
-            <button
-              onClick={() => {
-                this.sendFile("languageTranscript1");
-              }}
-              className="highlight"
-            >
-              (4) Send Transcript 1
-            </button>
-            <button
-              onClick={() => {
-                this.sendFile("alienArticle");
-              }}
-              className="highlight"
-            >
-              (5) Send Journal
-            </button>
-            <button
-              onClick={() => {
-                this.socket.emit("setRoomState", {
-                  roomCode: this.room,
-                  state: 65,
-                });
-              }}
-              className="highlight"
-            >
-              (6) Send Translator Application
-            </button>
-            <button
-              onClick={() => {
-                this.sendFile("languageTranscript2");
-              }}
-              className="highlight"
-            >
-              (7) Send Transcript 2
-            </button>
-            <button
-              onClick={() => {
-                this.sendFile("cameras");
-              }}
-            >
-              (8) Send Cameras
-            </button>
-            <button
-              onClick={() => {
-                this.sendFile("powder");
-              }}
-            >
-              (9) Send Powder
-            </button>
-            <button
-              onClick={() => {
-                this.sendFile("subject1");
-                this.sendFile("subject2");
-              }}
-            >
-              (10) Send Subjects
-            </button>
-            <button
-              onClick={() => {
-                this.sendFile("baby");
-              }}
-            >
-              (11) Send Baby
-            </button>
-            {this.state.state >= 69 && (
-              <button
-                onClick={() => {
-                  this.socket.emit("startRoomSuccess", {
+                }
+              }
+            }}
+          >
+            Skip Puzzle
+          </button>
+          <button
+            className={`warning ${
+              this.state.state >= STATE_SUCCESS ? "disabled" : ""
+            }`}
+            onClick={() => {
+              const currentPuzzle = Math.floor(this.state.state / 10);
+              if (currentPuzzle < 7) {
+                const confirmation = window.confirm("End the show?");
+                if (confirmation) {
+                  this.socket.emit("setRoomState", {
                     roomCode: this.room,
+                    state: STATE_FAILURE,
                   });
-                }}
-                className="confirm"
-              >
-                (12) Start Email End Sequence
-              </button>
-            )}
-          </>
-        );
-      default:
-        return "No Action Required";
-    }
-  };
+                }
+              }
+            }}
+          >
+            {" "}
+            End Show
+          </button>
+        </div>
+      </>
+    );
+  }
+  renderChat() {
+    return (
+      <Chat
+        room={this.room}
+        viewer="@lex"
+        chatColor={this.state.chatColor}
+        files={chatFiles}
+        socket={this.socket}
+        playSound={(_) => {}}
+      />
+    );
+  }
 
   // Use this function to "send" files
   // content should be the id specified in Guest
@@ -483,11 +280,6 @@ class Host extends Component {
       roomCode: this.room,
       color: this.state.chatColor,
     });
-    this.playSound(
-      "message-sent",
-      "sound-message-sent",
-      "/sounds/message-sent.ogg"
-    );
   };
 }
 

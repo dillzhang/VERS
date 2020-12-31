@@ -1,132 +1,183 @@
 .host {
-    --header-height: 75px;
-    --sidebar-width: 450px;
-    background-color: var(--dark-grey);
-    font-family: var(--conspiracy-font);
-    color: white;
+  --header-height: 30px;
+  --sidebar-width: 450px;
+  background-color: var(--dark-grey);
+  font-family: var(--conspiracy-font);
+  color: white;
 
-    overflow: hidden;
+  overflow: hidden;
+
+  display: grid;
+
+  grid-template-columns: 1fr var(--sidebar-width);
+  grid-template-rows: var(--header-height) 1fr;
+  height: 100vh;
 }
 
 .host .header {
-    height: var(--header-height);
+  grid-column: span 2;
+  height: 100%;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    border-bottom: 2px solid #404040;
-    background-color: var(--light-grey);
+  padding: 0 10px;
 
-    font-weight: bold;
+  border-bottom: 2px solid #404040;
+  background-color: var(--light-grey);
 }
 
 .host .header h1 {
-    width: 100%;
-    font-size: 2em;
-    text-align: center;
-    color: #65fc31;
-}
-.host .header a {
-    color: #65fc31;
+  width: 200px;
+  color: #65fc31;
 }
 
-.host .body {
-    display: flex;
-    height: calc(99vh - var(--header-height));
+.host .header .player-link {
+  display: flex;
+  align-items: center;
+}
+
+.host .player-link a {
+  color: white;
+  margin-right: 10px;
+}
+
+.host .player-link button {
+  width: 150px;
+  height: calc(var(--header-height) - 4px);
 }
 
 .host .main {
-    width: calc(99vw - var(--sidebar-width) - 48px);
-    padding: 24px;
+  width: 100%;
+  padding: 12px;
 }
+
 .host .main h2 {
-    font-size: 1.5em;
-    font-weight: bold;
-    text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
 }
 .host .main p {
-    font-size: 1.15em;
-    line-height: 1.15;
-    background-color: black;
-    text-align: center;
-    max-width: 500px;
-    margin: 24px auto;
+  font-size: 1.15em;
+  line-height: 1.15;
+  background-color: black;
+  text-align: center;
+  max-width: 500px;
+  margin: 24px auto;
 }
 .host .main .location h2:nth-child(2) {
-    color: #65fc31;
+  color: #65fc31;
 }
-.host .main .line-prompter, .host .main .available-actions {
-    min-height: 100px;
-    margin: 24px;
+.host .main .line-prompter,
+.host .main .available-actions {
+  min-height: 100px;
+  margin: 24px;
 }
 .host .actions {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 .host .actions button,
 .host .side-bar button {
-    color: inherit;
-    font-family: inherit;
-    font-size: 1em;
-    font-weight: bold;
-    background-color: #303030;
-    border-radius: 8px;
-    flex: 1 0 45%;
-    max-height: 60px;
-    margin: 12px;
-    padding: 18px 12px;
-    border: 2px solid #404040;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: bold;
+  background-color: #303030;
+  border-radius: 8px;
+  flex: 1 0 45%;
+  max-height: 60px;
+  margin: 12px;
+  padding: 18px 12px;
+  border: 2px solid #404040;
 }
 .host .actions button:hover,
 .host .side-bar button:hover {
-    background-color: #262626;
-    cursor: pointer;
+  background-color: #262626;
+  cursor: pointer;
 }
 .host .actions button:focus,
 .host .side-bar button:focus {
-    outline: none;
+  outline: none;
 }
-.host .actions button.highlight {
-    background: #C18B25;
-    color: white;
-    border-color: #DB944D;
+.host button.highlight {
+  background: #c18b25;
+  color: white;
+  border-color: #db944d;
 }
-.host .actions button.highlight:hover {
-    background: #825900;
+.host button.highlight:hover {
+  background: #825900;
 }
-.host .actions button.warning {
-    background: #c12f25;
-    color: white;
-    border-color: #bf4633;
+.host button.warning {
+  background: #c12f25;
+  color: white;
+  border-color: #bf4633;
 }
-.host .actions button.warning:hover {
-    background: #821100;
+.host button.warning:hover {
+  background: #821100;
 }
 .host .actions button.confirm {
-    background: #2BC125;
-    color: white;
-    border-color: #6DC16A;
+  background: #2bc125;
+  color: white;
+  border-color: #6dc16a;
 }
 .host .actions button.confirm:hover {
-    background: #268423;
+  background: #268423;
 }
 
 .host .side-bar {
-    width: calc(var(--sidebar-width) - 4px);
+  width: 100%;
+  border-left: 2px solid #404040;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    justify-content: space-between;
-    align-items: center;
+  justify-content: space-between;
+  align-items: center;
 
-    padding: 10px 0;
+  padding: 10px 0;
 }
 
-.host .chat-box, .host .timer-box {
-    font-family: var(--desktop-font);
-    box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    margin: 8px;
+.host .show-info,
+.host .show-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
 }
 
+.host .show-info {
+  justify-items: center;
+}
+
+.host .timeline {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 90px repeat(6, 1fr) 90px;
+  width: 95%;
+  justify-items: center;
+}
+
+.host .progress {
+  border: 1px solid #404040;
+  width: 85%;
+  border-radius: 4px;
+}
+
+.host .progress-complete {
+  background: #268423;
+}
+
+.host .progress-incomplete {
+  background: #821100;
+}
+
+.host .show-controls .add-time {
+  grid-column: span 2;
+}
+
+.host .chat-box {
+  font-family: var(--desktop-font);
+  border-top: 2px solid #404040;
+  margin-bottom: 8px;
+}
