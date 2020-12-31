@@ -11,8 +11,16 @@
   color: #eeeeee;
 }
 
+.timer-box.player-time {
+  opacity: 0.4;
+}
+
+.timer-box.actual-time {
+  font-weight: bold;
+}
+
 .timer-box h3 {
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .timer-box p {

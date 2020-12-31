@@ -93,27 +93,15 @@ class Host extends Component {
     );
   }
 
-  showActs = {
-    0: this.maybeRenderPreshow,
-    1: this.maybeRenderP1A,
-    2: this.maybeRenderP1B,
-    3: this.maybeRenderP2A,
-    4: this.maybeRenderP2B,
-    5: this.maybeRenderP3A,
-    6: this.maybeRenderP3B,
-    7: this.maybeRenderSuccess,
-    8: this.maybeRenderFailure,
-  };
-
   renderMain() {
     const currentAct = Math.floor(this.state.state / 10);
     return (
       <div className="main">
-        {Object.keys(this.showActs)
+        {[...Array(9).keys()]
           .filter((act) => {
             if (this.state.state >= 80) {
               // Render only failure state if players fail
-              return act === `8`;
+              return act === 8;
             } else {
               // Render all states that have been seen
               return act <= currentAct;
@@ -124,13 +112,13 @@ class Host extends Component {
               <div
                 key={`act-${act}`}
                 className={`act act-${act} act-${
-                  act === `${currentAct}` ? "active" : "inactive"
+                  act === currentAct ? "active" : "inactive"
                 }`}
               >
                 <div className={`act-header act-header-${act}`}>
                   {actHeaders[act].value} - {actHeaders[act].setting}
                 </div>
-                {this.showActs[act]()}
+                {this.renderAct(act)}
               </div>
             );
           })}
@@ -138,9 +126,59 @@ class Host extends Component {
     );
   }
 
-  maybeRenderPreshow() {
-    return <>PRESHOW</>;
+  renderAct(act) {
+    switch (parseInt(act)) {
+      case 0:
+        return this.maybeRenderPreshow();
+      case 1:
+        return this.maybeRenderP1A();
+      case 2:
+        return this.maybeRenderP1B();
+      case 3:
+        return this.maybeRenderP2A();
+      case 4:
+        return this.maybeRenderP2B();
+      case 5:
+        return this.maybeRenderP3A();
+      case 6:
+        return this.maybeRenderP3B();
+      case 7:
+        return this.maybeRenderSuccess();
+      case 8:
+        return this.maybeRenderFailure();
+      default:
+        return <></>;
+    }
   }
+
+  maybeRenderPreshow = () => {
+    return (
+      <>
+        <button
+          onClick={() => {
+            this.sendFile("backpack");
+          }}
+        >
+          (1) Send Backpack Contents
+        </button>
+        <button
+          onClick={() => {
+            this.sendFile("warehouse");
+          }}
+        >
+          (2) Send Warehouse Image
+        </button>
+        <button
+          onClick={() => {
+            this.socket.emit("start-time", { room: this.room });
+          }}
+          className="warning"
+        >
+          (3) Start Timer
+        </button>
+      </>
+    );
+  };
 
   maybeRenderP1A() {
     return <>P1A</>;

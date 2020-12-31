@@ -10,6 +10,7 @@ const rooms = {
 
     endTime: -1,
     timerId: -1,
+    secondsRemaining: 3599,
   },
 
   P1A: {
@@ -20,6 +21,7 @@ const rooms = {
 
     endTime: -1,
     timerId: -1,
+    secondsRemaining: 3599,
   },
 
   P1B: {
@@ -30,6 +32,7 @@ const rooms = {
 
     endTime: -1,
     timerId: -1,
+    secondsRemaining: 3599,
   },
 
   P2A: {
@@ -40,6 +43,7 @@ const rooms = {
 
     endTime: -1,
     timerId: -1,
+    secondsRemaining: 3599,
   },
 
   P2B: {
@@ -50,6 +54,7 @@ const rooms = {
 
     endTime: -1,
     timerId: -1,
+    secondsRemaining: 3599,
   },
 
   P3A: {
@@ -60,6 +65,7 @@ const rooms = {
 
     endTime: -1,
     timerId: -1,
+    secondsRemaining: 3599,
   },
 
   P3B: {
@@ -70,6 +76,7 @@ const rooms = {
 
     endTime: -1,
     timerId: -1,
+    secondsRemaining: 3599,
   },
 
   P3B9: {
@@ -80,6 +87,7 @@ const rooms = {
 
     endTime: -1,
     timerId: -1,
+    secondsRemaining: 3599,
   },
 
   SUCCESS: {
@@ -90,6 +98,7 @@ const rooms = {
 
     endTime: -1,
     timerId: -1,
+    secondsRemaining: 3599,
   },
 
   FAILURE: {
@@ -100,6 +109,7 @@ const rooms = {
 
     endTime: -1,
     timerId: -1,
+    secondsRemaining: 3599,
   },
 };
 
@@ -223,7 +233,8 @@ const startTimer = (roomCode, io) => {
     return;
   }
   rooms[roomCode].startTime = Date.now();
-  rooms[roomCode].endTime = Date.now() + 1000 * 60 * 60 - 1;
+  rooms[roomCode].endTime = Date.now() + 1000 * 50 * 60 - 1;
+  rooms[roomCode].secondsRemaining = 2 * 60 * 60 - 1;
   updateTime(roomCode, io);
 
   setRoomState(roomCode, io, 10);
@@ -256,7 +267,11 @@ const startRoomSuccess = (roomCode, io) => {
 
 const updateTime = (roomCode, io) => {
   clearTimeout(rooms[roomCode].timerId);
+  rooms[roomCode].secondsRemaining = Math.max(
+    ...[rooms[roomCode].secondsRemaining - 1, 1]
+  );
   const remaining = rooms[roomCode].endTime - Date.now();
+
   if (remaining < 0) {
     setRoomState(roomCode, io, 80);
     return;
@@ -270,10 +285,29 @@ const updateTime = (roomCode, io) => {
     minutes.length - 2,
     minutes.length
   )}:${seconds.slice(seconds.length - 2, seconds.length)}`;
-  io.to(roomCode).emit("timer-update", { time: timer });
+
+  const playerSeconds =
+    "00" + Math.floor((rooms[roomCode].secondsRemaining / 2) % 60);
+  const playerMinutes =
+    "00" + Math.floor(rooms[roomCode].secondsRemaining / 2 / 60);
+  console.log(
+    playerSeconds,
+    rooms[roomCode].secondsRemaining,
+    rooms[roomCode].secondsRemaining % 60
+  );
+  const playerTimer = `${playerMinutes.slice(
+    playerMinutes.length - 2,
+    playerMinutes.length
+  )}:${playerSeconds.slice(playerSeconds.length - 2, playerSeconds.length)}`;
+
+  const delay = remaining / rooms[roomCode].secondsRemaining;
+  io.to(roomCode).emit("timer-update", {
+    time: playerTimer,
+    actualTime: timer,
+  });
   rooms[roomCode].timerId = setTimeout(() => {
     updateTime(roomCode, io);
-  }, 557);
+  }, delay);
 };
 
 const checkSensors = (roomCode, io, sender, color, sensors) => {
