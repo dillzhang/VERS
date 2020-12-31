@@ -9,21 +9,34 @@ class Email extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chain: 4,
+      chain: this.props.level,
     };
 
-    this.props.socket.on("emailUpdate", ({ chain }) => {
-      this.setState({ chain });
+    this.props.socket.on("roomStateUpdate", ({ state }) => {
+      this.setState({ chain: state });
+      this.scrollToBottom();
     });
   }
 
+  scrollToBottom = () => {
+    this.threadHolder.scroll({
+      top: this.threadHolder.scrollHeight,
+      behavior: "smooth",
+    });
+  };
+
   render() {
     return (
-      <div className="email">
+      <div
+        className="email"
+        ref={(el) => {
+          this.threadHolder = el;
+        }}
+      >
         <div className="subject">[URGENT]: Aliens are here!</div>
         {emails.map((thread, i) => {
           console.log(i, this.state.chain);
-          if (i <= this.state.chain) {
+          if (i <= this.state.chain - 70) {
             return (
               <div key={`thread-${i}`} className="thread">
                 {thread}

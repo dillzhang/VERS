@@ -72,6 +72,16 @@ const rooms = {
     timerId: -1,
   },
 
+  P3B9: {
+    state: 69,
+    password: "$ecretPassw0rd",
+
+    messages: [],
+
+    endTime: -1,
+    timerId: -1,
+  },
+
   SUCCESS: {
     state: 70,
     password: "$ecretPassw0rd",
@@ -224,6 +234,26 @@ const setRoomState = (roomCode, io, state) => {
   io.to(roomCode).emit("roomStateUpdate", { state });
 };
 
+const updateSuccess = (roomCode, io) => {
+  clearTimeout(rooms[roomCode].timerId);
+  console.log(rooms[roomCode].state);
+  if (69 <= rooms[roomCode].state && rooms[roomCode].state < 75) {
+    rooms[roomCode].state += 1;
+    console.log("new state", rooms[roomCode].state);
+    io.to(roomCode).emit("roomStateUpdate", { state: rooms[roomCode].state });
+    rooms[roomCode].timerId = setTimeout(() => {
+      console.log("timeout");
+      updateSuccess(roomCode, io);
+    }, 2000 + Math.random() * 2000);
+  }
+  return;
+};
+
+const startRoomSuccess = (roomCode, io) => {
+  clearTimeout(rooms[roomCode].timerId);
+  updateSuccess(roomCode, io);
+};
+
 const updateTime = (roomCode, io) => {
   clearTimeout(rooms[roomCode].timerId);
   const remaining = rooms[roomCode].endTime - Date.now();
@@ -231,7 +261,7 @@ const updateTime = (roomCode, io) => {
     setRoomState(roomCode, io, 80);
     return;
   }
-  if (rooms[roomCode].state >= 70) {
+  if (rooms[roomCode].state >= 69) {
     return;
   }
   const seconds = "00" + (Math.floor(remaining / 1000) % 60);
@@ -264,7 +294,8 @@ const checkSensors = (roomCode, io, sender, color, sensors) => {
   ) {
     setRoomState(roomCode, io, 39);
     io.to(roomCode).emit("update-line-from-submission", {
-      line: "This seems to match what I see here. I found this electrical panel. Let me share my location and a live stream with you.",
+      line:
+        "This seems to match what I see here. I found this electrical panel. Let me share my location and a live stream with you.",
     });
   } else {
     if (empty > 0) {
@@ -334,5 +365,6 @@ module.exports = {
   randomString,
   setRoomState,
   startTimer,
+  startRoomSuccess,
   verifyRoom,
 };

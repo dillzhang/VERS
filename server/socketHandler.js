@@ -8,6 +8,7 @@ const {
   newTextMessage,
   setRoomState,
   startTimer,
+  startRoomSuccess,
   verifyRoom,
 } = require("./utils");
 const e = require("express");
@@ -64,6 +65,10 @@ function handleIo(io) {
 
     socket.on("setRoomState", ({ roomCode, state }) => {
       setRoomState(roomCode, io, state);
+    });
+
+    socket.on("startRoomSuccess", ({ roomCode }) => {
+      startRoomSuccess(roomCode, io);
     });
 
     socket.on("start-time", ({ room }) => {

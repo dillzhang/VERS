@@ -204,7 +204,12 @@ class Host extends Component {
           "It’s a secret laboratory. It’s all dark and green. There are alien creatures in giant glass tubes? Yep, those are definitely alien. Look at this.",
         ];
       case 70:
-        return [""];
+      case 71:
+      case 72:
+      case 73:
+      case 74:
+      case 75:
+        return ["Yay we did it!"];
       case 80:
         return [""];
       default:
@@ -453,9 +458,8 @@ class Host extends Component {
             {this.state.state >= 69 && (
               <button
                 onClick={() => {
-                  this.socket.emit("setRoomState", {
+                  this.socket.emit("startRoomSuccess", {
                     roomCode: this.room,
-                    state: 70,
                   });
                 }}
                 className="confirm"
@@ -466,7 +470,7 @@ class Host extends Component {
           </>
         );
       default:
-        return "Something wrong has occurred";
+        return "No Action Required";
     }
   };
 
