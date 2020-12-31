@@ -8,7 +8,6 @@ import chatFilesCreator from "../constants/chatFiles";
 import appCreator from "../constants/apps";
 import {
   chatColors,
-  STATE_SUCCESS,
   STATE_FAILURE,
   stateApplications,
   alwayVisibleSet,
@@ -208,15 +207,6 @@ class Guest extends Component {
             <div className="content">
               <h1>Connection Lost</h1>
               <h6>How did we do? Send us your feedback <a href="//forms.gle/bYNKqATrJZBpuRAQA" target="_blank">here</a>.</h6>
-            </div>
-          </div>
-        }
-        { this.state.state === STATE_SUCCESS &&
-          <div className="noise-wrapper success">
-            <div className="noise"></div>
-            <div className="content">
-              <h1>Disconnected</h1>
-              <h6>How did we do? Send us your feedback <a href="//forms.gle/c5deR3t2bEucEr2z5" target="_blank">here</a>.</h6>
             </div>
           </div>
         }

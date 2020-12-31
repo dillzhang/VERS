@@ -24,6 +24,9 @@ import alienArticle from "../fileSystem/AlienArticle";
 import languageTranscript1 from "../fileSystem/LanguageTranscript1";
 import languageTranscript2 from "../fileSystem/LanguageTranscript2";
 
+
+import Email from "../components/Email";
+
 const appsCreator = (openApplication, closeApplication, room, level, state, socket, chatFiles, playSound) => ({
     // Shortcut Pop-ups
     calculator: {
@@ -160,6 +163,10 @@ const appsCreator = (openApplication, closeApplication, room, level, state, sock
           </div>
         </div>
       )
+    },
+    email: {
+      name: "Mail",
+      html: <Email socket={socket} />,
     }
   });
 

@@ -27,6 +27,7 @@ const alwayVisibleSet = new Set([
   "videoStream",
   "floorPlan4",
   "translator",
+  "email",
 ]);
 
 export {

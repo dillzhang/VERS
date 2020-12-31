@@ -67,6 +67,17 @@ const shortcutCreator = (openApplication) => ({
         </div>
       ),
     },
+    email: {
+      requirement: 70,
+      app: (
+        <div key="email-shortcut" className="shortcut" onClick={() => { openApplication("email") }}>
+          <div className="icon">
+            <img src="/desktop/filesystem.svg" alt="Filesystem shortcut icon" />
+          </div>
+          <div className="shortcut-name">Email</div>
+        </div>
+      )
+    },
 });
 
 export default shortcutCreator;
