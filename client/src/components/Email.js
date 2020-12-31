@@ -35,7 +35,6 @@ class Email extends Component {
       >
         <div className="subject">[URGENT]: Aliens are here!</div>
         {emails.map((thread, i) => {
-          console.log(i, this.state.chain);
           if (i <= this.state.chain - 70) {
             return (
               <div key={`thread-${i}`} className="thread">
@@ -43,6 +42,7 @@ class Email extends Component {
               </div>
             );
           }
+          return <></>;
         })}
       </div>
     );

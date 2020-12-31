@@ -154,54 +154,355 @@ class Host extends Component {
   maybeRenderPreshow = () => {
     return (
       <>
+        <h2>Check In</h2>
+        <p>"Comm check, one two one two."</p>
+        <p>"Can you guys hear me? Whew, okay, good."</p>
+        <h2>Intros</h2>
+        <p>Greet each hacker by their name on Zoom.</p>
+        <p>Ramble about the following:</p>
+        <ul>
+          <li>Thinking no one was going to help</li>
+          <li>Planning mission for 2 years</li>
+          <li>Flying JFK to Vegas</li>
+        </ul>
+        <h2>Vegas</h2>
+        <p>
+          Set the scene. It's hot out there! Maybe you should have brought some
+          water with you.
+        </p>
+        <h2>Virtual Desktops</h2>
+        <p>
+          I custom built some virtual desktops for you to use — I’ll need you to
+          use the tools on there to guide me as I go. Here, I’ll get you guys
+          set up. I’ll put the link in the Zoom chat.
+        </p>
+        <button
+          onClick={() => {
+            navigator.clipboard.writeText(this.state.playerUrl);
+          }}
+        >
+          (1) Copy Player URL
+        </button>
+        <p>
+          <em>Everyone needs to send a message in the Desktop chat.</em>
+        </p>
+        <h2>Backpack</h2>
+        <p>
+          "I've packed a bag with some gear we might need: a thermal camera, a
+          small mirror, and a multi-tool. Let me message you that list so you
+          have a record."
+        </p>
         <button
           onClick={() => {
             this.sendFile("backpack");
           }}
         >
-          (1) Send Backpack Contents
+          (2) Send Backpack Contents
         </button>
+        <h2>Reception</h2>
+        <p>
+          "My reception is getting spotty, so I'm turning off my video now."
+        </p>
+        <p>
+          <em>Turn off your video.</em>
+        </p>
+        <h2>The Vault</h2>
+        <p>Present your research about the vault:</p>
+        <ul>
+          <li>Evades all government records</li>
+          <li>Only essential employees, not even guards</li>
+          <li>Somewhere inside Area 51</li>
+        </ul>
+        <h2>Outside the Warehouse</h2>
+        <p>
+          "Huh, so... I've been walking around for a while, and all I can see is
+          this abandoned warehouse."
+        </p>
         <button
           onClick={() => {
             this.sendFile("warehouse");
           }}
         >
-          (2) Send Warehouse Image
+          (3) Send Warehouse Image
         </button>
+        <p>"I'm gonna check it out."</p>
+        <p>
+          "Oh no! I think I tripped an alarm. I read that the site goes into
+          total lockdown in 1 hour. Let's start a timer. We gotta move quick!"
+        </p>
         <button
           onClick={() => {
             this.socket.emit("start-time", { room: this.room });
           }}
           className="warning"
         >
-          (3) Start Timer
+          (4) Start Timer
         </button>
       </>
     );
   };
 
-  maybeRenderP1A() {
-    return <>P1A</>;
-  }
+  maybeRenderP1A = () => {
+    return (
+      <>
+        <h2>It's Dark</h2>
+        <p>"I made it into the warehouse. It's awful dark in here."</p>
+        <button
+          onClick={() => {
+            this.sendFile("no_thermal_warehouse");
+          }}
+        >
+          (1) Send Dark Warehouse Image
+        </button>
+        <h2>Thermal Camera</h2>
+        <p>
+          <em>Guide the hackers to ask about the thermal camera.</em>
+        </p>
+        <p>
+          "Good call! Sending over the image now. Let me know if you see
+          anything interesting."
+        </p>
+        <button
+          onClick={() => {
+            this.sendFile("thermal_warehouse");
+          }}
+        >
+          (2) Send Thermal Warehouse Image (Power Off)
+        </button>
+        <h2>A Hot Spot</h2>
+        <p>
+          <em>Guide the hackers to lead you to the hot spot.</em>
+        </p>
+        <p>"It seems to be an electrical box."</p>
+        <p>
+          "I got it open. There's an ethernet port and a lever. I'm attaching a
+          transmitter so your desktops can hack into the network."
+        </p>
+        <button
+          onClick={() => {
+            this.socket.emit("setRoomState", {
+              roomCode: this.room,
+              state: 15,
+            });
+          }}
+          className="warning"
+        >
+          (3) Flip Switch and Attach File System
+        </button>
+        <p>"I flipped the lever, but seems like nothing changed."</p>
+        <h2>A Second Picture</h2>
+        <p>
+          <em>Guide the hackers to ask for another thermal camera image.</em>
+        </p>
+        <p>"Sending the image over. Anything change?"</p>
+        <button
+          onClick={() => {
+            this.sendFile("thermal_warehouse_wires");
+          }}
+        >
+          (4) Send Thermal Warehouse Image (Power On)
+        </button>
+        <h2>Path to the Elevator</h2>
+        <p>
+          <em>Guide the hackers to lead you to the elevator.</em>
+        </p>
+        <p>
+          "Okay, I think I see a door. Hmm... the wall is pretty dusty here.""
+        </p>
+        <p>"A button? Wait of course, it's an elevator! I'm calling it now."</p>
+        <button
+          onClick={() => {
+            this.socket.emit("setRoomState", {
+              roomCode: this.room,
+              state: 20,
+            });
+          }}
+          className="warning"
+        >
+          (5) Call the Elevator
+        </button>
+      </>
+    );
+  };
 
   maybeRenderP1B() {
-    return <>P1B</>;
+    return (
+      <>
+        <Elevator
+          successCallback={() => {
+            this.socket.emit("setRoomState", {
+              roomCode: this.room,
+              state: 30,
+            });
+          }}
+        />
+      </>
+    );
   }
 
   maybeRenderP2A() {
-    return <>P2A</>;
+    return (
+      <>
+        <button
+          onClick={() => {
+            this.sendFile("elevator_landing");
+          }}
+        >
+          (1) Send Hallway Image
+        </button>
+
+        {this.state.state >= 39 && (
+          <button
+            onClick={() => {
+              this.socket.emit("setRoomState", {
+                roomCode: this.room,
+                state: 40,
+              });
+            }}
+            className="confirm"
+          >
+            (2) Share location and stream
+          </button>
+        )}
+      </>
+    );
   }
 
   maybeRenderP2B() {
-    return <>P2B</>;
+    return (
+      <>
+        <button
+          onClick={() => {
+            this.socket.emit("setRoomState", {
+              roomCode: this.room,
+              state: 45,
+            });
+          }}
+        >
+          (1) Send Live Stream
+        </button>
+        <ActorMoving socket={this.socket} room={this.room} />
+      </>
+    );
   }
 
   maybeRenderP3A() {
-    return <>P3A</>;
+    return (
+      <>
+        <button
+          onClick={() => {
+            this.sendFile("vault_door");
+          }}
+        >
+          (1) Send Vault Door Image
+        </button>
+        <VaultDoor socket={this.socket} room={this.room} />
+      </>
+    );
   }
 
   maybeRenderP3B() {
-    return <>P3B</>;
+    return (
+      <>
+        <button
+          onClick={() => {
+            this.sendFile("tubes");
+          }}
+        >
+          (1) Send Tubes
+        </button>
+        <button
+          onClick={() => {
+            this.sendFile("brain");
+          }}
+        >
+          (2) Send Brain
+        </button>
+        <button
+          onClick={() => {
+            this.sendFile("computer");
+          }}
+        >
+          (3) Send Computer
+        </button>
+        <button
+          onClick={() => {
+            this.sendFile("languageTranscript1");
+          }}
+          className="highlight"
+        >
+          (4) Send Transcript 1
+        </button>
+        <button
+          onClick={() => {
+            this.sendFile("alienArticle");
+          }}
+          className="highlight"
+        >
+          (5) Send Journal
+        </button>
+        <button
+          onClick={() => {
+            this.socket.emit("setRoomState", {
+              roomCode: this.room,
+              state: 65,
+            });
+          }}
+          className="highlight"
+        >
+          (6) Send Translator Application
+        </button>
+        <button
+          onClick={() => {
+            this.sendFile("languageTranscript2");
+          }}
+          className="highlight"
+        >
+          (7) Send Transcript 2
+        </button>
+        <button
+          onClick={() => {
+            this.sendFile("cameras");
+          }}
+        >
+          (8) Send Cameras
+        </button>
+        <button
+          onClick={() => {
+            this.sendFile("powder");
+          }}
+        >
+          (9) Send Powder
+        </button>
+        <button
+          onClick={() => {
+            this.sendFile("subject1");
+            this.sendFile("subject2");
+          }}
+        >
+          (10) Send Subjects
+        </button>
+        <button
+          onClick={() => {
+            this.sendFile("baby");
+          }}
+        >
+          (11) Send Baby
+        </button>
+        {this.state.state >= 69 && (
+          <button
+            onClick={() => {
+              this.socket.emit("startRoomSuccess", {
+                roomCode: this.room,
+              });
+            }}
+            className="confirm"
+          >
+            (12) Start Email End Sequence
+          </button>
+        )}
+      </>
+    );
   }
 
   maybeRenderSuccess() {
@@ -260,7 +561,6 @@ class Host extends Component {
             className={`${this.state.state >= STATE_SUCCESS ? "disabled" : ""}`}
             onClick={() => {
               const currentPuzzle = Math.floor(this.state.state / 10);
-              console.log(currentPuzzle);
               if (currentPuzzle < 7) {
                 const confirmation = window.confirm(
                   "Are you sure you want to skip this puzzle?"

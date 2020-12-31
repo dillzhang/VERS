@@ -19,13 +19,11 @@ class Admin extends Component {
 
   newRoom = () => {
     axios.post(`/api/room`).then((res) => {
-      console.log(res);
       this.setState({ rooms: [...this.state.rooms, res.data] });
     });
   };
 
   render() {
-    console.log(this.props.match.params);
     if (
       !this.props.match.params ||
       this.props.match.params.password !== "password123"
@@ -46,7 +44,6 @@ class Admin extends Component {
             <div>Player</div>
           </div>
           {this.state.rooms.map((room) => {
-            console.log(room);
             const r = room.roomCode;
             return (
               <div key={r} className="content-row">

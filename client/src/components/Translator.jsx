@@ -39,7 +39,6 @@ class Translator extends Component {
     }
 
     this.socket.on("translatorUpdate", ({ key, i }) => {
-      console.log("hello", key, i);
       this.setState(state => {
         return {
           translation: {

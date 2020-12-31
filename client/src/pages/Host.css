@@ -52,23 +52,28 @@
   width: 100%;
   overflow-y: auto;
   background-color: #cccccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .host .act {
   margin: 36px 24px 12px 24px;
-  padding: 24px 12px 12px 12px;
+  padding: 0px 30px 30px 30px;
   border-radius: 0 0 24px 24px;
 
   border: 2px solid #404040;
   position: relative;
-  min-height: 30vh;
-  background-color: var(--dark-grey);
+  background-color: #eee;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
-  transition: opacity 1s ease-in-out, min-height 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+
+  width: 800px;
+
+  color: black;
 }
 
 .host .act.act-active {
-  min-height: 70vh;
   margin-bottom: calc(20vh - var(--header-height));
   opacity: 100%;
 }
@@ -91,36 +96,51 @@
   padding-left: 12px;
   border-radius: 8px;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  color: white;
 }
 
 .host .main h2 {
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: bold;
-  text-align: center;
+  margin-top: 36px;
+  display: block;
+}
+
+.host .main p,
+.host .main li {
+  font-size: 1.2em;
+  font-weight: 600;
 }
 .host .main p {
-  font-size: 1.15em;
   line-height: 1.15;
-  background-color: black;
-  text-align: center;
-  max-width: 500px;
-  margin: 24px auto;
+  margin: 12px 0;
 }
-.host .main .location h2:nth-child(2) {
-  color: #65fc31;
+
+.host .main p em {
+  color: #821100;
+  font-size: 1.25em;
 }
+
 .host .main .line-prompter,
 .host .main .available-actions {
   min-height: 100px;
   margin: 24px;
 }
-.host .actions {
-  display: flex;
-  flex-wrap: wrap;
-}
-.host .actions button,
+
 .host .side-bar button {
-  color: inherit;
+  margin: 12px;
+}
+.host .act button {
+  margin: 12px 0;
+}
+
+.host .act button + button {
+  margin: 12px 0 12px 24px;
+}
+
+.host .act button,
+.host .side-bar button {
+  color: white;
   font-family: inherit;
   font-size: 1em;
   font-weight: bold;
@@ -128,16 +148,16 @@
   border-radius: 8px;
   flex: 1 0 45%;
   max-height: 60px;
-  margin: 12px;
   padding: 18px 12px;
   border: 2px solid #404040;
+  max-width: 500px;
 }
-.host .actions button:hover,
+.host .act button:hover,
 .host .side-bar button:hover {
   background-color: #262626;
   cursor: pointer;
 }
-.host .actions button:focus,
+.host .act button:focus,
 .host .side-bar button:focus {
   outline: none;
 }
@@ -157,12 +177,12 @@
 .host button.warning:hover {
   background: #821100;
 }
-.host .actions button.confirm {
+.host .act button.confirm {
   background: #2bc125;
   color: white;
   border-color: #6dc16a;
 }
-.host .actions button.confirm:hover {
+.host .act button.confirm:hover {
   background: #268423;
 }
 

@@ -247,13 +247,10 @@ const setRoomState = (roomCode, io, state) => {
 
 const updateSuccess = (roomCode, io) => {
   clearTimeout(rooms[roomCode].timerId);
-  console.log(rooms[roomCode].state);
   if (69 <= rooms[roomCode].state && rooms[roomCode].state < 75) {
     rooms[roomCode].state += 1;
-    console.log("new state", rooms[roomCode].state);
     io.to(roomCode).emit("roomStateUpdate", { state: rooms[roomCode].state });
     rooms[roomCode].timerId = setTimeout(() => {
-      console.log("timeout");
       updateSuccess(roomCode, io);
     }, 2000 + Math.random() * 2000);
   }
@@ -290,11 +287,6 @@ const updateTime = (roomCode, io) => {
     "00" + Math.floor((rooms[roomCode].secondsRemaining / 2) % 60);
   const playerMinutes =
     "00" + Math.floor(rooms[roomCode].secondsRemaining / 2 / 60);
-  console.log(
-    playerSeconds,
-    rooms[roomCode].secondsRemaining,
-    rooms[roomCode].secondsRemaining % 60
-  );
   const playerTimer = `${playerMinutes.slice(
     playerMinutes.length - 2,
     playerMinutes.length
