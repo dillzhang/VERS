@@ -338,7 +338,7 @@ class Host extends Component {
               state: 20,
             });
           }}
-          className="confirm"
+          className="warning"
         >
           (5) Call the Elevator
         </button>
@@ -379,7 +379,7 @@ class Host extends Component {
                   state: 30,
                 });
               }}
-              className="confirm"
+              className="warning"
             >
               (1) Exit the Elevator
             </button>
@@ -422,7 +422,7 @@ class Host extends Component {
                   state: 40,
                 });
               }}
-              className="confirm"
+              className="warning"
             >
               (2) Share Location
             </button>
@@ -440,6 +440,7 @@ class Host extends Component {
           "I found this electrical panel. I'll send you a video stream of it."
         </p>
         <button
+          className={`confirm`}
           onClick={() => {
             this.socket.emit("setRoomState", {
               roomCode: this.room,
@@ -583,7 +584,7 @@ class Host extends Component {
               state: 65,
             });
           }}
-          className="highlight"
+          className="confirm"
         >
           (6) Send Translator Application
         </button>
@@ -641,7 +642,7 @@ class Host extends Component {
                   roomCode: this.room,
                 });
               }}
-              className="confirm"
+              className="warning"
             >
               (12) Send the Email
             </button>
