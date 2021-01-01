@@ -29,20 +29,23 @@ class Host extends Component {
 
     this.state = {
       state: 0,
+      failed: false,
       lines: [],
       chatColor: "#65fc31",
     };
 
-    this.socket.on("joinRoomStatus", ({ state, password }) => {
+    this.socket.on("joinRoomStatus", ({ state, failed, password }) => {
       this.setState({
         state,
+        failed,
         playerUrl: `${baseProto}//${baseURL}/player/${this.props.match.params.code}/${password}`,
       });
     });
 
-    this.socket.on("roomStateUpdate", ({ state }) => {
+    this.socket.on("roomStateUpdate", ({ state, failed }) => {
       this.setState({
         state,
+        failed,
       });
     });
 
@@ -652,7 +655,11 @@ class Host extends Component {
     return (
       <>
         <h2>The Emails</h2>
-        <Email socket={this.socket} />
+        <Email
+          socket={this.socket}
+          level={this.state.state}
+          failed={this.state.failed}
+        />
         {this.state.state >= 74 && (
           <>
             <h2>Success! We did it!</h2>
@@ -831,10 +838,20 @@ class Host extends Component {
                   "Are you sure you want to skip this puzzle?"
                 );
                 if (confirmation) {
-                  this.socket.emit("setRoomState", {
-                    roomCode: this.room,
-                    state: (currentPuzzle + 1) * 10,
-                  });
+                  if (currentPuzzle === 6) {
+                    this.socket.emit("setRoomState", {
+                      roomCode: this.room,
+                      state: 69,
+                    });
+                    this.socket.emit("startRoomSuccess", {
+                      roomCode: this.room,
+                    });
+                  } else {
+                    this.socket.emit("setRoomState", {
+                      roomCode: this.room,
+                      state: (currentPuzzle + 1) * 10,
+                    });
+                  }
                 }
               }
             }}

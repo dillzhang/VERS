@@ -242,7 +242,7 @@ const appsCreator = (
   },
   email: {
     name: "Mail",
-    html: <Email socket={socket} level={level} />,
+    html: <Email socket={socket} level={level} failed={state.failed} />,
   },
 });
 

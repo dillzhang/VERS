@@ -10,10 +10,11 @@ class Email extends Component {
     super(props);
     this.state = {
       chain: this.props.level,
+      failed: this.props.failed,
     };
 
-    this.props.socket.on("roomStateUpdate", ({ state }) => {
-      this.setState({ chain: state });
+    this.props.socket.on("roomStateUpdate", ({ state, failed }) => {
+      this.setState({ chain: state, failed });
       this.scrollToBottom();
     });
   }
@@ -38,11 +39,10 @@ class Email extends Component {
           if (i <= this.state.chain - 70) {
             return (
               <div key={`thread-${i}`} className="thread">
-                {thread}
+                {thread(this.state.failed)}
               </div>
             );
           }
-          return <></>;
         })}
       </div>
     );
