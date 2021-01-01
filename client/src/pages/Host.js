@@ -75,6 +75,18 @@ class Host extends Component {
     );
   }
 
+  componentDidUpdate(_, prevState) {
+    if (
+      Math.floor(prevState.state / 10) !== Math.floor(this.state.state / 10) &&
+      this.currentActDiv
+    ) {
+      this.currentActDiv.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }
+
   maybeRenderPlayerLink() {
     return (
       <div className={`player-link`}>
@@ -94,7 +106,7 @@ class Host extends Component {
     );
   }
 
-  renderMain() {
+  renderMain = () => {
     const currentAct = Math.floor(this.state.state / 10);
     return (
       <div className="main">
@@ -115,6 +127,11 @@ class Host extends Component {
                 className={`act act-${act} act-${
                   act === currentAct ? "active" : "inactive"
                 }`}
+                ref={(el) => {
+                  if (act === currentAct) {
+                    this.currentActDiv = el;
+                  }
+                }}
               >
                 <div className={`act-header act-header-${act}`}>
                   {actHeaders[act].value} - {actHeaders[act].setting}
@@ -125,7 +142,7 @@ class Host extends Component {
           })}
       </div>
     );
-  }
+  };
 
   renderAct(act) {
     switch (parseInt(act)) {
@@ -661,9 +678,102 @@ class Host extends Component {
           <em>Turn your video back on.</em>
         </p>
         <p>
-          Break the news to the players and explain to them how the current
-          puzzle works. Encourage them to fill out the feedback form.
+          Break the news to the players and explain to them the puzzles.
+          Encourage them to fill out the feedback form.
         </p>
+        <h2>1. Abandoned Warehouse</h2>
+        <p>
+          Hackers should have used the thermal camera image to guide you to the
+          electrical box and Esalevator.
+        </p>
+        <button
+          onClick={() => {
+            this.socket.emit("setRoomState", {
+              roomCode: this.room,
+              state: 10,
+            });
+          }}
+          className="confirm"
+        >
+          Go to Warehouse
+        </button>
+        <h2>2. Old Elevator</h2>
+        <p>Hackers should have used the Floor Directory to pick sublevel 3.</p>
+        <button
+          onClick={() => {
+            this.socket.emit("setRoomState", {
+              roomCode: this.room,
+              state: 20,
+            });
+          }}
+          className="confirm"
+        >
+          Go to Elevator
+        </button>
+        <h2>3. Hiding Hallway</h2>
+        <p>
+          Hackers should have used the Floor Plan and Security Invoice to plot
+          the sensors.
+        </p>
+        <button
+          onClick={() => {
+            this.socket.emit("setRoomState", {
+              roomCode: this.room,
+              state: 30,
+            });
+          }}
+          className="confirm"
+        >
+          Go to Hallway
+        </button>
+        <h2>4. Navigating Hallway</h2>
+        <p>
+          Hackers should have used the Video Stream and Floor Plan to guide you
+          to the vault.
+        </p>
+        <button
+          onClick={() => {
+            this.socket.emit("setRoomState", {
+              roomCode: this.room,
+              state: 40,
+            });
+          }}
+          className="confirm"
+        >
+          Start Navigating
+        </button>
+        <h2>5. Vault Door</h2>
+        <p>
+          Hackers should use Personnel File of Patricia Will to reset her Vault
+          password.
+        </p>
+        <button
+          onClick={() => {
+            this.socket.emit("setRoomState", {
+              roomCode: this.room,
+              state: 50,
+            });
+          }}
+          className="confirm"
+        >
+          Go to Door
+        </button>
+        <h2>6. Inside the Vault</h2>
+        <p>
+          Hackers should translate the Journal entry and using the interview
+          transcripts.
+        </p>
+        <button
+          onClick={() => {
+            this.socket.emit("setRoomState", {
+              roomCode: this.room,
+              state: 60,
+            });
+          }}
+          className="confirm"
+        >
+          Go to Vault
+        </button>
       </>
     );
   }
