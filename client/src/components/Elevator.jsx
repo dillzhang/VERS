@@ -1,71 +1,85 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
+import "./Elevator.css";
 
-import './Elevator.css';
+const ELEVATOR_DURATION = 10000;
+const FLOORS = ["G", "S1", "S2", "S3", "S4"];
 
-function Elevator(props){
-
-  const [text, setText] = useState("Ask the participants to select a floor to go to (options 1-5). Click the 'elevator' button to see what's on each floor.");
+function Elevator(props) {
+  const [text, setText] = useState("Waiting for floor selection...");
+  const [floor, setFloor] = useState("G");
   const [isDisabled, setDisabled] = useState(false);
-  const disRef = useRef(isDisabled);
 
   const load_floor = (floor) => {
     setTimeout(() => {
       setDisabled(false); // count is 0 here
-      switch(floor) {
-        case 'G':
-          setText("Looks like this is where we came in from. Let's see if any of the other floors look suspicious");
+      setFloor(floor);
+      switch (floor) {
+        case "G":
+          setText(
+            "Looks like this is where we came in from. Let's checkout the other floors."
+          );
           break;
 
-        case 'S1':
-          setText("Hmm, I can't see much but looks like a bunch of empty tables. Let's try an other floor.");
+        case "S1":
+          setText("Empty tables. Some food left out. Smell of coffee.");
           break;
 
-        case 'S2':
-          setText("Looks empty, some of the walls are torn down but I don't see anything here. Let's try a different floor.");
+        case "S2":
+          setText("Cardboard boxes. Very dusty.");
           break;
 
-        case 'S3':
+        case "S3":
+          setText(
+            "CORRECT! Hallway with a lot of security. Don't see any guards."
+          );
           props.successCallback();
           break;
 
-        case 'S4':
-          setText("Nothing here but dust. Maybe there's something on another one of the floors.");
+        case "S4":
+          setText("Empty offices. Some working at their desk.");
           break;
 
         default:
           setText("Something wrong has occurred");
           break;
       }
-    }, 8000);
+    }, ELEVATOR_DURATION);
+    setFloor("-");
     setDisabled(true);
-    setText('The elevator is going to floor ' + floor)
-  }
+    setText("The elevator is going to floor " + floor);
+  };
 
-  useEffect(() => {
+  useEffect(() => {}, []);
 
-  }, []);
-
-  return(
-    <div>
-    <grid className="container">
-      <grid item className="buttons">
-        <button className='button' onClick={() => load_floor('G')} disabled={isDisabled}>G</button>
-        <button className='button' onClick={() => load_floor('S1')} disabled={isDisabled}>S1</button>
-        <button className='button' onClick={() => load_floor('S2')} disabled={isDisabled}>S2</button>
-        <button className='button' onClick={() => load_floor('S3')} disabled={isDisabled}>S3</button>
-        <button className='button' onClick={() => load_floor('S4')} disabled={isDisabled}>S4</button>
-      </grid>
-
-      <grid item className="text">
-        <p>{text}</p>
-      </grid>
-
-    </grid>
-
+  return (
+    <div className="elevator">
+      <p>Please select a floor:</p>
+      <div item className="floor-selection">
+        {FLOORS.map((f) => {
+          return (
+            <button
+              key={`floor-${f}`}
+              className={`${
+                floor === f ? "selected" : isDisabled ? "disabled" : ""
+              }`}
+              onClick={() => load_floor(f)}
+              disabled={isDisabled || floor === f}
+            >
+              {f}
+            </button>
+          );
+        })}
+      </div>
+      <p>
+        Status:
+        <div className={`progress-bar ${isDisabled ? "active" : "inactive"}`}>
+          <span className={`meter`} />
+        </div>
+      </p>
+      <p className="status-output">{text}</p>
     </div>
-
-  )
+  );
 }
 
 export default Elevator;

@@ -1,14 +1,82 @@
-.button {
-  display: block;
-  margin: 10px;
+.elevator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #404040;
+  background-color: var(--dark-grey);
+  padding: 5px 20px;
+  border-radius: 10px;
+
+  color: white;
 }
-.container {
-  margin-left: 60px;
+.elevator p {
+  width: 100%;
+  text-align: left;
 }
-.buttons, .text {
+.elevator .status-output {
+  min-height: 100px;
+}
+.elevator .floor-selection {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.host .elevator .floor-selection button {
+  margin: 0;
+  font-size: 2em;
+  max-height: 80px;
+}
+
+.host .elevator .floor-selection button.selected {
+  background-color: #268423;
+}
+
+.host .elevator .floor-selection button.disabled {
+  background-color: #222222;
+  color: #333333;
+  border-color: #111111;
+}
+
+.elevator .progress-bar {
+  height: 20px;
+  width: 70%;
+  position: relative;
+  background: #555;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
   display: inline-block;
-  margin: 12px;
+  margin-left: 20px;
 }
-.text {
-  width: 62.5%;
+
+.elevator .progress-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background-color: rgb(43, 194, 83);
+  background-image: linear-gradient(
+    center bottom,
+    rgb(43, 194, 83) 37%,
+    rgb(84, 240, 84) 69%
+  );
+  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  transition: width 5s linear;
+}
+
+.elevator .progress-bar.active > span {
+  width: 100%;
+  transition: width 10s ease-in-out;
+}
+
+.elevator .progress-bar.inactive > span {
+  width: 0%;
+  transition: width 0s ease-in-out;
 }

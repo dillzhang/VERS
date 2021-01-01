@@ -121,6 +121,11 @@
   font-size: 1.25em;
 }
 
+.host .main p strong {
+  font-style: italic;
+  font-size: 0.9em;
+}
+
 .host .main .line-prompter,
 .host .main .available-actions {
   min-height: 100px;

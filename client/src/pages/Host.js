@@ -184,7 +184,7 @@ class Host extends Component {
           (1) Copy Player URL
         </button>
         <p>
-          <em>Everyone needs to send a message in the Desktop chat.</em>
+          <em>Each hacker has sent a message in the Virtual Desktop Chat.</em>
         </p>
         <h2>Backpack</h2>
         <p>
@@ -204,7 +204,7 @@ class Host extends Component {
           "My reception is getting spotty, so I'm turning off my video now."
         </p>
         <p>
-          <em>Turn off your video.</em>
+          <em>You have turned off your video.</em>
         </p>
         <h2>The Vault</h2>
         <p>Present your research about the vault:</p>
@@ -256,7 +256,7 @@ class Host extends Component {
         </button>
         <h2>Thermal Camera</h2>
         <p>
-          <em>Guide the hackers to ask about the thermal camera.</em>
+          <em>Hackers have asked you to use the thermal camera.</em>
         </p>
         <p>
           "Good call! Sending over the image now. Let me know if you see
@@ -271,7 +271,7 @@ class Host extends Component {
         </button>
         <h2>A Hot Spot</h2>
         <p>
-          <em>Guide the hackers to lead you to the hot spot.</em>
+          <em>Hackers lead you to the hot spot.</em>
         </p>
         <p>"It seems to be an electrical box."</p>
         <p>
@@ -292,7 +292,7 @@ class Host extends Component {
         <p>"I flipped the lever, but seems like nothing changed."</p>
         <h2>A Second Picture</h2>
         <p>
-          <em>Guide the hackers to ask for another thermal camera image.</em>
+          <em>Hackers ask for another thermal camera image.</em>
         </p>
         <p>"Sending the image over. Anything change?"</p>
         <button
@@ -304,7 +304,7 @@ class Host extends Component {
         </button>
         <h2>Path to the Elevator</h2>
         <p>
-          <em>Guide the hackers to lead you to the elevator.</em>
+          <em>Hackers lead you to the elevator.</em>
         </p>
         <p>
           "Okay, I think I see a door. Hmm... the wall is pretty dusty here.""
@@ -328,14 +328,42 @@ class Host extends Component {
   maybeRenderP1B() {
     return (
       <>
+        <h2>The Elevator</h2>
+        <p>
+          <em>Hackers tell you a floor to press.</em>
+        </p>
+        <p>
+          <strong>
+            Floor Directory is located within the Info folder of the File
+            System.
+          </strong>
+        </p>
         <Elevator
           successCallback={() => {
             this.socket.emit("setRoomState", {
               roomCode: this.room,
-              state: 30,
+              state: 29,
             });
           }}
         />
+
+        {this.state.state >= 29 && (
+          <>
+            <h2>The Correct Floor</h2>
+            <p>Exit the elevator when ready.</p>
+            <button
+              onClick={() => {
+                this.socket.emit("setRoomState", {
+                  roomCode: this.room,
+                  state: 30,
+                });
+              }}
+              className="warning"
+            >
+              (1) Exit the Elevator
+            </button>
+          </>
+        )}
       </>
     );
   }
@@ -359,7 +387,7 @@ class Host extends Component {
                 state: 40,
               });
             }}
-            className="confirm"
+            className="warning"
           >
             (2) Share location and stream
           </button>
