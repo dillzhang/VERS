@@ -126,6 +126,18 @@
   font-size: 0.9em;
 }
 
+.host .main p.older {
+  font-size: 0.9em;
+  color: var(--dark-grey);
+}
+
+.host .main p.current {
+  font-size: 1.3em;
+  font-style: italic;
+  margin: 20px 0 30px 0;
+  font-weight: bold;
+}
+
 .host .main .line-prompter,
 .host .main .available-actions {
   min-height: 100px;

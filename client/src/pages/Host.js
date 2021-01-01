@@ -9,6 +9,7 @@ import Timer from "../components/Timer";
 import Elevator from "../components/Elevator";
 import ActorMoving from "../components/ActorMoving";
 import VaultDoor from "../components/VaultDoor";
+import Translator from "../components/Translator";
 
 import chatFilesCreator from "../constants/chatFiles";
 import { STATE_FAILURE, STATE_SUCCESS } from "../constants/guest";
@@ -37,22 +38,24 @@ class Host extends Component {
     this.socket.on("joinRoomStatus", ({ state, failed, password }) => {
       this.setState({
         state,
+        lines: [],
         failed,
         playerUrl: `${baseProto}//${baseURL}/player/${this.props.match.params.code}/${password}`,
       });
     });
 
     this.socket.on("roomStateUpdate", ({ state, failed }) => {
-      this.setState({
+      this.setState((prev) => ({
         state,
+        lines: state % 10 === 0 ? [] : prev.lines,
         failed,
-      });
+      }));
     });
 
     this.socket.on("update-line-from-submission", ({ line }) => {
-      this.setState({
-        lines: [line],
-      });
+      this.setState((prev) => ({
+        lines: [line, ...prev.lines],
+      }));
     });
 
     this.socket.on("reconnect", (_) => {
@@ -628,6 +631,30 @@ class Host extends Component {
         >
           (11) Send Baby
         </button>
+        <Translator socket={this.socket} host={true} />
+        {60 <= this.state.state && this.state.state < 70 && (
+          <>
+            <h2>
+              <strong>Responding to the Hackers</strong>
+            </h2>
+            {this.state.lines.length === 0 && (
+              <p>
+                <em>Wait for the hackers to export to chat.</em>
+              </p>
+            )}
+            {this.state.lines.length > 0 &&
+              this.state.lines.map((line, index) => {
+                return (
+                  <p
+                    key={`translation-response-${index}`}
+                    className={`${index === 0 ? "current" : "older"}`}
+                  >
+                    {line}
+                  </p>
+                );
+              })}
+          </>
+        )}
         {this.state.state >= 69 && (
           <>
             <h2>The Truth Comes Out</h2>

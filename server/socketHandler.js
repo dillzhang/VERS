@@ -104,6 +104,7 @@ function handleIo(io) {
     });
 
     socket.on("translation-key", ({ roomCode, sender, color, translation }) => {
+      socket.to(roomCode).emit("translatorSync", { translation });
       checkTranslator(roomCode, io, sender, color, translation);
     });
   });

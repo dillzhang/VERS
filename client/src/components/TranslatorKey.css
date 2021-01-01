@@ -1,5 +1,5 @@
 .translation_key {
-  color: #96B9A6;
+  color: #96b9a6;
   border: 2px solid #314948;
   border-radius: 5px;
   padding: 10px;
@@ -31,7 +31,7 @@
 .entry_container .entry_index {
   position: absolute;
   bottom: 0;
-  font-size: 12px; 
+  font-size: 12px;
 }
 .entry_container .arrow {
   width: 20px;
@@ -46,7 +46,7 @@
   color: inherit;
   font-family: monospace, var(--conspiracy-font);
   font-size: 0.8em;
-  background-color: #111F23;
+  background-color: #111f23;
   border-radius: 5px;
   border: 2px solid #314948;
   text-align: center;
@@ -59,7 +59,13 @@
   background-color: #102328;
 }
 .entry_child.dup {
-  border-color: #A4002B;
+  border-color: #a4002b;
+}
+.entry_child.correct {
+  background-color: #268423;
+}
+.entry_child.incorrect {
+  background-color: #821100;
 }
 
 .addEntry {

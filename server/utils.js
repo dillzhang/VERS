@@ -359,20 +359,20 @@ const checkTranslator = (roomCode, io, sender, color, translationKey) => {
   if (correct.length >= 23) {
     setRoomState(roomCode, io, 69);
     io.to(roomCode).emit("update-line-from-submission", {
-      line: `This is break major news! I'll email the networks right away! (${correct.length} / 26 correct)`,
+      line: `[${correct.length} / 26] This is break major news! I'll email the networks right away!`,
     });
   } else {
     if (correct.length >= 20) {
       io.to(roomCode).emit("update-line-from-submission", {
-        line: `I can kinda read this, but its needs to be clearer before we spread the word. (${correct.length} / 26 correct)`,
+        line: `[${correct.length} / 26] I can kinda read this, but its needs to be clearer before we spread the word.`,
       });
     } else if (correct.length >= 13) {
       io.to(roomCode).emit("update-line-from-submission", {
-        line: `This is starting to look like english. Keep going. (${correct.length} / 26 correct)`,
+        line: `[${correct.length} / 26] This is starting to look like english. Keep going.`,
       });
     } else {
       io.to(roomCode).emit("update-line-from-submission", {
-        line: `This is just gibberish. What does it say? (${correct.length} / 26 correct)`,
+        line: `[${correct.length} / 26] This is just gibberish. What does it say?`,
       });
     }
   }
