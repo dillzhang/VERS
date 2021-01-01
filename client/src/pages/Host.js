@@ -4,6 +4,7 @@ import * as SocketIO from "socket.io-client";
 import "./Host.css";
 
 import Chat from "../components/Chat";
+import Email from "../components/Email";
 import Timer from "../components/Timer";
 import Elevator from "../components/Elevator";
 import ActorMoving from "../components/ActorMoving";
@@ -285,7 +286,7 @@ class Host extends Component {
               state: 15,
             });
           }}
-          className="warning"
+          className="confirm"
         >
           (3) Flip Switch and Attach File System
         </button>
@@ -317,7 +318,7 @@ class Host extends Component {
               state: 20,
             });
           }}
-          className="warning"
+          className="confirm"
         >
           (5) Call the Elevator
         </button>
@@ -334,8 +335,8 @@ class Host extends Component {
         </p>
         <p>
           <strong>
-            Floor Directory is located within the Info folder of the File
-            System.
+            There is a Floor Directory located within the Info folder of the
+            File System.
           </strong>
         </p>
         <Elevator
@@ -358,7 +359,7 @@ class Host extends Component {
                   state: 30,
                 });
               }}
-              className="warning"
+              className="confirm"
             >
               (1) Exit the Elevator
             </button>
@@ -371,6 +372,11 @@ class Host extends Component {
   maybeRenderP2A() {
     return (
       <>
+        <h2>Hugging the Wall</h2>
+        <p>
+          "There's a bunch of security here. I gotta lay low. Here's what I'm
+          seeing"
+        </p>
         <button
           onClick={() => {
             this.sendFile("elevator_landing");
@@ -378,19 +384,29 @@ class Host extends Component {
         >
           (1) Send Hallway Image
         </button>
+        <h2>Plotting the Sensors</h2>
+        <p>
+          <strong>
+            subfloor3.bp and security_invoice.pdf have been unlocked.
+          </strong>
+        </p>
 
         {this.state.state >= 39 && (
-          <button
-            onClick={() => {
-              this.socket.emit("setRoomState", {
-                roomCode: this.room,
-                state: 40,
-              });
-            }}
-            className="warning"
-          >
-            (2) Share location and stream
-          </button>
+          <>
+            <h2>Security Sensors Found</h2>
+            <p>"I’m sharing my location with you."</p>
+            <button
+              onClick={() => {
+                this.socket.emit("setRoomState", {
+                  roomCode: this.room,
+                  state: 40,
+                });
+              }}
+              className="confirm"
+            >
+              (2) Share Location
+            </button>
+          </>
         )}
       </>
     );
@@ -399,6 +415,10 @@ class Host extends Component {
   maybeRenderP2B() {
     return (
       <>
+        <h2>The Electrical Panel</h2>
+        <p>
+          "I found this electrical panel. I'll send you a video stream of it."
+        </p>
         <button
           onClick={() => {
             this.socket.emit("setRoomState", {
@@ -409,7 +429,34 @@ class Host extends Component {
         >
           (1) Send Live Stream
         </button>
+        <h2>Navigating the Security</h2>
+        <p>
+          <em>Hackers guide you through the security.</em>
+        </p>
+        <p>
+          <strong>
+            The specificity of the directions are up to you, but ease up as the
+            attempts rack up.
+          </strong>
+        </p>
         <ActorMoving socket={this.socket} room={this.room} />
+        <p>
+          <strong>
+            The electrical panel correspond with sensors in the floor plan.
+          </strong>
+        </p>
+        <p>
+          <strong>
+            The security_invoice.pdf states only the cameras will fail. The
+            mirror can be used to avoid laser trip wires.
+          </strong>
+        </p>
+        <p>
+          <strong>
+            Use the Skip Puzzle if you feel the novelty of the puzzle has worn
+            off.
+          </strong>
+        </p>
       </>
     );
   }
@@ -417,6 +464,11 @@ class Host extends Component {
   maybeRenderP3A() {
     return (
       <>
+        <h2>The Locked Door</h2>
+        <p>
+          "Whew, I made it to the vault door! I can’t believe it. We’re so
+          close. Here's a picture."
+        </p>
         <button
           onClick={() => {
             this.sendFile("vault_door");
@@ -424,7 +476,21 @@ class Host extends Component {
         >
           (1) Send Vault Door Image
         </button>
+        <h2>Unlocking the Door</h2>
+        <p>"Door has a keyboard next to it. It's asking for an ID number."</p>
         <VaultDoor socket={this.socket} room={this.room} />
+        <p>
+          <strong>Personnel files have been unlocked.</strong>
+        </p>
+        <p>
+          <strong>Only essential employees can access the vault.</strong>
+        </p>
+        <p>
+          <strong>
+            Use the Skip Puzzle if you feel the novelty of the puzzle has worn
+            off.
+          </strong>
+        </p>
       </>
     );
   }
@@ -432,6 +498,11 @@ class Host extends Component {
   maybeRenderP3B() {
     return (
       <>
+        <h2>Inside the Lab</h2>
+        <p>
+          "We’re in. Whoa. It’s a secret laboratory. It’s all eerie and green in
+          here."
+        </p>
         <button
           onClick={() => {
             this.sendFile("tubes");
@@ -446,6 +517,11 @@ class Host extends Component {
         >
           (2) Send Brain
         </button>
+        <h2>The Computer</h2>
+        <p>
+          "Oh! I found a lab computer. It looks like it’s running some terminal
+          code. Let me take a crack at it to see if I can find anything."
+        </p>
         <button
           onClick={() => {
             this.sendFile("computer");
@@ -453,6 +529,12 @@ class Host extends Component {
         >
           (3) Send Computer
         </button>
+        <h2>The Files</h2>
+        <p>
+          "I’m sending over a couple of documents from this folder named
+          “CONFIDENTIAL”. The answer’s probably in there. Can you read them out
+          to me?"
+        </p>
         <button
           onClick={() => {
             this.sendFile("languageTranscript1");
@@ -469,6 +551,11 @@ class Host extends Component {
         >
           (5) Send Journal
         </button>
+        <p>
+          <strong>
+            If hackers don't notice the translator app, pop up the app for them.
+          </strong>
+        </p>
         <button
           onClick={() => {
             this.socket.emit("setRoomState", {
@@ -480,6 +567,7 @@ class Host extends Component {
         >
           (6) Send Translator Application
         </button>
+        <p>Milk the story a bit before sending Transcript 2.</p>
         <button
           onClick={() => {
             this.sendFile("languageTranscript2");
@@ -488,6 +576,8 @@ class Host extends Component {
         >
           (7) Send Transcript 2
         </button>
+        <h2>The Rest of the Room</h2>
+        <p>Sell the fact you are in the room. Share images as you see fit.</p>
         <button
           onClick={() => {
             this.sendFile("cameras");
@@ -518,27 +608,64 @@ class Host extends Component {
           (11) Send Baby
         </button>
         {this.state.state >= 69 && (
-          <button
-            onClick={() => {
-              this.socket.emit("startRoomSuccess", {
-                roomCode: this.room,
-              });
-            }}
-            className="confirm"
-          >
-            (12) Start Email End Sequence
-          </button>
+          <>
+            <h2>The Truth Comes Out</h2>
+            <p>
+              "What?! No way. I'll send these documents to the New York Times
+              and Washington Post right away. The world needs to know what the
+              government is really hiding."
+            </p>
+            <button
+              onClick={() => {
+                this.socket.emit("startRoomSuccess", {
+                  roomCode: this.room,
+                });
+              }}
+              className="confirm"
+            >
+              (12) Send the Email
+            </button>
+          </>
         )}
       </>
     );
   }
 
   maybeRenderSuccess() {
-    return <>Success</>;
+    return (
+      <>
+        <h2>The Emails</h2>
+        <Email socket={this.socket} />
+        {this.state.state >= 74 && (
+          <>
+            <h2>Success! We did it!</h2>
+            <p>
+              <em>Turn your video back on.</em>
+            </p>
+            <p>
+              Congratulate the players. Ask if they have any questions about any
+              of the puzzles. Encourage them to fill out the feedback form.
+            </p>
+          </>
+        )}
+      </>
+    );
   }
 
   maybeRenderFailure() {
-    return <>Failure</>;
+    return (
+      <>
+        <h2>Captured</h2>
+        <p>You have been captured.</p>
+        <p>
+          <em>Turn your video back on.</em>
+        </p>
+        <p>
+          Break the news to the players and explain to them how the current
+          puzzle works. Encourage them to fill out the feedback form.
+        </p>
+      </>
+    );
   }
   renderSideBar() {
     return (
