@@ -42,16 +42,22 @@
   border-color: #111111;
 }
 
+.status-container {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 .elevator .progress-bar {
   height: 20px;
-  width: 70%;
   position: relative;
   background: #555;
   border-radius: 5px;
   padding: 5px;
   box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
   display: inline-block;
-  margin-left: 20px;
 }
 
 .elevator .progress-bar > span {

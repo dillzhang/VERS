@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./Elevator.css";
 
@@ -47,7 +47,7 @@ function Elevator(props) {
     }, ELEVATOR_DURATION);
     setFloor("-");
     setDisabled(true);
-    setText("The elevator is going to floor " + floor);
+    setText(`The elevator is going to floor ${floor}.`);
   };
 
   useEffect(() => {}, []);
@@ -55,7 +55,7 @@ function Elevator(props) {
   return (
     <div className="elevator">
       <p>Please select a floor:</p>
-      <div item className="floor-selection">
+      <div className="floor-selection">
         {FLOORS.map((f) => {
           return (
             <button
@@ -71,12 +71,12 @@ function Elevator(props) {
           );
         })}
       </div>
-      <p>
-        Status:
+      <div className="status-container">
+        <p>Status:</p>
         <div className={`progress-bar ${isDisabled ? "active" : "inactive"}`}>
           <span className={`meter`} />
         </div>
-      </p>
+      </div>
       <p className="status-output">{text}</p>
     </div>
   );
