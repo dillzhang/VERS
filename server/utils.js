@@ -3,6 +3,7 @@ const { correctSensors, correctTranslationKey } = require("./answers");
 
 const rooms = {
   PRESHOW: {
+    failed: false,
     state: 0,
     password: "$ecretPassw0rd",
 
@@ -14,6 +15,7 @@ const rooms = {
   },
 
   P1A: {
+    failed: false,
     state: 10,
     password: "$ecretPassw0rd",
 
@@ -25,6 +27,7 @@ const rooms = {
   },
 
   P1B: {
+    failed: false,
     state: 20,
     password: "$ecretPassw0rd",
 
@@ -36,6 +39,7 @@ const rooms = {
   },
 
   P2A: {
+    failed: false,
     state: 30,
     password: "$ecretPassw0rd",
 
@@ -47,6 +51,7 @@ const rooms = {
   },
 
   P2B: {
+    failed: false,
     state: 40,
     password: "$ecretPassw0rd",
 
@@ -58,6 +63,7 @@ const rooms = {
   },
 
   P3A: {
+    failed: false,
     state: 50,
     password: "$ecretPassw0rd",
 
@@ -69,6 +75,7 @@ const rooms = {
   },
 
   P3B: {
+    failed: false,
     state: 60,
     password: "$ecretPassw0rd",
 
@@ -80,6 +87,7 @@ const rooms = {
   },
 
   P3B9: {
+    failed: false,
     state: 69,
     password: "$ecretPassw0rd",
 
@@ -91,6 +99,7 @@ const rooms = {
   },
 
   SUCCESS: {
+    failed: false,
     state: 70,
     password: "$ecretPassw0rd",
 
@@ -102,6 +111,7 @@ const rooms = {
   },
 
   FAILURE: {
+    failed: true,
     state: 80,
     password: "$ecretPassw0rd",
 
@@ -152,6 +162,7 @@ const generatePassword = () => {
 const createNewRoom = () => {
   const id = randomString();
   rooms[id] = {
+    failed: false,
     state: 0,
     password: generatePassword(),
 
@@ -215,12 +226,16 @@ const joinRoom = (socket, roomCode) => {
   if (rooms.hasOwnProperty(roomCode)) {
     socket.join(roomCode, () => {
       socket.emit("joinRoomStatus", {
+        failed: rooms[roomCode].failed,
         state: rooms[roomCode].state,
         password: rooms[roomCode].password,
       });
       socket.emit("messageStatus", rooms[roomCode].messages);
       setTimeout(() => {
-        socket.emit("roomStateUpdate", { state: rooms[roomCode].state });
+        socket.emit("roomStateUpdate", {
+          failed: rooms[roomCode].failed,
+          state: rooms[roomCode].state,
+        });
       }, 500);
     });
   } else {
@@ -242,14 +257,23 @@ const startTimer = (roomCode, io) => {
 
 const setRoomState = (roomCode, io, state) => {
   rooms[roomCode].state = state;
-  io.to(roomCode).emit("roomStateUpdate", { state });
+  if (state === 80) {
+    rooms[roomCode].failed = true;
+  }
+  io.to(roomCode).emit("roomStateUpdate", {
+    state,
+    failed: rooms[roomCode].failed,
+  });
 };
 
 const updateSuccess = (roomCode, io) => {
   clearTimeout(rooms[roomCode].timerId);
   if (69 <= rooms[roomCode].state && rooms[roomCode].state < 75) {
     rooms[roomCode].state += 1;
-    io.to(roomCode).emit("roomStateUpdate", { state: rooms[roomCode].state });
+    io.to(roomCode).emit("roomStateUpdate", {
+      state: rooms[roomCode].state,
+      failed: rooms[roomCode].failed,
+    });
     rooms[roomCode].timerId = setTimeout(() => {
       updateSuccess(roomCode, io);
     }, 2000 + Math.random() * 2000);
@@ -258,7 +282,6 @@ const updateSuccess = (roomCode, io) => {
 };
 
 const startRoomSuccess = (roomCode, io) => {
-  clearTimeout(rooms[roomCode].timerId);
   updateSuccess(roomCode, io);
 };
 
