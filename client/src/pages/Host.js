@@ -87,10 +87,19 @@ class Host extends Component {
       Math.floor(prevState.state / 10) !== Math.floor(this.state.state / 10) &&
       this.currentActDiv
     ) {
-      this.currentActDiv.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      if (prevState.state === 0) {
+        setTimeout(() => {
+          this.currentActDiv.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }, 1000);
+      } else {
+        this.currentActDiv.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
     }
   }
 
