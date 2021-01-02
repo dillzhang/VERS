@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import * as SocketIO from "socket.io-client";
-// import ReactAudioPlayer from 'react-audio-player';
 import Draggable from "../components/Draggable";
 
 import shortcutCreator from "../constants/shortcuts";
@@ -46,9 +45,6 @@ class Guest extends Component {
 
       currentTime: today,
       applicationsOpen: [],
-
-      activeSounds: [],
-      soundsToRemove: [],
     };
 
     this.socket.on("roomStateUpdate", ({ state, failed }) => {
@@ -63,7 +59,7 @@ class Guest extends Component {
             this.openApplication(app);
           });
           if (stateApplications[state].length > 0 && state > 0) {
-            this.playSound("new-app", "sound-new-app", "/sounds/new-app.ogg");
+            this.playSound("new-app");
           }
         }
       );
@@ -121,19 +117,7 @@ class Guest extends Component {
   };
 
   handleDesktopClick = () => {
-    this.playSound("click", "sound-click", "/sounds/click.ogg");
-  };
-
-  playSound = (name, className, source) => {
-    var newSound = {
-      name: name,
-      class: className,
-      source: source,
-      time: Date.now(),
-    };
-    this.setState((prevState) => ({
-      activeSounds: [...prevState.activeSounds, newSound],
-    }));
+    this.playSound("click");
   };
 
   submitLogin = () => {
@@ -161,7 +145,7 @@ class Guest extends Component {
       this.state.applicationsOpen.indexOf("videoStream") > -1
     ) {
       this.openApplication("tooMuchRamPopUp");
-      this.playSound("warning", "sound-warning", "/sounds/warning.ogg");
+      this.playSound("warning");
       return;
     }
 
@@ -170,7 +154,7 @@ class Guest extends Component {
       this.state.applicationsOpen.indexOf("floorPlan4") > -1
     ) {
       this.openApplication("tooMuchRamPopUp");
-      this.playSound("warning", "sound-warning", "/sounds/warning.ogg");
+      this.playSound("warning");
       return;
     }
 
@@ -256,18 +240,6 @@ class Guest extends Component {
             </div>
           </div>
         )}
-        {/* <div className="sounds">
-          {this.state.activeSounds.map((sound, idx) => {
-              return (
-                <ReactAudioPlayer
-                  key={sound.id + '-' + idx}
-                  className={sound.class}
-                  src={sound.source}
-                  autoPlay
-                />);
-            })
-          }
-        </div> */}
         <div className="header">
           <div className="header-time">
             {this.state.username} &middot; {this.state.currentTime}
