@@ -955,6 +955,10 @@ class Host extends Component {
       </>
     );
   }
+
+  playSound = (sound) => {
+    console.log(sound);
+  };
   renderChat() {
     return (
       <Chat
@@ -963,7 +967,7 @@ class Host extends Component {
         chatColor={this.state.chatColor}
         files={chatFiles}
         socket={this.socket}
-        playSound={(_) => {}}
+        playSound={this.playSound}
       />
     );
   }

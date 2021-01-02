@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import './Chat.css';
+import "./Chat.css";
 
 import Message from "./Message";
 
 class Chat extends Component {
   // Initialize the state
-  constructor(props){
+  constructor(props) {
     super(props);
     this.room = props.room;
     this.viewer = props.viewer;
@@ -15,20 +15,20 @@ class Chat extends Component {
     this.state = {
       messages: [],
       message: "",
-    }
+    };
 
     this.scrolled = false;
 
     this.socket.on("messageStatus", (data) => {
-      this.setState({messages: data});
+      this.setState({ messages: data });
     });
   }
 
   handleKeyPress = (e) => {
-    if(e.key === 'Enter') {
+    if (e.key === "Enter") {
       this.newTextMessage();
     }
-  }
+  };
 
   newTextMessage = () => {
     const content = this.state.message;
@@ -36,27 +36,38 @@ class Chat extends Component {
     if (content.length <= 0) {
       return;
     }
-    this.socket.emit("newTextMessage", {content, sender, roomCode: this.room, color: this.props.chatColor});
-    this.setState({message: ""});
-    this.props.playSound("message-sent", "sound-message-sent", "/sounds/message-sent.ogg")
-  }
+    this.socket.emit("newTextMessage", {
+      content,
+      sender,
+      roomCode: this.room,
+      color: this.props.chatColor,
+    });
+    this.setState({ message: "" });
+    this.props.playSound("message-sent");
+  };
 
   updateMessage = (e) => {
     const value = e.target.value;
-    this.setState({message: value});
-  }
+    this.setState({ message: value });
+  };
 
   scrollToBottom = () => {
-    this.messageHolder.scroll({top: this.messageHolder.scrollHeight, behavior: "smooth"});
-  }
-  
+    this.messageHolder.scroll({
+      top: this.messageHolder.scrollHeight,
+      behavior: "smooth",
+    });
+  };
+
   componentDidMount() {
-    this.socket.emit("getTextMessage", {roomCode: this.room});
+    this.socket.emit("getTextMessage", { roomCode: this.room });
   }
-  
-  componentDidUpdate(prevProps,prevState) {
-    if (prevState.messages.length < this.state.messages.length && this.state.messages[this.state.messages.length - 1].sender !== this.viewer) {
-      this.props.playSound("message-received", "sound-message-received", "/sounds/message-received.ogg")
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.messages.length < this.state.messages.length &&
+      this.state.messages[this.state.messages.length - 1].sender !== this.viewer
+    ) {
+      this.props.playSound("message-received");
     }
     this.scrollToBottom();
   }
@@ -64,16 +75,33 @@ class Chat extends Component {
   render() {
     return (
       <div className="chat-box">
-        <div className="chat-message-holder"
-          ref={(el) => { this.messageHolder = el; }}>
-          {this.state.messages.map(m => {
-            return <Message key={m.time} {...m} viewer={this.viewer} files={this.props.files}/>
+        <div
+          className="chat-message-holder"
+          ref={(el) => {
+            this.messageHolder = el;
+          }}
+        >
+          {this.state.messages.map((m) => {
+            return (
+              <Message
+                key={m.time}
+                {...m}
+                viewer={this.viewer}
+                files={this.props.files}
+              />
+            );
           })}
         </div>
         <div className="chat-form">
-          <input type="text" placeholder="Type your message here" value={this.state.message} onChange={this.updateMessage} onKeyPress={this.handleKeyPress}></input>
+          <input
+            type="text"
+            placeholder="Type your message here"
+            value={this.state.message}
+            onChange={this.updateMessage}
+            onKeyPress={this.handleKeyPress}
+          ></input>
           <button className="send-button" onClick={this.newTextMessage}>
-            <img src="/desktop/send.svg" alt="Send icon"/>
+            <img src="/desktop/send.svg" alt="Send icon" />
           </button>
         </div>
       </div>
