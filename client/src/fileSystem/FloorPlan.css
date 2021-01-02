@@ -16,6 +16,10 @@
   border-radius: 10px;
   margin: 20px auto;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+
+  flex-direction: column;
+
+  height: auto;
 }
 
 .floor-planner .floor-plan {
@@ -391,6 +395,10 @@
   background-color: rgba(255, 0, 0, 0.5);
 }
 
+.floor-planner .laser-line.deactivated {
+  background-color: rgba(16, 16, 16, 0.2);
+}
+
 .floor-planner .laser-0 {
   left: 119px;
   top: 89px;
@@ -464,46 +472,62 @@
   background-image: url("/sensors/camera-7.png");
 }
 
+.floor-planner .actor-moving-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
 .floor-planner .d-pad {
   display: grid;
-  height: 500px;
-  width: 210px;
+  height: 180px;
+  width: 280px;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 60px 60px 40px 350px;
-  row-gap: 10px;
-  column-gap: 10px;
+  grid-template-rows: repeat(2, 1fr);
+  row-gap: 20px;
+  column-gap: 20px;
+
+  align-items: center;
+  justify-items: center;
 
   margin: 0 10px;
 }
-
-.floor-planner .d-pad .mirror-holder {
-  grid-column: 1 / -1;
-  grid-row: 3;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.host .act .floor-planner button {
+  height: 80px;
+  max-height: 80px;
+  width: 250px;
+  font-size: 1.3em;
+  margin: 0;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  background-color: #444444;
+}
+.host .act .floor-planner button:active {
+  box-shadow: none;
+}
+.host .act .floor-planner .d-pad button {
+  width: 80px;
+}
+.host .act .floor-planner .d-pad button + button {
+  margin: 0;
 }
 
-.floor-planner .d-pad .message {
-  grid-column: 1 / -1;
-  grid-row: 4;
-
-  background-color: black;
-  padding: 5px;
-  height: 300px;
+.host .floor-planner p.message {
+  margin: 10px 20px;
+}
+.host .floor-planner p.message + p.message {
+  min-height: 60px;
 }
 
-.floor-planner .d-pad .disabled {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 60px;
-  width: 60px;
-
-  border-radius: 10px;
-  background-color: black;
+.host .act .floor-planner .d-pad button:disabled {
+  background-color: #222222;
+  color: #333333;
+  border-color: #111111;
+  box-shadow: none;
+  height: 75px;
+  width: 75px;
 }
 
 .floor-planner .d-pad .up {
