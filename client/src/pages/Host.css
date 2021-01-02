@@ -75,11 +75,11 @@
 
 .host .act.act-active {
   margin-bottom: calc(20vh - var(--header-height));
-  opacity: 100%;
+  opacity: 1;
 }
 
 .host .act.act-inactive {
-  opacity: 60%;
+  opacity: 0.6;
 }
 
 .host .act .act-header {

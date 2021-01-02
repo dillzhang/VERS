@@ -103,7 +103,7 @@
 .floor-planner .sensor-source:hover .tool-tip,
 .floor-planner .export:hover .tool-tip {
   visibility: visible;
-  opacity: 100%;
+  opacity: 1;
   transition: 0.1s;
 }
 
