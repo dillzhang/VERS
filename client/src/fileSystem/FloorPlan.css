@@ -1,484 +1,527 @@
 .floor-planner {
-    width: 830px;
-    height: 480px;
+  width: 830px;
+  height: 480px;
 
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 
-    background-color: #E2E2E2;
-    
-    position: relative;
-    overflow: hidden;
+  background-color: #e2e2e2;
+
+  position: relative;
+  overflow: hidden;
 }
 
 .host .floor-planner {
-    height: auto;
-    width: auto;
+  width: 720px;
+  border-radius: 10px;
+  margin: 20px auto;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .floor-planner .floor-plan {
-    width: 720px;
-    height: 480px;
+  width: 720px;
+  height: 480px;
 
-    left: 112px;
+  left: 112px;
 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 
-    background-image: url("/floorPlan.png");
-    position: absolute;
+  background-image: url("/floorPlan.png");
+  position: absolute;
 }
 
 .host .floor-planner .floor-plan {
-    left: 0;
+  left: 0;
 }
 
 .floor-planner .controls {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 
-    width: 64px;
-    height: 220px;
-    border-radius: 24px;
-    border: 2px solid rgba(160, 160, 160, 0.8);
-    background-color: #cdcdcd;
-    margin-top: 115px;
-    margin-left: 22px;
-    margin-right: 22px;
-    padding: 12px 0;
+  width: 64px;
+  height: 220px;
+  border-radius: 24px;
+  border: 2px solid rgba(160, 160, 160, 0.8);
+  background-color: #cdcdcd;
+  margin-top: 115px;
+  margin-left: 22px;
+  margin-right: 22px;
+  padding: 12px 0;
 }
 
 .floor-planner .sensor-source {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 
-    color: var(--off-white);
+  color: var(--off-white);
 
-    width: 100%;
+  width: 100%;
 }
 
 .floor-planner .sensor-sample {
-    height: 30px;
-    width: 30px;
+  height: 30px;
+  width: 30px;
 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 
-    cursor: grab;
+  cursor: grab;
 }
 
 .floor-planner .tool-tip {
-    font-size: 80%;
-    position: absolute;
-    left: 96px;
-    margin-bottom: 8px;
-    text-align: right;
-    background: rgb(15, 15, 15, 0.8);
-    border-radius: 4px;
-    padding: 8px;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.2s;
-    z-index: 99;
+  font-size: 80%;
+  position: absolute;
+  left: 96px;
+  margin-bottom: 8px;
+  text-align: right;
+  background: rgb(15, 15, 15, 0.8);
+  border-radius: 4px;
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s;
+  z-index: 99;
 }
 
 .floor-planner .export .tool-tip {
-    margin-top: -26px;
+  margin-top: -26px;
 }
 
-.floor-planner .sensor-source:hover .tool-tip, .floor-planner .export:hover .tool-tip {
-    visibility: visible;
-    opacity: 1;
-    transition: 0.1s;
+.floor-planner .sensor-source:hover .tool-tip,
+.floor-planner .export:hover .tool-tip {
+  visibility: visible;
+  opacity: 1;
+  transition: 0.1s;
 }
 
 .floor-planner .sample-camera {
-    position: relative;
-    top: 3px;
-    background-image: url("/sensors/camera.png");
+  position: relative;
+  top: 3px;
+  background-image: url("/sensors/camera.png");
 }
 
 .floor-planner .sample-motion {
-    background-image: url("/sensors/motion.png");
+  background-image: url("/sensors/motion.png");
 }
 
 .floor-planner .sample-laser {
-    background-image: url("/sensors/laser.png");
+  background-image: url("/sensors/laser.png");
 }
 
 .floor-planner .export {
-    height: 40px;
-    width: 40px;
+  height: 40px;
+  width: 40px;
 
-    color: white;
-    font-family: var(--desktop-font);
-    font-size: 1em;
+  color: white;
+  font-family: var(--desktop-font);
+  font-size: 1em;
 
-    border-radius: 50%;
-    border: 2px solid #111111;
+  border-radius: 50%;
+  border: 2px solid #111111;
 
-    background-color: rgba(90, 90, 90);
-    border: 2px solid rgba(160, 160, 160, 0.4);
+  background-color: rgba(90, 90, 90);
+  border: 2px solid rgba(160, 160, 160, 0.4);
 }
 
 .floor-planner .export img {
-    width: 70%;
-    opacity: 0.9;
-    position: relative;
-    left: 1px;
-    top: 1px;
+  width: 70%;
+  opacity: 0.9;
+  position: relative;
+  left: 1px;
+  top: 1px;
 }
 
 .floor-planner .export:focus {
-    outline: 0;
+  outline: 0;
 }
 
 .floor-planner .export:hover:not(:disabled) {
-    background-color: rgba(60, 60, 60);
-    cursor: pointer;
+  background-color: rgba(60, 60, 60);
+  cursor: pointer;
 }
 
 .floor-planner .sensor-container {
-    width: 720px;
-    height: 480px;
+  width: 720px;
+  height: 480px;
 
-    background-color: var(--off-white);
+  background-color: var(--off-white);
 }
 
 .floor-planner .hiding-container {
-    overflow: hidden;
-    position: absolute;
-    width: 720px;
-    height: 480px;
+  overflow: hidden;
+  position: absolute;
+  width: 720px;
+  height: 480px;
 }
 
 .floor-planner .red-alert::before {
-    content: "";
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 300;
-    background-color: rgba(255, 0, 0, 0.5);
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  background-color: rgba(255, 0, 0, 0.5);
 }
 
 .floor-planner .sensor {
-    position: absolute;
-    box-sizing: border-box;
+  position: absolute;
+  box-sizing: border-box;
 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .floor-planner .sensor.near {
-    transform: translateX(-10px) translateY(-10px); 
-    background: none;
-    border: 10px solid #1d5ac8;
-    height: 20px;
-    width: 20px;
-    border-radius: 20px;
-    z-index: 1;
+  transform: translateX(-10px) translateY(-10px);
+  background: none;
+  border: 10px solid #1d5ac8;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  z-index: 1;
 }
 
 .floor-planner .dragging-sensor {
-    height: 30px;
-    width: 30px;
-    position: absolute;
+  height: 30px;
+  width: 30px;
+  position: absolute;
 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 
-    cursor: grabbing;
+  cursor: grabbing;
 }
 
 .floor-planner .dragging-sensor.sensor-drag-camera {
-    background-image: url("/sensors/camera.png");
+  background-image: url("/sensors/camera.png");
 }
 
 .floor-planner .dragging-sensor.sensor-drag-motion {
-    background-image: url("/sensors/motion.png");
+  background-image: url("/sensors/motion.png");
 }
 
 .floor-planner .dragging-sensor.sensor-drag-laser {
-    background-image: url("/sensors/laser.png");
+  background-image: url("/sensors/laser.png");
 }
 
 .floor-planner .entrance {
-    position: absolute;
-    height: 60px;
-    width: 60px;
-    color: #1d5ac8;
-    left: 240px;
-    top: 45px;
-    font-size: 2em;
-    text-align: center;
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  color: #1d5ac8;
+  left: 240px;
+  top: 45px;
+  font-size: 2em;
+  text-align: center;
 }
 
 .floor-planner .alex-location {
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    background-color: #1d5ac8;
-    box-shadow: 0 0 5px #ffffff inset;
-    transition: top 0.3s, left 0.3s;
-    border-radius: 50%;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background-color: #1d5ac8;
+  box-shadow: 0 0 5px #ffffff inset;
+  transition: top 0.3s, left 0.3s;
+  border-radius: 50%;
 }
 
 .floor-planner .alex-location.laser {
-    transition: top 0.8s, left 0.8s;
+  transition: top 0.8s, left 0.8s;
 }
 
 .floor-planner .sensor-type-undeclared {
-    transform: translateX(-5px) translateY(-5px);
-    background-color: #1ab900;
-    height: 10px;
-    width: 10px;
-    border-radius: 5px;
+  transform: translateX(-5px) translateY(-5px);
+  background-color: #1ab900;
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+}
+
+.host .floor-planner .sensor.incorrect-sensor::before {
+  content: "";
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  border: 3px solid #c12f25;
+  border-radius: 50%;
+
+  height: 30px;
+  width: 30px;
+  transform: translate(-50%, -50%);
+
+  background-color: rgba(130, 17, 0, 0.5);
+
+  z-index: 100;
+}
+
+.host
+  .floor-planner
+  .sensor-type-motion.sensor-direction-0.sensor-type-motion.incorrect-sensor::before {
+  transform: translateX(calc(-50%)) translateY(calc(-50% + 30px));
+}
+
+.host
+  .floor-planner
+  .sensor-type-motion.sensor-direction-2.sensor-type-motion.incorrect-sensor::before {
+  transform: translateX(calc(-50% - 30px)) translateY(calc(-50%));
+}
+
+.host
+  .floor-planner
+  .sensor-type-motion.sensor-direction-4.sensor-type-motion.incorrect-sensor::before {
+  transform: translateX(calc(-50%)) translateY(calc(-50% - 30px));
+}
+
+.host
+  .floor-planner
+  .sensor-type-motion.sensor-direction-6.sensor-type-motion.incorrect-sensor::before {
+  transform: translateX(-60px) translateY(-60px);
+  transform: translateX(calc(-50% + 30px)) translateY(calc(-50%));
 }
 
 .floor-planner .sensor-type-motion.sensor-direction-0 {
-    transform: translateX(-60px) translateY(-60px);
-    height: 63px;
-    width: 120px;
-    background-image: url("/sensors/motion-0.png");
+  transform: translateX(-60px) translateY(-60px);
+  height: 63px;
+  width: 120px;
+  background-image: url("/sensors/motion-0.png");
 }
 
 .floor-planner .sensor-type-motion.sensor-direction-1 {
-    transform: translateX(-60px) translateY(-60px);
-    height: 120px;
-    width: 120px;
-    background-image: url("/sensors/motion-1.png");
+  transform: translateX(-60px) translateY(-60px);
+  height: 120px;
+  width: 120px;
+  background-image: url("/sensors/motion-1.png");
 }
 
 .floor-planner .sensor-type-motion.sensor-direction-2 {
-    transform: translateX(-3px) translateY(-60px);
-    height: 120px;
-    width: 63px;
-    background-image: url("/sensors/motion-2.png");
+  transform: translateX(-3px) translateY(-60px);
+  height: 120px;
+  width: 63px;
+  background-image: url("/sensors/motion-2.png");
 }
 
 .floor-planner .sensor-type-motion.sensor-direction-3 {
-    transform: translateX(-60px) translateY(-60px);
-    height: 120px;
-    width: 120px;
-    background-image: url("/sensors/motion-3.png");
+  transform: translateX(-60px) translateY(-60px);
+  height: 120px;
+  width: 120px;
+  background-image: url("/sensors/motion-3.png");
 }
 
 .floor-planner .sensor-type-motion.sensor-direction-4 {
-    transform: translateX(-60px) translateY(-3px);
-    height: 63px;
-    width: 120px;
-    background-image: url("/sensors/motion-4.png");
+  transform: translateX(-60px) translateY(-3px);
+  height: 63px;
+  width: 120px;
+  background-image: url("/sensors/motion-4.png");
 }
 
 .floor-planner .sensor-type-motion.sensor-direction-5 {
-    transform: translateX(-60px) translateY(-60px);
-    height: 120px;
-    width: 120px;
-    background-image: url("/sensors/motion-5.png");
+  transform: translateX(-60px) translateY(-60px);
+  height: 120px;
+  width: 120px;
+  background-image: url("/sensors/motion-5.png");
 }
 
 .floor-planner .sensor-type-motion.sensor-direction-6 {
-    transform: translateX(-60px) translateY(-60px);
-    height: 120px;
-    width: 63px;
-    background-image: url("/sensors/motion-6.png");
+  transform: translateX(-60px) translateY(-60px);
+  height: 120px;
+  width: 63px;
+  background-image: url("/sensors/motion-6.png");
 }
 
 .floor-planner .sensor-type-motion.sensor-direction-7 {
-    transform: translateX(-60px) translateY(-60px);
-    height: 120px;
-    width: 120px;
-    background-image: url("/sensors/motion-7.png");
+  transform: translateX(-60px) translateY(-60px);
+  height: 120px;
+  width: 120px;
+  background-image: url("/sensors/motion-7.png");
 }
 
 .floor-planner .sensor-type-laser {
-    transform: translateX(-5px) translateY(-5px);
-    height: 10px;
-    width: 10px;
+  transform: translateX(-5px) translateY(-5px);
+  height: 10px;
+  width: 10px;
 }
 
 .floor-planner .sensor-type-laser.sensor-direction-0 {
-    background-image: url("/sensors/laser-0.png");
+  background-image: url("/sensors/laser-0.png");
 }
 
 .floor-planner .sensor-type-laser.sensor-direction-1 {
-    background-image: url("/sensors/laser-1.png");
+  background-image: url("/sensors/laser-1.png");
 }
 
 .floor-planner .sensor-type-laser.sensor-direction-2 {
-    background-image: url("/sensors/laser-2.png");
+  background-image: url("/sensors/laser-2.png");
 }
 
 .floor-planner .sensor-type-laser.sensor-direction-3 {
-    background-image: url("/sensors/laser-3.png");
+  background-image: url("/sensors/laser-3.png");
 }
 
 .floor-planner .sensor-type-laser.sensor-direction-4 {
-    background-image: url("/sensors/laser-4.png");
+  background-image: url("/sensors/laser-4.png");
 }
 
 .floor-planner .sensor-type-laser.sensor-direction-5 {
-    background-image: url("/sensors/laser-5.png");
+  background-image: url("/sensors/laser-5.png");
 }
 
 .floor-planner .sensor-type-laser.sensor-direction-6 {
-    background-image: url("/sensors/laser-6.png");
+  background-image: url("/sensors/laser-6.png");
 }
 
 .floor-planner .sensor-type-laser.sensor-direction-7 {
-    background-image: url("/sensors/laser-7.png");
+  background-image: url("/sensors/laser-7.png");
 }
 
 .floor-planner .laser-line {
-    position: absolute;
-    background-color: rgba(255, 0, 0, 0.5);
+  position: absolute;
+  background-color: rgba(255, 0, 0, 0.5);
 }
 
 .floor-planner .laser-0 {
-    left: 119px;
-    top: 89px;
-    width: 362px;
-    height: 2px;
+  left: 119px;
+  top: 89px;
+  width: 362px;
+  height: 2px;
 }
 
 .floor-planner .laser-1 {
-    left: 5px;
-    top: 209px;
-    width: 710px;
-    height: 2px;
+  left: 5px;
+  top: 209px;
+  width: 710px;
+  height: 2px;
 }
 
 .floor-planner .laser-2 {
-    left: 179px;
-    top: 329px;
-    width: 182px;
-    height: 2px;
+  left: 179px;
+  top: 329px;
+  width: 182px;
+  height: 2px;
 }
 
 .floor-planner .laser-3 {
-    left: 479px;
-    top: 449px;
-    width: 236px;
-    height: 2px;
+  left: 479px;
+  top: 449px;
+  width: 236px;
+  height: 2px;
 }
 
 .floor-planner .laser-4 {
-    left: 29px;
-    top: 5px;
-    width: 2px;
-    height: 470px;
+  left: 29px;
+  top: 5px;
+  width: 2px;
+  height: 470px;
 }
 
 .floor-planner .sensor-type-camera {
-    transform: translateX(-120px) translateY(-120px);
-    height: 240px;
-    width: 240px;
+  transform: translateX(-120px) translateY(-120px);
+  height: 240px;
+  width: 240px;
 }
 
 .floor-planner .sensor-type-camera.sensor-direction-0 {
-    background-image: url("/sensors/camera-0.png");
+  background-image: url("/sensors/camera-0.png");
 }
 
 .floor-planner .sensor-type-camera.sensor-direction-1 {
-    background-image: url("/sensors/camera-1.png");
+  background-image: url("/sensors/camera-1.png");
 }
 
 .floor-planner .sensor-type-camera.sensor-direction-2 {
-    background-image: url("/sensors/camera-2.png");
+  background-image: url("/sensors/camera-2.png");
 }
 
 .floor-planner .sensor-type-camera.sensor-direction-3 {
-    background-image: url("/sensors/camera-3.png");
+  background-image: url("/sensors/camera-3.png");
 }
 
 .floor-planner .sensor-type-camera.sensor-direction-4 {
-    background-image: url("/sensors/camera-4.png");
+  background-image: url("/sensors/camera-4.png");
 }
 
 .floor-planner .sensor-type-camera.sensor-direction-5 {
-    background-image: url("/sensors/camera-5.png");
+  background-image: url("/sensors/camera-5.png");
 }
 
 .floor-planner .sensor-type-camera.sensor-direction-6 {
-    background-image: url("/sensors/camera-6.png");
+  background-image: url("/sensors/camera-6.png");
 }
 
 .floor-planner .sensor-type-camera.sensor-direction-7 {
-    background-image: url("/sensors/camera-7.png");
+  background-image: url("/sensors/camera-7.png");
 }
 
 .floor-planner .d-pad {
-    display: grid;
-    height: 500px;
-    width: 210px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 60px 60px 40px 350px;
-    row-gap: 10px;
-    column-gap: 10px;
+  display: grid;
+  height: 500px;
+  width: 210px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 60px 60px 40px 350px;
+  row-gap: 10px;
+  column-gap: 10px;
 
-    margin: 0 10px;
+  margin: 0 10px;
 }
 
 .floor-planner .d-pad .mirror-holder {
-    grid-column: 1 / -1;
-    grid-row: 3;
+  grid-column: 1 / -1;
+  grid-row: 3;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .floor-planner .d-pad .message {
-    grid-column: 1 / -1;
-    grid-row: 4;
+  grid-column: 1 / -1;
+  grid-row: 4;
 
-    background-color: black;
-    padding: 5px;
-    height: 300px;
+  background-color: black;
+  padding: 5px;
+  height: 300px;
 }
 
 .floor-planner .d-pad .disabled {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    height: 60px;
-    width: 60px;
+  height: 60px;
+  width: 60px;
 
-    border-radius: 10px;
-    background-color: black;
+  border-radius: 10px;
+  background-color: black;
 }
 
 .floor-planner .d-pad .up {
-    grid-column: 2;
-    grid-row: 1;
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .floor-planner .d-pad .left {
-    grid-column: 1;
-    grid-row: 2;
+  grid-column: 1;
+  grid-row: 2;
 }
 
 .floor-planner .d-pad .right {
-    grid-column: 3;
-    grid-row: 2;
+  grid-column: 3;
+  grid-row: 2;
 }
 
 .floor-planner .d-pad .down {
-    grid-column: 2;
-    grid-row: 2;
+  grid-column: 2;
+  grid-row: 2;
 }

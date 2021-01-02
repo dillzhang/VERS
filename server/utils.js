@@ -321,7 +321,7 @@ const checkSensors = (roomCode, io, sender, color, sensors) => {
     setRoomState(roomCode, io, 39);
     io.to(roomCode).emit("update-line-from-submission", {
       line:
-        "This seems to match what I see here. I found this electrical panel. Let me share my location and a live stream with you.",
+        "This seems to match what I see here. Let me share my location and you can guide me.",
     });
   } else {
     if (empty > 0) {

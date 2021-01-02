@@ -8,6 +8,7 @@ import Email from "../components/Email";
 import Timer from "../components/Timer";
 import Elevator from "../components/Elevator";
 import ActorMoving from "../components/ActorMoving";
+import FloorPlan from "../fileSystem/FloorPlan";
 import VaultDoor from "../components/VaultDoor";
 import Translator from "../components/Translator";
 
@@ -414,6 +415,37 @@ class Host extends Component {
           </strong>
         </p>
 
+        <FloorPlan
+          level={this.state.state}
+          socket={this.socket}
+          roomCode={this.room}
+          sender={"@lex"}
+          color={this.state.chatColor}
+          host={true}
+        />
+        {30 <= this.state.state && this.state.state < 40 && (
+          <>
+            <h2>
+              <strong>Responding to the Hackers</strong>
+            </h2>
+            {this.state.lines.length === 0 && (
+              <p>
+                <em>Wait for the hackers to export to chat.</em>
+              </p>
+            )}
+            {this.state.lines.length > 0 &&
+              this.state.lines.map((line, index) => {
+                return (
+                  <p
+                    key={`translation-response-${index}`}
+                    className={`${index === 0 ? "current" : "older"}`}
+                  >
+                    {line}
+                  </p>
+                );
+              })}
+          </>
+        )}
         {this.state.state >= 39 && (
           <>
             <h2>Security Sensors Found</h2>
