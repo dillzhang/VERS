@@ -287,6 +287,12 @@ class ActorMoving extends Component {
   }
 
   updateSensors = () => {
+    if (
+      this.props.level >= 50 ||
+      (this.state.location.xcor === 3 && this.state.location.ycor === 6)
+    ) {
+      return;
+    }
     let failed = false;
     const currentSensorState = this.state.sensors;
 

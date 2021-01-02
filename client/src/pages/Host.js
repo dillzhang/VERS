@@ -504,7 +504,11 @@ class Host extends Component {
             attempts rack up.
           </strong>
         </p>
-        <ActorMoving socket={this.socket} room={this.room} />
+        <ActorMoving
+          socket={this.socket}
+          room={this.room}
+          level={this.state.state}
+        />
         <p>
           <strong>
             The electrical panel correspond with sensors in the floor plan.
