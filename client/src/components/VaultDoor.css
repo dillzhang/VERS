@@ -1,27 +1,41 @@
 .vault-door {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
 
-    height: 300px;
+  height: 300px;
+  color: #eeeeee;
+  background-color: var(--dark-grey);
+  padding: 20px 40px;
+  border-radius: 10px;
 
-    background-color: #222222;
-    color: #eeeeee;
+  width: 80%;
+  margin: 30px auto 20px auto;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .vault-door h1 {
-    font-size: 50px;
+  font-size: 50px;
+  margin: 10px auto;
+  font-weight: 900;
 }
 
 .vault-door .question {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: baseline;
-
-    width: 400px;
+  font-size: 1.5em;
+  height: 50px;
 }
 
+.vault-door .answer {
+  font-size: 1.2em;
+  margin: 10px auto;
+}
+.vault-door .answer button {
+  width: 250px;
+  font-size: 1em;
+}
+.vault-door .answer p {
+  display: inline-block;
+  margin: 5px 40px;
+}
 .vault-door .alert {
-    color: red;
+  color: red;
 }

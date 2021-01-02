@@ -124,7 +124,7 @@ class Host extends Component {
               return act === 8;
             } else {
               // Render all states that have been seen
-              return act <= currentAct;
+              return act === currentAct;
             }
           })
           .map((act) => {
