@@ -350,8 +350,13 @@ class ActorMoving extends Component {
         );
       }, 10 * 1000);
     }
-    this.setState({ sensors: currentSensorState });
-    this.timeOutId = setTimeout(this.updateSensors, 10 * 1000);
+    this.setState({ sensors: currentSensorState, isActive: false }, () => {
+      setTimeout(() => {
+        this.setState({ isActive: true }, () => {
+          this.timeOutId = setTimeout(this.updateSensors, 10 * 1000 - 10);
+        });
+      }, 10);
+    });
   };
 
   componentDidMount() {
@@ -556,7 +561,13 @@ class ActorMoving extends Component {
           </div>
         </div>
         <div className="floor-plan" />
-
+        <div
+          className={`progress-bar ${
+            this.state.isActive ? "active" : "inactive"
+          }`}
+        >
+          <span className={`meter`} />
+        </div>
         <div className="actor-moving-controls">
           <div className="d-pad">
             {Object.keys(directions).map((dir) => {
