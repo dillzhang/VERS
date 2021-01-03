@@ -245,9 +245,7 @@ class Host extends Component {
         <p>
           <em>You have turned off your video.</em>
         </p>
-        {this.renderSoundTrigger("ambiance", "Ambiance", true)}
-        {this.renderSoundTrigger("warning", "Warning", true)}
-        {this.renderSoundTrigger("newApp", "New App", true)}
+        {this.renderSoundTrigger("footstepsOutside", "Footsteps Outside", true)}
         <h2>The Vault</h2>
         <p>Present your research about the vault:</p>
         <ul>
