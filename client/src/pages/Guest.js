@@ -62,7 +62,7 @@ class Guest extends Component {
             this.openApplication(app);
           });
           if (stateApplications[state].length > 0 && state > 0) {
-            this.playSound("new-app");
+            this.playSound("newApp");
           }
         }
       );

@@ -12,6 +12,8 @@ const rooms = {
     endTime: -1,
     timerId: -1,
     secondsRemaining: 3599,
+
+    sounds: new Set(),
   },
 
   P1A: {
@@ -24,6 +26,8 @@ const rooms = {
     endTime: -1,
     timerId: -1,
     secondsRemaining: 3599,
+
+    sounds: new Set(),
   },
 
   P1B: {
@@ -36,6 +40,8 @@ const rooms = {
     endTime: -1,
     timerId: -1,
     secondsRemaining: 3599,
+
+    sounds: new Set(),
   },
 
   P2A: {
@@ -48,6 +54,8 @@ const rooms = {
     endTime: -1,
     timerId: -1,
     secondsRemaining: 3599,
+
+    sounds: new Set(),
   },
 
   P2B: {
@@ -60,6 +68,8 @@ const rooms = {
     endTime: -1,
     timerId: -1,
     secondsRemaining: 3599,
+
+    sounds: new Set(),
   },
 
   P3A: {
@@ -72,6 +82,8 @@ const rooms = {
     endTime: -1,
     timerId: -1,
     secondsRemaining: 3599,
+
+    sounds: new Set(),
   },
 
   P3B: {
@@ -84,6 +96,8 @@ const rooms = {
     endTime: -1,
     timerId: -1,
     secondsRemaining: 3599,
+
+    sounds: new Set(),
   },
 
   P3B9: {
@@ -96,6 +110,8 @@ const rooms = {
     endTime: -1,
     timerId: -1,
     secondsRemaining: 3599,
+
+    sounds: new Set(),
   },
 
   SUCCESS: {
@@ -108,6 +124,8 @@ const rooms = {
     endTime: -1,
     timerId: -1,
     secondsRemaining: 3599,
+
+    sounds: new Set(),
   },
 
   FAILURE: {
@@ -120,6 +138,8 @@ const rooms = {
     endTime: -1,
     timerId: -1,
     secondsRemaining: 3599,
+
+    sounds: new Set(),
   },
 };
 
@@ -170,6 +190,8 @@ const createNewRoom = () => {
 
     endTime: -1,
     timerId: -1,
+
+    sounds: new Set(),
   };
   return { roomCode: id, password: rooms[id].password };
 };
@@ -231,6 +253,9 @@ const joinRoom = (socket, roomCode) => {
         password: rooms[roomCode].password,
       });
       socket.emit("messageStatus", rooms[roomCode].messages);
+      rooms[roomCode].sounds.forEach((soundId) => {
+        socket.emit("playSound", { soundId });
+      });
       setTimeout(() => {
         socket.emit("roomStateUpdate", {
           failed: rooms[roomCode].failed,
@@ -401,6 +426,28 @@ const checkTranslator = (roomCode, io, sender, color, translationKey) => {
   }
 };
 
+const globalPlaySound = (roomCode, io, soundId, save) => {
+  if (!rooms.hasOwnProperty(roomCode)) {
+    // TODO: Error Handling
+    return;
+  }
+  if (save) {
+    rooms[roomCode].sounds.add(soundId);
+  }
+  io.in(roomCode).emit("playSound", { soundId });
+};
+
+const globalStopSound = (roomCode, io, soundId, save) => {
+  if (!rooms.hasOwnProperty(roomCode)) {
+    // TODO: Error Handling
+    return;
+  }
+  if (save) {
+    rooms[roomCode].sounds.delete(soundId);
+  }
+  io.in(roomCode).emit("stopSound", { soundId });
+};
+
 module.exports = {
   addFiveMinutes,
   checkSensors,
@@ -408,6 +455,8 @@ module.exports = {
   createNewRoom,
   getRooms,
   getMessages,
+  globalPlaySound,
+  globalStopSound,
   joinRoom,
   newFileMessage,
   newTextMessage,

@@ -3,6 +3,8 @@ const {
   checkSensors,
   checkTranslator,
   getMessages,
+  globalPlaySound,
+  globalStopSound,
   joinRoom,
   newFileMessage,
   newTextMessage,
@@ -106,6 +108,14 @@ function handleIo(io) {
     socket.on("translation-key", ({ roomCode, sender, color, translation }) => {
       socket.to(roomCode).emit("translatorSync", { translation });
       checkTranslator(roomCode, io, sender, color, translation);
+    });
+
+    socket.on("globalPlaySound", ({ roomCode, soundId }) => {
+      globalPlaySound(roomCode, io, soundId, false);
+    });
+
+    socket.on("globalStopSound", ({ roomCode, soundId }) => {
+      globalStopSound(roomCode, io, soundId, false);
     });
   });
 }

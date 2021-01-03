@@ -271,6 +271,14 @@ class Host extends Component {
         <button
           onClick={() => {
             this.socket.emit("start-time", { room: this.room });
+            /*
+              This is an example of playing a sound in a button.
+              This is good for playing sounds that need to be timed with the actor,
+              like opening the electical box.
+
+              General background noise should be move to soundForState.js
+            */
+            this.globalPlaySound("ambiance");
           }}
           className="warning"
         >
@@ -964,6 +972,14 @@ class Host extends Component {
     if (this.soundRef && this.soundRef.current) {
       this.soundRef.current.playSound(soundId);
     }
+  };
+
+  globalPlaySound = (soundId) => {
+    console.log("GLOBAL", soundId);
+    this.socket.emit("globalPlaySound", { roomCode: this.room, soundId });
+  };
+  globalStopSound = (soundId) => {
+    this.socket.emit("globalStopSound", { roomCode: this.room, soundId });
   };
 
   renderChat() {

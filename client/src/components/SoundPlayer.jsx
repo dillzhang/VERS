@@ -1,4 +1,4 @@
-import React, { useState, useRef, useImperativeHandle } from "react";
+import React, { useState, useRef, useEffect, useImperativeHandle } from "react";
 
 import "./SoundPlayer.css";
 
@@ -7,10 +7,19 @@ import { SOUNDS } from "../constants/sounds";
 const SoundPlayer = React.forwardRef((props, ref) => {
   const [isMuted, setMuted] = useState(false);
   const [volume, setVolume] = useState(50);
+
   const currentlyPlaying = useRef(new Set());
 
   const playSound = (soundId) => {
-    console.log("playing sound");
+    console.log("Play Sound:", soundId);
+    if (SOUNDS[soundId].createNew) {
+      const source = new Audio(SOUNDS[soundId].source);
+      source.volume = volume / 100;
+      source.muted = isMuted;
+      source.play();
+      return;
+    }
+
     if (SOUNDS[soundId].dnd && currentlyPlaying.current.has(soundId)) {
       return;
     }
@@ -36,18 +45,20 @@ const SoundPlayer = React.forwardRef((props, ref) => {
     currentlyPlaying.current.delete(soundId);
   };
 
-  props.socket.on("playSound", ({ soundId }) => {
-    playSound(soundId);
-  });
-
-  props.socket.on("stopSound", ({ soundId }) => {
-    stopSound(soundId);
-  });
-
   useImperativeHandle(ref, () => ({
     playSound,
     stopSound,
   }));
+
+  useEffect(() => {
+    props.socket.on("playSound", ({ soundId }) => {
+      playSound(soundId);
+    });
+
+    props.socket.on("stopSound", ({ soundId }) => {
+      stopSound(soundId);
+    });
+  }, []);
 
   return (
     <div className={`sound-player`}>
@@ -67,9 +78,11 @@ const SoundPlayer = React.forwardRef((props, ref) => {
               min="0"
               max="100"
               onChange={(e) => {
-                Object.keys(SOUNDS).forEach((audio) => {
-                  SOUNDS[audio].source.volume = e.target.value / 100;
-                });
+                Object.keys(SOUNDS)
+                  .filter((audio) => !SOUNDS[audio].createNew)
+                  .forEach((audio) => {
+                    SOUNDS[audio].source.volume = e.target.value / 100;
+                  });
                 setVolume(e.target.value);
               }}
             />
@@ -80,9 +93,11 @@ const SoundPlayer = React.forwardRef((props, ref) => {
             type="checkbox"
             checked={isMuted}
             onChange={(e) => {
-              Object.keys(SOUNDS).forEach((audio) => {
-                SOUNDS[audio].source.muted = e.target.checked;
-              });
+              Object.keys(SOUNDS)
+                .filter((audio) => !SOUNDS[audio].createNew)
+                .forEach((audio) => {
+                  SOUNDS[audio].source.muted = e.target.checked;
+                });
               setMuted(e.target.checked);
             }}
           />
