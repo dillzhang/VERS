@@ -28,4 +28,10 @@ const STATE_SOUNDS = {
   80: new Set([]), // FAILURE
 };
 
-export default STATE_SOUNDS;
+const TIME_SOUNDS = {
+  600: [], // "5 minutes remaing"
+  120: [], // "1 minute remaining"
+  0: [], // "0 minute remaining"
+};
+
+module.exports = { STATE_SOUNDS, TIME_SOUNDS };
