@@ -16,6 +16,8 @@ import chatFilesCreator from "../constants/chatFiles";
 import { STATE_FAILURE, STATE_SUCCESS } from "../constants/guest";
 import { actHeaders } from "../constants/host";
 
+import SoundPlayer from "../components/SoundPlayer";
+
 const baseURL = new URL(window.location.href).host;
 const baseProto = new URL(window.location.href).protocol;
 
@@ -28,6 +30,7 @@ class Host extends Component {
 
     this.socket = SocketIO(baseURL);
     this.room = this.props.match.params.code;
+    this.soundRef = React.createRef();
 
     this.state = {
       state: 0,
@@ -74,6 +77,7 @@ class Host extends Component {
       <div className="app host">
         <div className={`header`}>
           <h1>VERS Actor Panel</h1>
+          <SoundPlayer socket={this.socket} ref={this.soundRef} />
           {this.maybeRenderPlayerLink()}
         </div>
         {this.renderMain()}
@@ -956,9 +960,12 @@ class Host extends Component {
     );
   }
 
-  playSound = (sound) => {
-    console.log(sound);
+  playSound = (soundId) => {
+    if (this.soundRef && this.soundRef.current) {
+      this.soundRef.current.playSound(soundId);
+    }
   };
+
   renderChat() {
     return (
       <Chat
