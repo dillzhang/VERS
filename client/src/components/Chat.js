@@ -43,7 +43,7 @@ class Chat extends Component {
       color: this.props.chatColor,
     });
     this.setState({ message: "" });
-    this.props.playSound("message-sent");
+    this.props.playSound("messageSent");
   };
 
   updateMessage = (e) => {
@@ -67,7 +67,7 @@ class Chat extends Component {
       prevState.messages.length < this.state.messages.length &&
       this.state.messages[this.state.messages.length - 1].sender !== this.viewer
     ) {
-      this.props.playSound("message-received");
+      this.props.playSound("messageReceived");
     }
     this.scrollToBottom();
   }

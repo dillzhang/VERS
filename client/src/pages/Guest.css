@@ -1,64 +1,65 @@
 .guest {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 
-    --header-height: 28px;
+  --header-height: 28px;
 
-    --shortcut-size: 100px;
-    --shortcut-icon-size: 56px;
+  --shortcut-size: 100px;
+  --shortcut-icon-size: 56px;
 
-    font-family: var(--desktop-font);
-    user-select: none;
-    overflow: hidden;
+  font-family: var(--desktop-font);
+  user-select: none;
+  overflow: hidden;
 }
 
 .guest .lock-screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    background-color: var(--light-grey);
-    background: linear-gradient(-40deg, #151515, #353535);
+  background-color: var(--light-grey);
+  background: linear-gradient(-40deg, #151515, #353535);
 
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .lock-screen .user-icon {
-    margin-top: -50px;
-    width: calc(2*var(--shortcut-icon-size));
-    height: calc(2*var(--shortcut-icon-size));
-    margin-bottom: 24px;
+  margin-top: -50px;
+  width: calc(2 * var(--shortcut-icon-size));
+  height: calc(2 * var(--shortcut-icon-size));
+  margin-bottom: 24px;
 }
 
 .lock-screen h1 {
-    color: var(--off-white);
-    font-size: 30px;
-    margin-bottom: 14px;
+  color: var(--off-white);
+  font-size: 30px;
+  margin-bottom: 14px;
 }
 
 .lock-screen label {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
 .lock-screen label input {
-    width: calc(4 * var(--shortcut-icon-size));
-    height: calc(.25 * var(--shortcut-icon-size));
-    background-color: rgba(40, 40, 40, 0.8);
+  width: calc(4 * var(--shortcut-icon-size));
+  height: calc(0.25 * var(--shortcut-icon-size));
+  background-color: rgba(40, 40, 40, 0.8);
 }
 
-.lock-screen label input, .lock-screen button {
-    font: inherit;
-    padding: 12px;
-    border: 2px solid rgba(120, 120, 120, 0.4);
-    border-radius: 4px;
-    color: white;
+.lock-screen label input,
+.lock-screen button {
+  font: inherit;
+  padding: 12px;
+  border: 2px solid rgba(120, 120, 120, 0.4);
+  border-radius: 4px;
+  color: white;
 }
 
 .lock-screen button {
-    margin-top: 24px;
-    background-color: var(--light-grey);
+  margin-top: 24px;
+  background-color: var(--light-grey);
 }
 
 .lock-screen .error-message {
@@ -70,79 +71,81 @@
 }
 
 .guest .header {
-    height: var(--header-height);
-    background-color: var(--dark-grey);
-    background: linear-gradient(0deg, #191919, #282828);
+  height: var(--header-height);
+  background-color: var(--dark-grey);
+  background: linear-gradient(0deg, #191919, #282828);
 
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 
-    align-items: center;
-    justify-content: flex-end;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .guest .header-time {
-    color: var(--off-white);
-    padding: 0 20px;
+  color: var(--off-white);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
 }
 
 .guest .home-screen {
-    height: calc(100vh - var(--header-height));
-    background-color: var(--light-grey);
-    background-image: url('/desktop/wallpaper.jpg');
-    background-size: cover;
-    background-position: center;
+  height: calc(100vh - var(--header-height));
+  background-color: var(--light-grey);
+  background-image: url("/desktop/wallpaper.jpg");
+  background-size: cover;
+  background-position: center;
 
-    position: relative;
+  position: relative;
 
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-direction: column;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .guest .shortcut {
-    width: var(--shortcut-size);
-    height: var(--shortcut-size);
+  width: var(--shortcut-size);
+  height: var(--shortcut-size);
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 
-    padding: 4px;
-    margin: 4px 12px;
-    color: var(--off-white)
+  padding: 4px;
+  margin: 4px 12px;
+  color: var(--off-white);
 }
 .guest .shortcut:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .guest .shortcut img {
-    width: var(--shortcut-icon-size);
-    height: 100%;
-    margin: auto;
+  width: var(--shortcut-icon-size);
+  height: 100%;
+  margin: auto;
 }
 
 .guest .icon {
-    width: var(--shortcut-icon-size);
-    height: var(--shortcut-icon-size);
+  width: var(--shortcut-icon-size);
+  height: var(--shortcut-icon-size);
 }
 
 .guest .shortcut-name {
-    font-size: 16px;
-    text-align: center;
-    text-shadow: 0 0 4px #202020;
+  font-size: 16px;
+  text-align: center;
+  text-shadow: 0 0 4px #202020;
 }
 
 .guest .error-pop-up {
   width: 440px;
   height: 230px;
   line-height: 1.15em;
-  background-color: #EFEFEF;
+  background-color: #efefef;
   color: var(--dark-grey);
   padding: 12px 24px;
 }
@@ -156,7 +159,7 @@
 .error-pop-up h2 {
   font-size: 1.25em;
   font-weight: bold;
-  color: #B2223D;
+  color: #b2223d;
   margin: 14px 0;
 }
 
@@ -164,7 +167,8 @@
   margin: 8px 0;
 }
 
-.error-pop-up h2, .error-pop-up .details {
+.error-pop-up h2,
+.error-pop-up .details {
   margin-left: 72px;
 }
 
@@ -236,7 +240,7 @@
   right: -500px;
   bottom: -500px;
   left: -500px;
-  background: transparent url('/noise.jpg') 0 0;
+  background: transparent url("/noise.jpg") 0 0;
   background-size: 320px 320px;
   opacity: 0.35;
   animation: noise 1s steps(8, end) infinite both;
@@ -245,7 +249,8 @@
 
 @keyframes noise {
   0% {
-    transform: translateX(0px,0px); }
+    transform: translateX(0px, 0px);
+  }
   10% {
     transform: translate(-100px, 100px);
   }
@@ -253,7 +258,7 @@
     transform: translate(150px, -100px);
   }
   30% {
-    transform: translate(-100px,100px);
+    transform: translate(-100px, 100px);
   }
   40% {
     transform: translate(100px, -150px);

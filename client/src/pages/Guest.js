@@ -12,6 +12,8 @@ import {
   alwayVisibleSet,
 } from "../constants/guest";
 
+import SoundPlayer from "../components/SoundPlayer";
+
 import "./Guest.css";
 
 const baseURL = new URL(window.location.href).host;
@@ -24,6 +26,7 @@ class Guest extends Component {
     this.room = this.props.match.params.code;
     this.password = this.props.match.params.password;
     this.homeRef = React.createRef();
+    this.soundRef = React.createRef();
 
     const currentTime = new Date();
     const today =
@@ -113,6 +116,12 @@ class Guest extends Component {
   handleKeyPress = (e) => {
     if (e.key === "Enter") {
       this.submitLogin();
+    }
+  };
+
+  playSound = (soundId) => {
+    if (this.soundRef && this.soundRef.current) {
+      this.soundRef.current.playSound(soundId);
     }
   };
 
@@ -242,7 +251,10 @@ class Guest extends Component {
         )}
         <div className="header">
           <div className="header-time">
-            {this.state.username} &middot; {this.state.currentTime}
+            <SoundPlayer socket={this.socket} ref={this.soundRef} />{" "}
+            <span>
+              &middot; {this.state.username} &middot; {this.state.currentTime}
+            </span>
           </div>
         </div>
         <div className="home-screen" ref={this.homeRef}>
