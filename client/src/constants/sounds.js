@@ -39,13 +39,4 @@ const SOUNDS = {
   },
 };
 
-const SOUND_DURATIONS = {};
-
-Object.keys(SOUNDS).forEach((soundId) => {
-  SOUND_DURATIONS[soundId] =
-    SOUNDS[soundId].duration && SOUNDS[soundId].duration > -1
-      ? SOUNDS[soundId].duration
-      : SOUNDS[soundId].source.duration * 1000;
-});
-
-export { SOUNDS, SOUND_DURATIONS };
+export { SOUNDS };

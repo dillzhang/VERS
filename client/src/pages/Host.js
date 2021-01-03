@@ -17,6 +17,7 @@ import { STATE_FAILURE, STATE_SUCCESS } from "../constants/guest";
 import { actHeaders } from "../constants/host";
 
 import SoundPlayer from "../components/SoundPlayer";
+import ActorSoundTrigger from "../components/ActorSoundTrigger";
 
 const baseURL = new URL(window.location.href).host;
 const baseProto = new URL(window.location.href).protocol;
@@ -244,6 +245,9 @@ class Host extends Component {
         <p>
           <em>You have turned off your video.</em>
         </p>
+        {this.renderSoundTrigger("ambiance", "Ambiance", true)}
+        {this.renderSoundTrigger("warning", "Warning", true)}
+        {this.renderSoundTrigger("newApp", "New App", true)}
         <h2>The Vault</h2>
         <p>Present your research about the vault:</p>
         <ul>
@@ -980,6 +984,19 @@ class Host extends Component {
   };
   globalStopSound = (soundId) => {
     this.socket.emit("globalStopSound", { roomCode: this.room, soundId });
+  };
+
+  renderSoundTrigger = (soundId, soundName, stoppable) => {
+    return (
+      <ActorSoundTrigger
+        socket={this.socket}
+        soundId={soundId}
+        soundName={soundName}
+        stoppable={stoppable}
+        playSound={this.globalPlaySound}
+        stopSound={this.globalStopSound}
+      />
+    );
   };
 
   renderChat() {

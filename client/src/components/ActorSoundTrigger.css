@@ -1,0 +1,56 @@
+.actor-sound-trigger {
+  width: 375px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.actor-sound-trigger .progress-bar {
+  position: absolute;
+  background-color: #268423;
+  border-radius: 10px;
+  width: 0px;
+  height: 100%;
+  z-index: 0;
+  opacity: 1;
+}
+
+.actor-sound-trigger .progress-bar.progress-bar-active {
+  width: 330px;
+  transition: width var(--trigger-animation-duration) linear;
+}
+
+.actor-sound-trigger .progress-bar.progress-bar-inactive {
+  opacity: 0;
+  transition: width 0s linear 0.1s, opacity 0.1s ease-out;
+}
+
+.host .act .actor-sound-trigger button {
+  display: block;
+  margin: 0;
+  flex: initial;
+  z-index: 1;
+}
+
+.host .actor-sound-trigger button + button {
+  margin: 0 0 0 0;
+}
+.host .act .actor-sound-trigger .actor-trigger-button {
+  background-color: rgba(0, 141, 106, 1);
+  width: 320px;
+  height: 50px;
+  margin-left: 5px;
+}
+
+.host .act .actor-sound-trigger .actor-stop-button {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
