@@ -15,7 +15,7 @@ const Guard1 =
 
             <h6>Biographical Data</h6>
             <p><strong>Sex:</strong> M</p>
-            <p><strong>Date of Birth:</strong> 1983-02-07</p>
+            <p><strong>Date of Birth:</strong> 1973-02-07</p>
             <p><strong>Ethnicity:</strong> Asian</p>
             <p><strong>Height:</strong> 5' 9"</p>
             <p><strong>Blood Type:</strong> B+</p>
