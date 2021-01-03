@@ -7,16 +7,20 @@ const SOUNDS = {
     dnd: true,
     // Duration sound should be played for in milliseconds
     duration: -1,
+    // If true, new sound will be created. sounds cannot be stopped
+    createNew: true,
   },
   messageSent: {
     source: new Audio("/sounds/test.mp3"),
     dnd: false,
     duration: -1,
+    createNew: true,
   },
   messageRecieved: {
     source: new Audio("/sounds/test.mp3"),
     dnd: false,
     duration: -1,
+    createNew: true,
   },
   newApp: {
     source: new Audio("/sounds/test.mp3"),
