@@ -10,6 +10,7 @@ const SoundPlayer = React.forwardRef((props, ref) => {
   const currentlyPlaying = useRef(new Set());
 
   const playSound = (soundId) => {
+    console.log("playing sound");
     if (SOUNDS[soundId].dnd && currentlyPlaying.current.has(soundId)) {
       return;
     }
@@ -85,7 +86,7 @@ const SoundPlayer = React.forwardRef((props, ref) => {
               setMuted(e.target.checked);
             }}
           />
-          <span className={`muted-display ${isMuted ? "muted" : "volume"}`} />
+          <div className={`muted-display`} />
         </label>
       </div>
       this

@@ -66,8 +66,41 @@
   transform: translateY(70px) rotate(270deg);
 }
 
+.sound-player .sound-slider input[type="range"] {
+  -webkit-appearance: none;
+  border-radius: 10px;
+  background-color: #6dc16a;
+  outline: none;
+  height: 12px;
+}
+.sound-player .sound-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: ns-resize;
+  background: #268423;
+}
+
 .sound-player .sound-mute {
-  margin-bottom: 10px;
-  height: calc(var(--header-height));
+  display: block;
+  height: calc(var(--header-height) - 4px);
   width: calc(var(--header-height) - 4px);
+  margin-bottom: 12px;
+}
+
+.sound-player .sound-mute input[type="checkbox"] {
+  display: none;
+}
+
+.sound-player .sound-mute .muted-display {
+  cursor: pointer;
+  height: calc(var(--header-height) - 4px);
+  width: calc(var(--header-height) - 4px);
+  border-radius: 50%;
+  background-color: green;
+}
+
+.sound-player .sound-mute input[type="checkbox"]:checked + .muted-display {
+  background-color: red;
 }
