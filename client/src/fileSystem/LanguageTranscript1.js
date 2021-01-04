@@ -6,7 +6,7 @@ const languageTranscript1 =
             <h2>CONFIDENTIAL DOCUMENT</h2>
             <h6>2016-01-03</h6>
             <h6>INTERVIEW TRANSCRIPT</h6>
-            <h6>SUBJECT ID. #7104</h6>
+            <h6>SUBJECT ID #7104</h6>
             <p><strong>SUBJECT:</strong> Where am I?</p>
             <p><strong>INTERVIEWER 1:</strong> Ƕ∂ỼϬ∫. Quiet!</p>
             <p><strong>INTERVIEWER 2:</strong> ⑃Վ §Վ∂ ᲯՄՎ‰ ‰చට∫ ⱮచϬ'Ɱ Ɱට§ỼՄԱ?</p>
