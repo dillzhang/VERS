@@ -58,15 +58,15 @@
 }
 
 .sound-player .sound-icon.icon-muted {
-  background-color: red;
+  background-image: url('/desktop/volume-muted.svg');
 }
 
 .sound-player .sound-icon.icon-empty {
-  background-color: white;
+  background-image: url('/desktop/volume-empty.svg');
 }
 
 .sound-player .sound-icon.icon-full {
-  background-color: green;
+  background-image: url('/desktop/volume-full.svg');
 }
 
 .sound-player .hover-items {
@@ -136,9 +136,9 @@
   height: calc(var(--header-height) - 4px);
   width: calc(var(--header-height) - 4px);
   border-radius: 50%;
-  background-color: green;
+  background-image: url('/desktop/volume-muted.svg');
 }
 
 .sound-player .sound-mute input[type="checkbox"]:checked + .muted-display {
-  background-color: red;
+  background-image: url('/desktop/volume-full.svg');
 }
