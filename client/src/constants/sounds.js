@@ -32,6 +32,11 @@ const SOUNDS = {
     dnd: false,
     duration: -1,
   },
+  footstepsOutside: {
+    source: new Audio("/sounds/footsteps-outside.mp3"),
+    dnd: false,
+    duration: -1,
+  },
   ambiance: {
     source: new Audio("/sounds/test.mp3"),
     dnd: true,

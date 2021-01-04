@@ -51,6 +51,11 @@ const SoundPlayer = React.forwardRef((props, ref) => {
   }));
 
   useEffect(() => {
+    Object.keys(SOUNDS)
+      .filter((audio) => !SOUNDS[audio].createNew)
+      .forEach((audio) => {
+        SOUNDS[audio].source.volume = volume / 100;
+      });
     props.socket.on("playSound", ({ soundId }) => {
       playSound(soundId);
     });

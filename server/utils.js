@@ -1,5 +1,9 @@
-const { adjectives, animals } = require("./constants");
-const { correctSensors, correctTranslationKey } = require("./answers");
+const { adjectives, animals } = require("./constants/constants");
+const {
+  correctSensors,
+  correctTranslationKey,
+} = require("./constants/answers");
+const { STATE_SOUNDS, TIME_SOUNDS } = require("./constants/soundForState");
 
 const rooms = {
   PRESHOW: {
@@ -281,10 +285,26 @@ const startTimer = (roomCode, io) => {
 };
 
 const setRoomState = (roomCode, io, state) => {
+  // Stop any saved sound associated with the new state
+  rooms[roomCode].sounds.forEach((soundId) => {
+    if (!STATE_SOUNDS[state].has(soundId)) {
+      globalStopSound(roomCode, io, soundId, true);
+    }
+  });
+
+  // Start any sound associated with the new state if it is not playing
+  STATE_SOUNDS[state].forEach((soundId) => {
+    if (!rooms[roomCode].sounds.has(soundId)) {
+      globalPlaySound(roomCode, io, soundId, true);
+    }
+  });
+
   rooms[roomCode].state = state;
+
   if (state === 80) {
     rooms[roomCode].failed = true;
   }
+
   io.to(roomCode).emit("roomStateUpdate", {
     state,
     failed: rooms[roomCode].failed,
@@ -315,12 +335,20 @@ const updateTime = (roomCode, io) => {
   rooms[roomCode].secondsRemaining = Math.max(
     ...[rooms[roomCode].secondsRemaining - 1, 1]
   );
-  const remaining = rooms[roomCode].endTime - Date.now();
 
-  if (remaining < 0) {
+  if (TIME_SOUNDS.hasOwnProperty(rooms[roomCode].secondsRemaining)) {
+    const sounds = TIME_SOUNDS[rooms[roomCode].secondsRemaining];
+    sounds.forEach((sound) => {
+      globalPlaySound(roomCode, io, sound, false);
+    });
+  }
+
+  if (rooms[roomCode].secondsRemaining <= 0) {
     setRoomState(roomCode, io, 80);
     return;
   }
+
+  const remaining = rooms[roomCode].endTime - Date.now();
   if (rooms[roomCode].state >= 69) {
     return;
   }
@@ -341,10 +369,12 @@ const updateTime = (roomCode, io) => {
   )}:${playerSeconds.slice(playerSeconds.length - 2, playerSeconds.length)}`;
 
   const delay = remaining / rooms[roomCode].secondsRemaining;
+
   io.to(roomCode).emit("timer-update", {
     time: playerTimer,
     actualTime: timer,
   });
+
   rooms[roomCode].timerId = setTimeout(() => {
     updateTime(roomCode, io);
   }, delay);
