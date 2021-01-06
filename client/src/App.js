@@ -13,7 +13,10 @@ class App extends Component {
     const App = () => (
       <div>
         <Switch>
-          <Route exact path='/' component={Home}/>
+          <Route exact path='/' render={() => <Home page="show"/>}/>
+          <Route exact path='/team' render={() => <Home page="team"/>}/>
+          <Route exact path='/faq' render={() => <Home page="faq"/>}/>
+          <Route exact path='/contact' render={() => <Home page="contact"/>}/>
           <Route path='/admin/:password' component={Admin}/>
           <Route exact path='/admin' component={Admin}/>
           <Route path='/actor/:code' component={Host}/>
