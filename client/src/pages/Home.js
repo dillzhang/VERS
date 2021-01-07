@@ -14,17 +14,17 @@ const showPageContent = (
     <img src="/show-image.png" />
     <h2>What to Expect</h2>
     <p>
-      VERS is designed for teams of 2-3 players ("hackers") and takes place in a Zoom call and your web browser, using a custom-built desktop simulator. The puzzles are
+      VERS is designed for teams of 2-3 players ("hackers") and takes place in a Zoom call and your web browser, using a simulated desktop. The puzzles are
       story-driven and will require navigating your virtual desktop, as well as communicating with Alex on the call.
     </p>
     <p>
       The full experience lasts for 80-90 minutes, including the show and a post-mission debrief with your actor.
     </p>
     <p>
-      VERS is a beginner-friendly experience. No programming or hacking experience is necessary to play.
+      VERS is a beginner-friendly experience! No programming or hacking experience is necessary to play.
     </p>
     <h2>How to Sign Up</h2>
-    <p>Recruit 1-2 fellow hackers to join you, and then buy one (1) ticket for your team on our <a href="//www.eventbrite.com/e/the-vers-project-iap-2021-tickets-134944872747" target="_blank">Eventbrite page</a>. You will be able to input your friends' You should hear from Alex about your Zoom link via email in the days leading up to your mission!</p>
+    <p>Recruit 1-2 fellow hackers to join you, and then buy one (1) ticket for your team on our <a href="//www.eventbrite.com/e/the-vers-project-iap-2021-tickets-134944872747" target="_blank">Eventbrite page</a>. You will be able to input your teammates' information in the order form. Then, you'll all get an email from Alex with the Zoom link in the days leading up to your mission.</p>
   </>
   );
 
@@ -99,19 +99,19 @@ const faqPageContent = (
   <>
     <h1 className="title">FAQ</h1>
     <h3>How many players per team?</h3>
-    <p>2-3 players. We cap teams at 3 to ensure that each player gets to have meaningful interaction wth the puzzles. You'll only need to purchase one (1) ticket for your team.</p>
+    <p>2-3 players. We cap teams at 3 to ensure that each player can have meaningful engagement wth the puzzles.</p>
     <h3>How long does VERS last?</h3>
     <p>80-90 minutes. This includes the show and a short post-mission debrief with your actor.</p>
     <h3>Do I need hacking/programming experience?</h3>
     <p>Nope! VERS is a beginner-friendly experience.</p>
-    <h3>Do I need to prepare before the show?</h3>
-    <p>Make sure you're using the latest version of <a href="//zoom.us/download" target="_blank">Zoom</a> and your preferred web browser.</p>
+    <h3>Do I need to prepare anything before the show?</h3>
+    <p>Just make sure you're using the latest version of <a href="//zoom.us/download" target="_blank">Zoom</a> and your preferred web browser.</p>
     <h3>How does VERS work?</h3>
     <p>We're working on documenting this. In the meantime, you can read our writeup on <a href="//shannonpeng.com/projects/zooming-away">Zooming Away</a>, the precursor to VERS. It uses a very similar setup and much of the same technology as VERS.</p>
     <p>Still got questions? Feel free to contact us at <a href="mailto:versproject@mit.edu">versproject@mit.edu</a>.</p>
   </>
   );
-  
+
 const contactPageContent = (
   <>
     <h1 className="title">Contact</h1>
