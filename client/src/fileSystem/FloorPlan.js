@@ -112,7 +112,7 @@ class FloorPlan extends Component {
 
     this.props.socket.on("roomStateUpdate", ({ state }) => {
       if (state >= 40) {
-        this.setState({
+        this.setState((prev) => ({
           interactivity: false,
           sensors: correctSensors,
           near: [...Array(22)].map((_) => false),
@@ -120,12 +120,15 @@ class FloorPlan extends Component {
           dragX: -1,
           dragY: -1,
           part2: true,
-          location: {
-            xcor: 4,
-            ycor: 1,
-          },
+          location:
+            state === 40
+              ? {
+                  xcor: 4,
+                  ycor: 1,
+                }
+              : prev.location,
           holdingShift: false,
-        });
+        }));
       } else if (state >= 39) {
         this.setState({
           interactivity: false,

@@ -45,7 +45,9 @@ class Host extends Component {
         state,
         lines: [],
         failed,
-        playerUrl: `${baseProto}//${baseURL}/player/${this.props.match.params.code}/${password}`,
+        playerUrl: `${baseProto}//${baseURL}/player/${
+          this.props.match.params.code
+        }/${password.replaceAll(" ", "%20")}`,
       });
     });
 
