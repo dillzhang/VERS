@@ -146,6 +146,7 @@ class Translator extends Component {
                   <input
                     className="entry_child alien"
                     type="text"
+                    tabindex="-1"
                     readOnly
                     value={entry.alien}
                   />
@@ -213,7 +214,7 @@ class Translator extends Component {
                 }, 1000);
               }}
             >
-              Export to Chat <img src="/desktop/send.svg" alt="Send icon" />
+              Export to Chat <img src="/desktop/translator-send.svg" alt="Send icon" />
             </div>
           )}
         </div>
