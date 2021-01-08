@@ -7,7 +7,7 @@ class Calculator extends Component {
   constructor(props){
     super(props);
     this.state = {
-      value: "0",
+      value: "",
       decimal: true,
       equalsPressed: false,
     }
@@ -24,7 +24,7 @@ class Calculator extends Component {
   handleButton(v) {
     switch(v) {
       case "c":
-        this.setState({value: "0", decimal: true});
+        this.setState({value: "", decimal: true});
         break;
       case "del":
         if (this.state.value === "0") {
@@ -87,7 +87,7 @@ class Calculator extends Component {
 
   calculateOutput() {
     if (this.state.value.length === 0) {
-      return "";
+      return "0";
     }
     let output = null;
     let input = "";
@@ -121,6 +121,9 @@ class Calculator extends Component {
         <div className="calculator-display">
           <div className="input-value">
             {this.state.value}
+          </div>
+          <div className="output-value">
+            {this.calculateOutput()}
           </div>
         </div>
         <div className="calculator-buttons">
