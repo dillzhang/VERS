@@ -1,15 +1,17 @@
 .host .email {
   margin: 20px auto;
-  background-color: var(--dark-grey);
   border-radius: 10px;
+  background-color: #efefef;
 
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
   font-size: medium;
+  font-family: sans-serif;
 }
 
 .email {
   --file-icon-size: 14px;
   text-align: left;
+  background-color: #efefef;
   /* padding: 5px; */
 
   display: block;
@@ -17,7 +19,7 @@
   width: 650px;
   flex-direction: column;
 
-  color: #eeeeee;
+  color: #1a1a1a;
 
   overflow-y: scroll;
 }
@@ -25,35 +27,40 @@
 .email .subject {
   height: 40px;
   font-size: 20px;
-  padding-left: 10px;
+  padding: 6px 80px;
   display: flex;
   align-items: center;
-  border-bottom: 4px solid #aaa;
+  font-family: inherit;
+  background-color: #efefef;
+  box-shadow: 0 0 6px #808080;
 
   position: sticky;
   top: 0;
-  background-color: var(--dark-grey);
+/*  background-color: var(--dark-grey);*/
+  z-index: 999;
 }
 .email .thread {
-  margin-bottom: 30px;
-}
-.email .thread + .thread {
-  border-top: 1px solid #aaa;
+  padding: 8px 0;
+  background-color: #efefef;
+  border: 1px solid #cacaca;
+  box-shadow: 0 0 2px #cacaca;
+  margin-top: -4px;
 }
 
 .email .contact-info {
   display: grid;
   grid-template-columns: 60px 1fr;
-  grid-template-rows: repeat(3, 1fr);
+  /*grid-template-rows: repeat(3, 1fr);*/
   margin: 10px;
 }
 
 .email .contact-circle {
   width: 50px;
   height: 50px;
-  margin: 5px;
+  margin: 6px;
   grid-row: span 3;
   background-color: darkgreen;
+  color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -61,30 +68,71 @@
   font-size: 20px;
 }
 
-.email .contact-name {
-  font-weight: 900;
-  font-size: 12px;
+.email .thread:nth-child(3) .contact-circle {
+  background-color: #DCA41F;
 }
 
-.email .contact-name span {
-  background-color: gray;
+.email .thread:nth-child(4) .contact-circle {
+  background-color: #2B62D3;
+}
+
+.email .thread .contact-circle.alex {
+  background-color: darkgreen;
+}
+
+.email .contact-name {
+  font-size: 12px;
+  margin: 4px 0;
+  margin-left: 12px;
+}
+.email .contact-name:nth-child(2) {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.email .contact-name span.address {
+  background-color: #e6e6e6;
   display: inline-block;
-  padding: 3px 3px;
+  padding: 5px;
   border-radius: 3px;
-  margin: 0 3px;
+  margin: 0 2px;
+}
+
+.email .sender-name {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 2px;
+}
+
+.email .sender-address {
+  opacity: 0.75;
 }
 
 .email .email-content {
-  padding: 16px;
+  width: calc(100% - 116px);
+  margin-left: 80px;
+  line-height: 1.35;
+  font-size: 14px;
 }
 
-.email .email-content p {
+.email .email-content > p {
+  margin: 24px 0;
+}
+
+.email .email-content > p:first-child {
+  margin-top: 16px;
+}
+
+.email .divider {
+  width: 100%;
+  border-bottom: 1px dotted #cdcdcd;
   margin: 12px 0;
 }
 
-.email .email-content .sign-off {
-  text-align: right;
-  margin-right: 30px;
+.email h3 {
+  font-weight: bold;
+  margin: 12px 0;
+  color: #303030;
 }
 
 .email .file {
@@ -95,15 +143,22 @@
 }
 .email .file p {
   font-weight: bold;
-  background-color: #303030;
-  padding: 6px 12px;
+  font-size: 12px;
+  background-color: #dcdcdc;
+  color: #303030;
+  padding: 10px 14px;
   border-radius: 4px;
   margin: 0;
+  border: 1px solid #cdcdcd;
 }
 .email .file .icon {
   display: inline;
   max-width: var(--file-icon-size);
   max-height: var(--file-icon-size);
-  margin-right: 4px;
+  margin-right: 8px;
+  margin-bottom: -3px;
   border-radius: 0;
+}
+.email .file:last-child {
+  margin-bottom: 24px;
 }

@@ -3,16 +3,16 @@ const emails = [
   (_) => (
     <>
       <div className="contact-info">
-        <div className="contact-circle">AX</div>
+        <div className="contact-circle alex">AL</div>
         <div className="contact-name">
-          From: <span>alex@aliensarereal.net</span>
+          <span className="sender-name">Alex</span> <span className="sender-address">&lt;alex@aliensarereal.net&gt;</span>
         </div>
         <div className="contact-name">
-          To: <span>letters@nytimes.com</span>, <span>tips@cnn.com</span>,{" "}
-          <span>sources@washpost.com</span>
+          to: <span className="address">letters@nytimes.com</span>, <span className="address">tips@cnn.com</span>,{" "}
+          <span className="address">sources@washpost.com</span>
         </div>
         <div className="contact-name">
-          CC: <span>team@aliensarereal.net</span>
+          cc: <span className="address">team@aliensarereal.net</span>
         </div>
       </div>
       <div className="email-content">
@@ -31,7 +31,10 @@ const emails = [
           cupidatat. Enim adipisicing excepteur tempor mollit sint tempor
           cupidatat quis duis esse est.
         </p>
-        <p className="sign-off">With Urgency, Alex</p>
+
+        <p className="sign-off">With Urgency,<br/> Alex</p>
+        <div className="divider"></div>
+        <h3>📎 4 Attachments</h3>
         <div className="file">
           <p>
             <img className="icon" src="/desktop/file.svg" alt="File icon" />
@@ -66,13 +69,13 @@ const emails = [
         <div className="contact-info">
           <div className="contact-circle">BP</div>
           <div className="contact-name">
-            From: <span>letters@nytimes.com</span>
+            From: <span className="address">letters@nytimes.com</span>
           </div>
           <div className="contact-name">
-            To: <span>alex@aliensarereal.net</span>
+            to: <span className="address">alex@aliensarereal.net</span>
           </div>
           <div className="contact-name">
-            CC: <span>team@aliensarereal.net</span>
+            cc: <span className="address">team@aliensarereal.net</span>
           </div>
         </div>
         <div className="email-content">
@@ -84,7 +87,7 @@ const emails = [
             consequat nostrud fugiat. Consectetur minim proident nisi voluptate
             enim elit.
           </p>
-          <p className="sign-off">Thanks, Bean D. Paquet</p>
+          <p className="sign-off">Thanks,<br/> Bean D. Paquet</p>
         </div>
       </>
     ),
@@ -93,13 +96,13 @@ const emails = [
         <div className="contact-info">
           <div className="contact-circle">BM</div>
           <div className="contact-name">
-            From: <span>sources@washpost.com</span>
+            <span className="sender-name">Bartin Maron (Washington Post)</span> <span className="sender-address">&lt;sources@washpost.com&gt;</span>
           </div>
           <div className="contact-name">
-            To: <span>alex@aliensarereal.net</span>
+            to: <span className="address">alex@aliensarereal.net</span>
           </div>
           <div className="contact-name">
-            CC: <span>team@aliensarereal.net</span>
+            cc: <span className="address">team@aliensarereal.net</span>
           </div>
         </div>
         <div className="email-content">
@@ -111,7 +114,7 @@ const emails = [
             consequat nostrud fugiat. Consectetur minim proident nisi voluptate
             enim elit.
           </p>
-          <p className="sign-off">Thanks, Bartin Maron</p>
+          <p className="sign-off">Thanks,<br/> Bartin Maron</p>
         </div>
       </>
     )
@@ -122,13 +125,13 @@ const emails = [
       <div className="contact-info">
         <div className="contact-circle">EM</div>
         <div className="contact-name">
-          From: <span>tips@cnn.com</span>
+          <span className="sender-name">Eredith Martley (CNN)</span> <span className="sender-address">&lt;tips@cnn.com&gt;</span>
         </div>
         <div className="contact-name">
-          To: <span>alex@aliensarereal.net</span>
+          to: <span className="address">alex@aliensarereal.net</span>
         </div>
         <div className="contact-name">
-          CC: <span>team@aliensarereal.net</span>
+          cc: <span className="address">team@aliensarereal.net</span>
         </div>
       </div>
       <div className="email-content">
@@ -139,7 +142,7 @@ const emails = [
           dolor. Deserunt commodo minim excepteur enim elit consequat consequat
           nostrud fugiat. Consectetur minim proident nisi voluptate enim elit.
         </p>
-        <p className="sign-off">Thanks, Eredith Martley</p>
+        <p className="sign-off">Thanks,<br/> Eredith Martley</p>
       </div>
     </>
   ),
@@ -147,16 +150,18 @@ const emails = [
   (failed) => (
     <>
       <div className="contact-info">
-        <div className="contact-circle">MA</div>
+        <div className="contact-circle alex">AL</div>
         <div className="contact-name">
-          From: <span>alex@aliensarereal.net</span>
+          <span className="sender-name">Alex</span> <span className="sender-address">&lt;alex@aliensarereal.net&gt;</span>
         </div>
         <div className="contact-name">
-          To: <span>team@aliensarereal.net</span>
+          to: <span className="address">team@aliensarereal.net</span>
         </div>
-        <div className="contact-name">CC:</div>
       </div>
       <div className="email-content">
+        <p>
+          Hey team,
+        </p>
         <p>
           Thank you all for the help. I would not have been able to get this
           information without you.
@@ -181,7 +186,7 @@ const emails = [
           </p>
         )}
 
-        <p className="sign-off">Thanks, Alex</p>
+        <p className="sign-off">Thanks,<br/> Alex</p>
       </div>
     </>
   ),
