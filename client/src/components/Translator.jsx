@@ -133,6 +133,7 @@ class Translator extends Component {
           <textarea
             className="output-box translator-box"
             placeholder="Translation"
+            tabIndex="-1"
             readOnly
             value={this.getTranslation()}
           ></textarea>
@@ -146,7 +147,7 @@ class Translator extends Component {
                   <input
                     className="entry_child alien"
                     type="text"
-                    tabindex="-1"
+                    tabIndex="-1"
                     readOnly
                     value={entry.alien}
                   />
@@ -169,8 +170,16 @@ class Translator extends Component {
                     type="text"
                     value={entry.english}
                     maxLength="1"
-                    onChange={(e) => {
-                      const i = e.target.value.toUpperCase();
+                    onChange={(_) => {}}
+                    onKeyDown={(e) => {
+                      const k = e.key.toUpperCase();
+                      const i =
+                        k === " " || k === "BACKSPACE" || k === "DELETE"
+                          ? ""
+                          : k;
+                      if (this.props.host || i.length > 1) {
+                        return;
+                      }
                       this.setState(
                         (state) => {
                           return {
@@ -214,7 +223,8 @@ class Translator extends Component {
                 }, 1000);
               }}
             >
-              Export to Chat <img src="/desktop/translator-send.svg" alt="Send icon" />
+              Export to Chat{" "}
+              <img src="/desktop/translator-send.svg" alt="Send icon" />
             </div>
           )}
         </div>
