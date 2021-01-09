@@ -41,7 +41,7 @@
   display: inline-block;
   height: calc(2 * var(--header-height));
   width: calc(2 * var(--header-height));
-  z-index: 1;
+  z-index: 100;
   border-radius: 25%;
   margin-right: -10px;
 }
@@ -58,15 +58,15 @@
 }
 
 .sound-player .sound-icon.icon-muted {
-  background-image: url('/desktop/volume-muted.svg');
+  background-image: url("/desktop/volume-muted.svg");
 }
 
 .sound-player .sound-icon.icon-empty {
-  background-image: url('/desktop/volume-empty.svg');
+  background-image: url("/desktop/volume-empty.svg");
 }
 
 .sound-player .sound-icon.icon-full {
-  background-image: url('/desktop/volume-full.svg');
+  background-image: url("/desktop/volume-full.svg");
 }
 
 .sound-player .hover-items {
@@ -137,9 +137,9 @@
   height: calc(var(--header-height) - 4px);
   width: calc(var(--header-height) - 4px);
   border-radius: 50%;
-  background-image: url('/desktop/volume-muted.svg');
+  background-image: url("/desktop/volume-muted.svg");
 }
 
 .sound-player .sound-mute input[type="checkbox"]:checked + .muted-display {
-  background-image: url('/desktop/volume-full.svg');
+  background-image: url("/desktop/volume-full.svg");
 }
