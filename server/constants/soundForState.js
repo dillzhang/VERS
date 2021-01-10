@@ -25,7 +25,7 @@ const STATE_SOUNDS = {
   73: new Set([]), // Fourth Email
   74: new Set([]), // Fifth Email
   75: new Set([]), // END
-  80: new Set([S6_failure]), // FAILURE
+  80: new Set(["S6_failure"]), // FAILURE
 };
 
 const TIME_SOUNDS = {
