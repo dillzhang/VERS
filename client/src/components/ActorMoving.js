@@ -426,6 +426,7 @@ class ActorMoving extends Component {
             ? "We crossed a laser trip wire. I need to evade the guards. I will reach back to you soon."
             : "We were caught on camera. I need to evade the guards. I will reach back to you soon.",
       });
+      this.props.globalPlaySound("S4_security_alert");
       setTimeout(() => {
         this.setState(
           (state) => ({
@@ -459,6 +460,7 @@ class ActorMoving extends Component {
         moving: true,
       }),
       () => {
+        this.props.globalPlaySound("S4_run_1");
         setTimeout(
           () => {
             this.setState({ moving: false });

@@ -89,7 +89,6 @@ class ActorSoundTrigger extends Component {
             this.props.playSound(this.props.soundId);
           }}
         >
-          Play{" "}
           {this.props.soundName ? this.props.soundName : this.props.soundId}
         </button>
         {this.props.stoppable && this.state.active && (

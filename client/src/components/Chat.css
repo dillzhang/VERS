@@ -141,16 +141,18 @@
     color: white;
 }
 
-.chat-form .send-button {
+.chat-form button.send-button, .host .chat-form button.send-button {
     width: var(--send-icon-size);
     background: transparent;
     border: none;
+    padding: 0;
+    box-shadow: none;
     margin: 25% 0;
 }
-.chat-form .send-button:hover {
+.chat-form button.send-button:hover {
     cursor: pointer;
 }
-.chat-form .send-button:focus {
+.chat-form button.send-button:focus {
     outline: none;
 }
 

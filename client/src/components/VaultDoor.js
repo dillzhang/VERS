@@ -47,6 +47,7 @@ class VaultDoor extends Component {
       timeRemaing: 30,
       correctGuard: false,
       message: "",
+      keypadSounds: ["S5_keypad_carrigan_8","S5_keypad_charmainelane_14","S5_keypad_zipcode_5","S5_keypad_year_4","S5_keypad_phonenumber_10","S5_keypad_austin_5","S5_keypad_austin_5"],
     };
   }
   render() {
@@ -82,6 +83,7 @@ class VaultDoor extends Component {
               <button
                 onClick={() => {
                   this.setState({ correctGuard: true, questionIndex: 1 });
+                  this.props.globalPlaySound("S5_keypad_id_number_6");
                 }}
               >
                 EI1120
@@ -89,6 +91,7 @@ class VaultDoor extends Component {
               <button
                 onClick={() => {
                   this.setState({ correctGuard: false, questionIndex: 1 });
+                  this.props.globalPlaySound("S5_keypad_id_number_6");
                 }}
               >
                 Other
@@ -106,6 +109,8 @@ class VaultDoor extends Component {
             <div className="answer">
               <button
                 onClick={() => {
+                  this.props.globalPlaySound("S5_keypad_press_1");
+                  this.props.globalPlaySound("S5_30_beeps");
                   this.endTime = Date.now() + 30 * 1000;
                   this.getTime();
                   this.setState({
@@ -120,6 +125,7 @@ class VaultDoor extends Component {
               </button>
               <button
                 onClick={() => {
+                  this.globalPlaySound("S5_keypad_press_1");
                   this.setState({
                     questionIndex: 0,
                     message: "That password was incorrect!",
@@ -142,8 +148,11 @@ class VaultDoor extends Component {
               {this.state.correctGuard && (
                 <button
                   onClick={() => {
+                    this.props.globalPlaySound(this.state.keypadSounds[this.state.questionIndex - 2]);
                     if (this.state.questionIndex === 4) {
                       clearTimeout(this.timeOutId);
+                      this.props.globalStopSound("S5_30_beeps");
+                      this.props.globalPlaySound("S5_unlock");
                     }
                     this.setState((state) => ({
                       questionIndex: state.questionIndex + 1,
@@ -155,6 +164,8 @@ class VaultDoor extends Component {
               )}
               <button
                 onClick={() => {
+                  this.props.globalPlaySound(this.state.keypadSounds[this.state.questionIndex - 2]);
+                  this.props.globalStopSound("S5_30_beeps");
                   this.setState({
                     questionIndex: 0,
                     message: "That answer was incorrect!",

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import "./Elevator.css";
 
-const ELEVATOR_DURATION = 10000;
+const ELEVATOR_DURATION = 12000;
 const FLOORS = ["G", "S1", "S2", "S3", "S4"];
 
 function Elevator(props) {
@@ -11,6 +11,7 @@ function Elevator(props) {
   const [isDisabled, setDisabled] = useState(false);
 
   const load_floor = (floor) => {
+    props.globalPlaySound("S2_elevator_1_floor_delta");
     setTimeout(() => {
       setDisabled(false); // count is 0 here
       setFloor(floor);
@@ -63,19 +64,15 @@ function Elevator(props) {
               className={`${
                 floor === f ? "selected" : isDisabled ? "disabled" : ""
               }`}
-              onClick={() => load_floor(f)}
+              onClick={() => {
+                load_floor(f);
+              }}
               disabled={isDisabled || floor === f}
             >
               {f}
             </button>
           );
         })}
-      </div>
-      <div className="status-container">
-        <p>Status:</p>
-        <div className={`progress-bar ${isDisabled ? "active" : "inactive"}`}>
-          <span className={`meter`} />
-        </div>
       </div>
       <p className="status-output">{text}</p>
     </div>

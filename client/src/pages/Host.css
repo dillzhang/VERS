@@ -1,9 +1,10 @@
 .host {
-  --header-height: 30px;
+  --header-height: 38px;
   --sidebar-width: 450px;
-  background-color: var(--dark-grey);
-  font-family: var(--conspiracy-font);
-  color: white;
+  background-color: #F0F0F0;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 15px;
+  color: #393939;
 
   overflow: hidden;
 
@@ -23,14 +24,14 @@
   align-items: center;
 
   padding: 0 10px;
-
-  border-bottom: 2px solid #404040;
-  background-color: var(--light-grey);
+  box-shadow: 0 0 2px #acacac;
+  background-color: #00394E;
+  color: #C0F4EC;
 }
 
 .host .header h1 {
   width: 200px;
-  color: #65fc31;
+  font-family: 'chainprinter','Roboto Mono', monospace;
 }
 
 .host .header .player-link {
@@ -39,8 +40,15 @@
 }
 
 .host .player-link a {
-  color: white;
+  color: #5DA89D;
   margin-right: 10px;
+  width: 200px;
+  overflow: hidden;
+  font-size: 0.8em;
+  background-color: #00394E;
+  padding: 6px;
+  border: 2px solid #C6DDE8;
+  border-radius: 5px;
 }
 
 .host .player-link button {
@@ -51,26 +59,25 @@
 .host .main {
   width: 100%;
   overflow-y: auto;
-  background-color: #cccccc;
+  /*background-color: #F0F0F0;*/
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .host .act {
-  margin: 36px 24px 12px 24px;
-  padding: var(--header-height) 30px 30px 30px;
+  margin: 48px 24px 12px 24px;
+  padding: 72px 30px 30px 30px;
   border-radius: 0 0 24px 24px;
 
-  border: 2px solid #404040;
   position: relative;
-  background-color: #eee;
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  box-shadow: 0 0 4px #acacac;
   transition: opacity 1s ease-in-out;
 
-  width: 800px;
+  width: 720px;
 
-  color: black;
+  color: #393939;
 }
 
 .host .act.act-active {
@@ -86,39 +93,42 @@
   position: absolute;
   top: -2px;
   left: -12px;
-  border: 1px solid #404040;
   width: calc(100% + 12px);
   height: 36px;
-  background-color: var(--dark-grey);
+  background-color: white;
   display: flex;
   align-items: center;
-  font-size: 24px;
-  padding-left: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 12px;
   border-radius: 8px;
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
-  color: white;
+  box-shadow: 0 0 4px #acacac;
+  text-transform: uppercase;
 }
 
 .host .main h2 {
-  font-size: 2em;
+  font-size: 15px;
   font-weight: bold;
   margin-top: 36px;
   display: block;
+  text-transform: uppercase;
+}
+
+.host .main i {
+  font-style: italic;
 }
 
 .host .main p,
 .host .main li {
-  font-size: 1.2em;
-  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.5;
 }
 .host .main p {
-  line-height: 1.15;
   margin: 12px 0;
 }
 
 .host .main p em {
   color: #821100;
-  font-size: 1.25em;
 }
 
 .host .main p strong {
@@ -128,7 +138,7 @@
 
 .host .main p.older {
   font-size: 0.9em;
-  color: var(--dark-grey);
+  opacity: 0.8;
 }
 
 .host .main p.current {
@@ -145,7 +155,7 @@
 }
 
 .host .side-bar button {
-  margin: 12px;
+  margin: 4px;
 }
 .host .act button {
   margin: 12px 0;
@@ -161,52 +171,49 @@
   font-family: inherit;
   font-size: 1em;
   font-weight: bold;
-  background-color: #303030;
+  background-color: #5AA0F2;
   border-radius: 8px;
   flex: 1 0 45%;
   max-height: 60px;
-  padding: 18px 12px;
-  border: 2px solid #404040;
+  padding: 16px 24px;
+  border: none;
+  box-shadow: 0 0 2px #acacac;
   max-width: 500px;
+  text-transform: uppercase;
 }
 .host .act button:hover,
 .host .side-bar button:hover {
-  background-color: #262626;
   cursor: pointer;
 }
 .host .act button:focus,
 .host .side-bar button:focus {
   outline: none;
 }
-.host button.highlight {
-  background: #c18b25;
-  color: white;
-  border-color: #db944d;
+
+.host .side-bar button {
+  background-color: #C3C3C3;
+  color: #707070;
 }
-.host button.highlight:hover {
-  background: #825900;
+
+
+.host button.content {
+  background: #5AA0F2;
 }
 .host button.warning {
-  background: #c12f25;
+  background: #D0183B;
   color: white;
-  border-color: #bf4633;
 }
-.host button.warning:hover {
-  background: #821100;
+.host button.state {
+  background: #EDB538;
 }
-.host .act button.confirm {
+.host .act button.complete {
   background: #2bc125;
-  color: white;
-  border-color: #6dc16a;
-}
-.host .act button.confirm:hover {
-  background: #268423;
 }
 
 .host .side-bar {
-  width: 100%;
-  border-left: 2px solid #404040;
-
+  width: calc(100% - 12px);
+  margin-right: 12px;
+  /*background-color: #F0F0F0;*/
   display: grid;
 
   grid-template-rows: 120px 170px calc(
@@ -221,11 +228,17 @@
 .host .show-controls {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  width: 100%;
+  width: calc(100% - 16px);
+  padding: 24px 8px;
+}
+
+.host .show-controls {
+  margin-top: 60px;
 }
 
 .host .show-info {
   justify-items: center;
+  margin-top: 60px;
 }
 
 .host .timeline {
@@ -234,10 +247,13 @@
   grid-template-columns: 90px repeat(6, 1fr) 90px;
   width: 95%;
   justify-items: center;
+  color: #393939;
+  font-weight: bold;
+  margin: 24px 0;
 }
 
 .host .progress {
-  border: 1px solid #404040;
+  box-shadow: 0 0 2px #acacac;
   width: 85%;
   border-radius: 4px;
 }
@@ -255,17 +271,19 @@
 }
 
 .host .side-bar .show-controls button.disabled {
-  background-color: #222222;
-  color: #333333;
-  border-color: #111111;
+  opacity: 0.5;
 }
 
 .host .chat-box {
   font-family: var(--desktop-font);
   border-top: 2px solid #404040;
-  margin-bottom: 8px;
+  width: calc(100% - 48px);
+  height: calc(100% - 48px);
+  padding: 2px 6px;
+  border-radius: 5px;
+  box-shadow: 0 0 4px #acacac;
+  margin: 0 auto;
 
-  height: 100%;
   display: grid;
   grid-template-rows: 1fr 80px;
 }

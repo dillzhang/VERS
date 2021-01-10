@@ -12,6 +12,8 @@
   justify-content: space-evenly;
   width: 190px;
 
+  background-color: #00394E;
+
   z-index: 10;
 
   padding: 10px;
@@ -19,9 +21,8 @@
 
 .host .sound-player:hover .hover-items {
   height: 40px;
+  margin-top: 16px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-
-  border: 2px solid #ddd;
 }
 
 .host .sound-player .sound-slider {

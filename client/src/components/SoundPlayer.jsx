@@ -6,7 +6,7 @@ import { SOUNDS } from "../constants/sounds";
 
 const SoundPlayer = React.forwardRef((props, ref) => {
   const [isMuted, setMuted] = useState(false);
-  const [volume, setVolume] = useState(50);
+  const [volume, setVolume] = useState(80);
 
   const currentlyPlaying = useRef(new Set());
 

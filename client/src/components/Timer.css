@@ -11,6 +11,15 @@
   color: #eeeeee;
 }
 
+.host .timer-box {
+  background-color: #00394E;
+  color: #C0F4EC;
+  padding: 2px 12px;
+  border-radius: 8px;
+  border: 2px solid #C6DDE8;
+  box-shadow: 0 0 4px #acacac;
+}
+
 .timer-box.player-time {
   opacity: 0.4;
 }
