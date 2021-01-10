@@ -435,7 +435,7 @@ const checkTranslator = (roomCode, io, sender, color, translationKey) => {
       translationKey[value].english === correctTranslationKey[value].english
     );
   });
-  if (correct.length >= 23 && rooms[room].state < 69) {
+  if (correct.length >= 23 && rooms[roomCode].state < 69) {
     setRoomState(roomCode, io, 69);
     io.to(roomCode).emit("update-line-from-submission", {
       line: `[${correct.length} / 26] This is break major news! I'll email the networks right away!`,
