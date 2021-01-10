@@ -240,7 +240,7 @@ class Guest extends Component {
             <div className="content">
               <h1>Connection Lost</h1>
               <h6>
-                How did we do? Send us your feedback{" "}
+                What did you think? Send us your feedback{" "}
                 <a href="//forms.gle/bYNKqATrJZBpuRAQA" target="_blank">
                   here
                 </a>
