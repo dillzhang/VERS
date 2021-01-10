@@ -17,7 +17,7 @@ const failureEmails = [
           Hey team,
         </p>
         <p>
-          So, team... I got captured by the FBI. On the bright side, jail is much more exciting than living alone in my apartment New York. I'm getting decent food and human interaction, everyday! (Though I really miss New York pizza. The pizza here is not the same.)
+          So, team... I got captured by the FBI. On the bright side, jail is much more exciting than living alone in my apartment in New York. I'm getting decent food and human interaction, everyday! (Though I really miss New York pizza. The pizza here is not the same.)
         </p>
         <p>Anyway, thank you for all your help. This is still the most exciting thing that's happened to me in years and it would not have happened without you.</p>
         <p>
