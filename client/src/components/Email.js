@@ -36,7 +36,7 @@ class Email extends Component {
           this.threadHolder = el;
         }}
       >
-        <div className="subject">{ this.state.failed ? "captured by FBI" : "[URGENT]: Aliens are here! with PROOF" }</div>
+        <div className="subject">{ this.state.failed ? "Captured by FBI" : "[URGENT]: Aliens are here! with PROOF" }</div>
         {this.state.emails.map((thread, i) => {
           if (i <= this.state.chain - 70) {
             return (
