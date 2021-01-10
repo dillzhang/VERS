@@ -6,17 +6,17 @@ remain playing. Therefore any sounds that need to continue, should
 be added into all states that require it.
 */
 const STATE_SOUNDS = {
-  0: new Set([S0_desert_ambience]), // PRESHOW
-  10: new Set([S1_warehouse_ambience, S0_desert_ambience]), // Start of Puzzle 1
+  0: new Set(["S0_desert_ambience"]), // PRESHOW
+  10: new Set(["S1_warehouse_ambience", "S0_desert_ambience"]), // Start of Puzzle 1
   15: new Set([]), // Electrical Box
-  20: new Set([S2_elevator_ambience]), // start of Puzzle 2
+  20: new Set(["S2_elevator_ambience"]), // start of Puzzle 2
   29: new Set([]), // End of Puzzle 2
   30: new Set([]), // Start of Puzzle 3
   39: new Set([]), // End of Puzzle 3
-  40: new Set([S3_hallway_ambience]), // Start of Puzzle 4
+  40: new Set(["S3_hallway_ambience"]), // Start of Puzzle 4
   45: new Set([]), // Sending Video Stream
-  50: new Set([S5_vault_door_ambience, S3_hallway_ambience]), // Start of Puzzle 5
-  60: new Set([S6_vault_ambience]), // Start of Puzzle 6
+  50: new Set(["S5_vault_door_ambience", "S3_hallway_ambience"]), // Start of Puzzle 5
+  60: new Set(["S6_vault_ambience"]), // Start of Puzzle 6
   65: new Set([]), // Sending Translator
   69: new Set([]), // End of Puzzle 6
   70: new Set([]), // First Email
@@ -29,8 +29,8 @@ const STATE_SOUNDS = {
 };
 
 const TIME_SOUNDS = {
-  600: [S6_radio], // "5 minutes remaining"
-  0: [S6_failure], // "0 minute remaining"
+  600: ["S6_radio"], // "5 minutes remaining"
+  0: ["S6_failure"], // "0 minute remaining"
 };
 
 module.exports = { STATE_SOUNDS, TIME_SOUNDS };
