@@ -42,12 +42,12 @@
 .host .player-link a {
   color: #5DA89D;
   margin-right: 10px;
-  width: 200px;
+  /*width: 200px;*/
   overflow: hidden;
   font-size: 0.8em;
   background-color: #00394E;
   padding: 6px;
-  border: 2px solid #C6DDE8;
+  border: 2px solid rgba(198, 221, 232, 0.25);
   border-radius: 5px;
 }
 
@@ -109,13 +109,31 @@
 .host .main h2 {
   font-size: 15px;
   font-weight: bold;
-  margin-top: 36px;
+  margin-top: 48px;
   display: block;
   text-transform: uppercase;
 }
 
+.host .main h2:nth-child(2) {
+  margin-top: 12px;
+} 
+
 .host .main i {
   font-style: italic;
+}
+
+.host .main b {
+  font-weight: bold;
+}
+
+.host .main .center {
+  text-align: center;
+  margin: 24px;
+}
+
+.host .main ul {
+  padding-left: 24px;
+  margin: 12px 0;
 }
 
 .host .main p,

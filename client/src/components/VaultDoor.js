@@ -125,7 +125,7 @@ class VaultDoor extends Component {
               </button>
               <button
                 onClick={() => {
-                  this.globalPlaySound("S5_keypad_press_1");
+                  this.props.globalPlaySound("S5_keypad_press_1");
                   this.setState({
                     questionIndex: 0,
                     message: "That password was incorrect!",
@@ -178,7 +178,7 @@ class VaultDoor extends Component {
             </div>
             <div className="answer">
               <p>Question: {this.state.questionIndex - 1} / 3</p>
-              <p>Time Remaing: {this.state.timeRemaing}</p>
+              <p>Time Remaining: {this.state.timeRemaing}</p>
             </div>
           </>
         );
@@ -186,10 +186,11 @@ class VaultDoor extends Component {
         return (
           <>
             <div className="question">
-              Password Reset - Enter the vault when ready!
+              Password Reset! Enter the vault when ready.
             </div>
             <div className="answer">
               <button
+                className="complete"
                 onClick={() => {
                   this.props.socket.emit("setRoomState", {
                     roomCode: this.props.room,
@@ -197,7 +198,7 @@ class VaultDoor extends Component {
                   });
                 }}
               >
-                Enter
+                Enter the Vault
               </button>
             </div>
           </>

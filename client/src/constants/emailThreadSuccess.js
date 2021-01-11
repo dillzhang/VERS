@@ -166,7 +166,7 @@ const successEmails = [
         </p>
         <p>
           Writing to let you know I've made it back safe to my NYC apartment. And, WOW. We did it!! We broke into Area 51
-          and uncovered the truth for the world! (And now that my family knows I'm not crazy they're finally speaking to me again!)
+          and uncovered the truth for the world!
         </p>
         <p>
           Thanks for all for your help. I couldn't have done this without you.

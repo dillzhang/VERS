@@ -25,7 +25,7 @@ const actHeaders = {
   },
   6: {
     value: "6",
-    setting: "INT. Inside the Vault",
+    setting: "INT. The Vault",
   },
   7: {
     value: "SUCCESS",

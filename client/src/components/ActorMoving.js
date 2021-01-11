@@ -281,7 +281,7 @@ class ActorMoving extends Component {
         xcor: 4,
         ycor: 1,
       },
-
+      soundIndex: 0,
       message: "Ready to go!",
     };
   }
@@ -460,7 +460,13 @@ class ActorMoving extends Component {
         moving: true,
       }),
       () => {
-        this.props.globalPlaySound("S4_run_1");
+        if (this.state.soundIndex < 3) {
+          this.props.globalPlaySound("S4_run_1");
+        }
+        else {
+          this.props.globalPlaySound("S4_run_2");
+        }
+        this.setState({ soundIndex: (this.state.soundIndex + 1 % 6) });
         setTimeout(
           () => {
             this.setState({ moving: false });

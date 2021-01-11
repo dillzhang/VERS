@@ -9,6 +9,8 @@ function Elevator(props) {
   const [text, setText] = useState("Waiting for floor selection...");
   const [floor, setFloor] = useState("G");
   const [isDisabled, setDisabled] = useState(false);
+  const [elevatorSounds] = useState(["S2_elevator_1_floor_delta", "S2_elevator_2_floor_delta", "S2_elevator_3_floor_delta", "S2_elevator_4_floor_delta"]);
+  const [floorList] = useState(["G", "S1", "S2", "S3", "S4"]);
 
   const load_floor = (floor) => {
     props.globalPlaySound("S2_elevator_1_floor_delta");
@@ -18,27 +20,27 @@ function Elevator(props) {
       switch (floor) {
         case "G":
           setText(
-            "Looks like this is where we came in from. Let's checkout the other floors."
+            "WRONG: Looks like this is where we came in from. Let's check out the other floors."
           );
           break;
 
         case "S1":
-          setText("Empty tables. Some food left out. Smell of coffee.");
+          setText("WRONG: Empty tables. Some food left out. Smell of coffee.");
           break;
 
         case "S2":
-          setText("Cardboard boxes. Very dusty.");
+          setText("WRONG: Cardboard boxes. Very dusty.");
           break;
 
         case "S3":
           setText(
-            "CORRECT! Hallway with a lot of security. Don't see any guards."
+            "CORRECT: Hallways, doors, and security cameras. Don't see any guards."
           );
           props.successCallback();
           break;
 
         case "S4":
-          setText("Empty offices. Some working at their desk.");
+          setText("WRONG: Empty offices, desks... SOMEONE THERE!");
           break;
 
         default:
@@ -48,7 +50,7 @@ function Elevator(props) {
     }, ELEVATOR_DURATION);
     setFloor("-");
     setDisabled(true);
-    setText(`The elevator is going to floor ${floor}.`);
+    setText(`Going to Floor ${floor}...`);
   };
 
   useEffect(() => {}, []);
@@ -73,6 +75,12 @@ function Elevator(props) {
             </button>
           );
         })}
+      </div>
+      <div className="status-container">
+        <p>Status:</p>
+        <div className={`progress-bar ${isDisabled ? "active" : "inactive"}`}>
+          <span className={`meter`} />
+        </div>
       </div>
       <p className="status-output">{text}</p>
     </div>

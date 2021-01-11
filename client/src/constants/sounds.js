@@ -156,12 +156,12 @@ const SOUNDS = {
   },
   S4_run_1: {
     source: new Audio("/sounds/S4-run-1.mp3"),
-      dnd: false,
+      dnd: true,
       duration: -1,
   },
   S4_run_2: {
     source: new Audio("/sounds/S4-run-2.mp3"),
-      dnd: false,
+      dnd: true,
       duration: -1,
   },
   S4_security_alert: {
