@@ -7,18 +7,18 @@ be added into all states that require it.
 */
 const STATE_SOUNDS = {
   0: new Set(["S0_desert_ambience"]), // PRESHOW
-  10: new Set(["S1_warehouse_ambience", "S0_desert_ambience"]), // Start of Puzzle 1
-  15: new Set([]), // Electrical Box
+  10: new Set(["S1_warehouse_ambience"]), // Start of Puzzle 1
+  15: new Set(["S1_warehouse_ambience"]), // Electrical Box
   20: new Set(["S2_elevator_ambience"]), // start of Puzzle 2
-  29: new Set([]), // End of Puzzle 2
-  30: new Set([]), // Start of Puzzle 3
-  39: new Set([]), // End of Puzzle 3
+  29: new Set(["S2_elevator_ambience"]), // End of Puzzle 2
+  30: new Set(["S3_hallway_ambience"]), // Start of Puzzle 3
+  39: new Set(["S3_hallway_ambience"]), // End of Puzzle 3
   40: new Set(["S3_hallway_ambience"]), // Start of Puzzle 4
-  45: new Set([]), // Sending Video Stream
-  50: new Set(["S5_vault_door_ambience", "S3_hallway_ambience"]), // Start of Puzzle 5
+  45: new Set(["S3_hallway_ambience"]), // Sending Video Stream
+  50: new Set(["S5_vault_door_ambience"]), // Start of Puzzle 5
   60: new Set(["S6_vault_ambience"]), // Start of Puzzle 6
-  65: new Set([]), // Sending Translator
-  69: new Set([]), // End of Puzzle 6
+  65: new Set(["S6_vault_ambience"]), // Sending Translator
+  69: new Set(["S6_vault_ambience"]), // End of Puzzle 6
   70: new Set([]), // First Email
   71: new Set([]), // Second Email
   72: new Set([]), // Third Email
