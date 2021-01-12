@@ -52,6 +52,8 @@ class ActorSoundTrigger extends Component {
         "--trigger-animation-duration": `${this.duration / 1000}s`,
       };
     };
+
+    this.handleDurationChange();
   }
 
   componentDidMount() {
