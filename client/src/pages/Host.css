@@ -213,7 +213,9 @@
   color: #707070;
 }
 
-
+.host button.sound {
+  background: #A27EF5;
+}
 .host button.content {
   background: #5AA0F2;
 }

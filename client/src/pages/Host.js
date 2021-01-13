@@ -1008,6 +1008,16 @@ class Host extends Component {
           <em><i>(After 10-20 seconds, rejoin the call and turn your video back on.)</i></em>
         </p>
 
+        <button
+          className="warning"
+          onClick={() => {
+            this.globalStopSound("S6_radio");
+            this.globalStopSound("S6_vault_ambience");
+          }}
+        >
+          Stop All Sound
+        </button>
+
         <h2>Post-Mission Debrief</h2>
         <p>Break the news to the players (Alex has been captured by the FBI).</p>
         <ul>
