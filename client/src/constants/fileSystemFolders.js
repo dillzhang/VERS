@@ -71,31 +71,39 @@ const fileSystemFolders = {
         },
         guard2: {
           requirement: 100,
-          display: "H_Diana.db",
+          display: "B_Elliott.db",
         },
         guard3: {
           requirement: 100,
-          display: "H_Joshua.db",
+          display: "D_Hannah.db",
         },
         guard4: {
           requirement: 100,
-          display: "H_Victor.db",
+          display: "D_Mary.db",
         },
         guard5: {
           requirement: 100,
-          display: "P_Shannon.db",
+          display: "F_Rian.db",
         },
         guard6: {
           requirement: 100,
-          display: "T_Anand.db",
+          display: "G_Schuyler.db",
         },
         guard7: {
-          requirement: 50,
-          display: "W_Patricia.db",
+          requirement: 100,
+          display: "N_Joseph.db",
         },
         guard8: {
           requirement: 100,
-          display: "Z_Dillon.db",
+          display: "N_Nelson.db",
+        },
+        guard9: {
+          requirement: 100,
+          display: "P_Phoebe.db",
+        },
+        guard10: {
+          requirement: 50,
+          display: "W_Patricia.db",
         },
       },
     },
