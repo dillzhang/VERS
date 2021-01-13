@@ -32,6 +32,13 @@ class ActorSoundTrigger extends Component {
           });
         } else {
           this.startSound();
+          // hard coded: end vault ambience/shrill during success sequence
+          if (soundId === "S6_success") {
+            setTimeout(() => {
+              this.props.stopSound("S6_vault_ambience");
+              this.props.stopSound("S6_radio");
+            }, 32000)
+          }
         }
       }
     };

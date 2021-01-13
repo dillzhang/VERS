@@ -1,4 +1,5 @@
 .actor-sound-trigger {
+  width: 360px;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -20,7 +21,7 @@
 }
 
 .actor-sound-trigger .progress-bar.progress-bar-active {
-  width: 330px;
+  width: 275px;
   transition: width var(--trigger-animation-duration) linear;
 }
 
@@ -41,6 +42,7 @@
 }
 .host .act .actor-sound-trigger .actor-trigger-button {
   background-color: #A27EF5;
+  width: 275px;
 }
 
 .host .act .actor-sound-trigger .actor-stop-button {
