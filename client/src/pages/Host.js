@@ -206,7 +206,7 @@ class Host extends Component {
         </p>
         <h2>Introduction</h2>
         <p>"Hi, I’m Alex from aliensarereal.net."</p>
-        <p>Greet each hacker on Zoom, then ramble about the following:</p>
+        <p>Greet each hacker on Zoom, and then ramble about the following:</p>
         <ul>
           <li>finally meeting the hackers</li>
           <li>thinking no one was gonna help</li>
@@ -221,7 +221,7 @@ class Host extends Component {
         <h2>The Desert</h2>
         <p>Fill the hackers in, and set the scene:</p>
         <ul>
-          <li>you flew from JFK to Vegas several hours ago, then drove out to the coordinates for Area 51</li>
+          <li>you flew from JFK to Vegas several hours ago, and then drove out to the coordinates for Area 51</li>
           <li>it's pretty empty — wind, road, lots of sand</li>
           <li>anything else you can imagine (e.g. tourist stops with alien-branded t-shirts, camper vans, billboards, etc.)</li>
         </ul>
@@ -234,7 +234,7 @@ class Host extends Component {
           <li>you developed these custom systems for the mission</li>
           <li>you're gonna put the link in the Zoom chat</li>
           <li>hackers can use any username</li>
-          <li>they should send a secure chat message once they're logged in</li>
+          <li>they should message the Secure Chat once they're logged in</li>
         </ul>
         <button
           onClick={() => {
@@ -244,7 +244,7 @@ class Host extends Component {
           Copy Player URL
         </button>
         <p>
-          <strong>If the button doesn't work, copy the URL manually at the top right.</strong>
+          <strong>If the button doesn't work, copy the URL manually at the top right of the window.</strong>
         </p>
         <p>
           <em><i>(Wait for all hackers to send a message in the Secure Chat.)</i></em>
@@ -274,7 +274,7 @@ class Host extends Component {
         <p>
           "OK, number three: the plan. My findings point to a top secret room that’s managed to evade all government records.
           No one but the most essential employees can access it. They call it — “The Vault.” If we can somehow break in there,
-          snag some documents, and get them out to the world, it'll be big!"
+          snag some documents, and get them out to the world, it'll be <span style={{"text-decoration": "underline"}}>big</span>!"
         </p>
         <p>
           "My research has revealed that the computers in Area 51 are all connected to the local network. Once we locate an access
@@ -296,13 +296,15 @@ class Host extends Component {
         </button>
         <p>"Bam. Big, old, abandoned warehouse. The perfect front to Area 51 right?"</p>
 
-        {this.renderSoundTrigger("S0_trip_alarm", "Walk to Warehouse and Trip Alarm", true)}
+        {this.renderSoundTrigger("S0_trip_alarm", "Walk and Trip Alarm", true)}
 
         "Looking for the entrance... found it. Let’s go."
 
         <h2>Trip Alarm</h2>
+        <p>
+          "Ow! I didn’t see that wire."
+        </p>
         <ul>
-          <li>You trip over a wire. It hurts.</li>
           <li>You notice something blinking red on the ground. It says: 60:00, 59:59... </li>
           <li>It's an alarm, and it's counting down to a total lockdown!</li>
           <li>There's a timer on the virtual desktops. Use that to keep track.</li>
@@ -355,7 +357,7 @@ class Host extends Component {
         <p>
           "Oh yes! Good call. I’ll get that out now and take a picture, gimme a sec."
         </p>
-        {this.renderSoundTrigger("S1_get_camera", "Get Thermal Camera from Backpack", true)}
+        {this.renderSoundTrigger("S1_get_camera", "Get Camera from Backpack", true)}
         <button
           onClick={() => {
             this.sendFile("thermal_warehouse");
@@ -374,7 +376,7 @@ class Host extends Component {
         {this.renderSoundTrigger("S1_open_box", "Open Electrical Box", true)}
         <h2>Switch and Transmitter</h2>
         <p>
-          "Got it open. It looks like there’s a power switch and an Ethernet port. Yes, it's an access point! I’m attaching the transmitter to the port. Let me know when you see the filesystem."
+          "Got it open. It looks like there’s a power switch and an Ethernet port. It's an access point! I’m attaching the transmitter to the port. Let me know when you see the filesystem."
         </p>
         <button
           onClick={() => {
@@ -421,7 +423,7 @@ class Host extends Component {
         </p>
         {this.renderSoundTrigger("S1_brush_buttons", "Brush Off Buttons", true)}
         <p>
-          "Oh, there’s a button... it’s an elevator! Amazing."
+          "Oh, there’s a button!"
         </p>
         {this.renderSoundTrigger("S1_call_elevator", "Call Elevator", true)}
         <p>
@@ -498,8 +500,8 @@ class Host extends Component {
           Send Hallway Image
         </button>
         <h2>We Need A Plan</h2>
-        <p>OK, we’re stuck here until we have a plan to get past these sensors. Is The Vault on this floor? Can you find a floor plan?</p>
-        <p><i>(The hackers will see new decrypted files: the floor plan and a security invoice.)</i></p>
+        <p>"We’re stuck here until we have a plan to get past these sensors. Is The Vault on this floor? Can you find a floor plan?</p>
+        <p><strong>security_invoice.pdf and subfloor3.bp have been decrypted.</strong></p>
 
         <h2>Plotting the Sensors</h2>
         <p>
@@ -507,8 +509,8 @@ class Host extends Component {
             subfloor3.bp and security_invoice.pdf have been unlocked.
           </strong>
         </p>
-        <p>Alright, send me the map when you’re done and I can check it against what I see here.</p>
-        <p><i>(The hackers must figure out how to arrange the security sensors on the map. When they export their work, follow the line prompter to give feedback on the map.)</i></p>
+        <p>"Alright, send me the map when you’re done and I can check it against what I see here."</p>
+        <p><em><i>(The hackers must figure out how to arrange the security sensors on the map. When they export their work, follow the line prompter to give feedback on the map.)</i></em></p>
         <FloorPlan
           level={this.state.state}
           socket={this.socket}
@@ -553,11 +555,11 @@ class Host extends Component {
             >
               Share Location
             </button>
+            <p><strong>
+              Location indicator (blue dot) appears on the floor plan.
+            </strong></p>
           </>
         )}
-        <p><strong>
-          Location indicator (blue dot) appears on the floor plan.
-        </strong></p>
       </>
     );
   }
@@ -567,12 +569,12 @@ class Host extends Component {
       <>
         <h2>VIDEO STREAM</h2>
         <p>
-          "I also found this electrical panel nearby. Give me a sec to setup a video stream in case it gives useful intel on the sensors."
+          "I found this electrical panel nearby. Give me a minute to set up a video stream in case there's useful intel on the sensors."
         </p>
         {this.renderSoundTrigger("S4_setup_video", "Set Up Video Stream", true)}
 
         <button
-          className={`confirm`}
+          className="state"
           onClick={() => {
             this.socket.emit("setRoomState", {
               roomCode: this.room,
@@ -600,9 +602,9 @@ class Host extends Component {
           <em><i>(Follow the hackers’ instructions on when to move. Maintain tension and urgency as you go. Press the arrow keys to move.)</i></em>
         </p>
         <ul>
-          <li>Warning: If you get a warning, make an excuse as to why you shouldn’t move — you see the red light on, etc.</li>
-          <li>Lasers: When you approach a laser, the hackers should tell you to use your mirror. Click “Slow for Lasers” to equip your mirror. You will not be able to get past the lasers without it.</li>
-          <li>Red Flash: The screen flashes red when you get caught. Panic, and say you are running back to the elevator to hide.</li>
+          <li><b>⚠️ Warning:</b> If you get a warning, make an excuse as to why you shouldn’t move — you see the red light on, etc.</li>
+          <li><b>🪞 Lasers:</b> When you approach a laser, the hackers should tell you to use your mirror. Click “Slow for Lasers” to equip your mirror. You will not be able to get past the lasers without it.</li>
+          <li><b>🚨 Red Flash:</b> The screen flashes red when you get caught. Panic, and say you are running back to the elevator to hide.</li>
         </ul>
 
         <ActorMoving
@@ -692,7 +694,7 @@ class Host extends Component {
         {this.renderSoundTrigger("S6_walk_3", "Walk Around 3", true)}
 
         <p>
-          "<i>(in awe)</i> Whoa. It’s a massive lab. It’s all dark and green in here. This is unreal, you guys. There are tall metal machines, cabinets full of notebooks, and racks of test tubes. Just like I’d imagined! <i>(beat)</i> But hold on... where are the aliens?! They won't believe us without proof — we can't leave until we find it!"
+          "<i>(in awe)</i> Whoa. It’s a massive lab. It’s all dark and green in here. This is unreal, you guys. There are tall metal machines, cabinets full of notebooks, and racks of test tubes. Just like I’d imagined! <i>(beat)</i> But hold on... where are the aliens?! They’ll never believe us without proof."
         </p>
 
         <h2>Foreign Symbols</h2>
@@ -726,7 +728,7 @@ class Host extends Component {
         {this.renderSoundTrigger("S6_keyboard_2", "Type on Computer 2", true)}
 
         <p>
-          "I found a directory named “CONFIDENTIAL.” Looks like there’s two transcripts and a journal entry. Sending them now. Can you take a crack at the journal and let me know what it says?"
+          "I found a directory named “CONFIDENTIAL.” Looks like there are two transcripts and a journal entry. Sending them now. Can you take a crack at them and let me know what they say?"
         </p>
 
         <button
@@ -759,6 +761,7 @@ class Host extends Component {
         </i></p>
 
         <button
+          className="state"
           onClick={() => {
             this.socket.emit("setRoomState", {
               roomCode: this.room,
@@ -774,7 +777,7 @@ class Host extends Component {
         <h2>Continue Exploring</h2>
 
         <p>
-        <i>(Continue walking around. Give feedback to the hackers if they submit their translation progress. Over time, send the below hint images to the hackers.)</i>
+        <i>(Continue walking around. Give feedback to the hackers if they submit their translation progress. Over time, send the below hint images to the hackers. As time runs low, remind them of the time and tell them to hurry up!)</i>
         </p>
 
         <p>"I found a discarded test tube with some powder left over in it."</p>
@@ -799,7 +802,7 @@ class Host extends Component {
 
         <h2>Getting Close</h2>
 
-        <p><i>(If you think the hackers are getting close to solving the journal, play the radio message. This automatically plays at 5:00 if not played earlier.)</i></p>
+        <p><i>(Keep an eye on the Translator. When the hackers are about halfway done translating, play the radio message. This automatically plays at 5:00 if not played earlier.)</i></p>
       
         {this.renderSoundTrigger("S6_radio", "Play Radio Message", true)}
 
@@ -812,46 +815,10 @@ class Host extends Component {
 
         <h2>For a <span style={{ "color": "#1cc87b", "text-decoration": "underline" }}>SUCCESS</span> Ending:</h2>
 
-        <p><i>(Some time after the radio message, but before the players finish translating the document, you come across a room with creatures in giant glass tubes.)</i></p>
-
-        <h2>Tubes</h2>
-        <p>"GUYS! I FOUND ALIENS! Look at this."</p>
-        <button
-          onClick={() => {
-            this.sendFile("tubes");
-          }}
-        >
-          Send Tubes
-        </button>
-
-        <h2>Subjects</h2>
-        <p>"Um, guys? The other tubes... I don’t think these are aliens... they look... human..."</p>
-        <button
-          onClick={() => {
-            this.sendFile("subject1");
-            this.sendFile("subject2");
-            this.globalPlaySound("S6_jump_scare");
-          }}
-        >
-          Send Subjects
-        </button>
-
-        <p>"What’s going on here?! What do the documents say?"</p>
-
-        <h2>The Truth Comes Out (con't)</h2>
-
-        <p><em><i>
-          (The hackers tell you about the contents of the translated journal: indeed, The Vault researchers are actually aliens conducting research on humans.)
-        </i></em></p>
-
-        <p>
-          "What?! How could — no, that’s insane! Send those documents to me in the chat, I’ll email everything to the press right now. The New York Times, CNN, the Washington Post. We gotta get this out to the world! ...And I gotta get out of here."
-        </p>
-
         <p>
           <em>
             <i>
-              (The hackers export the journal to chat.)
+              (The players finish translating the journal and export the translation key to chat before 0:01. Scene continues below the Translator.)
             </i>
           </em>
         </p>
@@ -880,44 +847,102 @@ class Host extends Component {
         )}
         {this.state.state >= 69 && (
           <>
+            <h2>The Truth Comes Out</h2>
+
+            <p>
+              "What is it? What does it say?"
+            </p>
+            <p>
+              <em>
+              <i>
+                (The hackers tell you about, or read aloud, the contents of the translated journal: indeed, The Vault researchers are actually aliens conducting research on humans. You are in disbelief.)
+              </i>
+              </em>
+            </p>
+            <p>
+              "What?! So you’re saying that Area 51 is actually aliens... researching us?! No way. I’ll email everything to the press right now. The New York Times, CNN, the Washington Post. We gotta get this out to the world! ...And I should get out of here. Is there an exit?"
+            </p>
+            
+            {this.renderSoundTrigger("S6_walk_3", "Walk to Back Room", true)}
+
+            <p>
+              <i>
+                (You walk into a back room, where you find a collection of creatures soaked in giant glass tubes.)
+              </i>
+            </p>
+
+            <p>
+              "Guys, look at this!"
+            </p>
+
+            <button
+              onClick={() => {
+                this.sendFile("tubes");
+              }}
+            >
+              Send Tubes
+            </button>
+
+            <p>
+              "Uh... yup, these don’t look like aliens..."
+            </p>
+            
+            <button
+              onClick={() => {
+                this.sendFile("subject1");
+                this.sendFile("subject2");
+                this.globalPlaySound("S6_jump_scare");
+              }}
+            >
+              Send Subjects
+            </button>
+            
             <h2>The Frantic Escape</h2>
 
-        <p>
-          "Thanks! I’m typing up that email—"
-        </p>
+            <p>
+              <i>
+                (Right then, the FBI arrives and starts banging on the door, demanding you to open up before they shoot the door down.)
+              </i>
+            </p>
 
-        {this.renderSoundTrigger("S6_success", "Play Success Sequence", true)}
-        
-        <p><i>(The FBI arrives and starts banging on the door, demanding you to open up before they shoot the door down.)
-        </i></p>
+            { this.renderSoundTrigger("S6_success", "Play Success Sequence", true) }
 
-        <p>"Shit. They’re here! I gotta get out before they see me. Is there an exit?"</p>
-                
-        <p><i>
-        (You grab some papers and start searching for an exit. You find one in the back and break out of the lab just as gunshots begin.)
-        </i></p>
+            <p>
+              "Shit. They’re here! I gotta get out before they see me. Is there an exit?"
+            </p>
+                    
+            <p>
+              <i>
+                (You grab some papers and start searching for an exit. You find one in the back and break out of the lab just as gunshots begin.)
+              </i>
+            </p>
 
-        <p><i>
-        (You pant as you run up the stairs. Once you reach the top, catch your breath and address the hackers one last time.)
-        </i></p>
+            <p>
+              <i>
+                (You pant as you run up the stairs. Once you reach the top, catch your breath and address the hackers one last time.)
+              </i>
+            </p>
 
-        <p>
-          "Whew, I made it out! That was a close one. Sending that email right now. I gotta get back to my car ASAP and get on the road before they catch me."
-        </p>
+            <p>
+              "Whew, I made it out! That was a close one. Sending that email right now. I gotta get back to my car ASAP and get on the road before they catch me."
+            </p>
 
-        <p>
-          "Thanks so much for all your help on this mission! You guys really are brilliant hackers, I couldn’t have done it without you."
-        </p>
+            <p>
+              "Thanks so much for all your help on this mission! You guys really are brilliant hackers, I couldn’t have done it without you."
+            </p>
 
-        <p>
-          "I hope we’ll stay in touch and meet out in the world someday. Until then, we can now say, ALIENS ARE REAL! WOOHOO!"
-        </p>
+            <p>
+              "I hope we’ll stay in touch and meet out in the world someday. Until then, we can now say, ALIENS ARE REAL! WOOHOO!"
+            </p>
 
-        <p><em><i>(Leave the Zoom call.)</i></em></p>
+            <p>
+              <em>
+                <i>
+                  (Leave the Zoom call.)
+                </i>
+              </em>
+            </p>
 
-        <p><i>
-          (Hit "Send the Email" before 0:00!)
-        </i></p>
             <button
               onClick={() => {
                 this.socket.emit("startRoomSuccess", {
@@ -947,12 +972,12 @@ class Host extends Component {
           <>
             <h2>Success! We did it!</h2>
             <p>
-              <em><i>(After 10-20 seconds, rejoin the call and turn your video back on.)</i></em>
+              <em><i>(Rejoin the call and turn your video back on.)</i></em>
             </p>
             <h2>Post-Mission Debrief</h2>
             <p>Congratulate the players for a successful mission!</p>
             <ul>
-              <li><b>📸 Photo Op:</b> Have the players download the virtual background here [link coming soon]. When everyone has changed their backgrounds, take a team photo/screenshot. Share the file to the #photo-op channel on Discord!
+              <li><b>📸 Photo Op:</b> Have the players download the virtual background here [link coming soon]. When everyone has changed their backgrounds, take a team photo/screenshot. Share the file to the #photos channel on Discord!
               </li>
               <li><b>📥 Feedback:</b> Chat with the players and answer any questions they may have about the puzzles/experience. Encourage them to fill out the feedback form! (Linked in the last email from Alex)</li>
               <li><b>🧩 Recap:</b> Briefly step through and recap each puzzle solution in the experience. To do this, ask a player to screen share and walk them through the solutions.</li>
@@ -977,7 +1002,7 @@ class Host extends Component {
         <p><i>(You try to find an exit and fail. The FBI shoots the door down, and you are captured.)
         </i></p>
 
-        <p><em><i>(After the sound finishes playing, leave the Zoom call.)</i></em></p>
+        <p><em><i>(Stay on until the sound stops, then leave the Zoom call.)</i></em></p>
 
         <p>
           <em><i>(After 10-20 seconds, rejoin the call and turn your video back on.)</i></em>
@@ -986,7 +1011,7 @@ class Host extends Component {
         <h2>Post-Mission Debrief</h2>
         <p>Break the news to the players (Alex has been captured by the FBI).</p>
         <ul>
-          <li><b>📸 Photo Op:</b> Have the players download the virtual background here [link coming soon]. When everyone has changed their backgrounds, take a team photo/screenshot. Share the file to the #photo-op channel on Discord!
+          <li><b>📸 Photo Op:</b> Have the players download the virtual background here [link coming soon]. When everyone has changed their backgrounds, take a team photo/screenshot. Share the file to the #photos channel on Discord!
           </li>
           <li><b>📥 Feedback:</b> Chat with the players and answer any questions they may have about the puzzles/experience. Encourage them to fill out the feedback form! (Linked in the last email from Alex)</li>
           <li><b>🧩 Recap:</b> Briefly step through and recap each puzzle solution in the experience. To do this, ask a player to screen share and walk them through the solutions.</li>
@@ -1006,12 +1031,11 @@ class Host extends Component {
               state: 10,
             });
           }}
-          className="confirm"
         >
           Go to Warehouse
         </button>
         <h2>2. Old Elevator</h2>
-        <p>Hackers should have used the Floor Directory to pick sublevel 3.</p>
+        <p>Hackers should have used the Floor Directory to pick Sublevel 3.</p>
         <button
           onClick={() => {
             this.socket.emit("setRoomState", {
@@ -1019,11 +1043,10 @@ class Host extends Component {
               state: 20,
             });
           }}
-          className="confirm"
         >
           Go to Elevator
         </button>
-        <h2>3. Hiding Hallway</h2>
+        <h2>3. Hiding In Hallways</h2>
         <p>
           Hackers should have used the Floor Plan and Security Invoice to plot
           the sensors.
@@ -1035,11 +1058,10 @@ class Host extends Component {
               state: 30,
             });
           }}
-          className="confirm"
         >
           Go to Hallway
         </button>
-        <h2>4. Navigating Hallway</h2>
+        <h2>4. Navigating Hallways</h2>
         <p>
           Hackers should have used the Video Stream and Floor Plan to guide you
           to the vault.
@@ -1051,7 +1073,6 @@ class Host extends Component {
               state: 40,
             });
           }}
-          className="confirm"
         >
           Start Navigating
         </button>
@@ -1067,13 +1088,12 @@ class Host extends Component {
               state: 50,
             });
           }}
-          className="confirm"
         >
           Go to Door
         </button>
         <h2>6. Inside the Vault</h2>
         <p>
-          Hackers should translate the Journal entry and using the interview
+          Hackers should translate the Journal entry using the interview
           transcripts.
         </p>
         <button
@@ -1083,7 +1103,6 @@ class Host extends Component {
               state: 60,
             });
           }}
-          className="confirm"
         >
           Go to Vault
         </button>
