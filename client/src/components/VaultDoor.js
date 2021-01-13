@@ -6,34 +6,50 @@ const questions = [
   {
     question: "What is your mother's maiden name?",
     answer: "Carrigan",
+    soundId: "S5_keypad_carrigan_8",
+    duration: 2700,
   },
   {
     question: "What street did you live on as a child?",
     answer: "Charmaine Lane",
+    soundId: "S5_keypad_charmainelane_14",
+    duration: 5200,
   },
   {
     question: "What is your zip code?",
     answer: "79345",
+    soundId: "S5_keypad_zipcode_5",
+    duration: 2000,
   },
   {
     question: "Since when were you employed?",
     answer: "2013",
+    soundId: "S5_keypad_year_4",
+    duration: 1500,
   },
   {
     question: "What was the name of your childhood pet?",
     answer: "Oakley",
+    soundId: "S5_keypad_id_number_6",
+    duration: 2000,
   },
   {
     question: "What is your phone number ending in 0616?",
     answer: "+1 (555)-896-0616",
+    soundId: "S5_keypad_phonenumber_10",
+    duration: 4000,
   },
   {
     question: "In what city does your nearest sibling live?",
     answer: "Austin",
+    soundId: "S5_keypad_austin_5",
+    duration: 2000,
   },
   {
     question: "In what city did you meet your spouse/significant other?",
     answer: "Austin",
+    soundId: "S5_keypad_austin_5",
+    duration: 2000,
   },
 ];
 
@@ -47,7 +63,6 @@ class VaultDoor extends Component {
       timeRemaing: 30,
       correctGuard: false,
       message: "",
-      keypadSounds: ["S5_keypad_carrigan_8","S5_keypad_charmainelane_14","S5_keypad_zipcode_5","S5_keypad_year_4","S5_keypad_phonenumber_10","S5_keypad_austin_5","S5_keypad_austin_5"],
     };
   }
   render() {
@@ -82,16 +97,20 @@ class VaultDoor extends Component {
             <div className="answer">
               <button
                 onClick={() => {
-                  this.setState({ correctGuard: true, questionIndex: 1 });
                   this.props.globalPlaySound("S5_keypad_id_number_6");
+                  setTimeout(() => {
+                    this.setState({ correctGuard: true, questionIndex: 1 });
+                  }, 1800);
                 }}
               >
                 EI1120
               </button>
               <button
                 onClick={() => {
-                  this.setState({ correctGuard: false, questionIndex: 1 });
                   this.props.globalPlaySound("S5_keypad_id_number_6");
+                  setTimeout(() => {
+                   this.setState({ correctGuard: false, questionIndex: 1 });
+                  }, 1800);
                 }}
               >
                 Other
@@ -105,20 +124,22 @@ class VaultDoor extends Component {
       case 1:
         return (
           <>
-            <div className="question">Recover or Provide Password:</div>
+            <div className="question">Password or Recover Password:</div>
             <div className="answer">
               <button
                 onClick={() => {
                   this.props.globalPlaySound("S5_keypad_press_1");
-                  this.props.globalPlaySound("S5_30_beeps");
-                  this.endTime = Date.now() + 30 * 1000;
-                  this.getTime();
-                  this.setState({
-                    questionIndex: 2,
-                    questions: [...questions]
-                      .sort((a, b) => Math.random() - 0.5)
-                      .slice(0, -3),
-                  });
+                  setTimeout(() => {
+                    this.props.globalPlaySound("S5_30_beeps");
+                    this.endTime = Date.now() + 30 * 1000;
+                    this.getTime();
+                    this.setState({
+                      questionIndex: 2,
+                      questions: [...questions]
+                        .sort((a, b) => Math.random() - 0.5)
+                        .slice(0, -3),
+                    });
+                  }, 1000);
                 }}
               >
                 Recover
@@ -126,10 +147,13 @@ class VaultDoor extends Component {
               <button
                 onClick={() => {
                   this.props.globalPlaySound("S5_keypad_press_1");
-                  this.setState({
+                  setTimeout(() => {
+                    this.props.globalPlaySound("S5_access_denied");
+                    this.setState({
                     questionIndex: 0,
                     message: "That password was incorrect!",
                   });
+                  }, 1000);
                 }}
               >
                 Incorrect
@@ -148,15 +172,20 @@ class VaultDoor extends Component {
               {this.state.correctGuard && (
                 <button
                   onClick={() => {
-                    this.props.globalPlaySound(this.state.keypadSounds[this.state.questionIndex - 2]);
-                    if (this.state.questionIndex === 4) {
-                      clearTimeout(this.timeOutId);
-                      this.props.globalStopSound("S5_30_beeps");
-                      this.props.globalPlaySound("S5_unlock");
-                    }
-                    this.setState((state) => ({
-                      questionIndex: state.questionIndex + 1,
-                    }));
+                    this.props.globalPlaySound(question.soundId);
+                    console.log(question.question);
+                    console.log(question.soundId);
+                    console.log(question.duration);
+                    setTimeout( () => {
+                      if (this.state.questionIndex === 4) {
+                        clearTimeout(this.timeOutId);
+                        this.props.globalStopSound("S5_30_beeps");
+                        this.props.globalPlaySound("S5_unlock");
+                      }
+                      this.setState((state) => ({
+                        questionIndex: state.questionIndex + 1,
+                      }));
+                    }, question.duration);
                   }}
                 >
                   {question.answer}
@@ -164,13 +193,16 @@ class VaultDoor extends Component {
               )}
               <button
                 onClick={() => {
-                  this.props.globalPlaySound(this.state.keypadSounds[this.state.questionIndex - 2]);
-                  this.props.globalStopSound("S5_30_beeps");
-                  this.setState({
-                    questionIndex: 0,
-                    message: "That answer was incorrect!",
-                  });
-                  clearTimeout(this.timeOutId);
+                  this.props.globalPlaySound(question.soundId);
+                  setTimeout(()=>{
+                    this.props.globalStopSound("S5_30_beeps");
+                    this.props.globalPlaySound("S5_access_denied");
+                    this.setState({
+                      questionIndex: 0,
+                      message: "That answer was incorrect!",
+                    });
+                    clearTimeout(this.timeOutId);
+                  }, question.duration);
                 }}
               >
                 Wrong Answer
