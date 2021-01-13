@@ -33,7 +33,7 @@ class Draggable extends Component {
                         style={style}
                     >
                         <div className="draggable-header">
-                            <div className="close-app" onClick={this.props.closeCall}>X</div>
+                            <div className="close-app" onClick={this.props.closeCall}>✖</div>
                             <div className="app-name" onMouseDown={this.handleMouseDown}>{this.props.appName}</div>
                             <div className="app-name" onMouseDown={this.handleMouseDown} />
                         </div>
