@@ -4,6 +4,7 @@
 	background-image: url('/VERS-landing-bg.jpg');
 	background-size: cover;
 	background-position: 50% 50%;
+	font-size: 0.9em;
 }
 
 .home a {
@@ -18,8 +19,8 @@
 .home .header {
 	width: calc(100% - 60px);
 	max-width: 960px;
-	height: 120px;
-	padding-bottom: 30px;
+	height: 80px;
+	padding-bottom: 40px;
 	padding-top: 80px;
 	display: flex;
 	margin: auto;
@@ -27,7 +28,7 @@
 
 .home .header .title {
 	font-family: chainprinter, sans-serif;
-	font-size: 4em;
+	font-size: 3em;
 	text-align: center;
 	color: white;
 	text-shadow: 0 0 4px #66FF2E;
@@ -55,9 +56,10 @@
 }
 
 .home .folder {
-	width: 80%;
-	max-width: 960px;
-	min-height: 1000px;
+	width: 60%;
+	min-width: 700px;
+	max-width: 800px;
+	min-height: 1500px;
 	margin: auto;
 	border-radius: 4px;
 	position: relative;
@@ -190,6 +192,8 @@
 	.home .folder {
 		width: 100%;
 		max-width: 100%;
+		min-width: 0;
+		min-height: 1650px;
 	}
 
 	.home .nav .tab {

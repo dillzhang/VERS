@@ -11,20 +11,22 @@ const showPageContent = (
       rooms and immersive theatre, players work together to solve challenges and determine the fate of Alex’s mission —
       all from the comfort of their own rooms.
     </p>
+    <p>
+      Thanks to generous support from the Council for the Arts at MIT (CAMIT), we're now running an IAP 2021 production of VERS for the MIT community! Tickets are now available for shows Jan 15 - Feb 7.
+    </p>
     <img src="/show-image.png" />
     <h2>What to Expect</h2>
     <p>
-      VERS is designed for teams of 2-3 players ("hackers") and takes place in a Zoom call and your web browser, using a simulated desktop. The puzzles are
-      story-driven and will require navigating your virtual desktop, as well as communicating with Alex on the call.
+      You'll join a Zoom call with Alex and 1-2 of your friends. Then, Alex will set you up with web-based custom virtual desktops designed for your mission. Solving the puzzles will require navigating your virtual desktop, as well as communicating with Alex over the call.
     </p>
     <p>
-      The full experience lasts for 80-90 minutes, including the show and a post-mission debrief with your actor.
+      The full experience lasts for approximately 80 minutes, including the show and a post-mission debrief with your actor.
     </p>
     <p>
-      VERS is a beginner-friendly experience! No programming or hacking experience is necessary to play.
+      For more details about the show, visit our <a href="/faq">FAQ page</a>. 
     </p>
     <h2>How to Sign Up</h2>
-    <p>Recruit 1-2 fellow hackers to join you, and then buy one (1) ticket for your team on our <a href="//www.eventbrite.com/e/the-vers-project-iap-2021-tickets-134944872747" target="_blank">Eventbrite page</a>. You will be able to input your teammates' information in the order form. Then, you'll all get an email from Alex with the Zoom link in the days leading up to your mission.</p>
+    <p>Buy one (1) ticket for your team on our <a href="//www.eventbrite.com/e/the-vers-project-iap-2021-tickets-134944872747" target="_blank">Eventbrite page</a>. You will be able to input your teammates' information in the order form. Then, you'll all get an email from Alex with the Zoom link in the days leading up to your mission.</p>
   </>
   );
 
@@ -98,16 +100,33 @@ const teamPageContent = (
 const faqPageContent = (
   <>
     <h1 className="title">FAQ</h1>
-    <h3>How many players per team?</h3>
-    <p>2-3 players. We cap teams at 3 to ensure that each player can have meaningful engagement wth the puzzles.</p>
-    <h3>How long does VERS last?</h3>
-    <p>80-90 minutes. This includes the show and a short post-mission debrief with your actor.</p>
-    <h3>Do I need hacking/programming experience?</h3>
-    <p>Nope! VERS is a beginner-friendly experience.</p>
-    <h3>Do I need to prepare anything before the show?</h3>
-    <p>Just make sure you're using the latest version of <a href="//zoom.us/download" target="_blank">Zoom</a> and your preferred web browser.</p>
+    
+    <h3>Players Per Team</h3>
+    <p>2-3 players. We cap teams at 3 players to ensure that each player can have meaningful engagement with the puzzles.</p>
+    
+    <h3>Runtime</h3>
+    <p>80 minutes, including the show and a post-mission debrief with your actor.</p>
+    
+    <h3>Beginner-friendly</h3>
+    <p>VERS is designed to be a beginner-friendly experience! No actual programming or hacking is involved. There will be some arithmetic, so we would recommend players be ages 13+ or comfortable with algebra.</p>
+    
+    <h3>Technical Requirements</h3>
+    <p>You will need <a href="//zoom.us/download">Zoom</a> and the latest version of <a href="//google.com/chrome">Chrome</a> or <a href="//support.apple.com/downloads/safari">Safari</a>. Unfortunately, VERS does not work in Firefox.</p>
+    
+    <h3>Accessibility</h3>
+    <p>You will need to read, type, and click and drag elements on a screen. You will also need to listen and speak to Alex over the Zoom call, which will primarily be through audio.</p>
+    <p>If one or more members of your team are hard of hearing and would prefer text-based communication, let us know before your show at <a href="mailto:versproject@mit.edu">versproject@mit.edu</a> so that we can ask your actor to deliver dialogue over chat. You may also contact us with any other accessibililty questions.</p>
+
+    <h3>What does VERS stand for?</h3>
+    <p>The V.E.R.S. Project started off as a summer project over quarantine, so it stands for "Virtual Escape Room Summer" Project. It was originally meant to be a working title, but we decided to keep it!</p>
+
+    <h3>How did you come up with VERS?</h3>
+    <p>We got the idea for VERS in the MIT theatre class 21M.737 (Interactive Design and Projection for Live Performance), taught by Joshua Higgason. When the class went online due to the COVID-19 pandemic, we wondered how we could design a live interactive performance specifically for Zoom. We were intrigued by the idea we came up with for our final project and decided to continue exploring it over the summer. The summer project became VERS.</p>
+
     <h3>How does VERS work?</h3>
     <p>We're working on documenting this. In the meantime, you can read our writeup on <a href="//shannonpeng.com/projects/zooming-away">Zooming Away</a>, the precursor to VERS. It uses a very similar setup and much of the same technology as VERS.</p>
+    
+
     <p>Still got questions? Feel free to contact us at <a href="mailto:versproject@mit.edu">versproject@mit.edu</a>.</p>
   </>
   );
