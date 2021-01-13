@@ -400,7 +400,7 @@ const checkSensors = (roomCode, io, sender, color, sensors) => {
     setRoomState(roomCode, io, 39);
     io.to(roomCode).emit("update-line-from-submission", {
       line:
-        "This seems to match what I see here. Let me share my location and you can guide me.",
+        "This looks right to me. Great job. I’m sharing my location with you.",
     });
   } else {
     if (empty > 0) {
@@ -438,16 +438,16 @@ const checkTranslator = (roomCode, io, sender, color, translationKey) => {
   if (correct.length >= 23 && rooms[roomCode].state < 69) {
     setRoomState(roomCode, io, 69);
     io.to(roomCode).emit("update-line-from-submission", {
-      line: `[${correct.length} / 26] This is break major news! I'll email the networks right away!`,
+      line: `[${correct.length} / 26] *Translation complete. Continue scene below.*`,
     });
   } else {
     if (correct.length >= 20) {
       io.to(roomCode).emit("update-line-from-submission", {
-        line: `[${correct.length} / 26] I can kinda read this, but its needs to be clearer before we spread the word.`,
+        line: `[${correct.length} / 26] I can kinda read this, but it needs to be clearer before we can share it.`,
       });
     } else if (correct.length >= 13) {
       io.to(roomCode).emit("update-line-from-submission", {
-        line: `[${correct.length} / 26] This is starting to look like english. Keep going.`,
+        line: `[${correct.length} / 26] This is starting to look like English. Keep going.`,
       });
     } else {
       io.to(roomCode).emit("update-line-from-submission", {
