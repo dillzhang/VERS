@@ -89,7 +89,7 @@ const fileSystemFolders = {
           requirement: 100,
           display: "G_Schuyler.db",
         },
-        guard7: {
+        guard10: {
           requirement: 100,
           display: "N_Joseph.db",
         },
@@ -101,7 +101,7 @@ const fileSystemFolders = {
           requirement: 100,
           display: "P_Phoebe.db",
         },
-        guard10: {
+        guard7: {
           requirement: 50,
           display: "W_Patricia.db",
         },
