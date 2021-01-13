@@ -977,7 +977,7 @@ class Host extends Component {
             <h2>Post-Mission Debrief</h2>
             <p>Congratulate the players for a successful mission!</p>
             <ul>
-              <li><b>📸 Photo Op:</b> Have the players download the virtual background here [link coming soon]. When everyone has changed their backgrounds, take a team photo/screenshot. Share the file to the #photos channel on Discord!
+              <li><b>📸 Photo Op:</b> Have the players download the virtual background <a href="/ending-bgs/success.jpg" target="_blank">here</a>. When everyone has changed their backgrounds, take a team photo/screenshot. Share the file to the #photos channel on Discord!
               </li>
               <li><b>📥 Feedback:</b> Chat with the players and answer any questions they may have about the puzzles/experience. Encourage them to fill out the feedback form! (Linked in the last email from Alex)</li>
               <li><b>🧩 Recap:</b> Briefly step through and recap each puzzle solution in the experience. To do this, ask a player to screen share and walk them through the solutions.</li>
@@ -1021,7 +1021,7 @@ class Host extends Component {
         <h2>Post-Mission Debrief</h2>
         <p>Break the news to the players (Alex has been captured by the FBI).</p>
         <ul>
-          <li><b>📸 Photo Op:</b> Have the players download the virtual background here [link coming soon]. When everyone has changed their backgrounds, take a team photo/screenshot. Share the file to the #photos channel on Discord!
+          <li><b>📸 Photo Op:</b> Have the players download the virtual background <a href="/ending-bgs/failure.jpg" target="_blank">here</a>. When everyone has changed their backgrounds, take a team photo/screenshot. Share the file to the #photos channel on Discord!
           </li>
           <li><b>📥 Feedback:</b> Chat with the players and answer any questions they may have about the puzzles/experience. Encourage them to fill out the feedback form! (Linked in the last email from Alex)</li>
           <li><b>🧩 Recap:</b> Briefly step through and recap each puzzle solution in the experience. To do this, ask a player to screen share and walk them through the solutions.</li>
