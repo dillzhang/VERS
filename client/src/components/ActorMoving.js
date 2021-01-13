@@ -325,6 +325,7 @@ class ActorMoving extends Component {
     });
 
     if (failed) {
+      this.props.globalPlaySound("S4_security_alert");
       this.props.socket.emit("locationUpdate", {
         red: true,
         location: this.state.location,
@@ -332,6 +333,7 @@ class ActorMoving extends Component {
       });
       this.setState({
         red: true,
+        soundIndex: 0,
         message:
           "Oh no! The camera turned back on. I need to evade the guards. I will contact when I can.",
       });
@@ -412,6 +414,7 @@ class ActorMoving extends Component {
       });
       return;
     } else if (dangers.length > 0) {
+      this.props.globalPlaySound("S4_security_alert");
       this.props.socket.emit("locationUpdate", {
         red: true,
         location: this.state.location,
@@ -419,6 +422,7 @@ class ActorMoving extends Component {
       });
       this.setState({
         red: true,
+        soundIndex: 0,
         message:
           dangers.indexOf("Motion Sensor") > -1
             ? "We were caught on a motion sensor.  I need to evade the guards. I will reach back to you soon."
@@ -426,7 +430,6 @@ class ActorMoving extends Component {
             ? "We crossed a laser trip wire. I need to evade the guards. I will reach back to you soon."
             : "We were caught on camera. I need to evade the guards. I will reach back to you soon.",
       });
-      this.props.globalPlaySound("S4_security_alert");
       setTimeout(() => {
         this.setState(
           (state) => ({
