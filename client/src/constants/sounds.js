@@ -224,6 +224,11 @@ const SOUNDS = {
       dnd: false,
       duration: -1,
   },
+  S5_access_denied: {
+    source: new Audio("/sounds/S5-access-denied.mp3"),
+    dnd: false,
+    duration: -1,
+  },
   S5_unlock: {
     source: new Audio("/sounds/S5-unlock.mp3"),
       dnd: false,
