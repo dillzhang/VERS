@@ -1,225 +1,227 @@
 .home {
-	width: 100%;
-	height: 100%;
-	background-image: url('/VERS-landing-bg.jpg');
-	background-size: cover;
-	background-position: 50% 50%;
-	font-size: 0.9em;
+  width: 100%;
+  height: 100%;
+  background-image: url("/VERS-landing-bg.jpg");
+  background-size: cover;
+  background-position: 50% 50%;
+  font-size: 0.9em;
 }
 
 .home a {
-	color: inherit;
-	text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 .home div {
-	display: block;
+  display: block;
 }
 
 .home .header {
-	width: calc(100% - 60px);
-	max-width: 960px;
-	height: 80px;
-	padding-bottom: 40px;
-	padding-top: 80px;
-	display: flex;
-	margin: auto;
+  width: calc(100% - 60px);
+  max-width: 960px;
+  height: 80px;
+  padding-bottom: 40px;
+  padding-top: 80px;
+  display: flex;
+  margin: auto;
 }
 
 .home .header .title {
-	font-family: chainprinter, sans-serif;
-	font-size: 3em;
-	text-align: center;
-	color: white;
-	text-shadow: 0 0 4px #66FF2E;
-	margin: auto;
+  font-family: chainprinter, sans-serif;
+  font-size: 3em;
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 4px #66ff2e;
+  margin: auto;
 }
 
 .home .ticketsButton {
-	font-family: chainprinter, sans-serif;
-	color: #24D15D;
-	text-shadow: 0 0 4px #24D15D;
-	box-shadow: 0 0 2px #24D15D;
-	border-radius: 4px;
-	border: 2px solid #24D15D;
-	padding: 16px;
-	position: absolute;
-	top: 24px;
-	right: 24px;
-	opacity: 0.7;
-	transition: 0.15s;
+  font-family: chainprinter, sans-serif;
+  color: #24d15d;
+  text-shadow: 0 0 4px #24d15d;
+  box-shadow: 0 0 2px #24d15d;
+  border-radius: 4px;
+  border: 2px solid #24d15d;
+  padding: 16px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  opacity: 0.7;
+  transition: 0.15s;
 }
 
 .home .ticketsButton:hover {
-	opacity: 1;
-	transition: 0.15s;
+  opacity: 1;
+  transition: 0.15s;
 }
 
 .home .folder {
-	width: 60%;
-	min-width: 700px;
-	max-width: 800px;
-	min-height: 1500px;
-	margin: auto;
-	border-radius: 4px;
-	position: relative;
+  width: 60%;
+  min-width: 700px;
+  max-width: 800px;
+  min-height: 1500px;
+  margin: auto;
+  border-radius: 4px;
+  position: relative;
 }
 
 .home .nav {
-	width: 100%;
-	margin: auto;
-	list-style-type: none;
+  width: 100%;
+  margin: auto;
+  list-style-type: none;
 }
 
 .home .nav .tab {
-	width: calc(25% - 48px);
-	padding: 20px;
-	margin: 4px;
-	background-color: #DEB254;
-	border-radius: 6px 6px 0 0;
-	text-align: center;
-	font-family: chainprinter, sans-serif;
-	display: inline-block;
-	box-shadow: 0 0 4px #2a2a2a;
+  width: calc(25% - 48px);
+  padding: 20px;
+  margin: 4px;
+  background-color: #deb254;
+  border-radius: 6px 6px 0 0;
+  text-align: center;
+  font-family: chainprinter, sans-serif;
+  display: inline-block;
+  box-shadow: 0 0 4px #2a2a2a;
 }
 
 .home .nav .tab:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .home .nav .active {
-	background-color: #E8C985;
+  background-color: #e8c985;
 }
 
 .home .file {
-	margin: 4px;
-	background-color: #E8C985;
-	font-family: 'Roboto Mono', monospace;
-	padding: 36px;
-	position: relative;
-	top: -12px;
-	border-radius: 0 0 6px 6px;
-	z-index: 99;
+  margin: 4px;
+  background-color: #e8c985;
+  font-family: "Roboto Mono", monospace;
+  padding: 36px;
+  position: relative;
+  top: -12px;
+  border-radius: 0 0 6px 6px;
+  z-index: 99;
 }
 
 .home .file .content {
-	background-color: #e8e8e8;
-	padding: 48px;
-	box-shadow: 0 1px 3px #808080;
-	line-height: normal;
+  background-color: #e8e8e8;
+  padding: 48px;
+  box-shadow: 0 1px 3px #808080;
+  line-height: normal;
 }
 
 .home .file .content p {
-	margin: 24px 0;
+  margin: 24px 0;
+}
+
+.home .file .content p strong {
+  font-weight: bolder;
+  font-size: 1.05em;
 }
 
 .home .file .content a {
-	background-color: #FBED4B;
-	text-decoration: underline;
+  background-color: #fbed4b;
+  text-decoration: underline;
 }
 
 .home .file .content i {
-	font-style: italic;
+  font-style: italic;
 }
 
 .home .file .content h2 {
-	font-size: 1.15em;
-	font-weight: bold;
-	text-transform: uppercase;
-	margin: 18px 0;
+  font-size: 1.15em;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 18px 0;
 }
 
 .home .file .content h3 {
-	font-size: 1em;
-	font-weight: bold;
-	text-transform: uppercase;
-	margin: 18px 0;
+  font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 18px 0;
 }
 
 .home .file .content table {
-	margin: 24px 0;
+  margin: 24px 0;
 }
 
 .home .file .content td:nth-child(1) {
-	width: 200px;
-	font-weight: bold;
+  width: 200px;
+  font-weight: bold;
 }
 
 .home .file .content td:nth-child(2) {
-	width: 360px;
+  width: 360px;
 }
 
 .home .file .content img {
-	max-width: 300px;
-	border: 8px solid white;
-	box-shadow: 0 0 2px #808080;
-	float: right;
-	margin: 18px;
+  max-width: 300px;
+  border: 8px solid white;
+  box-shadow: 0 0 2px #808080;
+  float: right;
+  margin: 18px;
 }
 
 .home .file .title {
-	color: inherit;
-	font-family: 'Roboto Mono', monospace;
-	font-weight: bold;
-	font-size: 1.5em;
-	text-transform: uppercase;
-	margin-bottom: 24px;
+  color: inherit;
+  font-family: "Roboto Mono", monospace;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
 }
 
 .home .footer {
-	color: white;
-	opacity: 0.5;
-	margin: auto;
-	padding: 24px;
-	text-align: center;
-	font-size: 1em;
-	font-family: 'Roboto Mono', monospace;
+  color: white;
+  opacity: 0.5;
+  margin: auto;
+  padding: 24px;
+  text-align: center;
+  font-size: 1em;
+  font-family: "Roboto Mono", monospace;
 }
 
 @media screen and (max-width: 1024px) {
+  .home .header .title {
+    font-size: 2em;
+  }
 
-	.home .header .title {
-		font-size: 2em;
-	}
+  .home .header {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    padding-bottom: 0;
+  }
 
-	.home .header {
-		width: 100%;
-		max-width: 100%;
-		height: auto;
-		padding-bottom: 0;
-	}
+  .home .folder {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 1650px;
+  }
 
-	.home .folder {
-		width: 100%;
-		max-width: 100%;
-		min-width: 0;
-		min-height: 1650px;
-	}
+  .home .nav .tab {
+    width: calc(25% - 32px);
+    padding: 12px;
+  }
 
-	.home .nav .tab {
-		width: calc(25% - 32px);
-		padding: 12px;
-	}
+  .home .ticketsButton {
+    position: static;
+    width: 140px;
+    text-align: center;
+    margin: 30px auto;
+  }
 
-	.home .ticketsButton {
-		position: static;
-		width: 140px;
-		text-align: center;
-		margin: 30px auto;
-	}
+  .home .file {
+    padding: 12px;
+  }
 
-	.home .file {
-		padding: 12px;
-	}
+  .home .file .content {
+    padding: 24px;
+  }
 
-	.home .file .content {
-		padding: 24px;
-	}
-
-	.home .file .content img {
-		float: none;
-		margin: 0;
-	}
-
+  .home .file .content img {
+    float: none;
+    margin: 0;
+  }
 }
-
