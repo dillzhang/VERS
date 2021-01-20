@@ -8,6 +8,7 @@ import appCreator from "../constants/apps";
 import {
   chatColors,
   STATE_FAILURE,
+  STATE_LAST_EMAIL,
   stateApplications,
   alwayVisibleSet,
 } from "../constants/guest";
@@ -239,6 +240,7 @@ class Guest extends Component {
             <div className="noise"></div>
             <div className="content">
               <h1>Connection Lost</h1>
+              <h2>Standby for Mission Debrief</h2>
               <h6>
                 What did you think? Send us your feedback{" "}
                 <a href="//forms.gle/bYNKqATrJZBpuRAQA" target="_blank">
@@ -246,6 +248,13 @@ class Guest extends Component {
                 </a>
                 .
               </h6>
+            </div>
+          </div>
+        )}
+        {this.state.state === STATE_LAST_EMAIL && (
+          <div className="noise-wrapper success">
+            <div className="content">
+              <h2>Standby for Mission Debrief</h2>
             </div>
           </div>
         )}

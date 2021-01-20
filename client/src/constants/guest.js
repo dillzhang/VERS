@@ -19,6 +19,7 @@ const chatColors = [
 ];
 
 const STATE_SUCCESS = 70;
+const STATE_LAST_EMAIL = 75;
 const STATE_FAILURE = 80;
 
 const stateApplications = {
@@ -40,7 +41,7 @@ const stateApplications = {
   72: ["email"], // 72
   73: ["email"], // 73
   74: ["email"], // 74
-  75: ["email"], // 74
+  75: ["email"], // 75
   80: [], // 80
 };
 
@@ -57,6 +58,7 @@ const alwayVisibleSet = new Set([
 export {
   chatColors,
   STATE_SUCCESS,
+  STATE_LAST_EMAIL,
   STATE_FAILURE,
   stateApplications,
   alwayVisibleSet,

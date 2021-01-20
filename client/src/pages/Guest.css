@@ -212,7 +212,26 @@
   background: radial-gradient(ellipse at center, #4ea92d 0%, black 100%);
 }
 .guest .noise-wrapper.success {
-  background: radial-gradient(ellipse at center, white 0%, black 100%);
+  background: transparent;
+  pointer-events: none;
+  animation: delayedFade 18s;
+  animation-delay: 3.5s;
+  animation-iteration-count: 1;
+  opacity: 0;
+}
+
+@keyframes delayedFade {
+    0% { opacity: 0; }
+    0.5% { opacity: 1; }
+    98% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@-webkit-keyframes delayedFade {
+    0% { opacity: 0; }
+    0.5% { opacity: 1; }
+    98% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 .guest .noise-wrapper h1 {
@@ -224,8 +243,18 @@
   background-color: black;
   padding: 20px;
 }
+.guest .noise-wrapper h2 {
+  font-family: var(--conspiracy-font);
+  font-size: 2em;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: yellow;
+  padding: 20px;
+}
 .guest .noise-wrapper.failure h1 {
   color: red;
+  padding-bottom: 12px;
 }
 .guest .noise-wrapper h6 {
   background-color: rgba(102, 255, 46, 0.5);
