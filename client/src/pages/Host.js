@@ -935,14 +935,6 @@ class Host extends Component {
               "I hope we’ll stay in touch and meet out in the world someday. Until then, we can now say, ALIENS ARE REAL! WOOHOO!"
             </p>
 
-            <p>
-              <em>
-                <i>
-                  (Leave the Zoom call.)
-                </i>
-              </em>
-            </p>
-
             <button
               onClick={() => {
                 this.socket.emit("startRoomSuccess", {
@@ -953,6 +945,14 @@ class Host extends Component {
             >
               Send the Email
             </button>
+
+            <p>
+              <em>
+                <i>
+                  (Mute yourself.)
+                </i>
+              </em>
+            </p>
           </>
         )}
       </>
@@ -972,7 +972,7 @@ class Host extends Component {
           <>
             <h2>Success! We did it!</h2>
             <p>
-              <em><i>(Rejoin the call and turn your video back on.)</i></em>
+              <em><i>(After the emails finish sending, unmute yourself and turn your video back on.)</i></em>
             </p>
             <h2>Post-Mission Debrief</h2>
             <p>Congratulate the players for a successful mission!</p>
@@ -1002,10 +1002,10 @@ class Host extends Component {
         <p><i>(You try to find an exit and fail. The FBI shoots the door down, and you are captured.)
         </i></p>
 
-        <p><em><i>(Stay on until the sound stops, then leave the Zoom call.)</i></em></p>
+        <p><em><i>(Stay on until the sound stops, then mute yourself.)</i></em></p>
 
         <p>
-          <em><i>(After 10-20 seconds, rejoin the call and turn your video back on.)</i></em>
+          <em><i>(After ~10 seconds, unmute yourself and turn your video back on.)</i></em>
         </p>
 
         <button
