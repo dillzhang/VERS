@@ -44,7 +44,8 @@
 .entry_child {
   width: 35px;
   color: inherit;
-  font-family: monospace, var(--conspiracy-font);
+  font-family: var(--conspiracy-font), monospace;
+  font-weight: normal;
   font-size: 0.8em;
   background-color: #111f23;
   border-radius: 5px;

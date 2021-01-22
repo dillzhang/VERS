@@ -40,6 +40,10 @@
     line-height: 1.25em;
 }
 
+.document-holder span.alien {
+    text-transform: uppercase;
+}
+
 ul {
     list-style: disc inside;
 }

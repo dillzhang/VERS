@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   font-size: 1.25em;
-  font-family: monospace, var(--conspiracy-font);
+  font-family: var(--conspiracy-font), monospace;
   background-color: #153135;
   color: #cfffe5;
   width: 960px;
@@ -43,6 +43,7 @@
 }
 
 .translator textarea {
+  font-family: var(--conspiracy-font), monospace;
   resize: none;
 }
 .translator textarea::-webkit-scrollbar {
@@ -58,7 +59,8 @@
   border-radius: 6px;
   overflow-y: scroll;
   text-transform: uppercase;
-  font-size: 1em;
+  font-size: 0.8em;
+  font-weight: normal;
 }
 .translator .translator-box:focus {
   outline: none;
@@ -90,6 +92,7 @@
   margin: 10px auto;
 
   color: #96b9a6;
+  font-family: var(--desktop-font), monospace;
   background-color: #132A2E;
   border: 2px solid #314948;
   border-radius: 8px;
