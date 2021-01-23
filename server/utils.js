@@ -428,33 +428,40 @@ const checkSensors = (roomCode, io, sender, color, sensors) => {
 };
 
 const checkTranslator = (roomCode, io, sender, color, translationKey) => {
-  newFileMessage(io, null, roomCode, "translationKey", sender, color);
-  let correct = Object.keys(translationKey).filter((value) => {
-    return (
-      correctTranslationKey[value].english === "" ||
-      translationKey[value].english === correctTranslationKey[value].english
-    );
-  });
-  if (correct.length >= 23 && rooms[roomCode].state < 69) {
-    setRoomState(roomCode, io, 69);
-    io.to(roomCode).emit("update-line-from-submission", {
-      line: `[${correct.length} / 26] *Translation complete. Continue scene below.*`,
+
+  try {
+    newFileMessage(io, null, roomCode, "translationKey", sender, color);
+    let correct = Object.keys(translationKey).filter((value) => {
+      return (
+        correctTranslationKey[value].english === "" ||
+        translationKey[value].english === correctTranslationKey[value].english
+      );
     });
-  } else {
-    if (correct.length >= 20) {
+    if (correct.length >= 23 && rooms[roomCode].state < 69) {
+      setRoomState(roomCode, io, 69);
       io.to(roomCode).emit("update-line-from-submission", {
-        line: `[${correct.length} / 26] I can kinda read this, but it needs to be clearer before we can share it.`,
-      });
-    } else if (correct.length >= 13) {
-      io.to(roomCode).emit("update-line-from-submission", {
-        line: `[${correct.length} / 26] This is starting to look like English. Keep going.`,
+        line: `[${correct.length} / 26] *Translation complete. Continue scene below.*`,
       });
     } else {
-      io.to(roomCode).emit("update-line-from-submission", {
-        line: `[${correct.length} / 26] This is just gibberish. What does it say?`,
-      });
+      if (correct.length >= 20) {
+        io.to(roomCode).emit("update-line-from-submission", {
+          line: `[${correct.length} / 26] I can kinda read this, but it needs to be clearer before we can share it.`,
+        });
+      } else if (correct.length >= 13) {
+        io.to(roomCode).emit("update-line-from-submission", {
+          line: `[${correct.length} / 26] This is starting to look like English. Keep going.`,
+        });
+      } else {
+        io.to(roomCode).emit("update-line-from-submission", {
+          line: `[${correct.length} / 26] This is just gibberish. What does it say?`,
+        });
+      }
     }
   }
+  catch(err) {
+    console.log("ERROR in checkTranslator:", err);
+  }
+  
 };
 
 const globalPlaySound = (roomCode, io, soundId, save) => {
